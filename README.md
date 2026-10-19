@@ -24,3 +24,4 @@ Before production:
 - Fill the marked placeholders: the zakat Sharia statement, program and operations percentages, and the IBAN / SWIFT numbers.
 - Confirm the fund-to-amount labels, the campaign progress figures (currently examples), the landline number (+20 2 26907195) and the consent for each story.
 - Point the in-page `#` links at the real pages and connect the form to the payment gateway.
+- The payment logos in `site/assets/pay/` were supplied by the project team. Show only the methods the chosen gateway actually supports, and follow each provider's logo guidelines.

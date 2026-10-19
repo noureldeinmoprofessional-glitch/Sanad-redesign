@@ -207,7 +207,13 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 .err { color: var(--err); font-size: .88rem; font-weight: 600; }
 .give-btn { font-size: 1.08rem; min-height: 56px; }
 .pay-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
-.pay-row span { font-size: .78rem; font-weight: 700; border: 1px solid var(--line); border-radius: 6px; padding: 1px 8px; color: var(--muted); }
+.pay-logo { display: inline-flex; align-items: center; justify-content: center; height: 38px; padding: 3px 7px; background: var(--white); border: 1px solid var(--line); border-radius: 8px; }
+.pay-logo img { height: 21px; width: auto; }
+/* square and stacked marks need more height to match the visual weight of the wide wordmarks */
+.pay-logo.tall img { height: 30px; }
+.pay-row .pay-logo { height: 34px; padding: 3px 6px; }
+.pay-row .pay-logo img { height: 18px; }
+.pay-row .pay-logo.tall img { height: 26px; }
 .secure { display: flex; justify-content: center; align-items: center; gap: 6px; color: var(--muted); font-size: .86rem; text-align: center; }
 .hint { color: var(--muted); font-size: .86rem; text-align: center; }
 .back { align-self: flex-start; background: none; border: 0; color: var(--teal-deep); font-weight: 700; cursor: pointer; padding: 4px 0; }
@@ -215,9 +221,11 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 [dir="ltr"] .back::before { content: "← "; }
 .summary { background: var(--mist); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; font-weight: 700; }
 .methods { display: grid; gap: 8px; }
-.methods span { display: flex; align-items: center; justify-content: space-between; gap: 10px; border: 1.5px solid var(--line); border-radius: 12px; padding: 10px 14px; cursor: pointer; }
+.methods label > span { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; min-height: 62px; border: 1.5px solid var(--line); border-radius: 12px; padding: 10px 14px; cursor: pointer; }
+.methods .m-txt { display: flex; flex-direction: column; min-width: 0; line-height: 1.45; }
 .methods b { font-weight: 700; }
-.methods small { color: var(--muted); font-size: .84rem; text-align: end; }
+.methods small { color: var(--muted); font-size: .84rem; }
+.methods .m-logos { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 .methods input:checked + span { border: 2px solid var(--teal-deep); background: var(--teal-soft); }
 .note { background: #fff8e6; border: 1px solid #f1d58a; border-radius: 12px; padding: 10px 14px; font-size: .9rem; }
 .check { display: flex; gap: 10px; align-items: flex-start; font-size: .93rem; cursor: pointer; }
@@ -517,7 +525,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
           <p class="err" id="amt-err" hidden></p>
         </div>
         <button class="btn btn-give btn-block give-btn" type="submit" id="give-btn">أكون سندًا بـ 500 ج.م شهريًا</button>
-        <div class="pay-row" aria-label="وسائل الدفع" data-en-aria="Payment methods"><span>Apple Pay</span><span>Google Pay</span><span>Visa</span><span>Mastercard</span><span>Meeza</span><span data-en="Wallets">محافظ</span><span>InstaPay</span><span data-en="Fawry">فوري</span></div>
+        <div class="pay-row" role="list" aria-label="وسائل الدفع المتاحة" data-en-aria="Accepted payment methods"><span class="pay-logo" role="listitem"><img src="assets/pay/apple-pay.webp" width="216" height="96" alt="Apple Pay"></span><span class="pay-logo" role="listitem"><img src="assets/pay/google-pay.webp" width="256" height="96" alt="Google Pay"></span><span class="pay-logo" role="listitem"><img src="assets/pay/visa.webp" width="145" height="96" alt="Visa"></span><span class="pay-logo tall" role="listitem"><img src="assets/pay/mastercard.webp" width="121" height="96" alt="Mastercard"></span><span class="pay-logo tall" role="listitem"><img src="assets/pay/meeza.webp" width="141" height="96" alt="Meeza"></span><span class="pay-logo tall" role="listitem"><img src="assets/pay/instapay.webp" width="147" height="96" alt="InstaPay"></span><span class="pay-logo" role="listitem"><img src="assets/pay/fawry.webp" width="296" height="96" alt="Fawry"></span><span class="pay-logo tall" role="listitem"><img src="assets/pay/vodafone-cash.webp" width="204" height="96" alt="Vodafone Cash"></span><span class="pay-logo tall" role="listitem"><img src="assets/pay/etisalat-cash.webp" width="137" height="96" alt="Etisalat Cash"></span><span class="pay-logo" role="listitem"><img src="assets/pay/orange-money.webp" width="310" height="96" alt="Orange Money"></span><span class="pay-logo tall" role="listitem"><img src="assets/pay/we-pay.webp" width="106" height="96" alt="WE Pay"></span></div>
         <p class="secure"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-en="Secure, encrypted payment · Instant WhatsApp receipt">دفع آمن ومشفّر · إيصال فوري على واتساب</span></p>
       </form>
 
@@ -542,11 +550,11 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
         <fieldset>
           <legend data-en="Payment method">وسيلة الدفع</legend>
           <div class="methods">
-            <label><input type="radio" name="method" value="mobile" checked><span><b>Apple Pay / Google Pay</b><small data-en="Fastest on mobile">الأسرع على الموبايل</small></span></label>
-            <label><input type="radio" name="method" value="card"><span><b data-en="Bank card">بطاقة بنكية</b><small data-en="Visa · Mastercard · Meeza">Visa · Mastercard · ميزة</small></span></label>
-            <label><input type="radio" name="method" value="wallet"><span><b data-en="Mobile wallet">محفظة إلكترونية</b><small data-en="Vodafone Cash and others">فودافون كاش وغيرها</small></span></label>
-            <label><input type="radio" name="method" value="instapay"><span><b>InstaPay</b><small data-en="Instant transfer from your bank">تحويل فوري من حسابك البنكي</small></span></label>
-            <label><input type="radio" name="method" value="fawry"><span><b data-en="Fawry">فوري</b><small data-en="Pay cash at any Fawry outlet">ادفع نقدًا في أي منفذ فوري</small></span></label>
+            <label><input type="radio" name="method" value="mobile" checked><span><span class="m-txt"><b data-en="Pay by phone">الدفع بالهاتف</b><small data-en="Fastest on mobile">الأسرع على الموبايل</small></span><span class="m-logos"><span class="pay-logo"><img src="assets/pay/apple-pay.webp" width="216" height="96" alt="Apple Pay"></span><span class="pay-logo"><img src="assets/pay/google-pay.webp" width="256" height="96" alt="Google Pay"></span></span></span></label>
+            <label><input type="radio" name="method" value="card"><span><span class="m-txt"><b data-en="Bank card">بطاقة بنكية</b><small data-en="Debit, credit or prepaid">خصم أو ائتمان أو مسبقة الدفع</small></span><span class="m-logos"><span class="pay-logo"><img src="assets/pay/visa.webp" width="145" height="96" alt="Visa"></span><span class="pay-logo tall"><img src="assets/pay/mastercard.webp" width="121" height="96" alt="Mastercard"></span><span class="pay-logo tall"><img src="assets/pay/meeza.webp" width="141" height="96" alt="Meeza"></span></span></span></label>
+            <label><input type="radio" name="method" value="wallet"><span><span class="m-txt"><b data-en="Mobile wallet">محفظة إلكترونية</b><small data-en="Pay from your phone wallet">ادفع من محفظة موبايلك</small></span><span class="m-logos"><span class="pay-logo tall"><img src="assets/pay/vodafone-cash.webp" width="204" height="96" alt="Vodafone Cash"></span><span class="pay-logo tall"><img src="assets/pay/etisalat-cash.webp" width="137" height="96" alt="Etisalat Cash"></span><span class="pay-logo"><img src="assets/pay/orange-money.webp" width="310" height="96" alt="Orange Money"></span><span class="pay-logo tall"><img src="assets/pay/we-pay.webp" width="106" height="96" alt="WE Pay"></span></span></span></label>
+            <label><input type="radio" name="method" value="instapay"><span><span class="m-txt"><b data-en="Instant bank transfer">تحويل بنكي فوري</b><small data-en="Straight from your bank account">مباشرة من حسابك البنكي</small></span><span class="m-logos"><span class="pay-logo tall"><img src="assets/pay/instapay.webp" width="147" height="96" alt="InstaPay"></span></span></span></label>
+            <label><input type="radio" name="method" value="fawry"><span><span class="m-txt"><b data-en="Pay in cash">ادفع نقدًا</b><small data-en="At any Fawry outlet">في أي منفذ فوري</small></span><span class="m-logos"><span class="pay-logo"><img src="assets/pay/fawry.webp" width="296" height="96" alt="Fawry"></span></span></span></label>
           </div>
         </fieldset>
         <div class="field" id="currency-field">
