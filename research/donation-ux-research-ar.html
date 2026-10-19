@@ -1,0 +1,857 @@
+<title>بحث تجربة متبرعي سند</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alexandria:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: the Arabic edition of the research dossier, right-to-left, in Sanad's palette (teal, navy, coral). Coral marks donate actions only. No letter-spacing on Arabic text. */
+:root {
+  --bg: #f5fbfb;
+  --surface: #ffffff;
+  --ink: #0f2233;
+  --muted: #55687a;
+  --line: #d5e4e6;
+  --accent: #147f82;
+  --accent-soft: #e0f2f2;
+  --give: #c9502a;
+  --give-ink: #ffffff;
+  --crit: #b3262d;
+  --crit-soft: #fbe7e7;
+  --warn: #8a5600;
+  --warn-soft: #fbf0d9;
+  --ok: #17704a;
+  --ok-soft: #e1f3e9;
+  --wire: #edf4f4;
+  --wire-line: #bfd2d4;
+  --ring: #ffffff;
+  --display: "Alexandria", "IBM Plex Sans Arabic", system-ui, sans-serif;
+  --body: "IBM Plex Sans Arabic", "Segoe UI", Tahoma, system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c1a26; --surface: #13263a; --ink: #e3eef2; --muted: #9db3bf; --line: #24405a;
+    --accent: #5fd0d4; --accent-soft: #123a45; --give: #f47346; --give-ink: #1e0c04;
+    --crit: #ff8a8a; --crit-soft: #3a1c1e; --warn: #f0b85a; --warn-soft: #3a2c12;
+    --ok: #63d39f; --ok-soft: #14352a; --wire: #182f45; --wire-line: #355672;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c1a26; --surface: #13263a; --ink: #e3eef2; --muted: #9db3bf; --line: #24405a;
+  --accent: #5fd0d4; --accent-soft: #123a45; --give: #f47346; --give-ink: #1e0c04;
+  --crit: #ff8a8a; --crit-soft: #3a1c1e; --warn: #f0b85a; --warn-soft: #3a2c12;
+  --ok: #63d39f; --ok-soft: #14352a; --wire: #182f45; --wire-line: #355672;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 17px; line-height: 1.85;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 64px;
+}
+a { color: var(--accent); text-underline-offset: 4px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; line-height: 1.45; margin: 0; }
+h2 { font-size: 1.6rem; font-weight: 700; }
+h3 { font-size: 1.1rem; font-weight: 700; }
+p { margin: 0; }
+.col { max-width: 760px; margin-inline: auto; }
+.wide { max-width: 1080px; margin-inline: auto; }
+.stack { display: flex; flex-direction: column; gap: 14px; }
+.eyebrow { font-family: var(--body); font-size: .86rem; font-weight: 600; color: var(--muted); }
+.lede { font-size: 1.1rem; }
+.muted { color: var(--muted); }
+.small { font-size: .92rem; }
+.ltr { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+.code { direction: ltr; unicode-bidi: isolate; font-family: var(--mono); font-size: .82rem; background: var(--bg); border: 1px solid var(--line); padding: 0 5px; border-radius: 4px; overflow-wrap: anywhere; }
+ul.plain { margin: 0; padding-inline-start: 22px; padding-inline-end: 0; display: flex; flex-direction: column; gap: 6px; }
+
+/* masthead */
+.mast { padding-block: 52px 36px; border-bottom: 1px solid var(--line); }
+.mast h1 { font-size: clamp(2rem, 5.2vw, 3rem); font-weight: 700; margin-top: 10px; }
+.mast .sub { font-family: var(--display); font-size: 1.2rem; color: var(--accent); margin-top: 4px; }
+.mast .alt { margin-top: 14px; font-size: .95rem; }
+.meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px 24px; margin-top: 26px; }
+.meta div { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.meta b { font-weight: 600; }
+.brief { margin-top: 26px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.brief p { font-size: 1.02rem; line-height: 1.95; margin-top: 8px; }
+
+section { padding-block: 52px 8px; }
+.sec-head { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; max-width: 760px; }
+
+/* findings */
+.findings { display: grid; gap: 12px; }
+.finding { display: grid; grid-template-columns: auto 1fr; gap: 4px 14px; padding: 16px 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.finding .tag { grid-row: span 2; align-self: start; margin-top: 4px; }
+.finding p { min-width: 0; }
+.pill { display: inline-flex; align-items: center; font-family: var(--body); font-size: .8rem; padding: 1px 10px; border-radius: 999px; white-space: nowrap; font-weight: 600; }
+.pill.code-pill { font-family: var(--mono); font-size: .74rem; letter-spacing: .04em; direction: ltr; }
+.p0 { background: var(--crit-soft); color: var(--crit); }
+.p1 { background: var(--warn-soft); color: var(--warn); }
+.p2 { background: var(--ok-soft); color: var(--ok); }
+.info { background: var(--accent-soft); color: var(--accent); }
+.keep { background: var(--ok-soft); border-radius: 10px; padding: 16px 18px; }
+.keep ul { margin: 6px 0 0; padding-inline-start: 22px; padding-inline-end: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 4px 24px; }
+.callout { border-inline-start: 3px solid var(--accent); padding-block: 4px; padding-inline-start: 16px; }
+.callout.warn { border-color: var(--warn); }
+.callout.crit { border-color: var(--crit); }
+.callout ol { margin: 0; padding-inline-start: 22px; padding-inline-end: 0; display: flex; flex-direction: column; gap: 6px; }
+
+/* tables */
+.tbl-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .94rem; }
+th, td { text-align: start; vertical-align: top; padding: 11px 14px; border-bottom: 1px solid var(--line); }
+th { font-family: var(--body); font-weight: 600; font-size: .82rem; color: var(--muted); background: var(--bg); }
+tr:last-child td { border-bottom: 0; }
+
+/* annotated screenshots */
+.audit { display: flex; flex-direction: column; gap: 44px; margin-top: 18px; }
+.fig { margin: 0; display: flex; flex-direction: column; gap: 14px; }
+.fig-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; }
+.fig-head .eyebrow { color: var(--accent); }
+.shot { position: relative; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface); max-width: 100%; }
+.shot img { display: block; width: 100%; height: auto; }
+.pin { position: absolute; transform: translate(-50%, -50%); width: 26px; height: 26px; border-radius: 50%; background: var(--give); color: var(--give-ink); font: 500 .78rem/1 var(--mono); display: grid; place-items: center; box-shadow: 0 0 0 3px var(--ring); }
+@media (max-width: 560px) { .pin { width: 20px; height: 20px; font-size: .66rem; box-shadow: 0 0 0 2px var(--ring); } }
+.issues { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 10px 28px; }
+.issues li { display: grid; grid-template-columns: 26px 1fr; gap: 12px; align-items: start; font-size: .96rem; }
+.issues li > div { min-width: 0; }
+.issues .n { width: 24px; height: 24px; border-radius: 50%; background: var(--give); color: var(--give-ink); font: 500 .74rem/1 var(--mono); display: grid; place-items: center; margin-top: 5px; }
+.issues .n.good { background: var(--ok); color: var(--surface); }
+
+/* personas */
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 14px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.card .quote-line { font-size: .98rem; color: var(--accent); }
+dl.kv { display: grid; grid-template-columns: max-content 1fr; gap: 4px 12px; margin: 0; font-size: .93rem; }
+dl.kv dt { font-weight: 600; font-size: .84rem; color: var(--muted); padding-top: 2px; }
+dl.kv dd { margin: 0; min-width: 0; }
+
+/* principles */
+.principles { display: grid; border-top: 1px solid var(--line); margin-top: 10px; }
+.principle { display: grid; grid-template-columns: minmax(0, 220px) 1fr; gap: 6px 24px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.principle h3 { font-size: 1.02rem; }
+.principle .evidence { font-size: .88rem; color: var(--muted); margin-top: 6px; }
+@media (max-width: 640px) { .principle { grid-template-columns: 1fr; } }
+
+/* blueprint */
+.blueprint { display: grid; grid-template-columns: 380px 1fr; gap: 36px; align-items: start; margin-top: 18px; }
+@media (max-width: 900px) { .blueprint { grid-template-columns: 1fr; } }
+.phone { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); width: 100%; max-width: 380px; margin-inline: auto; border: 10px solid var(--ink); border-radius: 34px; background: var(--surface); overflow: hidden; }
+@media (max-width: 900px) { .phone { position: static; } }
+.screen { height: 720px; overflow-y: auto; font-size: 12.5px; line-height: 1.6; position: relative; scrollbar-width: thin; }
+.wf { border-bottom: 1px dashed var(--wire-line); padding: 12px 14px; display: flex; flex-direction: column; gap: 8px; position: relative; }
+.wf .mark { position: absolute; left: 8px; top: 8px; font-family: var(--mono); font-size: 10px; width: 20px; height: 20px; border-radius: 50%; background: var(--ink); color: var(--surface); display: grid; place-items: center; direction: ltr; }
+.wf h4 { margin: 0; font-family: var(--display); font-size: 15px; line-height: 1.45; padding-left: 22px; }
+.wf .small { font-size: 11px; color: var(--muted); }
+.bar { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding-left: 22px; }
+.logo { font-family: var(--display); font-weight: 700; font-size: 15px; color: var(--accent); }
+.btn-give { background: var(--give); color: var(--give-ink); font-weight: 600; border-radius: 8px; padding: 8px 12px; text-align: center; font-size: 12.5px; }
+.btn-ghost { border: 1px solid var(--wire-line); border-radius: 8px; padding: 6px 10px; text-align: center; font-size: 11.5px; }
+.img-ph { background: repeating-linear-gradient(135deg, var(--wire) 0 8px, transparent 8px 16px); border: 1px solid var(--wire-line); border-radius: 8px; display: grid; place-items: center; color: var(--muted); font-size: 10.5px; text-align: center; padding: 6px; }
+.widget { background: var(--bg); border: 1px solid var(--wire-line); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; gap: 8px; }
+.seg { display: grid; grid-template-columns: 1fr 1fr; background: var(--wire); border-radius: 8px; padding: 3px; gap: 3px; }
+.seg span { text-align: center; padding: 5px 2px; border-radius: 6px; font-size: 11.5px; }
+.seg .on { background: var(--surface); font-weight: 600; box-shadow: 0 0 0 1px var(--wire-line); }
+.seg3 { grid-template-columns: 1fr 1fr 1fr; }
+.amts { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+.amt { border: 1px solid var(--wire-line); border-radius: 8px; padding: 6px 4px; text-align: center; background: var(--surface); }
+.amt b { display: block; font-size: 13px; font-variant-numeric: tabular-nums; }
+.amt i { font-style: normal; font-size: 10px; color: var(--muted); display: block; line-height: 1.35; }
+.amt.on { border: 2px solid var(--accent); }
+.field { border: 1px solid var(--wire-line); border-radius: 8px; padding: 6px 8px; color: var(--muted); font-size: 11.5px; background: var(--surface); }
+.chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.chip { font-size: 10px; border: 1px solid var(--wire-line); border-radius: 999px; padding: 2px 8px; color: var(--muted); }
+.fund { border: 1px solid var(--wire-line); border-radius: 10px; padding: 9px; display: flex; flex-direction: column; gap: 5px; }
+.prog { height: 6px; background: var(--wire); border-radius: 99px; overflow: hidden; }
+.prog i { display: block; height: 100%; background: var(--accent); }
+.mini-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.mini-stats div { background: var(--bg); border-radius: 8px; padding: 6px 8px; }
+.mini-stats b { font-family: var(--display); font-size: 15px; display: block; font-variant-numeric: tabular-nums; }
+.quote { font-family: var(--display); font-size: 13.5px; line-height: 1.6; }
+.sticky-give { position: sticky; bottom: 0; background: var(--surface); border-top: 1px solid var(--wire-line); padding: 8px 12px; display: flex; gap: 8px; align-items: center; z-index: 2; }
+.sticky-give .btn-give { flex: 1; }
+
+.notes { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.note { display: grid; grid-template-columns: 30px 1fr; gap: 4px 12px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+.note > :not(.n) { grid-column: 2; min-width: 0; }
+.note .n { font-family: var(--mono); font-size: .78rem; width: 26px; height: 26px; border-radius: 50%; background: var(--ink); color: var(--surface); display: grid; place-items: center; grid-row: 1 / span 4; margin-top: 3px; }
+.note h3 { font-size: 1rem; }
+.note p, .note ul { font-size: .96rem; }
+.note ul { margin: 4px 0 0; padding-inline-start: 20px; padding-inline-end: 0; }
+.note .copy { margin-top: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; font-size: .96rem; line-height: 1.9; }
+
+/* flow, roadmap */
+.flow { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 10px; }
+.step { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.step .eyebrow { color: var(--accent); }
+.step ul { margin: 0; padding-inline-start: 20px; padding-inline-end: 0; font-size: .93rem; display: flex; flex-direction: column; gap: 3px; }
+.road { display: grid; gap: 12px; }
+.phase { display: grid; grid-template-columns: 170px 1fr; gap: 6px 22px; padding: 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; }
+.phase ul { margin: 0; padding-inline-start: 20px; padding-inline-end: 0; display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+@media (max-width: 640px) { .phase { grid-template-columns: 1fr; } }
+
+/* brand swatches */
+.swatches { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.sw { border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--surface); }
+.sw i { display: block; height: 54px; }
+.sw div { padding: 8px 10px; display: flex; flex-direction: column; gap: 1px; font-size: .88rem; }
+.sw code { font-family: var(--mono); font-size: .78rem; color: var(--muted); direction: ltr; text-align: end; }
+
+.sources { font-size: .92rem; padding-inline-start: 22px; padding-inline-end: 0; display: flex; flex-direction: column; gap: 6px; margin: 0; }
+.sources li { overflow-wrap: anywhere; }
+footer.end { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); font-size: .9rem; color: var(--muted); }
+</style>
+
+<div dir="rtl" lang="ar">
+<header class="mast">
+  <div class="col">
+    <div class="eyebrow">بحث تجربة المستخدم · التحويل إلى التبرع في الصفحة الرئيسية · أكتوبر 2026</div>
+    <h1>بحث تجربة متبرعي سند</h1>
+    <p class="sub">تحويل زيارة الصفحة الرئيسية إلى تبرّع</p>
+    <p class="alt muted"><span lang="en" dir="ltr">English version:</span> <a href="https://claude.ai/artifact/FiPzFq21LQS2m7azaRpfhT" target="_blank" rel="noopener" lang="en">Sanad Donor Homepage Research</a></p>
+    <div class="meta">
+      <div><span class="eyebrow">العميل</span><b>سند للرعاية الوالدية البديلة</b><span class="muted small" lang="en" dir="ltr" style="text-align:end">Sanad for Alternative Parental Care</span></div>
+      <div><span class="eyebrow">الموقع</span><b><span class="ltr">sanadorphans.org</span></b><span class="muted small">عربي وإنجليزي</span></div>
+      <div><span class="eyebrow">الهدف</span><b>زيادة التبرعات الفردية</b><span class="muted small">الصفحة الرئيسية ومسار التبرع</span></div>
+      <div><span class="eyebrow">الحالة</span><b>المرحلة الأولى: تدقيق الخبراء</b><span class="muted small">يُستكمل بالتحليلات واختبارات المستخدمين</span></div>
+    </div>
+    <div class="brief">
+      <span class="eyebrow">طلب العميل</span>
+      <p>أرجو تقديم مقترحاتكم بشأن تجديد تصميم موقع جمعية سند طبقا لرؤيتكم والمستهدفات التي سبق وأن ناقشناها وعلى رأسها التوجه نحو تعظيم التبرعات الفردية وجعل تصميم الموقع يتناسب مع تشجيع المتصفحين على التبرع وفقا للتوجهات الاستراتيجية الحالية لدى الجمعية. كذلك أن يكون التصميم عصري وجذاب وسهل التصفح والاستخدام وأن يتوافق مع الهوية البصرية الخاصة بجمعية سند.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ========== الملخص ========== -->
+<section id="summary">
+  <div class="col stack">
+    <div class="sec-head">
+      <span class="eyebrow">الملخص التنفيذي</span>
+      <h2>الصفحة الرئيسية تطلب التبرع، لكنها تخاطب أربعة جماهير في وقت واحد</h2>
+    </div>
+    <p class="lede">تُحسن الصفحة الرئيسية الحالية أشياء كثيرة. فيها نموذج تبرع في الواجهة، ومبالغ مرتبطة بأثر محدد، ورقم الإشهار ظاهر من أول نظرة، وقصص حقيقية لشباب، وبيانات الحسابات البنكية مع زر للنسخ. لكن التبرع الفردي ما زال ينافس على الانتباه. عملاء الاستشارات والشركاء المؤسسيون وطالبو الخدمات والمتبرعون يحصلون على الوزن نفسه، والنموذج لا يدعم وسائل الدفع التي يستخدمها أغلب المصريين، والنص يقول للمتبرع الفرد إن سند لا تدعم أطفالًا بعينهم. نقترح أن يحافظ التصميم الجديد على هذه الأسس، وأن تصبح الصفحة الرئيسية صفحة المتبرع.</p>
+
+    <div class="keep">
+      <h3>ما نحافظ عليه ونبني عليه</h3>
+      <ul>
+        <li>نموذج التبرع في الواجهة</li>
+        <li>مبالغ مرتبطة بالأثر (<span class="ltr">150 / 500 / 1,000</span> ج.م)</li>
+        <li>«منذ 2008 · رقم الإشهار 7478» في الواجهة</li>
+        <li>قصص وجيه وسحر وعلاء</li>
+        <li>الحسابات البنكية مع زر النسخ</li>
+        <li>زر واتساب، وزر «تبرع الآن» المرجاني في الترويسة</li>
+      </ul>
+    </div>
+
+    <div class="findings">
+      <div class="finding"><span class="pill code-pill p0 tag">P0</span><h3>النطاق يعرض صفحات مزعجة في نتائج جوجل</h3><p>تظهر في نتائج البحث صفحات بعناوين مراهنات وقمار على <span class="code">sanadorphans.org/?go=…</span> تعيد استخدام نص التبرع الخاص بسند. هذا يضر بالثقة وبترتيب الموقع في البحث، وقد يدل على اختراق نظام إدارة المحتوى في موقع يضم نموذج دفع. يجب إصلاحه قبل الإطلاق.</p></div>
+      <div class="finding"><span class="pill code-pill p1 tag">P1</span><h3>المتبرع يتقاسم المساحة مع عملاء الاستشارات</h3><p>تضع الترويسة زر «اطلب استشارة» بجانب «تبرع الآن»، وزرّا الواجهة هما «خدماتنا» و«استشاراتنا»، وتبدأ القائمة بالخدمات الاستشارية ومركز المعرفة. أما بطاقة التبرع فهي الثالثة من أربع بطاقات تحت «شارك معنا».</p></div>
+      <div class="finding"><span class="pill code-pill p1 tag">P1</span><h3>نموذج الواجهة لا يدعم طريقة تبرع المصريين</h3><p>يقبل التبرع لمرة واحدة فقط، بلا اختيار بين الزكاة والصدقة، والبرنامج مخفي في قائمة منسدلة. يطلب الدولة والبريد الإلكتروني قبل الدفع، ويقبل فيزا وماستركارد بالجنيه فقط: لا محافظ إلكترونية ولا إنستاباي ولا فوري ولا <span class="ltr">Apple Pay</span> أو <span class="ltr">Google Pay</span>.</p></div>
+      <div class="finding"><span class="pill code-pill p1 tag">P1</span><h3>النص يُضعف التبرع الفردي</h3><p>عبارة «لا نكتفي بدعم الأطفال بشكل فردي، بل نطوّر منظومة الرعاية البديلة بأكملها» دقيقة، لكنها تقول للمتبرع الفرد إن تبرعه ليس لطفل. ونصف مربعات الأثر تعدّ موظفي الوزارة والجمعيات الأهلية الذين تلقوا التدريب.</p></div>
+      <div class="finding"><span class="pill code-pill p2 tag">P2</span><h3>أقوى محتوى يأتي متأخرًا وبلا زر تبرع</h3><p>القصص ملصقات في شريط متحرك قرب أسفل الصفحة، واقتباساتها نص داخل الصور، ولا يتبعها أي زر تبرع.</p></div>
+      <div class="finding"><span class="pill code-pill p2 tag">P2</span><h3>الألوان والتباين ودقة البيانات</h3><p>زر التبرع مرجاني في الترويسة وفيروزي في النموذج. ويتراوح تباين النص الأبيض على الأزرار الفيروزية والمرجانية بين 2.2 و3.0 إلى 1، وهو أقل من الحد الأدنى 4.5 إلى 1 في معيار <span class="ltr">WCAG AA</span>. والأرقام تتعارض بين الصفحات (538 مقابل 338 مقابل 265 دار رعاية، و20 مقابل 19 محافظة). أحد أرقام الهاتف ناقص، وهناك زر عائم يستخدم شعار <span class="ltr">ChatGPT</span>.</p></div>
+    </div>
+
+    <div class="callout">
+      <h3 style="margin-bottom:8px">أهم خمس توصيات</h3>
+      <ol>
+        <li><b>جعل الصفحة الرئيسية صفحة المتبرع.</b> نوجّه أزرار الواجهة إلى التبرع والقصص، ونُبقي زرًا رئيسيًا واحدًا في الترويسة، وننقل الاستشارات ومركز المعرفة ومحتوى الشركاء إلى قسم «للمؤسسات».</li>
+        <li><b>تطوير نموذج الواجهة:</b> نضيف اختيار «شهريًا / مرة واحدة» واختيار «زكاة / صدقة / تبرع عام»، ونعرض البرامج كخيارات ظاهرة، ونطلب رقم الهاتف بدل الدولة، ونكتب المبلغ على الزر.</li>
+        <li><b>إضافة وسائل الدفع التي يستخدمها المصريون:</b> المحافظ الإلكترونية، وإنستاباي، وأكواد فوري، و<span class="ltr">Apple Pay</span> و<span class="ltr">Google Pay</span>، والبطاقات الأجنبية بالدولار والريال والدرهم.</li>
+        <li><b>إعادة صياغة الرسالة ورفع القصص لأعلى.</b> «تبرعك يصل إلى الأطفال من خلال من يربّونهم». نحوّل قصص وجيه وسحر وعلاء إلى اقتباسات نصية يتبعها زر تبرع.</li>
+        <li><b>إضافة مسار للزكاة والإطلاق قبل رمضان 2027</b> (المتوقع نحو 8 فبراير حسب رؤية الهلال)، مع يوم اليتيم في 2 أبريل 2027 كموسم ثانٍ.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ========== المنهجية ========== -->
+<section id="method">
+  <div class="col stack">
+    <div class="sec-head">
+      <span class="eyebrow">المنهجية وحدودها</span>
+      <h2>كيف وصلنا إلى هذه النتائج</h2>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>المصدر</th><th>ما قمنا به</th><th>درجة الثقة</th></tr></thead>
+        <tbody>
+          <tr><td>لقطات شاشة للصفحة الرئيسية (الإنجليزية، شاشة الكمبيوتر)</td><td>مراجعة خبير لكل قسم وفق مبادئ تجربة التبرع، مع قياس التباين من ألوان اللقطات.</td><td><span class="pill p2">عالية</span></td></tr>
+          <tr><td>صفحات الموقع المؤرشفة في محركات البحث (عربي وإنجليزي)</td><td>مراجعة صفحات التبرع والأثر والقصص و«من نحن»، وبنية الروابط.</td><td><span class="pill p1">متوسطة</span></td></tr>
+          <tr><td>سلامة النطاق</td><td>عمليات بحث <span class="code">site:</span> لمعرفة ما يراه من يبحث عن سند.</td><td><span class="pill p2">عالية</span></td></tr>
+          <tr><td>مؤشرات التبرع المرجعية</td><td>تقرير <span class="ltr">M+R Benchmarks</span> لعامي 2025 و2026: معدل التحويل في صفحات التبرع، وحصة التبرع الشهري، والاحتفاظ بالمتبرعين.</td><td><span class="pill p2">عالية</span> للاتجاه العام، <span class="pill p1">متوسطة</span> لمصر</td></tr>
+          <tr><td>سياق التبرع في مصر</td><td>وسائل الدفع (فوري، المحافظ، إنستاباي)، وتعامل الجمعيات المماثلة مع الزكاة، وأدلة التبرع في رمضان.</td><td><span class="pill p1">متوسطة</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warn">
+      <p><b>ما زال ينقصنا:</b> راجعنا الصفحة الرئيسية الإنجليزية على شاشة الكمبيوتر. وقبل الاعتماد النهائي نحتاج إلى أربعة أشياء: لقطات أو تسجيل شاشة للصفحة الرئيسية <b>العربية</b> وعلى <b>الموبايل</b>، ومسار التبرع بعد الضغط على «تبرع الآن»، وصلاحية الوصول إلى التحليلات، ولوحة بوابة الدفع. أغلب المتبرعين المصريين يدخلون من الموبايل وباللغة العربية، لذلك قد تغيّر مراجعة الموبايل ترتيب الأولويات.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== التدقيق ========== -->
+<section id="audit">
+  <div class="wide">
+    <div class="sec-head">
+      <span class="eyebrow">تدقيق التصميم الحالي</span>
+      <h2>الصفحة الرئيسية اليوم، قسمًا قسمًا</h2>
+      <p class="muted">لقطات من الصفحة الرئيسية الإنجليزية على شاشة الكمبيوتر، أكتوبر 2026. الدوائر المرجانية تشير إلى المشكلات، والأرقام الخضراء إلى ما ينجح بالفعل.</p>
+    </div>
+
+    <div class="audit">
+
+      <figure class="fig" id="fig-hero">
+        <div class="fig-head"><span class="eyebrow">أ · الترويسة والواجهة</span><h3>بداية قوية، موزعة بين جمهورين</h3></div>
+        <div class="shot" dir="ltr">
+          <img src="assets/current-hero.jpg" width="1400" height="676" alt="الترويسة والواجهة الحالية: شريط علوي فيروزي، والشعار، وسبع قوائم منسدلة، وزرّا «اطلب استشارة» و«تبرع الآن»، وفيديو في الخلفية بعنوان A World Where Orphans Shape Their Future، وزرّا «خدماتنا» و«استشاراتنا»، ونموذج تبرع على اليمين.">
+          <span class="pin" style="left:24.2%;top:12.5%">1</span>
+          <span class="pin" style="left:87.5%;top:14.9%">2</span>
+          <span class="pin" style="left:22.1%;top:70.3%">3</span>
+          <span class="pin" style="left:49.9%;top:59.7%">4</span>
+          <span class="pin" style="left:69%;top:38%">5</span>
+          <span class="pin" style="left:61%;top:49.3%">6</span>
+          <span class="pin" style="left:69%;top:65.8%">7</span>
+          <span class="pin" style="left:80.4%;top:85.9%">8</span>
+        </div>
+        <ol class="issues">
+          <li><span class="n">1</span><div><b>سبع قوائم منسدلة</b> تمتد على سطرين، والخدمات الاستشارية ومركز المعرفة والمركز الإعلامي في مستوى عناصر المتبرع نفسه.</div></li>
+          <li><span class="n">2</span><div><b>زر «اطلب استشارة»</b> له وزن «تبرع الآن» نفسه. يكفي زر رئيسي واحد في الترويسة.</div></li>
+          <li><span class="n">3</span><div><b>زرّا الواجهة يبعدان الزائر عن التبرع.</b> «خدماتنا» و«استشاراتنا» يأخذانه خارج الصفحة، بعيدًا عن النموذج المجاور. وتباين النص الأبيض على الزر الفيروزي <span class="ltr">2.2:1</span>.</div></li>
+          <li><span class="n">4</span><div><b>زر إيقاف الفيديو يغطي النص التعريفي،</b> والنص الأبيض الرفيع فوق صورة متحركة صعب القراءة.</div></li>
+          <li><span class="n">5</span><div><b>اختيار البرنامج مخفي</b> في قائمة منسدلة («<span lang="en">Children's Development</span>»)، فلا يرى الزائر ما يمكنه دعمه غير ذلك.</div></li>
+          <li><span class="n">6</span><div><b>ربط المبالغ بالأثر ممتاز ويجب الحفاظ عليه.</b> لكن عناوينها صغيرة (9 إلى 10 بكسل)، ولا يوجد خيار شهري ولا اختيار بين الزكاة والصدقة.</div></li>
+          <li><span class="n">7</span><div><b>ثلاثة حقول إلزامية قبل الدفع.</b> حقل الدولة نص حر يضيف عبئًا بلا فائدة تُذكر. نقترح طلب رقم الهاتف بدلًا منه (لإرسال الإيصال على واتساب)، وجعل البريد الإلكتروني اختياريًا.</div></li>
+          <li><span class="n">8</span><div><b>الزر لا يذكر المبلغ،</b> ولونه فيروزي (تباين <span class="ltr">2.96:1</span>) بينما زر التبرع في الترويسة مرجاني، ولا يقبل إلا فيزا وماستركارد بالجنيه.</div></li>
+        </ol>
+      </figure>
+
+      <figure class="fig" id="fig-stats">
+        <div class="fig-head"><span class="eyebrow">ب · التحدي والأثر</span><h3>صياغة جيدة للمشكلة، وأرقام لا تناسب المتبرع</h3></div>
+        <div class="shot" dir="ltr">
+          <img src="assets/current-stats.jpg" width="1400" height="860" alt="قسم التحدي الحالي: عنوان 1.4 مليون يتيم في مصر، وثلاثة أرقام على اليسار (140 مليون، 35 مليون، 1.4 مليون)، ولوحة كحلية بعنوان نهجنا: التغيير المنظومي فيها سبعة مربعات للأثر وشارة 18 عامًا.">
+          <span class="pin" style="left:20.9%;top:10%">1</span>
+          <span class="pin" style="left:63.6%;top:26.6%">2</span>
+          <span class="pin" style="left:65.5%;top:48.4%">3</span>
+          <span class="pin" style="left:56.5%;top:80.2%">4</span>
+          <span class="pin" style="left:78.7%;top:90.5%">5</span>
+        </div>
+        <ol class="issues">
+          <li><span class="n">1</span><div><b>الأرقام العالمية تأتي أولًا</b> (140 مليون من يونيسف 2014، أي قبل 12 عامًا). الأفضل أن نبدأ بمصر وباللحظة التي يستطيع المتبرع تخيلها: الخروج من الدار في سن 18 بلا سند من أسرة.</div></li>
+          <li><span class="n">2</span><div><b>عبارة «لا نكتفي بدعم الأطفال بشكل فردي»</b> تُبعد الجمهور الذي تستهدفه الاستراتيجية. الأفضل أن نوضح كيف يصل التبرع إلى الأطفال.</div></li>
+          <li><span class="n">3</span><div><b>نتائج تهم المتبرع تختلط بمخرجات تهم المؤسسات:</b> عدد الأطفال الذين وصلنا إليهم بجانب موظفي الوزارة ومنظمات المجتمع المدني المدرَّبة، وتنسيق الأرقام غير موحد (<span class="ltr">3283</span> مقابل <span class="ltr">3,490,500</span>).</div></li>
+          <li><span class="n">4</span><div><b>مربع واحد منفرد في سطره، والأرقام تتعارض</b> مع صفحات أخرى لسند: 538 دار رعاية هنا، و338 في نسخة سابقة مؤرشفة من الصفحة الرئيسية، و265 في ملف تعريفي حتى نهاية 2024، و20 مقابل 19 محافظة.</div></li>
+          <li><span class="n">5</span><div><b>القسم ينتهي بلا أي إجراء.</b> بعد أكثر حقيقة مؤثرة في الصفحة، لا يجد الزائر طريقة للمساعدة.</div></li>
+        </ol>
+      </figure>
+
+      <figure class="fig" id="fig-pillars">
+        <div class="fig-head"><span class="eyebrow">ج · الركائز الثلاث</span><h3>لغة القطاع حيث يحتاج المتبرع إلى كلمات بسيطة</h3></div>
+        <div class="shot" dir="ltr">
+          <img src="assets/current-pillars.jpg" width="1400" height="726" alt="قسم الركائز الثلاث الحالي: بطاقات الوقاية والحماية والتمكين، في كل منها أسماء البرامج ورابطا اقرأ المزيد واعرف المزيد.">
+          <span class="pin" style="left:22.7%;top:40.4%">1</span>
+          <span class="pin" style="left:29.3%;top:75.8%">2</span>
+          <span class="pin" style="left:22.1%;top:91.1%">3</span>
+        </div>
+        <ol class="issues">
+          <li><span class="n">1</span><div><b>الوقاية والحماية والتمكين</b> هيكل صحيح، لكنها عناوين مجردة. نحتفظ بالركائز الثلاث ونعطي كل واحدة اسمًا ونتيجة يفهمها المتبرع.</div></li>
+          <li><span class="n">2</span><div><b>أسماء البرامج رسمية وطويلة</b> («برنامج بناء قدرات أسر الكفالة لتربية الأطفال فاقدي الرعاية الوالدية»). يكفي سطر واحد بسيط لكل برنامج.</div></li>
+          <li><span class="n">3</span><div><b>كل بطاقة فيها رابطان</b> («اقرأ المزيد» و«اعرف المزيد»)، ولا توجد طريقة للتبرع لهذه الركيزة.</div></li>
+        </ol>
+      </figure>
+
+      <figure class="fig" id="fig-news">
+        <div class="fig-head"><span class="eyebrow">د · الأخبار والشركاء</span><h3>أخبار مؤسسية في أهم موقع بالصفحة</h3></div>
+        <div class="shot" dir="ltr">
+          <img src="assets/current-news.jpg" width="1400" height="790" alt="شريط أخبار «من الميدان» الحالي فيه أربعة إعلانات شراكة من سبتمبر وأكتوبر 2026، يليه صف «موثوق من» فيه ستة شعارات للشركاء.">
+          <span class="pin" style="left:50.2%;top:50.8%">1</span>
+          <span class="pin" style="left:25.9%;top:19.8%">2</span>
+          <span class="pin" style="left:58.6%;top:92.1%">3</span>
+        </div>
+        <ol class="issues">
+          <li><span class="n">1</span><div><b>أربعة أخبار شراكات ومذكرات تفاهم تحتل منتصف الصفحة.</b> هي مهمة للشركاء، أما للمتبرعين فالأفضل نقلها لأسفل أو إلى المركز الإعلامي.</div></li>
+          <li><span class="n">2</span><div><b>صور الأخبار تحمل نصًا عربيًا</b> في الصفحة الإنجليزية، وهو أصغر من أن يُقرأ بحجم البطاقة.</div></li>
+          <li><span class="n">3</span><div><b>شعارات «موثوق من» صغيرة ومنخفضة الدقة،</b> وبعضها غير مقروء. نقترح شعارات أقل وأوضح، بإذن أصحابها، وبالقرب من نموذج التبرع.</div></li>
+        </ol>
+      </figure>
+
+      <figure class="fig" id="fig-stories">
+        <div class="fig-head"><span class="eyebrow">هـ · قصص النجاح</span><h3>أفضل محتوى في الصفحة، لكنه في الأسفل وبحجم صغير</h3></div>
+        <div class="shot" dir="ltr">
+          <img src="assets/current-stories.jpg" width="1400" height="652" alt="قسم «من الدعم إلى الأثر» الحالي: فقرة وشريط متحرك فيه ثلاثة ملصقات مرسومة لقصص وجيه وسحر وعلاء، وأسماؤهم مكررة أسفلها.">
+          <span class="pin" style="left:28.4%;top:59.4%">1</span>
+          <span class="pin" style="left:49.9%;top:56.1%">2</span>
+          <span class="pin" style="left:49.9%;top:85.8%">3</span>
+        </div>
+        <ol class="issues">
+          <li><span class="n good">1</span><div><b>أسماء واقتباسات حقيقية بأسلوب رسوم مميز، ويجب الحفاظ عليه.</b> لكن الاقتباسات نص داخل الصورة: صغيرة، وغير مترجمة، ولا تقرؤها برامج قراءة الشاشة ولا محركات البحث.</div></li>
+          <li><span class="n">2</span><div><b>يظهر في أحد الملصقات طفل صغير يمكن التعرف عليه.</b> يجب التأكد من الموافقة ومن سياسة حماية الطفل قبل استخدامه في جمع التبرعات.</div></li>
+          <li><span class="n">3</span><div><b>الأسماء منفصلة عن بطاقاتها</b> أسفل الشريط، ولا يتبع القصص أي زر تبرع.</div></li>
+        </ol>
+      </figure>
+
+      <figure class="fig" id="fig-involved">
+        <div class="fig-head"><span class="eyebrow">و · شارك معنا والتحويل البنكي</span><h3>التبرع خيار من أربعة</h3></div>
+        <div class="shot" dir="ltr">
+          <img src="assets/current-involved.jpg" width="1400" height="798" alt="قسم «شارك معنا» الحالي بأربع بطاقات ملونة (كن شريكًا، اطلب خدماتنا، تبرع، تطوع)، يليه قسم طرق أخرى للتبرع بأرقام حسابات البنك التجاري الدولي والمصرف المتحد والبنك الأهلي المصري مع أزرار نسخ.">
+          <span class="pin" style="left:56.9%;top:27.9%">1</span>
+          <span class="pin" style="left:48.9%;top:65.1%">2</span>
+          <span class="pin" style="left:29.3%;top:92.1%">3</span>
+        </div>
+        <ol class="issues">
+          <li><span class="n">1</span><div><b>التبرع هو البطاقة الثالثة من أربع بطاقات متساوية،</b> بعد الشراكة وطلب الخدمات، وأربعة ألوان مشبعة تتنافس على الانتباه.</div></li>
+          <li><span class="n">2</span><div><b>العنوان «<span lang="en" dir="ltr">Other ways of donation</span>»</b> صحته «<span lang="en" dir="ltr">Other ways to donate</span>». والتحويل البنكي هو الوسيلة الوحيدة المعروضة.</div></li>
+          <li><span class="n good">3</span><div><b>أرقام الحسابات مع زر النسخ فكرة جيدة.</b> ينقصها اسم صاحب الحساب، ورقما <span class="ltr">IBAN</span> و<span class="ltr">SWIFT</span> للمتبرعين من الخارج، وخيارات إنستاباي والمحافظ، وعبارة «أرسل لنا إيصال التحويل على واتساب».</div></li>
+        </ol>
+      </figure>
+
+      <figure class="fig" id="fig-footer">
+        <div class="fig-head"><span class="eyebrow">ز · التذييل</span><h3>تفاصيل صغيرة تكلّف الثقة</h3></div>
+        <div class="shot" dir="ltr">
+          <img src="assets/current-footer.jpg" width="1400" height="410" alt="التذييل الكحلي الحالي: الشعار والوصف، وروابط من نحن وخدماتنا، وبيانات التواصل، والاشتراك في النشرة، وزر تبرع الآن، وسطر الإشهار، وأيقونتان عائمتان لـ ChatGPT وواتساب.">
+          <span class="pin" style="left:24.2%;top:22.1%">1</span>
+          <span class="pin" style="left:60.3%;top:33.8%">2</span>
+          <span class="pin" style="left:94.4%;top:80%">3</span>
+        </div>
+        <ol class="issues">
+          <li><span class="n">1</span><div><b>الاسم مختلف:</b> «<span lang="en" dir="ltr">Sanad for Alternative Parental Care</span>» هنا، و«<span lang="en" dir="ltr">Sanad for Orphans</span>» تحت الشعار في الترويسة. نقترح اسمًا واحدًا لكل لغة.</div></li>
+          <li><span class="n">2</span><div><b>الرقم <span class="ltr">+226907195</span> ناقص</b> (غالبًا <span class="ltr">+20 2 26907195</span>)، فلا يمكن الاتصال به من خارج مصر.</div></li>
+          <li><span class="n">3</span><div><b>زر عائم يستخدم شعار <span class="ltr">ChatGPT</span>.</b> لا يمت لهوية سند بصلة ويربك الزائر، وقد يثير مشكلة تتعلق بالعلامة التجارية. نقترح أيقونة «اسألنا» بهوية سند، أو حذفه.</div></li>
+        </ol>
+      </figure>
+
+    </div>
+
+    <div style="margin-top:36px">
+      <div class="callout crit">
+        <h3 style="margin-bottom:4px">المشكلة الأساسية في التصميم</h3>
+        <p>أغلب جمعيات الأيتام تقدم وعدًا بسيطًا: اكفل طفلًا. نموذج سند أفضل للأطفال (رعاية أسرية، ومقدمو رعاية مدرَّبون، وشباب مستقلون)، لكنه لا يعطي المتبرع شيئًا ملموسًا يتخيله، والصفحة الرئيسية تقول ذلك صراحة. على التصميم الجديد أن يسد هذه الفجوة. لكل ركيزة وحدة بحجم المتبرع (النموذج الحالي فيه ثلاث بالفعل: أدوات مدرسية، ودعم نفسي، وتدريب مقدّم رعاية)، وسعر، وقصة موثقة بموافقة صاحبها تُظهر الأثر.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== المتبرعون ========== -->
+<section id="donors">
+  <div class="wide stack">
+    <div class="sec-head">
+      <span class="eyebrow">لمن نصمم</span>
+      <h2>أربع شخصيات أولية للمتبرعين</h2>
+      <p class="muted">هذه فرضيات مبنية على أنماط التبرع في مصر. نتحقق منها من خلال قاعدة بيانات متبرعي سند والاستبيان المذكور في خطة البحث.</p>
+    </div>
+    <div class="grid2">
+      <article class="card">
+        <span class="pill info" style="align-self:flex-start">موسمي، قيمة عالية</span>
+        <h3>متبرع الزكاة</h3>
+        <p class="quote-line">"عايز أتأكد إن زكاتي في مكانها الصحيح"</p>
+        <dl class="kv">
+          <dt>من هو</dt><dd>مهني في القاهرة أو الإسكندرية، من 35 إلى 60 عامًا، يتبرع غالبًا في رمضان.</dd>
+          <dt>الجهاز</dt><dd>الموبايل أولًا، ويدفع غالبًا عبر إنستاباي أو المحفظة أو التحويل البنكي.</dd>
+          <dt>يحتاج</dt><dd>إثباتًا لجواز الزكاة، وحاسبة زكاة، وإيصالًا رسميًا.</dd>
+          <dt>يتراجع إذا</dt><dd>لم يتأكد من جواز الزكاة، أو لم يجد وسيلة الدفع التي يستخدمها.</dd>
+        </dl>
+      </article>
+      <article class="card">
+        <span class="pill info" style="align-self:flex-start">عاطفي، متكرر</span>
+        <h3>متبرع الصدقة للأيتام</h3>
+        <p class="quote-line">"أنا وكافل اليتيم في الجنة"</p>
+        <dl class="kv">
+          <dt>من هو</dt><dd>يتبرع بانتظام لقضايا الأيتام، غالبًا في يوم اليتيم (أول جمعة من أبريل) أو أيام الجمعة.</dd>
+          <dt>الجهاز</dt><dd>الموبايل، وغالبًا يأتي من فيسبوك أو إنستجرام.</dd>
+          <dt>يحتاج</dt><dd>أن يشعر بصلة بحياة طفل، وأن يعرف أن أثر تبرعه مستمر (صدقة جارية).</dd>
+          <dt>يتراجع إذا</dt><dd>بدت الصفحة مجردة («تغيير منظومي»، «بناء قدرات»).</dd>
+        </dl>
+      </article>
+      <article class="card">
+        <span class="pill info" style="align-self:flex-start">قيمة عالية، صبر قليل على التعقيد</span>
+        <h3>المصري في الخارج</h3>
+        <p class="quote-line">"عايز أساعد في بلدي بس مش عارف مين أثق فيه"</p>
+        <dl class="kv">
+          <dt>من هو</dt><dd>مصري في الخليج أو أوروبا أو أمريكا الشمالية يتبرع بالدولار أو الريال أو الدرهم.</dd>
+          <dt>الجهاز</dt><dd>الموبايل، ويتوقع <span class="ltr">Apple Pay</span> أو <span class="ltr">Google Pay</span>.</dd>
+          <dt>يحتاج</dt><dd>علامات ثقة، وقبول البطاقات الأجنبية، ورقمي <span class="ltr">IBAN</span> و<span class="ltr">SWIFT</span>، وإيصالًا، وتحديثات عن الأثر.</dd>
+          <dt>يتراجع إذا</dt><dd>كان الجنيه العملة الوحيدة، أو رُفضت البطاقة، أو لم يعمل رقم الهاتف.</dd>
+        </dl>
+      </article>
+      <article class="card">
+        <span class="pill info" style="align-self:flex-start">مبلغ صغير، انتشار واسع</span>
+        <h3>الشاب المهني</h3>
+        <p class="quote-line">"هتبرع بحاجة بسيطة وأشارك"</p>
+        <dl class="kv">
+          <dt>من هو</dt><dd>من 22 إلى 34 عامًا، يأتي من إنستجرام أو من يوم تطوع في شركته، ويهتم بالشباب وفرص العمل.</dd>
+          <dt>الجهاز</dt><dd>موبايل عليه تطبيق محفظة.</dd>
+          <dt>يحتاج</dt><dd>مبلغًا صغيرًا جاهزًا، ودفعًا في أقل من دقيقة، وشيئًا يشاركه، وفرصة للتطوع أو الإرشاد.</dd>
+          <dt>يتراجع إذا</dt><dd>كثرت الحقول، أو بدا أقل مبلغ كبيرًا.</dd>
+        </dl>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ========== المبادئ ========== -->
+<section id="principles">
+  <div class="col">
+    <div class="sec-head">
+      <span class="eyebrow">مبادئ التصميم</span>
+      <h2>ما الذي يدفع الناس للتبرع، مطبقًا على سند</h2>
+    </div>
+    <div class="principles">
+      <div class="principle"><h3>جمهور واحد لكل صفحة</h3><div><p>الصفحة الرئيسية للمتبرعين. عملاء الاستشارات والشركاء وطالبو الخدمات لهم باب واضح «للمؤسسات» في القائمة، لكنهم لا يتقاسمون الواجهة مع المتبرع.</p></div></div>
+      <div class="principle"><h3>طلب واحد واضح في كل شاشة</h3><div><p>ينتهي كل قسم في الصفحة بزر «تبرّع» المرجاني نفسه، والإجراءات الثانوية (التطوع، الشراكة، المزيد) أهدأ بصريًا.</p></div></div>
+      <div class="principle"><h3>أثر يمكن عدّه</h3><div><p>نموذج سند يربط المبالغ بنتائج بالفعل. نوسّع ذلك ليشمل كل ركيزة وكل مبلغ، ونجعل العناوين مقروءة.</p><p class="evidence">على الفريق المالي في سند تأكيد أن كل مبلغ يغطي فعلًا ما يذكره عنوانه.</p></div></div>
+      <div class="principle"><h3>وجه واحد، بشكل أخلاقي</h3><div><p>يستجيب المتبرعون لشخص واحد يمكن التعرف عليه أكثر من استجابتهم للإحصاءات (Small وLoewenstein وSlovic، 2007). لدى سند شباب بالغون وافقوا على الظهور (وجيه وعلاء) ومقدمو رعاية. نبدأ بهم، ونتجنب إظهار أطفال يمكن التعرف عليهم.</p></div></div>
+      <div class="principle"><h3>التبرع الشهري افتراضيًا، بلطف</h3><div><p>يظهر خيار «شهريًا» أولًا، و«مرة واحدة» على بعد نقرة. نحو 71% من المتبرعين الشهريين يستمرون بعد عام، مقابل نحو 24% من المتبرعين الجدد لمرة واحدة (M+R، بحسب Truesense). وشكّل التبرع الشهري نحو 31% من إيرادات التبرع الإلكتروني في تقرير M+R لعام 2025.</p></div></div>
+      <div class="principle"><h3>الثقة بجوار الزر</h3><div><p>نُبقي سطر الإشهار في الواجهة، ونضيف بجوار النموذج أمان الدفع ووعد الإيصال واعتمادًا خارجيًا واحدًا (Pearson)، لا في التذييل فقط.</p></div></div>
+      <div class="principle"><h3>مخاطبة الدافع الديني للمتبرع</h3><div><p>نعرض الزكاة والصدقة والصدقة الجارية كخيارات صريحة، مع بيان شرعي بجواز الزكاة وحاسبة زكاة. وفي رمضان تتصدر الزكاة.</p></div></div>
+      <div class="principle"><h3>حذف كل حقل ممكن</h3><div><p>في التبرع الأول نطلب المبلغ والاسم والهاتف ووسيلة الدفع فقط. البريد الإلكتروني اختياري، ولا داعي لحقل الدولة.</p></div></div>
+      <div class="principle"><h3>العربية أولًا، والموبايل أولًا</h3><div><p>نصمم بالعربية على الموبايل، ثم نعكس التصميم للإنجليزية والكمبيوتر، ونحافظ على اتجاه الأرقام من اليسار إلى اليمين داخل النص العربي.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== الصفحة المقترحة ========== -->
+<section id="blueprint">
+  <div class="wide">
+    <div class="sec-head">
+      <span class="eyebrow">الصفحة الرئيسية المقترحة</span>
+      <h2>صفحة رئيسية للموبايل أولًا، مبنية حول التبرع</h2>
+      <p class="muted">يوضح المخطط الهيكلي ترتيب الأقسام واتجاه النصوص بألوان سند، ويستخدم مبالغ سند وركائزها وأرقامها وقصصها كما هي حيثما وُجدت. مرّر داخل الهاتف لرؤية كل الأقسام.</p>
+    </div>
+
+    <div class="blueprint">
+      <div class="phone" aria-label="مخطط هيكلي للصفحة الرئيسية على الموبايل">
+        <div class="screen">
+          <div class="wf">
+            <span class="mark">1</span>
+            <div class="bar"><span class="logo">سند</span><span class="small">EN · ☰</span><span class="btn-give">تبرّع</span></div>
+          </div>
+          <div class="wf">
+            <span class="mark">2</span>
+            <div class="img-ph" style="height:110px">صورة ثابتة لمقدّمة رعاية مع شاب من خرّيجي الدار (بموافقة)، والفيديو عند الضغط فقط</div>
+            <h4>كل طفل يستحق رعاية تشبه حضن الأسرة</h4>
+            <p class="small">منذ 2008 · مشهرة برقم 7478 · نصل للأطفال من خلال من يربّونهم، في 20 محافظة.</p>
+            <div class="widget">
+              <div class="seg"><span class="on">شهريًا</span><span>مرة واحدة</span></div>
+              <div class="seg seg3"><span class="on">صدقة</span><span>زكاة</span><span>تبرع عام</span></div>
+              <div class="amts">
+                <div class="amt"><b>150 ج.م</b><i>أدوات مدرسية</i></div>
+                <div class="amt on"><b>500 ج.م</b><i>دعم نفسي</i></div>
+                <div class="amt"><b>1,000 ج.م</b><i>تدريب مقدّم رعاية</i></div>
+              </div>
+              <div class="field">مبلغ آخر</div>
+              <span class="btn-give">أكون سندًا بـ 500 ج.م شهريًا</span>
+              <div class="chips"><span class="chip">Apple Pay</span><span class="chip">بطاقة</span><span class="chip">محفظة</span><span class="chip">InstaPay</span><span class="chip">فوري</span></div>
+            </div>
+          </div>
+          <div class="wf">
+            <span class="mark">3</span>
+            <p class="small">✓ دفع آمن · ✓ إيصال فوري على واتساب · ✓ برامج معتمدة من Pearson · ✓ 18 عامًا من العمل</p>
+          </div>
+          <div class="wf">
+            <span class="mark">4</span>
+            <h4>1.4 مليون يتيم في مصر. كثيرون يغادرون الدار في سن 18 بلا أسرة ولا مدخرات.</h4>
+            <p class="small">المصدر: وزارة التضامن الاجتماعي 2023 · «هنا يأتي دورك»</p>
+            <span class="btn-give">ساعد شابًا يبدأ حياته</span>
+          </div>
+          <div class="wf">
+            <span class="mark">5</span>
+            <h4>اختر أين يذهب تبرعك</h4>
+            <div class="fund"><b>أسرة لكل طفل · الوقاية</b><span class="small">دعم الكفالة والأسر البديلة</span><div class="prog"><i style="width:45%"></i></div><span class="btn-ghost">تبرّع لهذا البرنامج</span></div>
+            <div class="fund"><b>بيت آمن · الحماية</b><span class="small">تدريب مقدّمي الرعاية وتطوير دور الرعاية</span><div class="prog"><i style="width:62%"></i></div><span class="small">62% من هدف رمضان</span><span class="btn-ghost">تبرّع لهذا البرنامج</span></div>
+            <div class="fund"><b>خطوة للاستقلال · التمكين</b><span class="small">تأهيل الشباب للعمل والحياة بعد الدار</span><div class="prog"><i style="width:38%"></i></div><span class="btn-ghost">تبرّع لهذا البرنامج</span></div>
+          </div>
+          <div class="wf">
+            <span class="mark">6</span>
+            <div class="img-ph" style="height:100px">ملصق وجيه بالأسلوب الحالي، والاقتباس نص حقيقي وليس صورة</div>
+            <p class="quote">«عندي أكثر من خطة. لو واحدة ما نجحتش، التانية هتنجح.»</p>
+            <p class="small">وجيه، #طموح · <span dir="ltr">1 / 3</span> قصص</p>
+            <span class="btn-give">ساعد شابًا آخر مثل وجيه</span>
+          </div>
+          <div class="wf">
+            <span class="mark">7</span>
+            <h4>أثرنا حتى [الشهر / السنة]</h4>
+            <div class="mini-stats"><div><b>538</b><span class="small">دار رعاية</span></div><div><b>3,283</b><span class="small">مقدّم رعاية مدرّب</span></div><div><b>5,622</b><span class="small">طفل وشاب</span></div><div><b>20</b><span class="small">محافظة</span></div></div>
+          </div>
+          <div class="wf">
+            <span class="mark">8</span>
+            <h4>زكاتك تصل لمستحقيها</h4>
+            <p class="small">مرجع الفتوى أو البيان الشرعي · احسب زكاتك</p>
+            <span class="btn-ghost">احسب زكاتك</span>
+          </div>
+          <div class="wf">
+            <span class="mark">9</span>
+            <h4>كيف نستخدم تبرعك؟</h4>
+            <div class="prog" style="height:10px"><i style="width:80%"></i></div>
+            <p class="small">[٪] للبرامج · [٪] للتشغيل · التقرير السنوي والقوائم المالية المراجعة</p>
+          </div>
+          <div class="wf">
+            <span class="mark">10</span>
+            <h4>طرق أخرى للتبرع</h4>
+            <p class="small">CIB · المصرف المتحد · البنك الأهلي (اسم الحساب + IBAN + نسخ) · InstaPay · المحافظ · فوري · إهداء باسم شخص عزيز</p>
+          </div>
+          <div class="wf">
+            <span class="mark">11</span>
+            <p class="small">للمؤسسات: الاستشارات · مركز المعرفة · الشراكات · التطوع · الخصوصية · الاسترداد · واتساب</p>
+          </div>
+          <div class="sticky-give"><span class="btn-give">تبرّع الآن</span><span class="btn-ghost">زكاة</span></div>
+        </div>
+      </div>
+
+      <div class="notes">
+        <div class="note"><span class="n">1</span><h3>ترويسة بزر رئيسي واحد</h3><p>خمسة عناصر: من نحن · برامجنا · أثرنا · قصص · للمؤسسات. تنتقل الاستشارات ومركز المعرفة والمركز الإعلامي إلى «للمؤسسات»، ويخرج «اطلب استشارة» من الترويسة، ويبقى زر «تبرّع» المرجاني ظاهرًا أثناء التمرير.</p></div>
+        <div class="note"><span class="n">2</span><h3>الواجهة: نحتفظ بالنموذج ونعيد ترتيب كل شيء حوله</h3><p>العنوان يخاطب حق الطفل، والنص التعريفي يحتفظ بسطر الإشهار ويوضح كيف يصل التبرع إلى الأطفال، ويحصل النموذج على الخيارات الناقصة.</p>
+          <ul><li>«شهريًا» مختار مسبقًا، مع اختيار زكاة / صدقة / تبرع عام. مبالغ سند الثلاثة بعناوين مقروءة، و500 مختار مسبقًا.</li><li>الزر يكرر الاختيار: «أكون سندًا بـ 500 ج.م شهريًا».</li><li>تُحمَّل صورة ثابتة أولًا، ولا يعمل الفيديو إلا عند الضغط، ما يوفر استهلاك البيانات على الموبايل.</li></ul>
+          <div class="copy">بدائل للعنوان: «عالم يصنع فيه كل يتيم مستقبله» (الشعار الحالي) · «لا يكبر أي طفل وحده»</div></div>
+        <div class="note"><span class="n">3</span><h3>شريط الثقة</h3><p>دفع آمن، وإيصال فوري، واعتماد Pearson، و18 عامًا من العمل، في سطر واحد. شعارات الشركاء تظهر فقط بإذنهم وبصياغة دقيقة.</p></div>
+        <div class="note"><span class="n">4</span><h3>المشكلة، ومعها طريق للمساعدة</h3><p>نبدأ برقم سند عن مصر وبلحظة الخروج من الدار، ثم زر تبرع. وتنتقل الإحصاءات العالمية إلى صفحة الأثر.</p></div>
+        <div class="note"><span class="n">5</span><h3>الركائز الثلاث كصناديق تبرع</h3><p>نحتفظ بالوقاية والحماية والتمكين، ولكل منها اسم للمتبرع، وسطر بسيط، ونسبة تقدم الحملة، وزر تبرع يفتح النموذج مع اختيار هذا الصندوق. الأسماء مقترحات نتفق عليها مع سند.</p></div>
+        <div class="note"><span class="n">6</span><h3>القصص في مكان أعلى</h3><p>نحتفظ بأسلوب الملصقات المرسومة. تصبح الاقتباسات نصًا حقيقيًا بالعربية والإنجليزية، وتظهر قصة واحدة في كل مرة، وتنتهي كل قصة بزر تبرع. اقتباس وجيه هنا ترجمتنا العربية لنص الملصق الإنجليزي.</p></div>
+        <div class="note"><span class="n">7</span><h3>أثر مؤرخ ويهم المتبرع</h3><p>أربعة أرقام للنتائج من مصدر واحد مؤرخ. وينتقل عدد موظفي الوزارة والجمعيات إلى صفحة «للمؤسسات».</p></div>
+        <div class="note"><span class="n">8</span><h3>قسم الزكاة</h3><p>بيان بجواز الزكاة مع مرجعه الشرعي، وحاسبة زكاة. وفي رمضان يصعد هذا القسم إلى المركز الثالث.</p></div>
+        <div class="note"><span class="n">9</span><h3>أين يذهب المال</h3><p>تقسيم بسيط بين البرامج والتشغيل، مع التقرير السنوي على بعد نقرة. لا ننشر إلا أرقامًا يعتمدها الفريق المالي.</p></div>
+        <div class="note"><span class="n">10</span><h3>طرق أخرى للتبرع</h3><p>بطاقات البنوك الحالية مع اسم الحساب و<span class="ltr">IBAN</span> و<span class="ltr">SWIFT</span>، وحسابات إنستاباي والمحافظ، وفوري، ورابط واتساب لإرسال إيصال التحويل.</p></div>
+        <div class="note"><span class="n">11</span><h3>التذييل والشريط الثابت</h3><p>روابط المؤسسة والسياسات ورقم هاتف مصحح. وعلى الموبايل يظهر شريط سفلي فيه «تبرّع الآن» و«زكاة» بعد تجاوز الواجهة.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== مسار التبرع ========== -->
+<section id="flow">
+  <div class="wide">
+    <div class="sec-head">
+      <span class="eyebrow">مسار التبرع</span>
+      <h2>من النقرة إلى الشكر في أقل من دقيقة</h2>
+      <p class="muted">تبرع دون إنشاء حساب، وخطوتان على الأكثر قبل الدفع.</p>
+    </div>
+    <div class="flow">
+      <div class="step"><span class="eyebrow">الخطوة 1 · نموذج الواجهة</span><h3>الاختيار</h3><ul><li>شهريًا أو مرة واحدة</li><li>زكاة أو صدقة أو تبرع عام</li><li>البرنامج: خيارات ظاهرة بدل القائمة المنسدلة</li><li>المبلغ: مبالغ جاهزة أو مبلغ آخر</li></ul></div>
+      <div class="step"><span class="eyebrow">الخطوة 2 · نافذة منزلقة</span><h3>الدفع</h3><ul><li>الاسم والموبايل، والبريد اختياري</li><li><span class="ltr">Apple Pay</span> أو <span class="ltr">Google Pay</span> أولًا، ثم البطاقة والمحفظة وإنستاباي وفوري</li><li>الجنيه، مع الدولار والريال والدرهم للبطاقات الصادرة من الخارج</li><li>خيار لتحمّل رسوم البطاقة</li></ul></div>
+      <div class="step"><span class="eyebrow">الخطوة 3 · التأكيد</span><h3>الشكر والتعميق</h3><ul><li>إيصال فوري على واتساب</li><li>لمن تبرع مرة واحدة: «هل تجعله شهريًا؟» بنقرة واحدة</li><li>بطاقة للمشاركة بأسلوب ملصقات القصص</li><li>في حالة فوري: الكود بخط كبير مع تاريخ انتهائه</li></ul></div>
+      <div class="step"><span class="eyebrow">بعد التبرع · الاحتفاظ بالمتبرع</span><h3>متابعة الأثر</h3><ul><li>أول تحديث عن الأثر خلال 30 يومًا</li><li>تحديثات ربع سنوية للمتبرعين الشهريين</li><li>تذكير ودود على واتساب عند فشل الدفع</li><li>إيقاف مؤقت أو إلغاء ذاتي دون تواصل</li></ul></div>
+    </div>
+    <p class="muted small" style="max-width:760px; margin-top:12px">ملاحظة تقنية: بوابات الدفع المصرية مثل <span class="ltr">Paymob</span> و<span class="ltr">Kashier</span> و<span class="ltr">Fawry Pay</span> تدعم البطاقات والمحافظ وأكواد فوري في صفحة دفع واحدة. يختلف دعم الخصم الشهري المتكرر وتعدد العملات بين المزودين، ويحتاج إلى تأكيد عند مراجعة المزودين.</p>
+  </div>
+</section>
+
+<!-- ========== الهوية ========== -->
+<section id="brand">
+  <div class="col stack">
+    <div class="sec-head">
+      <span class="eyebrow">الهوية البصرية</span>
+      <h2>عصري ومتوافق مع الهوية: الألوان موجودة، وأدوارها تحتاج إلى ضبط</h2>
+    </div>
+    <p>ألوان سند الحالية حيوية ومميزة. يحافظ التصميم الجديد عليها ويعطي كل لون وظيفة واحدة. القيم أدناه مأخوذة من لقطات الشاشة، لذلك تجب مطابقتها مع دليل الهوية.</p>
+    <div class="swatches">
+      <div class="sw"><i style="background:#36c0ca"></i><div><b>فيروزي سند</b><code>#36C0CA</code><span class="muted">الهوية والخلفيات</span></div></div>
+      <div class="sw"><i style="background:#2ba6a4"></i><div><b>فيروزي داكن</b><code>#2BA6A4</code><span class="muted">حاليًا: زر النموذج</span></div></div>
+      <div class="sw"><i style="background:#0f2233"></i><div><b>كحلي</b><code>#0F2233</code><span class="muted">النصوص والتذييل</span></div></div>
+      <div class="sw"><i style="background:#e8724a"></i><div><b>مرجاني</b><code>#E8724A</code><span class="muted">للتبرع فقط</span></div></div>
+      <div class="sw"><i style="background:#f2b025"></i><div><b>كهرماني</b><code>#F2B025</code><span class="muted">للإبراز</span></div></div>
+      <div class="sw"><i style="background:#f5fbfb"></i><div><b>أبيض مخضر</b><code>#F5FBFB</code><span class="muted">خلفية الأقسام</span></div></div>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>العنصر حاليًا</th><th>الألوان</th><th>التباين</th><th>معيار <span class="ltr">WCAG AA</span> (<span class="ltr">4.5:1</span>)</th></tr></thead>
+        <tbody>
+          <tr><td>زر «تبرع الآن» في الترويسة</td><td>أبيض على <span class="code">#E8724A</span></td><td><span class="ltr">3.03:1</span></td><td><span class="pill p1">لا يجتاز</span></td></tr>
+          <tr><td>زر «تبرع الآن» في النموذج</td><td>أبيض على <span class="code">#2BA6A4</span></td><td><span class="ltr">2.96:1</span></td><td><span class="pill p1">لا يجتاز</span></td></tr>
+          <tr><td>زر «خدماتنا» في الواجهة</td><td>أبيض على <span class="code">#36C0CA</span></td><td><span class="ltr">2.20:1</span></td><td><span class="pill p1">لا يجتاز</span></td></tr>
+          <tr><td>أرقام الحسابات البنكية</td><td>أبيض على <span class="code">#26B3BA</span></td><td><span class="ltr">2.55:1</span></td><td><span class="pill p1">لا يجتاز</span></td></tr>
+          <tr><td>بطاقة التطوع</td><td>أبيض على <span class="code">#F2993E</span></td><td><span class="ltr">2.23:1</span></td><td><span class="pill p1">لا يجتاز</span></td></tr>
+          <tr><td>زر التبرع المقترح</td><td>أبيض على <span class="code">#C9502A</span></td><td><span class="ltr">4.50:1</span></td><td><span class="pill p2">يجتاز</span></td></tr>
+          <tr><td>الفيروزي المقترح للنصوص والأزرار</td><td>أبيض على <span class="code">#1A7F80</span></td><td><span class="ltr">4.78:1</span></td><td><span class="pill p2">يجتاز</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <ul class="plain">
+      <li><b>المرجاني يعني التبرع.</b> يُستخدم لأزرار التبرع فقط، لا لأيقونات الأرقام ولا لبطاقة التطوع ولا لأسماء القصص. ونستخدم درجة أعمق قليلًا (نحو <span class="code">#C9502A</span>) حيثما حمل نصًا أبيض.</li>
+      <li><b>الفيروزي للهوية، والفيروزي الداكن للنصوص والأزرار.</b> يبقى الفيروزي الفاتح للخلفيات والرسوم، ويُستخدم الداكن لكل ما يحمل نصًا أبيض.</li>
+      <li><b>نحتفظ بأسلوب رسوم القصص.</b> ملمس الورق والأمواج والقارب أكثر عناصر الهوية تميزًا في الموقع، ونمدّه إلى الواجهة وصفحة الشكر.</li>
+      <li><b>اسم واحد.</b> اختيار «<span lang="en" dir="ltr">Sanad for Alternative Parental Care</span>» أو «<span lang="en" dir="ltr">Sanad for Orphans</span>» بالإنجليزية، مع ما يقابله بالعربية، في الشعار والتذييل.</li>
+      <li><b>سرعة على شبكات مصر.</b> صورة ثابتة في الواجهة، وفيديو يُحمَّل عند الطلب، وملصقات مضغوطة، بهدف <span class="ltr">LCP</span> أقل من 2.5 ثانية على هاتف أندرويد متوسط عبر شبكة 4G.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ========== التوصيات ========== -->
+<section id="priorities">
+  <div class="wide">
+    <div class="sec-head">
+      <span class="eyebrow">التوصيات</span>
+      <h2>قائمة التوصيات حسب الأولوية</h2>
+    </div>
+    <div class="tbl-wrap" style="margin-top:10px">
+      <table>
+        <thead><tr><th>#</th><th>التوصية</th><th>مرجع التدقيق</th><th>الجهد</th><th>الأولوية</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>تنظيف صفحات <span class="code">?go=</span> المخترقة، وإصلاح نظام إدارة المحتوى، وطلب الحذف من <span class="ltr">Search Console</span>، وإضافة مراقبة أمنية</td><td>البحث</td><td>صغير–متوسط</td><td><span class="pill code-pill p0">P0</span></td></tr>
+          <tr><td>2</td><td>تفعيل تحليلات التحويل (أحداث <span class="ltr">GA4</span> وخرائط الحرارة) وتسجيل خط الأساس</td><td>الكل</td><td>صغير</td><td><span class="pill code-pill p0">P0</span></td></tr>
+          <tr><td>3</td><td>إعادة تركيز الواجهة والترويسة على المتبرعين، ونقل الاستشارات إلى «للمؤسسات»</td><td>أ1–أ3</td><td>صغير</td><td><span class="pill code-pill p1">P1</span></td></tr>
+          <tr><td>4</td><td>تطوير النموذج: خيار شهري، واختيار الزكاة أو الصدقة، وبرامج ظاهرة، والهاتف بدل الدولة، والمبلغ على الزر</td><td>أ5–أ8</td><td>متوسط</td><td><span class="pill code-pill p1">P1</span></td></tr>
+          <tr><td>5</td><td>إضافة المحافظ وإنستاباي وفوري و<span class="ltr">Apple Pay / Google Pay</span> والبطاقات الأجنبية</td><td>أ8، و2</td><td>متوسط</td><td><span class="pill code-pill p1">P1</span></td></tr>
+          <tr><td>6</td><td>بيان الزكاة وحاسبتها، ونوع تبرع خاص بالزكاة</td><td>أ6</td><td>صغير–متوسط</td><td><span class="pill code-pill p1">P1</span></td></tr>
+          <tr><td>7</td><td>إعادة كتابة نص التحدي والنهج للمتبرعين، وفصل أرقام المتبرعين عن أرقام المؤسسات</td><td>ب1–ب5</td><td>صغير</td><td><span class="pill code-pill p1">P1</span></td></tr>
+          <tr><td>8</td><td>تحويل الركائز إلى صناديق تبرع بأسماء بسيطة وأزرار تبرع</td><td>ج1–ج3</td><td>متوسط</td><td><span class="pill code-pill p1">P1</span></td></tr>
+          <tr><td>9</td><td>رفع القصص لأعلى، وتحويل الاقتباسات إلى نص، وإضافة أزرار تبرع، ومراجعة حماية الطفل</td><td>هـ1–هـ3</td><td>صغير–متوسط</td><td><span class="pill code-pill p2">P2</span></td></tr>
+          <tr><td>10</td><td>ضبط أدوار الألوان وإصلاح التباين (المرجاني للتبرع فقط، ودرجات أعمق من الفيروزي والمرجاني)</td><td>أ3، أ8، و1</td><td>صغير</td><td><span class="pill code-pill p2">P2</span></td></tr>
+          <tr><td>11</td><td>استكمال بيانات البنوك (اسم الحساب، <span class="ltr">IBAN</span>، <span class="ltr">SWIFT</span>، الإيصال عبر واتساب)</td><td>و2–و3</td><td>صغير</td><td><span class="pill code-pill p2">P2</span></td></tr>
+          <tr><td>12</td><td>دقة البيانات: مصدر واحد مؤرخ لأرقام الأثر، وتصحيح رقم الهاتف، واسم واحد للجمعية، واستبدال أيقونة <span class="ltr">ChatGPT</span></td><td>ب4، ز1–ز3</td><td>صغير</td><td><span class="pill code-pill p2">P2</span></td></tr>
+          <tr><td>13</td><td>رحلة الشكر: إيصال على واتساب، ودعوة للتبرع الشهري، وتحديث عن الأثر بعد 30 يومًا</td><td>المسار</td><td>متوسط</td><td><span class="pill code-pill p2">P2</span></td></tr>
+          <tr><td>14</td><td>نقل الأخبار لأسفل، وتحسين شعارات الشركاء</td><td>د1–د3</td><td>صغير</td><td><span class="pill code-pill p2">P2</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted small" style="margin-top:10px"><span class="ltr">P0</span>: عاجل قبل أي عمل آخر · <span class="ltr">P1</span>: ضمن الإطلاق الأول · <span class="ltr">P2</span>: تحسينات تالية.</p>
+  </div>
+</section>
+
+<!-- ========== القياس ========== -->
+<section id="measure">
+  <div class="wide">
+    <div class="sec-head">
+      <span class="eyebrow">القياس</span>
+      <h2>ما نتابعه ونختبره</h2>
+    </div>
+    <div class="grid2" style="margin-top:10px">
+      <div class="card">
+        <h3>مؤشرات مسار التبرع</h3>
+        <div class="tbl-wrap" style="border:0">
+          <table>
+            <thead><tr><th>المؤشر</th><th>طريقة الحساب</th></tr></thead>
+            <tbody>
+              <tr><td>التفاعل مع نموذج الواجهة</td><td><span class="code">donate_start</span> ÷ جلسات الصفحة الرئيسية</td></tr>
+              <tr><td>من البدء إلى الدفع</td><td><span class="code">purchase</span> ÷ <span class="code">donate_start</span></td></tr>
+              <tr><td>معدل التحويل الإجمالي</td><td>التبرعات المدفوعة ÷ الجلسات</td></tr>
+              <tr><td>متوسط التبرع</td><td>حسب النوع والبرنامج ووسيلة الدفع والجهاز</td></tr>
+              <tr><td>حصة التبرع المتكرر</td><td>المتبرعون الشهريون ÷ كل المتبرعين الجدد</td></tr>
+              <tr><td>التراجع عند كل حقل</td><td><span class="code">form_field_exit</span> لكل حقل</td></tr>
+              <tr><td>توزيع وسائل الدفع</td><td>بطاقة، محفظة، إنستاباي، فوري، تحويل بنكي</td></tr>
+              <tr><td>التسرب إلى الاستشارات</td><td>نقرات الواجهة على الخدمات والاستشارات مقابل التبرع</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="muted small">للمقارنة: يبلغ معدل التحويل في صفحات التبرع نحو 8% على الموبايل و11% على الكمبيوتر (M+R 2025). لكن خط الأساس الخاص بسند أهم من ذلك.</p>
+      </div>
+      <div class="card">
+        <h3>اختبارات <span class="ltr">A/B</span> بالترتيب</h3>
+        <ol style="margin:0; padding-inline-start:22px; padding-inline-end:0; display:flex; flex-direction:column; gap:8px; font-size:.96rem">
+          <li><b>واجهة للمتبرع مقابل الواجهة الحالية.</b> نستبدل زري الخدمات والاستشارات برابط لقصة.</li>
+          <li><b>الشهري افتراضيًا مقابل مرة واحدة افتراضيًا.</b> نتابع التحويل وقيمة المتبرع خلال 3 أشهر.</li>
+          <li><b>نموذج بأربعة حقول مقابل ثلاثة</b> (حذف الدولة، والبريد اختياري).</li>
+          <li><b>برامج ظاهرة مقابل قائمة منسدلة.</b></li>
+          <li><b>تقديم الزكاة أولًا مقابل الصدقة أولًا في رمضان.</b></li>
+          <li><b>شريط التبرع الثابت على الموبايل: مُفعّل مقابل غير مُفعّل.</b></li>
+        </ol>
+        <p class="muted small">نُشغّل كل اختبار حتى يبلغ حجم عينة محددًا مسبقًا. ومع قلة الزيارات، نقارن فترات قبل وبعد مع مراعاة المواسم.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== خطة البحث ========== -->
+<section id="validate">
+  <div class="col stack">
+    <div class="sec-head">
+      <span class="eyebrow">البحث القادم</span>
+      <h2>التحقق قبل التصميم</h2>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>النشاط</th><th>التفاصيل</th><th>المدة</th></tr></thead>
+        <tbody>
+          <tr><td>تدقيق الموبايل والعربية</td><td>المراجعة نفسها قسمًا قسمًا للصفحة الرئيسية العربية ولمسار التبرع كاملًا على الموبايل</td><td>يومان</td></tr>
+          <tr><td>تدقيق التحليلات والدفع</td><td>مصادر الزيارات، وتوزيع الأجهزة، والتراجع في النموذج، ونسبة فشل الدفع، وتوزيع وسائل الدفع، خلال آخر 12 شهرًا بما فيها رمضان 2026</td><td>أسبوع</td></tr>
+          <tr><td>ورشة عمل مع فريق سند</td><td>الاتفاق على جمهور الصفحة الرئيسية، وأسماء الصناديق، وتكلفة الوحدات، والموقف من الزكاة، وقواعد حماية الطفل في القصص</td><td>نصف يوم</td></tr>
+          <tr><td>استبيان المتبرعين</td><td>من 8 إلى 10 أسئلة للمتبرعين السابقين: لماذا تبرعوا، الزكاة أم الصدقة، وسيلة الدفع المفضلة، وما الذي كاد يمنعهم</td><td>أسبوعان</td></tr>
+          <tr><td>اختبارات استخدام موجَّهة</td><td>من 6 إلى 8 مشاركين يتحدثون العربية، على الموبايل: الموقع الحالي مقابل النموذج الأولي، بمهمة «ادفع 500 جنيه من زكاتك»</td><td>أسبوعان</td></tr>
+          <tr><td>تحليل الجمعيات المماثلة</td><td>مسارات التبرع لدى 57357 وبهية وبنك الطعام المصري ورسالة والأورمان: الخطوات، ووسائل الدفع، والتعامل مع الزكاة</td><td>3 أيام</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ========== الخطة الزمنية ========== -->
+<section id="roadmap">
+  <div class="col stack">
+    <div class="sec-head">
+      <span class="eyebrow">الخطة الزمنية</span>
+      <h2>الإطلاق قبل رمضان 2027</h2>
+      <p class="muted">يُتوقع أن يبدأ رمضان 2027 نحو 8 فبراير 2027 حسب رؤية الهلال، ويوافق يوم اليتيم 2 أبريل 2027 (أول جمعة من أبريل).</p>
+    </div>
+    <div class="road">
+      <div class="phase"><div><span class="eyebrow">المرحلة 0</span><h3>الأسبوعان 1–2</h3></div><ul><li>تنظيف الاختراق ومعالجته في <span class="ltr">Search Console</span></li><li>التحليلات وخط الأساس</li><li>مكاسب سريعة: رقم الهاتف، وأيقونة <span class="ltr">ChatGPT</span>، وعنوان «<span lang="en" dir="ltr">Other ways to donate</span>»، والتباين</li></ul></div>
+      <div class="phase"><div><span class="eyebrow">المرحلة 1</span><h3>الأسابيع 3–6</h3></div><ul><li>تدقيق الموبايل والعربية، والاستبيان، والاختبارات، وورشة العمل</li><li>قائمة تنقل بقسم «للمؤسسات»، ومخططات هيكلية بالعربية والإنجليزية</li><li>مراجعة بوابات الدفع ووسائله</li></ul></div>
+      <div class="phase"><div><span class="eyebrow">المرحلة 2</span><h3>الأسابيع 7–12</h3></div><ul><li>التصميم البصري ضمن الهوية الحالية</li><li>تنفيذ الصفحة الرئيسية والنموذج المطوَّر ومسار الزكاة</li><li>اختبار الجودة على هواتف وشبكات مصرية حقيقية</li></ul></div>
+      <div class="phase"><div><span class="eyebrow">المرحلة 3</span><h3>يناير 2027</h3></div><ul><li>إطلاق تجريبي واختبارات <span class="ltr">A/B</span> من 1 إلى 3</li><li>صفحات حملة رمضان ووضع «الزكاة أولًا»</li><li>رحلة ترحيب بالمتبرعين الشهريين</li></ul></div>
+      <div class="phase"><div><span class="eyebrow">المرحلة 4</span><h3>بعد رمضان</h3></div><ul><li>مراجعة النتائج مقارنة بخط الأساس</li><li>حملة يوم اليتيم (2 أبريل 2027)</li><li>قصص جديدة بأسلوب الملصقات</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== المطلوب ========== -->
+<section id="needs">
+  <div class="col stack">
+    <div class="sec-head">
+      <span class="eyebrow">المطلوب من سند</span>
+      <h2>ما نحتاجه للمتابعة</h2>
+    </div>
+    <ul class="plain">
+      <li>لقطات أو تسجيل للصفحة الرئيسية العربية، والصفحة على الموبايل، ومسار التبرع كاملًا</li>
+      <li>دليل الهوية البصرية (ملفات الشعار، وأكواد الألوان الدقيقة، والخطوط، وعناصر الرسوم)</li>
+      <li>صلاحية الوصول إلى التحليلات، ولوحة بوابة الدفع أو تقاريرها</li>
+      <li>بيانات نظام إدارة المحتوى والاستضافة، لإصلاح الاختراق</li>
+      <li>تأكيد ما يغطيه كل مبلغ جاهز، وتكلفة أي وحدات جديدة</li>
+      <li>الموقف من جواز الزكاة، أو مرجع الفتوى</li>
+      <li>مجموعة واحدة معتمدة ومؤرخة من أرقام الأثر، وأحدث تقرير سنوي</li>
+      <li>سجلات موافقة أصحاب القصص، وسياسة حماية الطفل</li>
+      <li>تصاريح جمع التبرعات والموافقات على الحملات التي يشترطها القانون المصري</li>
+    </ul>
+    <p class="muted small">الخصم الضريبي: يسمح القانون المصري للشركات بخصم التبرعات للجمعيات المشهرة حتى 10% من صافي الربح الخاضع للضريبة، وتشير مصادر إلى حد مماثل للأفراد. يجب التأكد مع المستشار الضريبي لسند قبل الترويج لذلك في الموقع.</p>
+  </div>
+</section>
+
+<!-- ========== المصادر ========== -->
+<section id="sources">
+  <div class="col stack">
+    <div class="sec-head">
+      <span class="eyebrow">المصادر</span>
+      <h2>المراجع</h2>
+    </div>
+    <ol class="sources">
+      <li>لقطات شاشة للصفحة الرئيسية الإنجليزية الحالية لموقع <span class="ltr">sanadorphans.org</span>، قدّمها فريق المشروع، 19 أكتوبر 2026.</li>
+      <li>الصفحة الرئيسية لسند بالإنجليزية (نسخة مؤرشفة): <a href="https://sanadorphans.org/en" target="_blank" rel="noopener" class="ltr">sanadorphans.org/en</a></li>
+      <li>صفحة التبرعات بالعربية: <a href="https://sanadorphans.org/ar/pages/donations" target="_blank" rel="noopener" class="ltr">sanadorphans.org/ar/pages/donations</a></li>
+      <li>صفحة الأثر: <a href="https://sanadorphans.org/en/pages/impact" target="_blank" rel="noopener" class="ltr">sanadorphans.org/en/pages/impact</a></li>
+      <li>صفحة القصص بالعربية: <a href="https://sanadorphans.org/ar/pages/stories" target="_blank" rel="noopener" class="ltr">sanadorphans.org/ar/pages/stories</a></li>
+      <li>الملف التعريفي على CIRCLE MENA، «Sanad for Orphans» (أرقام نهاية 2024): <a href="https://www.circlemena.org/circle-index/organisations/wataneya-society-d4f6a" target="_blank" rel="noopener" class="ltr">circlemena.org</a></li>
+      <li>تقرير M+R Benchmarks لعام 2025 (PDF): <a href="https://mrbenchmarks.com/benchmarks2025_files/2025+M%2BR+Benchmarks.pdf" target="_blank" rel="noopener" class="ltr">mrbenchmarks.com</a></li>
+      <li>ملخص iDonate لمعدلات التحويل في تقرير M+R 2025: <a href="https://idonate.com/blog/2025-mr-benchmarks-what-nonprofits-must-know-about-online-giving-and-donation-pages" target="_blank" rel="noopener" class="ltr">idonate.com</a></li>
+      <li>Truesense، أبرز نتائج تقرير M+R 2026 (الاحتفاظ بالمتبرعين): <a href="https://www.truesense.com/blog/what-the-2026-mr-benchmarks-reveal-about-nonprofit-fundraising" target="_blank" rel="noopener" class="ltr">truesense.com</a></li>
+      <li>تطبيق ماي فوري، التبرع للجمعيات: <a href="https://www.fawry.com/consumer/myfawry-app/" target="_blank" rel="noopener" class="ltr">fawry.com</a></li>
+      <li>التبرع لمستشفى 57357 عبر فودافون كاش: <a href="https://old.57357.org/?p=316077" target="_blank" rel="noopener" class="ltr">57357.org</a></li>
+      <li>صفحة تبرع بهية على Kashier، مع مرجع فتوى الزكاة: <a href="https://kashier.io/donations/baheya-en" target="_blank" rel="noopener" class="ltr">kashier.io</a></li>
+      <li>Cairo 360، دليل التبرع في رمضان 2026: <a href="https://www.cairo360.com/?p=1802836" target="_blank" rel="noopener" class="ltr">cairo360.com</a></li>
+      <li>Google web.dev، تنظيف المواقع من اختراق الكلمات المزعجة: <a href="https://web.dev/articles/fix-the-japanese-keyword-hack" target="_blank" rel="noopener" class="ltr">web.dev</a></li>
+      <li>Andersen مصر، المعاملة الضريبية للتبرعات: <a href="https://eg.andersen.com/cash-and-in-kind-donations/" target="_blank" rel="noopener" class="ltr">eg.andersen.com</a></li>
+      <li>W3C، الحد الأدنى للتباين في WCAG 2.2 (المعيار 1.4.3): <a href="https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html" target="_blank" rel="noopener" class="ltr">w3.org</a></li>
+      <li lang="en" dir="ltr" style="text-align:left">Small, D., Loewenstein, G. and Slovic, P. (2007). Sympathy and callousness: the impact of deliberative thought on donations to identifiable and statistical victims. <i>Organizational Behavior and Human Decision Processes</i>, 102(2).</li>
+    </ol>
+    <p class="muted small">روابط الصفحات المزعجة مذكورة كنص فقط، ولم نضعها كروابط عن قصد.</p>
+  </div>
+</section>
+
+<footer class="end col">
+  أُعدّ لجمعية سند للرعاية الوالدية البديلة كمرحلة أولى من إعادة تصميم الموقع. المبالغ في المخطط الهيكلي مأخوذة من نموذج التبرع الحالي لسند، أما أشرطة التقدم والنسب فهي أمثلة توضيحية.
+</footer>
+</main>
+</div>
