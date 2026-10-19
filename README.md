@@ -15,6 +15,8 @@ Open the HTML file in a browser to read it.
 - `site/index.html` is the redesigned homepage, built from the research wireframe. It is Arabic first, with an English toggle (or `?lang=en`), and uses Sanad's Cairo font, brand palette, figures, stories and bank details from the current site.
 - `site/dist/sanad-homepage-prototype.html` is the same page as one self-contained file for sharing. Rebuild it with `python3 site/build.py` after editing `index.html`.
 
+The page opens on Surah Al-Insan 76:8, which stays in place while its words reveal one by one as the visitor scrolls, with the English translation (Sahih International) underneath. The paper boat from the story posters sails across as a progress marker. With reduced motion turned on, the verse shows in full without the pinned scroll.
+
 Working in the prototype: the two-step donation form (monthly or one-time, Zakat / Sadaqah / General, fund, amount, payment method, validation, thank-you and monthly upsell), the zakat calculator, story tabs, copy buttons for bank accounts, the WhatsApp receipt link, the language switch and the sticky mobile donate bar. No payment details are collected and nothing is sent anywhere.
 
 Before production:
