@@ -9,3 +9,16 @@ Website redesign for Sanad for Alternative Parental Care (sanadorphans.org). The
 - `research/assets/` holds section crops of the current English desktop homepage (October 2026) used in the audit.
 
 Open the HTML file in a browser to read it.
+
+## Homepage prototype
+
+- `site/index.html` is the redesigned homepage, built from the research wireframe. It is Arabic first, with an English toggle (or `?lang=en`), and uses Sanad's Cairo font, brand palette, figures, stories and bank details from the current site.
+- `site/dist/sanad-homepage-prototype.html` is the same page as one self-contained file for sharing. Rebuild it with `python3 site/build.py` after editing `index.html`.
+
+Working in the prototype: the two-step donation form (monthly or one-time, Zakat / Sadaqah / General, fund, amount, payment method, validation, thank-you and monthly upsell), the zakat calculator, story tabs, copy buttons for bank accounts, the WhatsApp receipt link, the language switch and the sticky mobile donate bar. No payment details are collected and nothing is sent anywhere.
+
+Before production:
+- Replace the images in `site/assets/` with Sanad's originals. They were cropped from screenshots, so they are low resolution.
+- Fill the marked placeholders: the zakat Sharia statement, program and operations percentages, and the IBAN / SWIFT numbers.
+- Confirm the fund-to-amount labels, the campaign progress figures (currently examples), the landline number (+20 2 26907195) and the consent for each story.
+- Point the in-page `#` links at the real pages and connect the form to the payment gateway.

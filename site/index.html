@@ -1,0 +1,1171 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>سند للرعاية الوالدية البديلة</title>
+<meta name="description" content="Design prototype of the redesigned Sanad homepage. Not the live site.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap">
+<style>
+/* Sanad homepage redesign prototype. Brand palette sampled from the live site; deeper teal and coral carry white text at WCAG AA. Coral is reserved for donate actions. */
+:root {
+  --teal: #36c0ca;
+  --teal-deep: #1a7f80;
+  --teal-ink: #135f60;
+  --teal-soft: #e3f5f6;
+  --navy: #0f2233;
+  --navy-2: #172f45;
+  --coral: #e8724a;
+  --give: #c9502a;
+  --give-hover: #ad4220;
+  --amber: #f2b025;
+  --mist: #f5fbfb;
+  --paper: #f4efe6;
+  --ink: #0f2233;
+  --muted: #4c5f6e;
+  --line: #d9e6e8;
+  --white: #ffffff;
+  --ok: #17704a;
+  --err: #b3262d;
+  --font: "Cairo", "Segoe UI", Tahoma, system-ui, sans-serif;
+  --radius: 14px;
+  --shadow: 0 18px 40px -18px rgba(15, 34, 51, .35);
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; animation: none !important; } }
+body { margin: 0; background: var(--white); color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.75; }
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--teal-deep); }
+h1, h2, h3, h4 { margin: 0; line-height: 1.35; text-wrap: balance; font-weight: 800; }
+p { margin: 0; }
+button, input, select { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; border-radius: 6px; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.wrap { max-width: 1200px; margin-inline: auto; padding-inline: max(20px, env(safe-area-inset-left, 0px)) max(20px, env(safe-area-inset-right, 0px)); }
+.num { font-variant-numeric: tabular-nums; }
+.ltr { direction: ltr; unicode-bidi: isolate; display: inline-block; }
+[dir="rtl"] .arw::after { content: "←"; display: inline-block; margin-inline-start: .35em; }
+[dir="ltr"] .arw::after { content: "→"; display: inline-block; margin-inline-start: .35em; }
+.eyebrow { font-size: .9rem; font-weight: 700; color: var(--teal-deep); }
+.section { padding-block: 88px; }
+.sec-head { display: flex; flex-direction: column; gap: 10px; max-width: 680px; margin-bottom: 40px; }
+.sec-head h2 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); }
+.sec-head p { color: var(--muted); font-size: 1.05rem; }
+.todo { display: inline-flex; align-items: center; gap: 6px; border: 1.5px dashed #b98a10; background: #fff8e6; color: #7a5600; border-radius: 8px; padding: 2px 10px; font-size: .85rem; font-weight: 600; }
+
+/* buttons */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 10px 22px; border-radius: 12px; border: 0; font-weight: 700; font-size: 1rem; text-decoration: none; cursor: pointer; transition: background .15s, transform .15s, box-shadow .15s; }
+.btn-give { background: var(--give); color: var(--white); box-shadow: 0 8px 20px -10px rgba(201, 80, 42, .8); }
+.btn-give:hover { background: var(--give-hover); }
+.btn-give:active { transform: translateY(1px); }
+.btn-ghost { background: transparent; color: var(--teal-deep); border: 2px solid currentColor; }
+.btn-ghost:hover { background: var(--teal-soft); }
+.btn-light { background: rgba(255, 255, 255, .12); color: var(--white); border: 1.5px solid rgba(255, 255, 255, .45); }
+.btn-light:hover { background: rgba(255, 255, 255, .2); }
+.btn-block { width: 100%; }
+.link { font-weight: 700; color: var(--teal-deep); text-decoration: none; }
+.link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* prototype banner */
+.proto { background: var(--amber); color: var(--navy); font-size: .88rem; font-weight: 600; text-align: center; padding: 6px 16px; }
+
+/* header */
+.site-head { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, .97); backdrop-filter: saturate(1.4) blur(8px); border-bottom: 1px solid var(--line); }
+.head-row { display: flex; align-items: center; gap: 24px; min-height: 76px; }
+.brand { display: flex; align-items: center; flex-shrink: 0; }
+.brand img { height: 52px; width: auto; }
+.nav { display: flex; gap: 4px; margin-inline-start: 8px; }
+.nav a { color: var(--ink); text-decoration: none; font-weight: 600; padding: 8px 12px; border-radius: 10px; }
+.nav a:hover { background: var(--mist); color: var(--teal-deep); }
+.head-actions { display: flex; align-items: center; gap: 10px; margin-inline-start: auto; }
+.lang { background: none; border: 1.5px solid var(--line); border-radius: 10px; min-height: 44px; padding: 4px 14px; font-weight: 700; cursor: pointer; }
+.lang:hover { border-color: var(--teal); }
+.menu-btn { display: none; background: none; border: 1.5px solid var(--line); border-radius: 10px; width: 46px; height: 46px; cursor: pointer; }
+.menu-btn svg { margin: auto; }
+.drawer { border-top: 1px solid var(--line); padding-block: 12px 20px; }
+.drawer a { display: block; padding: 12px 4px; color: var(--ink); text-decoration: none; font-weight: 700; border-bottom: 1px solid var(--line); }
+@media (max-width: 960px) {
+  .nav { display: none; }
+  .menu-btn { display: grid; }
+  .head-row { min-height: 66px; gap: 12px; }
+  .brand img { height: 44px; }
+  .head-actions .lang { display: none; }
+  .drawer .lang { display: inline-block; margin-top: 14px; }
+}
+@media (min-width: 961px) { .drawer { display: none !important; } }
+
+/* hero */
+.hero { position: relative; background: var(--navy); color: var(--white); overflow: hidden; isolation: isolate; }
+.hero::before { content: ""; position: absolute; inset: -30% auto auto -10%; width: 60%; aspect-ratio: 1; background: radial-gradient(circle, rgba(54, 192, 202, .22), transparent 65%); z-index: -1; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 56px; align-items: center; padding-block: 64px 150px; }
+.hero-copy { display: flex; flex-direction: column; gap: 22px; }
+.chip-reg { align-self: flex-start; display: inline-flex; gap: 8px; align-items: center; background: rgba(54, 192, 202, .16); border: 1px solid rgba(54, 192, 202, .45); color: #bff0f3; border-radius: 999px; padding: 4px 14px; font-size: .9rem; font-weight: 600; }
+.hero h1 { font-size: clamp(2.1rem, 5vw, 3.6rem); line-height: 1.25; }
+.hero h1 em { font-style: normal; color: var(--amber); }
+.hero-sub { font-size: 1.15rem; color: #d7e6ee; max-width: 560px; }
+.hero-links { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.teaser { display: flex; gap: 14px; align-items: center; background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .14); border-radius: var(--radius); padding: 10px; max-width: 470px; text-decoration: none; color: var(--white); }
+.teaser img { width: 62px; height: 78px; object-fit: cover; object-position: top; border-radius: 10px; flex-shrink: 0; }
+.teaser q { font-weight: 600; quotes: "«" "»"; }
+[dir="ltr"] .teaser q { quotes: "“" "”"; }
+.teaser small { display: block; color: #a9c3cf; font-size: .85rem; margin-top: 2px; }
+.waves { position: absolute; inset: auto 0 0 0; height: 120px; z-index: -1; }
+.waves svg { width: 100%; height: 100%; display: block; }
+.boat { position: absolute; bottom: 74px; inset-inline-start: 7%; width: 84px; animation: bob 5s ease-in-out infinite; }
+@keyframes bob { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-6px) rotate(2deg); } }
+@media (max-width: 960px) {
+  .hero-grid { grid-template-columns: 1fr; gap: 32px; padding-block: 40px 120px; }
+  .boat { width: 64px; bottom: 60px; }
+}
+
+/* donation card */
+.give-card { background: var(--white); color: var(--ink); border-radius: 20px; box-shadow: var(--shadow); padding: 26px; scroll-margin-top: 96px; }
+.give-card h2 { font-size: 1.35rem; margin-bottom: 4px; }
+.give-card .lead { color: var(--muted); font-size: .95rem; margin-bottom: 16px; }
+.step { display: flex; flex-direction: column; gap: 16px; }
+fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
+.seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; background: var(--mist); border: 1px solid var(--line); border-radius: 12px; padding: 4px; gap: 4px; }
+.seg label { position: relative; }
+.seg input, .chips input, .amts input, .methods input { position: absolute; opacity: 0; pointer-events: none; }
+.seg > label > span { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2px 6px; min-height: 42px; border-radius: 9px; font-weight: 700; cursor: pointer; text-align: center; padding: 2px 6px; font-size: .97rem; }
+.seg input:checked + span { background: var(--white); color: var(--teal-ink); box-shadow: 0 1px 0 var(--line), 0 2px 8px -4px rgba(15, 34, 51, .3); }
+.seg input:focus-visible + span, .chips input:focus-visible + span, .amts input:focus-visible + span, .methods input:focus-visible + span { outline: 3px solid var(--amber); outline-offset: 2px; }
+.badge-m { font-size: .7rem; line-height: 1.7; background: var(--amber); color: var(--navy); border-radius: 999px; padding: 0 7px; font-weight: 700; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips span { display: inline-flex; align-items: center; min-height: 40px; padding: 4px 14px; border: 1.5px solid var(--line); border-radius: 999px; cursor: pointer; font-weight: 600; font-size: .92rem; }
+.chips input:checked + span { border-color: var(--teal-deep); background: var(--teal-soft); color: var(--teal-ink); }
+.amts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.amts span { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 74px; border: 1.5px solid var(--line); border-radius: 12px; padding: 6px; cursor: pointer; }
+.amts b { font-size: 1.12rem; line-height: 1.3; }
+.amts small { color: var(--muted); font-size: .82rem; line-height: 1.35; }
+.amts input:checked + span { border: 2px solid var(--teal-deep); background: var(--teal-soft); }
+.amts input:checked + span small { color: var(--teal-ink); }
+.custom { display: flex; align-items: center; gap: 10px; border: 1.5px solid var(--line); border-radius: 12px; padding: 0 14px; min-height: 50px; }
+.custom:focus-within { border-color: var(--teal-deep); }
+.custom input { border: 0; outline: 0; flex: 1; min-width: 0; font-size: 1.05rem; font-weight: 700; background: transparent; padding-block: 10px; }
+.custom .cur { color: var(--muted); font-weight: 700; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-weight: 700; font-size: .95rem; }
+.field label small { color: var(--muted); font-weight: 500; }
+.field input, .field select { border: 1.5px solid var(--line); border-radius: 12px; min-height: 50px; padding: 8px 14px; background: var(--white); }
+.field input:focus, .field select:focus { border-color: var(--teal-deep); outline: 0; box-shadow: 0 0 0 3px var(--teal-soft); }
+.field input[aria-invalid="true"] { border-color: var(--err); }
+.err { color: var(--err); font-size: .88rem; font-weight: 600; }
+.give-btn { font-size: 1.08rem; min-height: 56px; }
+.pay-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.pay-row span { font-size: .78rem; font-weight: 700; border: 1px solid var(--line); border-radius: 6px; padding: 1px 8px; color: var(--muted); }
+.secure { display: flex; justify-content: center; align-items: center; gap: 6px; color: var(--muted); font-size: .86rem; text-align: center; }
+.hint { color: var(--muted); font-size: .86rem; text-align: center; }
+.back { align-self: flex-start; background: none; border: 0; color: var(--teal-deep); font-weight: 700; cursor: pointer; padding: 4px 0; }
+[dir="rtl"] .back::before { content: "→ "; }
+[dir="ltr"] .back::before { content: "← "; }
+.summary { background: var(--mist); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; font-weight: 700; }
+.methods { display: grid; gap: 8px; }
+.methods span { display: flex; align-items: center; justify-content: space-between; gap: 10px; border: 1.5px solid var(--line); border-radius: 12px; padding: 10px 14px; cursor: pointer; }
+.methods b { font-weight: 700; }
+.methods small { color: var(--muted); font-size: .84rem; text-align: end; }
+.methods input:checked + span { border: 2px solid var(--teal-deep); background: var(--teal-soft); }
+.note { background: #fff8e6; border: 1px solid #f1d58a; border-radius: 12px; padding: 10px 14px; font-size: .9rem; }
+.check { display: flex; gap: 10px; align-items: flex-start; font-size: .93rem; cursor: pointer; }
+.check input { width: 20px; height: 20px; margin-top: 4px; accent-color: var(--teal-deep); flex-shrink: 0; }
+.thanks { text-align: center; align-items: center; }
+.thanks .tick { width: 64px; height: 64px; border-radius: 50%; background: var(--teal-soft); color: var(--teal-deep); display: grid; place-items: center; }
+.thanks h3 { font-size: 1.5rem; }
+.upsell { background: var(--mist); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px; width: 100%; }
+.codebox { border: 2px dashed var(--line); border-radius: 12px; padding: 14px; color: var(--muted); width: 100%; }
+
+/* trust strip */
+.trust { border-bottom: 1px solid var(--line); }
+.trust ul { list-style: none; margin-block: 0; padding-block: 22px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.trust li { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: .98rem; }
+.trust .ic { width: 44px; height: 44px; border-radius: 12px; background: var(--teal-soft); color: var(--teal-deep); display: grid; place-items: center; flex-shrink: 0; }
+@media (max-width: 900px) { .trust ul { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 420px) { .trust li { font-size: .9rem; } }
+
+/* why */
+.why { background: var(--mist); }
+.why-grid { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 56px; align-items: center; }
+.bignum { display: flex; flex-direction: column; gap: 4px; }
+.bignum b { font-size: clamp(3.4rem, 9vw, 6rem); line-height: 1; color: var(--teal-deep); font-weight: 800; }
+.bignum span { color: var(--muted); font-weight: 600; }
+.why-copy { display: flex; flex-direction: column; gap: 18px; }
+.why-copy h2 { font-size: clamp(1.6rem, 3.2vw, 2.3rem); }
+.why-copy p { color: var(--muted); font-size: 1.06rem; }
+.journey { list-style: none; margin: 8px 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; position: relative; }
+.journey li { background: var(--white); border: 1px solid var(--line); border-radius: var(--radius); padding: 14px; display: flex; flex-direction: column; gap: 6px; font-weight: 700; font-size: .95rem; line-height: 1.5; }
+.journey .dot { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; color: var(--white); }
+.journey li:nth-child(1) .dot { background: var(--navy); }
+.journey li:nth-child(2) .dot { background: var(--teal-deep); }
+.journey li:nth-child(3) .dot { background: var(--amber); color: var(--navy); }
+@media (max-width: 900px) { .why-grid { grid-template-columns: 1fr; gap: 28px; } }
+@media (max-width: 560px) { .journey { grid-template-columns: 1fr; } }
+
+/* funds */
+.funds { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.fund { border: 1px solid var(--line); border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 14px; background: var(--white); position: relative; overflow: hidden; }
+.fund::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 6px; background: var(--fund-c); }
+.fund .tag { align-self: flex-start; font-size: .82rem; font-weight: 700; color: var(--fund-ink); background: var(--fund-soft); border-radius: 999px; padding: 1px 12px; }
+.fund h3 { font-size: 1.4rem; }
+.fund p { color: var(--muted); }
+.fund .unit { margin-top: auto; border-top: 1px dashed var(--line); padding-top: 14px; font-weight: 700; }
+.fund .unit b { color: var(--teal-ink); font-size: 1.15rem; }
+.prog { display: flex; flex-direction: column; gap: 6px; font-size: .85rem; color: var(--muted); }
+.bar { height: 8px; border-radius: 99px; background: var(--mist); overflow: hidden; }
+.bar i { display: block; height: 100%; background: var(--fund-c); border-radius: inherit; }
+.f-family { --fund-c: #2bb3a3; --fund-soft: #e0f5f2; --fund-ink: #13685e; }
+.f-home { --fund-c: #3d7fd9; --fund-soft: #e5effc; --fund-ink: #23589f; }
+.f-youth { --fund-c: var(--amber); --fund-soft: #fdf2d6; --fund-ink: #7a5600; }
+@media (max-width: 960px) { .funds { grid-template-columns: 1fr; } }
+
+/* stories */
+.stories { background-color: var(--paper); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .25 0 0 0 0 .2 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.story-tabs { display: flex; gap: 8px; margin-bottom: 26px; }
+.story-tabs button { border: 1.5px solid #d8cdb9; background: rgba(255, 255, 255, .6); border-radius: 999px; padding: 6px 18px; font-weight: 700; cursor: pointer; min-height: 44px; }
+.story-tabs button[aria-selected="true"] { background: var(--navy); border-color: var(--navy); color: var(--white); }
+.story { display: grid; grid-template-columns: 260px minmax(0, 1fr); gap: 48px; align-items: center; }
+.story img { width: 260px; border-radius: 16px; box-shadow: 0 20px 40px -20px rgba(15, 34, 51, .5); transform: rotate(-2deg); }
+[dir="ltr"] .story img { transform: rotate(2deg); }
+.story blockquote { margin: 0; font-size: clamp(1.4rem, 3vw, 2.05rem); font-weight: 800; line-height: 1.5; }
+.story .orig { color: var(--muted); font-size: .95rem; margin-top: 10px; direction: ltr; unicode-bidi: isolate; }
+.story .who { display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline; margin-top: 18px; }
+.story .who b { font-size: 1.3rem; }
+.story .tags { color: var(--teal-ink); font-weight: 600; font-size: .92rem; direction: ltr; unicode-bidi: isolate; }
+.story-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; margin-top: 26px; }
+@media (max-width: 760px) { .story { grid-template-columns: 1fr; gap: 28px; } .story img { width: 200px; } }
+
+/* impact */
+.impact { background: var(--navy); color: var(--white); }
+.impact .eyebrow { color: var(--teal); }
+.impact .sec-head p { color: #b9cdd8; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: rgba(255, 255, 255, .14); border-radius: 18px; overflow: hidden; }
+.stats div { background: var(--navy-2); padding: 26px 22px; display: flex; flex-direction: column; gap: 4px; }
+.stats b { font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.1; color: var(--teal); font-variant-numeric: tabular-nums; }
+.stats div:nth-child(even) b { color: var(--amber); }
+.stats span { color: #cfe0e8; font-weight: 600; }
+.impact-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 22px; color: #9fb7c3; font-size: .9rem; }
+.impact-foot a { color: var(--teal); }
+@media (max-width: 860px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* zakat + transparency */
+.zt { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 24px; align-items: start; }
+.panel { border: 1px solid var(--line); border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 16px; background: var(--white); }
+.panel h2 { font-size: clamp(1.5rem, 2.8vw, 2rem); }
+.panel > p { color: var(--muted); }
+.calc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.calc .field input { min-height: 46px; }
+.calc .wide { grid-column: 1 / -1; }
+.calc .field small { color: var(--muted); font-size: .82rem; }
+.result { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; background: var(--teal-soft); border-radius: 14px; padding: 14px 18px; }
+.result b { font-size: 1.5rem; color: var(--teal-ink); }
+.result p { font-size: .92rem; color: var(--teal-ink); font-weight: 600; }
+.split { display: flex; height: 18px; border-radius: 99px; overflow: hidden; background: var(--mist); }
+.split i:first-child { width: 80%; background: var(--teal-deep); }
+.split i:last-child { flex: 1; background: var(--amber); }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: .92rem; font-weight: 600; }
+.legend span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-inline-end: 6px; vertical-align: -1px; background: var(--c); }
+.doc-links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+.doc-links li { border-top: 1px solid var(--line); }
+.doc-links a { display: flex; justify-content: space-between; padding: 12px 2px; text-decoration: none; color: var(--ink); font-weight: 600; }
+.doc-links a:hover { color: var(--teal-deep); }
+@media (max-width: 960px) { .zt { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .calc { grid-template-columns: 1fr; } .panel { padding: 20px; } }
+
+/* other ways */
+.ways { background: var(--mist); }
+.banks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.bank { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.bank h3 { font-size: 1.08rem; }
+.bank .acct { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: var(--mist); border-radius: 10px; padding: 6px 6px 6px 12px; }
+[dir="rtl"] .bank .acct { padding: 6px 12px 6px 6px; }
+.bank .acct code { font-family: var(--font); font-weight: 700; font-size: 1.05rem; direction: ltr; unicode-bidi: isolate; overflow-wrap: anywhere; min-width: 0; }
+.copy { flex-shrink: 0; border: 0; background: var(--teal-deep); color: var(--white); border-radius: 8px; min-height: 40px; padding: 4px 14px; font-weight: 700; cursor: pointer; }
+.copy:hover { background: var(--teal-ink); }
+.bank .lbl { font-size: .85rem; color: var(--muted); font-weight: 600; }
+.ways-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
+.way { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.way p { color: var(--muted); }
+@media (max-width: 960px) { .banks, .ways-row { grid-template-columns: 1fr; } }
+
+/* involved */
+.involve { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.inv { border-top: 3px solid var(--teal); padding-top: 16px; display: flex; flex-direction: column; gap: 8px; }
+.inv p { color: var(--muted); }
+@media (max-width: 860px) { .involve { grid-template-columns: 1fr; gap: 26px; } }
+
+/* news */
+.news { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.news a { text-decoration: none; color: var(--ink); display: flex; flex-direction: column; gap: 10px; }
+.news img { width: 100%; aspect-ratio: 278 / 230; object-fit: cover; border-radius: 14px; }
+.news time { color: var(--muted); font-size: .88rem; font-weight: 600; }
+.news h3 { font-size: 1.05rem; font-weight: 700; line-height: 1.55; }
+.news a:hover h3 { color: var(--teal-deep); }
+.head-split { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px; margin-bottom: 32px; }
+.head-split .sec-head { margin: 0; }
+@media (max-width: 860px) { .news { grid-template-columns: 1fr; } .news a { display: grid; grid-template-columns: 120px minmax(0, 1fr); align-items: center; gap: 14px; } }
+
+/* footer */
+.foot { background: var(--navy); color: #c7d6de; padding-block: 64px 28px; font-size: .95rem; }
+.foot-grid { display: grid; grid-template-columns: 1.3fr 1fr 1.2fr 1.2fr 1.3fr; gap: 32px; }
+.foot h4 { color: var(--white); font-size: 1rem; margin-bottom: 12px; }
+.foot ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+.foot a { color: #c7d6de; text-decoration: none; }
+.foot a:hover { color: var(--teal); }
+.foot .logo-light { height: 46px; width: auto; margin-bottom: 14px; }
+.foot form { display: flex; flex-direction: column; gap: 10px; }
+.foot input { border: 1px solid #36506a; background: var(--navy-2); color: var(--white); border-radius: 10px; min-height: 46px; padding: 6px 12px; }
+.foot input::placeholder { color: #8ea6b4; }
+.subscribe { background: var(--teal-deep); color: var(--white); border: 0; border-radius: 10px; min-height: 46px; font-weight: 700; cursor: pointer; }
+.socials { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 14px; }
+.foot-bottom { margin-top: 44px; padding-top: 22px; border-top: 1px solid #23405a; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px 24px; font-size: .86rem; color: #93abb8; }
+.foot-bottom nav { display: flex; flex-wrap: wrap; gap: 6px 18px; }
+@media (max-width: 1000px) { .foot-grid { grid-template-columns: 1fr 1fr; } .foot-grid > :first-child { grid-column: 1 / -1; } }
+@media (max-width: 520px) { .foot-grid { grid-template-columns: 1fr; } }
+
+/* floating + sticky */
+.wa { position: fixed; inset-inline-end: max(18px, env(safe-area-inset-right, 0px)); bottom: calc(18px + env(safe-area-inset-bottom, 0px)); width: 56px; height: 56px; border-radius: 50%; background: #1fa855; color: var(--white); display: grid; place-items: center; box-shadow: 0 10px 24px -10px rgba(0, 0, 0, .5); z-index: 40; transition: bottom .2s; }
+.sticky-give { position: fixed; inset: auto 0 0 0; z-index: 45; background: var(--white); border-top: 1px solid var(--line); box-shadow: 0 -10px 24px -16px rgba(15, 34, 51, .4); padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); display: flex; gap: 10px; transform: translateY(110%); transition: transform .25s; }
+.sticky-give .btn-give { flex: 1; }
+.sticky-give.show { transform: none; }
+.sticky-give.show ~ .wa { bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
+@media (min-width: 961px) { .sticky-give { display: none; } }
+.toast { position: fixed; inset-inline: 0; bottom: 100px; margin-inline: auto; width: max-content; max-width: calc(100% - 32px); background: var(--navy); color: var(--white); border-radius: 10px; padding: 8px 16px; font-weight: 600; z-index: 60; }
+</style>
+</head>
+<body>
+
+<div class="proto" role="note" data-en="Design prototype for the Sanad website redesign · Not the live site · No payments are processed">نموذج تصميمي مقترح لإعادة تصميم موقع سند · ليس الموقع الفعلي · لا تتم فيه أي عمليات دفع</div>
+
+<header class="site-head">
+  <div class="wrap head-row">
+    <a class="brand" href="#top" aria-label="سند - الصفحة الرئيسية" data-en-aria="Sanad home"><img src="assets/sanad-logo.png" width="133" height="94" alt="سند" data-en-alt="Sanad"></a>
+    <nav class="nav" aria-label="القائمة الرئيسية" data-en-aria="Main menu">
+      <a href="#why" data-en="About us">من نحن</a>
+      <a href="#programs" data-en="Our programs">برامجنا</a>
+      <a href="#impact" data-en="Our impact">أثرنا</a>
+      <a href="#stories" data-en="Stories">قصص</a>
+      <a href="#organisations" data-en="For organisations">للمؤسسات</a>
+    </nav>
+    <div class="head-actions">
+      <button class="lang" type="button" data-lang-toggle lang="en">English</button>
+      <a class="btn btn-give" href="#give" data-en="Donate">تبرّع</a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="القائمة" data-en-aria="Menu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="drawer wrap" id="drawer" hidden>
+    <a href="#why" data-en="About us">من نحن</a>
+    <a href="#programs" data-en="Our programs">برامجنا</a>
+    <a href="#impact" data-en="Our impact">أثرنا</a>
+    <a href="#stories" data-en="Stories">قصص</a>
+    <a href="#organisations" data-en="For organisations">للمؤسسات</a>
+    <button class="lang" type="button" data-lang-toggle lang="en">English</button>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- 1. Hero with the donation form -->
+<section class="hero" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="chip-reg" data-en="Since 2008 · Registered with the Ministry of Social Solidarity, No. 7478">منذ 2008 · جمعية مشهرة برقم 7478 لدى وزارة التضامن الاجتماعي</span>
+      <h1 id="hero-title" data-en-html="Every child deserves care that feels like <em>family</em>">كل طفل يستحق رعاية تشبه <em>حضن الأسرة</em></h1>
+      <p class="hero-sub" data-en="We reach children and young people without parental care through the people who raise them. We train caregivers, improve care homes, support kafala families and prepare young people for independent life, across 20 governorates.">نصل إلى الأطفال والشباب فاقدي الرعاية الوالدية من خلال من يربّونهم: ندرّب مقدّمي الرعاية، ونطوّر دور الرعاية، وندعم أسر الكفالة، ونؤهّل الشباب لحياة مستقلة في 20 محافظة.</p>
+      <a class="teaser" href="#stories">
+        <img src="assets/story-wageeh.jpg" width="236" height="337" alt="">
+        <span><q data-en="I have several plans in mind. If one fails, another will work.">عندي أكثر من خطة. لو واحدة ما نجحتش، التانية هتنجح.</q><small><span data-en="Wageeh · read his story">وجيه · اقرأ قصته</span></small></span>
+      </a>
+      <div class="hero-links">
+        <a class="btn btn-light" href="https://www.youtube.com/watch?v=lNpo7sIex6s" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          <span data-en="Watch Sanad's film">شاهد فيلم سند</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="give-card" id="give" tabindex="-1" aria-labelledby="give-title">
+      <!-- Step 1: choose -->
+      <form class="step" id="step1" novalidate>
+        <div>
+          <h2 id="give-title" data-en="Stand with a child">كن سندًا لطفل</h2>
+          <p class="lead" data-en="Your gift reaches children through the people who raise them.">تبرعك يصل إلى الأطفال من خلال من يربّونهم.</p>
+        </div>
+        <fieldset>
+          <legend class="sr-only" data-en="How often">التكرار</legend>
+          <div class="seg">
+            <label><input type="radio" name="freq" value="monthly" checked><span><span data-en="Monthly">شهريًا</span><span class="badge-m" data-en="Most impact">الأثر الأكبر</span></span></label>
+            <label><input type="radio" name="freq" value="once"><span data-en="One-time">مرة واحدة</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend data-en="Type of gift">نوع التبرع</legend>
+          <div class="seg">
+            <label><input type="radio" name="type" value="sadaqah" checked><span data-en="Sadaqah">صدقة</span></label>
+            <label><input type="radio" name="type" value="zakat"><span data-en="Zakat">زكاة</span></label>
+            <label><input type="radio" name="type" value="general"><span data-en="General">تبرع عام</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend data-en="Where should it go?">أين يذهب تبرعك؟</legend>
+          <div class="chips">
+            <label><input type="radio" name="fund" value="general" checked><span data-en="Where it's needed most">أينما دعت الحاجة</span></label>
+            <label><input type="radio" name="fund" value="family"><span data-en="A family for every child">أسرة لكل طفل</span></label>
+            <label><input type="radio" name="fund" value="home"><span data-en="A safe home">بيت آمن</span></label>
+            <label><input type="radio" name="fund" value="youth"><span data-en="A step to independence">خطوة للاستقلال</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend data-en="Amount (EGP)">المبلغ (ج.م)</legend>
+          <div class="amts">
+            <label><input type="radio" name="amount" value="150"><span><b class="num">150</b><small data-en="School supplies">أدوات مدرسية</small></span></label>
+            <label><input type="radio" name="amount" value="500" checked><span><b class="num">500</b><small data-en="Psychosocial support">دعم نفسي</small></span></label>
+            <label><input type="radio" name="amount" value="1000"><span><b class="num">1,000</b><small data-en="Caregiver training">تدريب مقدّم رعاية</small></span></label>
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="custom-amt" class="sr-only" data-en="Other amount in EGP">مبلغ آخر بالجنيه</label>
+          <div class="custom">
+            <input id="custom-amt" type="text" inputmode="numeric" autocomplete="off" placeholder="مبلغ آخر" data-en-ph="Other amount">
+            <span class="cur" data-en="EGP">ج.م</span>
+          </div>
+          <p class="err" id="amt-err" hidden></p>
+        </div>
+        <button class="btn btn-give btn-block give-btn" type="submit" id="give-btn">أكون سندًا بـ 500 ج.م شهريًا</button>
+        <div class="pay-row" aria-label="وسائل الدفع" data-en-aria="Payment methods"><span>Apple Pay</span><span>Google Pay</span><span>Visa</span><span>Mastercard</span><span>Meeza</span><span data-en="Wallets">محافظ</span><span>InstaPay</span><span data-en="Fawry">فوري</span></div>
+        <p class="secure"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-en="Secure, encrypted payment · Instant WhatsApp receipt">دفع آمن ومشفّر · إيصال فوري على واتساب</span></p>
+      </form>
+
+      <!-- Step 2: details and payment method -->
+      <form class="step" id="step2" novalidate hidden>
+        <button type="button" class="back" data-back data-en="Back">رجوع</button>
+        <p class="summary" id="summary"></p>
+        <div class="field">
+          <label for="d-name" data-en-html="Name <small>(as it should appear on your receipt)</small>">الاسم <small>(كما تحب أن يظهر في الإيصال)</small></label>
+          <input id="d-name" name="name" autocomplete="name" required>
+          <p class="err" id="name-err" hidden></p>
+        </div>
+        <div class="field">
+          <label for="d-phone" data-en-html="Mobile <small>(WhatsApp, for your receipt)</small>">رقم الموبايل <small>(واتساب، لإرسال الإيصال)</small></label>
+          <input id="d-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" placeholder="01xxxxxxxxx">
+          <p class="err" id="phone-err" hidden></p>
+        </div>
+        <div class="field">
+          <label for="d-email" data-en-html="Email <small>(optional)</small>">البريد الإلكتروني <small>(اختياري)</small></label>
+          <input id="d-email" name="email" type="email" autocomplete="email" dir="ltr">
+        </div>
+        <fieldset>
+          <legend data-en="Payment method">وسيلة الدفع</legend>
+          <div class="methods">
+            <label><input type="radio" name="method" value="mobile" checked><span><b>Apple Pay / Google Pay</b><small data-en="Fastest on mobile">الأسرع على الموبايل</small></span></label>
+            <label><input type="radio" name="method" value="card"><span><b data-en="Bank card">بطاقة بنكية</b><small data-en="Visa · Mastercard · Meeza">Visa · Mastercard · ميزة</small></span></label>
+            <label><input type="radio" name="method" value="wallet"><span><b data-en="Mobile wallet">محفظة إلكترونية</b><small data-en="Vodafone Cash and others">فودافون كاش وغيرها</small></span></label>
+            <label><input type="radio" name="method" value="instapay"><span><b>InstaPay</b><small data-en="Instant transfer from your bank">تحويل فوري من حسابك البنكي</small></span></label>
+            <label><input type="radio" name="method" value="fawry"><span><b data-en="Fawry">فوري</b><small data-en="Pay cash at any Fawry outlet">ادفع نقدًا في أي منفذ فوري</small></span></label>
+          </div>
+        </fieldset>
+        <div class="field" id="currency-field">
+          <label for="d-cur" data-en="Pay in">عملة الدفع</label>
+          <select id="d-cur" name="currency">
+            <option value="EGP" data-en="Egyptian pound (EGP)">الجنيه المصري (EGP)</option>
+            <option value="USD" data-en="US dollar (USD)">الدولار الأمريكي (USD)</option>
+            <option value="SAR" data-en="Saudi riyal (SAR)">الريال السعودي (SAR)</option>
+            <option value="AED" data-en="UAE dirham (AED)">الدرهم الإماراتي (AED)</option>
+          </select>
+        </div>
+        <p class="note" id="monthly-note" hidden data-en="Automatic monthly giving works with cards or Apple Pay / Google Pay. With this method we'll send you a friendly WhatsApp reminder each month.">التبرع الشهري التلقائي متاح بالبطاقة أو Apple Pay / Google Pay. مع هذه الوسيلة نرسل لك تذكيرًا ودودًا على واتساب كل شهر.</p>
+        <label class="check"><input type="checkbox" name="fees" checked><span data-en="I'll cover the payment fee so my full gift arrives">أتحمّل رسوم الدفع حتى يصل تبرعي كاملًا</span></label>
+        <button class="btn btn-give btn-block give-btn" type="submit" data-en="Continue to secure payment">متابعة إلى الدفع الآمن</button>
+        <p class="hint" data-en="We never share your details.">لن نشارك بياناتك مع أي جهة.</p>
+      </form>
+
+      <!-- Step 3: thank you (prototype) -->
+      <div class="step thanks" id="step3" hidden aria-live="polite">
+        <div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h3 id="thanks-title" tabindex="-1"></h3>
+        <p data-en="On the live site you'd now go to the secure payment page, then receive a WhatsApp receipt within a minute.">في الموقع الفعلي تنتقل الآن إلى صفحة الدفع الآمنة، ثم يصلك إيصال على واتساب خلال دقيقة.</p>
+        <p class="note" data-en="This is a design prototype. No payment was made.">هذا نموذج تصميمي، ولم يتم أي دفع.</p>
+        <p class="codebox" id="fawry-box" hidden data-en="Your Fawry payment code and its expiry date would appear here.">سيظهر هنا كود الدفع في فوري وتاريخ صلاحيته.</p>
+        <div class="upsell" id="upsell" hidden>
+          <b data-en="Make it monthly?">هل تجعله تبرعًا شهريًا؟</b>
+          <p data-en="Monthly gifts let us plan programs that run all year.">التبرعات الشهرية تتيح لنا التخطيط لبرامج تستمر طوال العام.</p>
+          <button class="btn btn-ghost" type="button" id="make-monthly" data-en="Yes, make it monthly">نعم، اجعله شهريًا</button>
+        </div>
+        <p class="upsell" id="upsell-done" hidden><b data-en="Done! Your gift is now monthly.">تم! سيصبح تبرعك شهريًا.</b></p>
+        <button class="btn btn-ghost" type="button" data-copy-link data-en="Share Sanad: copy link">شارك سند: انسخ الرابط</button>
+        <button class="back" type="button" data-restart data-en="Give again">تبرّع مرة أخرى</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="waves" aria-hidden="true">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <defs>
+        <pattern id="stripes" width="56" height="12" patternUnits="userSpaceOnUse"><path d="M0 6 Q14 0 28 6 T56 6" fill="none" stroke="#36c0ca" stroke-width="2.4" opacity=".55"/></pattern>
+        <pattern id="stripes2" width="56" height="12" patternUnits="userSpaceOnUse"><path d="M0 6 Q14 0 28 6 T56 6" fill="none" stroke="#e8724a" stroke-width="2.4" opacity=".6"/></pattern>
+      </defs>
+      <path d="M0 46 C240 6 480 86 720 46 S1200 6 1440 46 V120 H0Z" fill="#172f45"/>
+      <path d="M0 46 C240 6 480 86 720 46 S1200 6 1440 46 V120 H0Z" fill="url(#stripes)"/>
+      <path d="M0 92 C300 62 560 120 860 90 S1260 66 1440 88 V120 H0Z" fill="#0f2233"/>
+      <path d="M0 92 C300 62 560 120 860 90 S1260 66 1440 88 V120 H0Z" fill="url(#stripes2)"/>
+    </svg>
+  </div>
+  <svg class="boat" viewBox="0 0 80 60" aria-hidden="true">
+    <path d="M39 6 L39 40" stroke="#ffffff" stroke-width="2"/>
+    <path d="M39 6 L52 10 L39 14Z" fill="#e8724a"/>
+    <path d="M37 16 L37 40 L18 40Z" fill="#ffffff"/>
+    <path d="M41 18 L41 40 L60 40Z" fill="#f2b025"/>
+    <path d="M8 42 L72 42 L62 54 L18 54Z" fill="#36c0ca"/>
+  </svg>
+</section>
+
+<!-- 2. Trust strip -->
+<section class="trust" aria-label="لماذا تثق في سند" data-en-aria="Why trust Sanad">
+  <ul class="wrap">
+    <li><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></span><span data-en="Secure, encrypted payment">دفع آمن ومشفّر</span></li>
+    <li><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.4-4.2A8 8 0 1 1 8.5 19z"/></svg></span><span data-en="Instant WhatsApp receipt">إيصال فوري على واتساب</span></li>
+    <li><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/></svg></span><span data-en="Pearson-accredited training">تدريب معتمد من Pearson</span></li>
+    <li><span class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><span data-en="18 years in 20 governorates">18 عامًا في 20 محافظة</span></li>
+  </ul>
+</section>
+
+<!-- 3. Why -->
+<section class="section why" id="why" aria-labelledby="why-title">
+  <div class="wrap why-grid">
+    <div class="bignum">
+      <span class="eyebrow" data-en="Why Sanad">لماذا سند</span>
+      <b class="num" data-en="1.4M">1.4 مليون</b>
+      <span data-en="orphans in Egypt (Ministry of Social Solidarity, 2023)">يتيم في مصر (وزارة التضامن الاجتماعي، 2023)</span>
+    </div>
+    <div class="why-copy">
+      <h2 id="why-title" data-en="At 18, many leave care with no family, no savings and no preparation">في سن 18 يغادر كثيرون الدار بلا أسرة ولا مدخرات ولا استعداد</h2>
+      <p data-en="A child needs more than a roof. They need someone who cares and believes in them. So we work with caregivers, families and communities, so every child reaches safe care and every young person starts life ready.">الطفل لا يحتاج إلى سقف فقط، بل إلى من يرعاه ويؤمن به. لذلك نعمل مع مقدّمي الرعاية والأسر والمجتمع، كي يصل كل طفل إلى رعاية آمنة، ويبدأ كل شاب حياته مستعدًا.</p>
+      <ol class="journey">
+        <li><span class="dot">1</span><span data-en="A child in care">طفل في دار رعاية</span></li>
+        <li><span class="dot">2</span><span data-en="A trained caregiver or a kafala family">مقدّم رعاية مدرَّب أو أسرة كفالة</span></li>
+        <li><span class="dot">3</span><span data-en="A young adult shaping their own future">شاب مستقل يصنع مستقبله</span></li>
+      </ol>
+      <div><a class="btn btn-give" href="#give" data-give-fund="youth" data-en="Help a young person start their life">ساعد شابًا يبدأ حياته</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Giving funds -->
+<section class="section" id="programs" aria-labelledby="programs-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-en="Our programs">برامجنا</span>
+      <h2 id="programs-title" data-en="Choose where your gift goes">اختر أين يذهب تبرعك</h2>
+      <p data-en="Every gift reaches children through the people who raise them. Choose the program closest to your heart.">كل تبرع يصل إلى الأطفال من خلال من يربّونهم. اختر البرنامج الأقرب إلى قلبك.</p>
+    </div>
+    <div class="funds">
+      <article class="fund f-family">
+        <span class="tag" data-en="Prevention">الوقاية</span>
+        <h3 data-en="A family for every child">أسرة لكل طفل</h3>
+        <p data-en="We prepare kafala families with knowledge and emotional readiness, and follow up after placement so the child settles and never returns to care.">نُعدّ أسر الكفالة نفسيًا ومعرفيًا، ونتابع الطفل بعد انتقاله حتى يستقر ولا يعود إلى دار الرعاية.</p>
+        <p class="unit" data-en-html="<b>EGP 500</b> psychosocial support for a child">‏<b>500 ج.م</b> دعم نفسي لطفل</p>
+        <div class="prog"><div class="bar"><i style="width:45%"></i></div><span data-en="Example: 45% of the Ramadan goal">مثال: 45% من هدف حملة رمضان</span></div>
+        <button class="btn btn-give" type="button" data-give-fund="family" data-en="Give to this program">تبرّع لهذا البرنامج</button>
+      </article>
+      <article class="fund f-home">
+        <span class="tag" data-en="Protection">الحماية</span>
+        <h3 data-en="A safe home">بيت آمن</h3>
+        <p data-en="We train caregivers and care-home managers and put quality standards and safeguarding in place, so every care home protects a child's dignity.">ندرّب مقدّمي الرعاية ومديري الدور، ونطبّق معايير الجودة وسياسات الحماية، حتى تصبح كل دار بيتًا آمنًا يحفظ كرامة الطفل.</p>
+        <p class="unit" data-en-html="<b>EGP 1,000</b> trains one caregiver">‏<b>1,000 ج.م</b> تدريب مقدّم رعاية</p>
+        <div class="prog"><div class="bar"><i style="width:62%"></i></div><span data-en="Example: 62% of the Ramadan goal">مثال: 62% من هدف حملة رمضان</span></div>
+        <button class="btn btn-give" type="button" data-give-fund="home" data-en="Give to this program">تبرّع لهذا البرنامج</button>
+      </article>
+      <article class="fund f-youth">
+        <span class="tag" data-en="Empowerment">التمكين</span>
+        <h3 data-en="A step to independence">خطوة للاستقلال</h3>
+        <p data-en="We prepare young people leaving care for work and independent life, with skills, mentoring and job opportunities with our partners.">نؤهّل الشباب الخارجين من الرعاية للعمل والحياة المستقلة: مهارات، وإرشاد، وفرص عمل مع شركائنا.</p>
+        <p class="unit" data-en-html="<b>EGP 150</b> study supplies for a young person">‏<b>150 ج.م</b> أدوات دراسية لشاب</p>
+        <div class="prog"><div class="bar"><i style="width:38%"></i></div><span data-en="Example: 38% of the Ramadan goal">مثال: 38% من هدف حملة رمضان</span></div>
+        <button class="btn btn-give" type="button" data-give-fund="youth" data-en="Give to this program">تبرّع لهذا البرنامج</button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 5. Stories -->
+<section class="section stories" id="stories" aria-labelledby="stories-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-en="Stories from Sanad">قصص من سند</span>
+      <h2 id="stories-title" data-en="From support to impact">من الدعم إلى الأثر</h2>
+    </div>
+    <div class="story-tabs" role="tablist" aria-label="القصص" data-en-aria="Stories">
+      <button type="button" role="tab" id="tab-wageeh" aria-controls="story-wageeh" aria-selected="true" data-en="Wageeh">وجيه</button>
+      <button type="button" role="tab" id="tab-alaa" aria-controls="story-alaa" aria-selected="false" tabindex="-1" data-en="Alaa">علاء</button>
+    </div>
+    <div class="story" id="story-wageeh" role="tabpanel" aria-labelledby="tab-wageeh">
+      <img src="assets/story-wageeh.jpg" width="236" height="337" alt="ملصق قصة وجيه" data-en-alt="Wageeh's story poster">
+      <div>
+        <blockquote data-en="“I have several plans in mind to achieve my goals. If one fails, another will work.”">«عندي أكثر من خطة لتحقيق أهدافي. لو واحدة ما نجحتش، التانية هتنجح.»</blockquote>
+        <p class="orig" lang="en" data-ar-only>“I have several plans in mind, to achieve my goals, if one fails, another will work.”</p>
+        <div class="who"><b data-en="Wageeh">وجيه</b><span class="tags">#ambitious #perseverant #planning</span></div>
+        <div class="story-actions">
+          <a class="btn btn-give" href="#give" data-give-fund="youth" data-en="Help another young person like Wageeh">ساعد شابًا آخر مثل وجيه</a>
+          <a class="link arw" href="#stories" data-en="All stories">كل القصص</a>
+        </div>
+      </div>
+    </div>
+    <div class="story" id="story-alaa" role="tabpanel" aria-labelledby="tab-alaa" hidden>
+      <img src="assets/story-alaa.jpg" width="232" height="337" alt="ملصق قصة علاء" data-en-alt="Alaa's story poster">
+      <div>
+        <blockquote data-en="“I didn't care what anyone said. For me, it was fuel that drove me forward.”">«ما كانش يهمني كلام الناس. بالعكس، كان هو الوقود اللي دفعني لقدّام.»</blockquote>
+        <p class="orig" lang="en" data-ar-only>“I didn't care what anyone said. For me, it was fuel that drove me forward.”</p>
+        <div class="who"><b data-en="Alaa">علاء</b><span class="tags">#athlete #determined #passion_to_communicate</span></div>
+        <div class="story-actions">
+          <a class="btn btn-give" href="#give" data-give-fund="youth" data-en="Help another young person like Alaa">ساعد شابًا آخر مثل علاء</a>
+          <a class="link arw" href="#stories" data-en="All stories">كل القصص</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Impact -->
+<section class="section impact" id="impact" aria-labelledby="impact-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-en="Our impact">أثرنا</span>
+      <h2 id="impact-title" data-en="18 years of work, in numbers">18 عامًا من العمل، بالأرقام</h2>
+    </div>
+    <div class="stats">
+      <div><b>538</b><span data-en="care homes">دار رعاية</span></div>
+      <div><b>3,283</b><span data-en="caregivers and care-home managers trained">مقدّم رعاية ومدير دار تم تدريبهم</span></div>
+      <div><b>5,622</b><span data-en="children and young people reached">طفلًا وشابًا وصلنا إليهم</span></div>
+      <div><b>20</b><span data-en="governorates">محافظة</span></div>
+    </div>
+    <div class="impact-foot">
+      <span data-en="Figures as published on the Sanad website, October 2026">الأرقام كما نشرتها سند على موقعها، أكتوبر 2026</span>
+      <a class="arw" href="#impact" data-en="All figures and annual reports">كل الأرقام والتقارير السنوية</a>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Zakat and transparency -->
+<section class="section" id="zakat" aria-label="الزكاة والشفافية" data-en-aria="Zakat and transparency">
+  <div class="wrap zt">
+    <div class="panel">
+      <span class="eyebrow" data-en="Zakat">الزكاة</span>
+      <h2 data-en="Your Zakat reaches those entitled to it">زكاتك تصل إلى مستحقيها</h2>
+      <p><span class="todo" data-en="Sanad's Sharia statement and fatwa reference go here once approved">يُضاف هنا البيان الشرعي ومرجع الفتوى بعد اعتماده من سند</span></p>
+      <form class="calc" id="calc" novalidate>
+        <div class="field"><label for="z-cash" data-en="Cash and savings">النقود والمدخرات</label><input id="z-cash" inputmode="numeric" placeholder="0" dir="ltr"></div>
+        <div class="field"><label for="z-gold" data-en="Gold and silver value">قيمة الذهب والفضة</label><input id="z-gold" inputmode="numeric" placeholder="0" dir="ltr"></div>
+        <div class="field"><label for="z-inv" data-en="Investments and shares">الاستثمارات والأسهم</label><input id="z-inv" inputmode="numeric" placeholder="0" dir="ltr"></div>
+        <div class="field"><label for="z-debt" data-en="Debts you owe">ديون مستحقة عليك</label><input id="z-debt" inputmode="numeric" placeholder="0" dir="ltr"></div>
+        <div class="field wide"><label for="z-nisab" data-en="Today's nisab value (EGP)">قيمة النصاب اليوم (ج.م)</label><input id="z-nisab" inputmode="numeric" placeholder="0" dir="ltr"><small data-en="The value of 85 grams of 24-carat gold at today's price.">قيمة 85 جرامًا من الذهب عيار 24 بسعر اليوم.</small></div>
+        <div class="result wide" aria-live="polite">
+          <div><span data-en="Your Zakat">زكاتك</span><br><b id="z-out" class="num">0</b></div>
+          <p id="z-msg"></p>
+          <button class="btn btn-give" type="button" id="z-give" data-en="Pay my Zakat now" disabled>أخرج زكاتي الآن</button>
+        </div>
+      </form>
+      <p class="hint" style="text-align:start" data-en="An estimate. For special cases, consult a trusted fatwa authority.">حاسبة تقريبية. للحالات الخاصة استشر جهة إفتاء موثوقة.</p>
+    </div>
+    <div class="panel">
+      <span class="eyebrow" data-en="Transparency">الشفافية</span>
+      <h2 data-en="How we use your gift">كيف نستخدم تبرعك؟</h2>
+      <div class="split" aria-hidden="true"><i></i><i></i></div>
+      <div class="legend"><span style="--c: var(--teal-deep)" data-en="Programs [–]%">البرامج [–]%</span><span style="--c: var(--amber)" data-en="Operations [–]%">التشغيل [–]%</span></div>
+      <p><span class="todo" data-en="Awaiting Sanad's audited figures">بانتظار الأرقام المعتمدة من القوائم المالية</span></p>
+      <ul class="doc-links">
+        <li><a href="#impact"><span data-en="Annual reports">التقارير السنوية</span><span class="arw"></span></a></li>
+        <li><a href="#impact"><span data-en="Research and reports">الأبحاث والتقارير</span><span class="arw"></span></a></li>
+        <li><a href="#why"><span data-en="Registered No. 7478 of 2008, Ministry of Social Solidarity">مشهرة برقم 7478 لسنة 2008، وزارة التضامن الاجتماعي</span><span class="arw"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- 8. Other ways to give -->
+<section class="section ways" id="ways" aria-labelledby="ways-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-en="Other ways to give">طرق أخرى للتبرع</span>
+      <h2 id="ways-title" data-en="Give the way that suits you">تبرّع بالطريقة التي تناسبك</h2>
+      <p data-en="Transfer directly to one of Sanad's bank accounts, then send us your receipt on WhatsApp so we can issue an official receipt.">حوّل مباشرة إلى أحد حسابات سند البنكية، ثم أرسل لنا صورة الإيصال على واتساب لنرسل لك إيصالًا رسميًا.</p>
+    </div>
+    <div class="banks">
+      <div class="bank">
+        <h3 data-en="Commercial International Bank (CIB)">البنك التجاري الدولي (CIB)</h3>
+        <span class="lbl" data-en="Account number">رقم الحساب</span>
+        <div class="acct"><code>100035764423</code><button class="copy" type="button" data-copy="100035764423" data-en="Copy">نسخ</button></div>
+        <span class="todo">IBAN · SWIFT</span>
+      </div>
+      <div class="bank">
+        <h3 data-en="The United Bank">المصرف المتحد</h3>
+        <span class="lbl" data-en="Account number">رقم الحساب</span>
+        <div class="acct"><code>605-961-203</code><button class="copy" type="button" data-copy="605961203" data-en="Copy">نسخ</button></div>
+        <span class="todo">IBAN · SWIFT</span>
+      </div>
+      <div class="bank">
+        <h3 data-en="National Bank of Egypt">البنك الأهلي المصري</h3>
+        <span class="lbl" data-en="Account number">رقم الحساب</span>
+        <div class="acct"><code>1323070717596601018</code><button class="copy" type="button" data-copy="1323070717596601018" data-en="Copy">نسخ</button></div>
+        <span class="todo">IBAN · SWIFT</span>
+      </div>
+    </div>
+    <div class="ways-row">
+      <div class="way">
+        <h3 data-en="Already transferred?">حوّلت بالفعل؟</h3>
+        <p data-en="Send a photo of your transfer receipt on WhatsApp and we'll send you an official receipt.">أرسل صورة إيصال التحويل على واتساب، ونرسل لك إيصالًا رسميًا.</p>
+        <a class="btn btn-ghost" id="wa-receipt" href="https://wa.me/201027744425" target="_blank" rel="noopener" data-en="Send my receipt on WhatsApp">أرسل الإيصال على واتساب</a>
+      </div>
+      <div class="way">
+        <h3 data-en="Give in someone's name">تبرّع باسم شخص عزيز</h3>
+        <p data-en="Give in honour or in memory of someone you love, as an ongoing charity (Sadaqah Jariyah), and we'll send them a card.">أهدِ تبرعًا في مناسبة، أو صدقة جارية عن شخص تحبه، ونرسل له بطاقة إهداء.</p>
+        <a class="btn btn-ghost" href="#give" data-give-type="sadaqah" data-en="Give a gift">أهدِ تبرعًا</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. Other ways to get involved -->
+<section class="section" id="organisations" aria-labelledby="org-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-en="Get involved">شارك معنا</span>
+      <h2 id="org-title" data-en="More ways to stand with Sanad">طرق أخرى لتكون سندًا</h2>
+    </div>
+    <div class="involve">
+      <div class="inv">
+        <h3 data-en="Volunteer your skills">تطوّع بمهاراتك</h3>
+        <p data-en="Lawyer, designer, trainer or student with passion: we match your skills to our live needs.">محامٍ أو مصمم أو مدرّب أو طالب شغوف: نوفّق بين مهاراتك واحتياجاتنا الفعلية.</p>
+        <a class="link arw" href="#organisations" data-en="Apply to volunteer">قدّم للتطوع</a>
+      </div>
+      <div class="inv">
+        <h3 data-en="For companies and organisations">للشركات والمؤسسات</h3>
+        <p data-en="CSR partnerships, donor advisory, certified child-protection training and capacity building for care organisations.">شراكات المسؤولية المجتمعية، واستشارات المانحين، وتدريب معتمد على حماية الطفل، وبناء قدرات مؤسسات الرعاية.</p>
+        <a class="link arw" href="#organisations" data-en="Partnerships and consulting">الشراكات والاستشارات</a>
+      </div>
+      <div class="inv">
+        <h3 data-en="Ask for our support">اطلب خدماتنا</h3>
+        <p data-en="Are you a caregiver, guardian or family in need? Apply for our support services and we'll get back to you.">هل أنت مقدّم رعاية أو وليّ أمر أو أسرة تحتاج إلى دعم؟ قدّم طلبك وسنتواصل معك.</p>
+        <a class="link arw" href="#organisations" data-en="Apply now">قدّم الآن</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. News -->
+<section class="section" style="padding-top:0" aria-labelledby="news-title">
+  <div class="wrap">
+    <div class="head-split">
+      <div class="sec-head">
+        <span class="eyebrow" data-en="From the field">من الميدان</span>
+        <h2 id="news-title" data-en="Latest news">آخر الأخبار</h2>
+      </div>
+      <a class="link arw" href="#news-title" data-en="All news">كل الأخبار</a>
+    </div>
+    <div class="news">
+      <a href="#news-title">
+        <img src="assets/news-graduation-forum.jpg" width="278" height="230" alt="" loading="lazy">
+        <div><time datetime="2026-10" data-en="October 2026">أكتوبر 2026</time>
+        <h3 data-en="Sanad holds a graduation and recruitment forum for practitioners, with the Ministry of Social Solidarity, universities and the private sector">سند تنظّم ملتقى التخرج والتوظيف للممارسين، بالتعاون مع وزارة التضامن الاجتماعي والجامعات والقطاع الخاص</h3></div>
+      </a>
+      <a href="#news-title">
+        <img src="assets/news-princess-taghrid.jpg" width="278" height="230" alt="" loading="lazy">
+        <div><time datetime="2026-10" data-en="October 2026">أكتوبر 2026</time>
+        <h3 data-en="Sanad and the Princess Taghrid Foundation: a regional partnership to develop alternative parental care">سند ومؤسسة الأميرة تغريد للتنمية والتدريب: شراكة إقليمية لتطوير منظومة الرعاية الوالدية البديلة</h3></div>
+      </a>
+      <a href="#news-title">
+        <img src="assets/news-edbe-partnership.jpg" width="278" height="230" alt="" loading="lazy">
+        <div><time datetime="2026-09" data-en="September 2026">سبتمبر 2026</time>
+        <h3 data-en="A renewed partnership and lasting impact with the Export Development Bank of Egypt">شراكة متجددة وأثر مستدام مع البنك المصري لتنمية الصادرات</h3></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img class="logo-light" src="assets/sanad-logo-light.png" width="104" height="50" alt="سند" data-en-alt="Sanad">
+        <p data-en="Sanad is a centre of expertise advancing quality alternative parental care through evidence, capacity building and systems change.">سند مركز خبرة يطوّر جودة الرعاية الوالدية البديلة من خلال الأدلة وبناء القدرات وتطوير المنظومة.</p>
+        <div class="socials">
+          <a href="https://www.facebook.com/Sanadorphans" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/sanadorphans" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.linkedin.com/company/sanadorphans" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://www.youtube.com/@Sanadorphans" target="_blank" rel="noopener">YouTube</a>
+          <a href="https://www.tiktok.com/@gaylk.mn.hnak" target="_blank" rel="noopener">TikTok</a>
+        </div>
+      </div>
+      <div>
+        <h4 data-en="About Sanad">عن سند</h4>
+        <ul>
+          <li><a href="#why" data-en="About us">من نحن</a></li>
+          <li><a href="#why" data-en="Board and team">مجلس الإدارة والفريق</a></li>
+          <li><a href="#why" data-en="Accreditations and awards">الاعتمادات والجوائز</a></li>
+          <li><a href="#why" data-en="Impact partners">شركاء الأثر</a></li>
+          <li><a href="#organisations" data-en="Careers">الوظائف</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-en="For organisations">للمؤسسات</h4>
+        <ul>
+          <li><a href="#organisations" data-en="Donor and CSR advisory">استشارات المانحين والمسؤولية المجتمعية</a></li>
+          <li><a href="#organisations" data-en="Institutional development">التطوير المؤسسي وتقييم الجودة</a></li>
+          <li><a href="#organisations" data-en="Training and capacity building">التدريب المهني وبناء القدرات</a></li>
+          <li><a href="#organisations" data-en="Policy and systems development">تطوير السياسات والمنظومة</a></li>
+          <li><a href="#organisations" data-en="Knowledge hub">مركز المعرفة</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-en="Contact us">تواصل معنا</h4>
+        <ul>
+          <li data-en="3 Al Bairouny St., Baron Palace, Heliopolis, Cairo">3 شارع البيروني، قصر البارون، مصر الجديدة، القاهرة</li>
+          <li><span class="ltr">+20 2 26907195</span></li>
+          <li><span class="ltr">+20 10 2774 4425</span> <span data-en="(WhatsApp)">(واتساب)</span></li>
+          <li><span class="ltr">info@sanadorphans.org</span></li>
+        </ul>
+      </div>
+      <div>
+        <h4 data-en="Sanad's newsletter">نشرة سند</h4>
+        <form id="newsletter" novalidate>
+          <label for="nl-email" class="sr-only" data-en="Email address">البريد الإلكتروني</label>
+          <input id="nl-email" type="email" dir="ltr" placeholder="name@email.com" autocomplete="email">
+          <button class="subscribe" type="submit" data-en="Subscribe">اشترك</button>
+        </form>
+        <a class="btn btn-give" href="#give" style="margin-top:14px" data-en="Donate now">تبرّع الآن</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span data-en="© 2026 Sanad for Alternative Parental Care · Registered No. 7478 of 2008, Ministry of Social Solidarity">© 2026 سند للرعاية الوالدية البديلة · مشهرة برقم 7478 لسنة 2008، وزارة التضامن الاجتماعي</span>
+      <nav aria-label="السياسات" data-en-aria="Policies">
+        <a href="#top" data-en="Privacy policy">سياسة الخصوصية</a>
+        <a href="#top" data-en="Refund policy">سياسة الاسترداد</a>
+        <a href="#top" data-en="Donor rights">حقوق المتبرع</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-give" id="sticky" aria-hidden="true">
+  <a class="btn btn-give" href="#give" tabindex="-1" data-en="Donate now">تبرّع الآن</a>
+  <a class="btn btn-ghost" href="#give" tabindex="-1" data-give-type="zakat" data-en="Zakat">زكاة</a>
+</div>
+<a class="wa" href="https://wa.me/201027744425" target="_blank" rel="noopener" aria-label="تواصل معنا على واتساب" data-en-aria="Chat with us on WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.4-4.2A8 8 0 1 1 8.5 19z"/><path d="M9 9.5c.3 2 2.5 4.2 4.5 4.5l1-1.2 1.8.8c-.2 1-1 1.6-2 1.6-3 0-6-3-6-6 0-1 .6-1.8 1.6-2l.8 1.8z" fill="currentColor" stroke="none"/></svg>
+</a>
+
+<script>
+(function () {
+  "use strict";
+  var root = document.documentElement;
+  var lang = "ar";
+
+  // ---------- i18n: Arabic is in the markup, English lives in data-en* attributes ----------
+  var TEXT = {
+    ar: {
+      title: "سند للرعاية الوالدية البديلة",
+      langBtn: "English",
+      cur: "ج.م",
+      monthly: function (a) { return "أكون سندًا بـ " + a + " ج.م شهريًا"; },
+      once: function (a) { return "تبرّع بـ " + a + " ج.م"; },
+      zakatOnce: function (a) { return "أخرج زكاتي: " + a + " ج.م"; },
+      zakatMonthly: function (a) { return "زكاة شهرية: " + a + " ج.م"; },
+      perMonth: "شهريًا", oneTime: "مرة واحدة",
+      types: { sadaqah: "صدقة", zakat: "زكاة", general: "تبرع عام" },
+      funds: { general: "أينما دعت الحاجة", family: "أسرة لكل طفل", home: "بيت آمن", youth: "خطوة للاستقلال" },
+      thanks: function (n) { return "شكرًا لك يا " + n; },
+      errAmt: "أقل مبلغ للتبرع 10 ج.م.",
+      errName: "اكتب اسمك من فضلك.",
+      errPhone: "اكتب رقم موبايل صحيح، مثل 01012345678.",
+      copied: "تم النسخ",
+      subscribed: "شكرًا لاشتراكك! (نموذج تصميمي)",
+      badEmail: "اكتب بريدًا إلكترونيًا صحيحًا.",
+      zBelow: "مالك أقل من النصاب، فلا تجب عليه الزكاة.",
+      zNoNisab: "أدخل قيمة النصاب للتأكد من وجوب الزكاة.",
+      zDue: "2.5% من صافي مالك الخاضع للزكاة.",
+      waText: "مرحبًا، قمت بتحويل تبرع إلى حساب سند وأرفق صورة الإيصال."
+    },
+    en: {
+      title: "Sanad for Alternative Parental Care",
+      langBtn: "العربية",
+      cur: "EGP",
+      monthly: function (a) { return "Give EGP " + a + " monthly"; },
+      once: function (a) { return "Give EGP " + a; },
+      zakatOnce: function (a) { return "Pay EGP " + a + " of my Zakat"; },
+      zakatMonthly: function (a) { return "Give EGP " + a + " Zakat monthly"; },
+      perMonth: "monthly", oneTime: "one-time",
+      types: { sadaqah: "Sadaqah", zakat: "Zakat", general: "General" },
+      funds: { general: "Where it's needed most", family: "A family for every child", home: "A safe home", youth: "A step to independence" },
+      thanks: function (n) { return "Thank you, " + n; },
+      errAmt: "The minimum gift is EGP 10.",
+      errName: "Please enter your name.",
+      errPhone: "Please enter a valid mobile number, like 01012345678.",
+      copied: "Copied",
+      subscribed: "Thanks for subscribing! (design prototype)",
+      badEmail: "Please enter a valid email address.",
+      zBelow: "Your wealth is below the nisab, so no Zakat is due.",
+      zNoNisab: "Enter the nisab value to check whether Zakat is due.",
+      zDue: "2.5% of your net zakatable wealth.",
+      waText: "Hello, I transferred a donation to Sanad's account and am attaching the receipt."
+    }
+  };
+  var T = function () { return TEXT[lang]; };
+
+  function swap(attr, setter) {
+    document.querySelectorAll("[" + attr + "]").forEach(function (el) {
+      var key = "ar" + attr.replace(/^data-en/, "").replace(/-/g, "");
+      if (!(key in el.dataset)) el.dataset[key] = setter.get(el);
+      setter.set(el, lang === "en" ? el.getAttribute(attr) : el.dataset[key]);
+    });
+  }
+  function applyLang(next) {
+    lang = next;
+    root.lang = lang;
+    root.dir = lang === "ar" ? "rtl" : "ltr";
+    document.title = T().title;
+    swap("data-en", { get: function (e) { return e.textContent; }, set: function (e, v) { e.textContent = v; } });
+    swap("data-en-html", { get: function (e) { return e.innerHTML; }, set: function (e, v) { e.innerHTML = v; } });
+    swap("data-en-ph", { get: function (e) { return e.placeholder; }, set: function (e, v) { e.placeholder = v; } });
+    swap("data-en-aria", { get: function (e) { return e.getAttribute("aria-label"); }, set: function (e, v) { e.setAttribute("aria-label", v); } });
+    swap("data-en-alt", { get: function (e) { return e.alt; }, set: function (e, v) { e.alt = v; } });
+    document.querySelectorAll("[data-ar-only]").forEach(function (e) { e.hidden = lang !== "ar"; });
+    document.querySelectorAll("[data-lang-toggle]").forEach(function (b) {
+      b.textContent = T().langBtn;
+      b.lang = lang === "ar" ? "en" : "ar";
+    });
+    render();
+    renderZakat();
+    try { localStorage.setItem("sanad-lang", lang); } catch (e) {}
+  }
+  document.querySelectorAll("[data-lang-toggle]").forEach(function (b) {
+    b.addEventListener("click", function () { applyLang(lang === "ar" ? "en" : "ar"); });
+  });
+
+  // ---------- mobile menu ----------
+  var menuBtn = document.querySelector(".menu-btn");
+  var drawer = document.getElementById("drawer");
+  menuBtn.addEventListener("click", function () {
+    var open = menuBtn.getAttribute("aria-expanded") === "true";
+    menuBtn.setAttribute("aria-expanded", String(!open));
+    drawer.hidden = open;
+  });
+  drawer.addEventListener("click", function (e) {
+    if (e.target.closest("a")) { drawer.hidden = true; menuBtn.setAttribute("aria-expanded", "false"); }
+  });
+
+  // ---------- donation form ----------
+  var step1 = document.getElementById("step1");
+  var step2 = document.getElementById("step2");
+  var step3 = document.getElementById("step3");
+  var giveBtn = document.getElementById("give-btn");
+  var custom = document.getElementById("custom-amt");
+  var amtErr = document.getElementById("amt-err");
+  var card = document.getElementById("give");
+
+  var fmt = function (n) { return Number(n).toLocaleString("en-US"); };
+  var digits = function (s) {
+    return String(s || "").replace(/[٠-٩]/g, function (d) { return "٠١٢٣٤٥٦٧٨٩".indexOf(d); }).replace(/[^\d]/g, "");
+  };
+  function val(name) { var el = step1.querySelector("input[name=" + name + "]:checked"); return el ? el.value : null; }
+  function amount() {
+    var c = parseInt(digits(custom.value), 10);
+    if (c) return c;
+    return parseInt(val("amount") || "0", 10);
+  }
+  function label() {
+    var a = fmt(amount() || 0), t = T(), monthly = val("freq") === "monthly";
+    if (val("type") === "zakat") return monthly ? t.zakatMonthly(a) : t.zakatOnce(a);
+    return monthly ? t.monthly(a) : t.once(a);
+  }
+  function render() {
+    giveBtn.textContent = label();
+    var t = T();
+    document.getElementById("summary").textContent =
+      fmt(amount() || 0) + " " + t.cur + " " + (val("freq") === "monthly" ? t.perMonth : t.oneTime) +
+      " · " + t.types[val("type")] + " · " + t.funds[val("fund")];
+    var method = step2.querySelector("input[name=method]:checked").value;
+    var recurring = method === "card" || method === "mobile";
+    document.getElementById("monthly-note").hidden = !(val("freq") === "monthly" && !recurring);
+    document.getElementById("currency-field").hidden = !recurring;
+    var waLink = document.getElementById("wa-receipt");
+    waLink.href = "https://wa.me/201027744425?text=" + encodeURIComponent(t.waText);
+  }
+  step1.addEventListener("change", function (e) {
+    if (e.target.name === "amount") { custom.value = ""; amtErr.hidden = true; }
+    render();
+  });
+  custom.addEventListener("input", function () {
+    var d = digits(custom.value);
+    custom.value = d ? fmt(d) : "";
+    if (d) step1.querySelectorAll("input[name=amount]").forEach(function (r) { r.checked = false; });
+    else if (!val("amount")) step1.querySelector("input[name=amount][value='500']").checked = true;
+    amtErr.hidden = true;
+    render();
+  });
+  step2.addEventListener("change", render);
+
+  function show(step, focusEl) {
+    [step1, step2, step3].forEach(function (s) { s.hidden = s !== step; });
+    if (focusEl) focusEl.focus({ preventScroll: true });
+    if (card.getBoundingClientRect().top < 0) card.scrollIntoView({ block: "start" });
+  }
+  function fieldError(input, errEl, msg) {
+    input.setAttribute("aria-invalid", msg ? "true" : "false");
+    errEl.textContent = msg || "";
+    errEl.hidden = !msg;
+  }
+  step1.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (amount() < 10) { amtErr.textContent = T().errAmt; amtErr.hidden = false; custom.focus(); return; }
+    render();
+    show(step2, document.getElementById("d-name"));
+  });
+  step2.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var name = document.getElementById("d-name"), phone = document.getElementById("d-phone");
+    var okName = name.value.trim().length > 1, len = digits(phone.value).length, okPhone = len >= 8 && len <= 15;
+    fieldError(name, document.getElementById("name-err"), okName ? "" : T().errName);
+    fieldError(phone, document.getElementById("phone-err"), okPhone ? "" : T().errPhone);
+    if (!okName) { name.focus(); return; }
+    if (!okPhone) { phone.focus(); return; }
+    var method = step2.querySelector("input[name=method]:checked").value;
+    var title = document.getElementById("thanks-title");
+    title.textContent = T().thanks(name.value.trim().split(/\s+/)[0]);
+    document.getElementById("fawry-box").hidden = method !== "fawry";
+    document.getElementById("upsell").hidden = val("freq") !== "once";
+    document.getElementById("upsell-done").hidden = true;
+    show(step3, title);
+  });
+  card.addEventListener("click", function (e) {
+    if (e.target.closest("[data-back]")) show(step1, giveBtn);
+    if (e.target.closest("[data-restart]")) { step2.reset(); render(); show(step1, giveBtn); }
+  });
+  document.getElementById("make-monthly").addEventListener("click", function () {
+    step1.querySelector("input[name=freq][value=monthly]").checked = true;
+    document.getElementById("upsell").hidden = true;
+    document.getElementById("upsell-done").hidden = false;
+    render();
+  });
+
+  // Any "give" call-to-action preselects the form and brings it into view
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest("[data-give-fund], [data-give-type]");
+    if (!a) return;
+    e.preventDefault();
+    var f = a.getAttribute("data-give-fund"), t = a.getAttribute("data-give-type");
+    if (f) step1.querySelector("input[name=fund][value=" + f + "]").checked = true;
+    if (t) step1.querySelector("input[name=type][value=" + t + "]").checked = true;
+    render();
+    show(step1);
+    card.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
+    card.focus({ preventScroll: true });
+  });
+
+  // ---------- stories tabs ----------
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".story-tabs [role=tab]"));
+  function selectTab(tab) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute("aria-selected", String(on));
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener("click", function () { selectTab(t); });
+    t.addEventListener("keydown", function (e) {
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      var next = tabs[(i + 1) % tabs.length];
+      next.focus(); selectTab(next);
+    });
+  });
+
+  // ---------- zakat calculator ----------
+  var zIds = ["z-cash", "z-gold", "z-inv", "z-debt", "z-nisab"];
+  var zDue = 0;
+  function num(id) { return parseInt(digits(document.getElementById(id).value), 10) || 0; }
+  function renderZakat() {
+    var net = num("z-cash") + num("z-gold") + num("z-inv") - num("z-debt");
+    var nisab = num("z-nisab"), msg;
+    zDue = net > 0 ? Math.round(net * 0.025) : 0;
+    if (!nisab) msg = net > 0 ? T().zNoNisab : "";
+    else if (net < nisab) { zDue = 0; msg = T().zBelow; }
+    else msg = T().zDue;
+    document.getElementById("z-out").textContent = fmt(zDue) + " " + T().cur;
+    document.getElementById("z-msg").textContent = msg;
+    document.getElementById("z-give").disabled = zDue < 10;
+  }
+  zIds.forEach(function (id) {
+    var el = document.getElementById(id);
+    el.addEventListener("input", function () { var d = digits(el.value); el.value = d ? fmt(d) : ""; renderZakat(); });
+  });
+  document.getElementById("z-give").addEventListener("click", function () {
+    step1.querySelector("input[name=type][value=zakat]").checked = true;
+    step1.querySelector("input[name=freq][value=once]").checked = true;
+    step1.querySelectorAll("input[name=amount]").forEach(function (r) { r.checked = false; });
+    custom.value = fmt(zDue);
+    render();
+    show(step1);
+    card.scrollIntoView({ behavior: "smooth", block: "start" });
+    card.focus({ preventScroll: true });
+  });
+
+  // ---------- copy buttons ----------
+  var toastTimer;
+  function toast(msg) {
+    var t = document.querySelector(".toast");
+    if (!t) { t = document.createElement("div"); t.className = "toast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
+    t.textContent = msg; t.hidden = false;
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.hidden = true; }, 1800);
+  }
+  function copyText(text, fallbackEl) {
+    var done = function () { toast(T().copied); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { selectEl(fallbackEl); });
+    } else selectEl(fallbackEl);
+  }
+  function selectEl(el) {
+    if (!el) return;
+    var r = document.createRange(); r.selectNodeContents(el);
+    var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-copy]");
+    if (b) copyText(b.getAttribute("data-copy"), b.parentElement.querySelector("code"));
+    if (e.target.closest("[data-copy-link]")) copyText(location.href.split("#")[0], null);
+  });
+
+  // ---------- newsletter ----------
+  document.getElementById("newsletter").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = document.getElementById("nl-email");
+    toast(/^\S+@\S+\.\S+$/.test(email.value) ? T().subscribed : T().badEmail);
+  });
+
+  // ---------- sticky mobile donate bar: shown while the donation card is off screen ----------
+  var sticky = document.getElementById("sticky");
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (entries) {
+      var off = !entries[0].isIntersecting;
+      sticky.classList.toggle("show", off);
+      sticky.setAttribute("aria-hidden", String(!off));
+      sticky.querySelectorAll("a").forEach(function (a) { a.tabIndex = off ? 0 : -1; });
+    }).observe(card);
+  }
+
+  // ?lang=en opens the English version directly; otherwise use the last choice
+  var saved = new URLSearchParams(location.search).get("lang");
+  if (!saved) { try { saved = localStorage.getItem("sanad-lang"); } catch (e) {} }
+  applyLang(saved === "en" ? "en" : "ar");
+})();
+</script>
+</body>
+</html>
