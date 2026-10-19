@@ -66,53 +66,48 @@ button, input, select { font: inherit; color: inherit; }
 .btn-give:active { transform: translateY(1px); }
 .btn-ghost { background: transparent; color: var(--teal-deep); border: 2px solid currentColor; }
 .btn-ghost:hover { background: var(--teal-soft); }
-.btn-light { background: rgba(255, 255, 255, .12); color: var(--white); border: 1.5px solid rgba(255, 255, 255, .45); }
-.btn-light:hover { background: rgba(255, 255, 255, .2); }
+.btn-light { background: transparent; color: var(--teal-deep); border: 2px solid currentColor; }
+.btn-light:hover { background: var(--teal-soft); }
 .btn-block { width: 100%; }
 .link { font-weight: 700; color: var(--teal-deep); text-decoration: none; }
 .link:hover { text-decoration: underline; text-underline-offset: 4px; }
 
 /* opening verse: pinned stage, words reveal with scroll */
 :root { --head-h: 77px; --quran: "Amiri Quran", "Amiri", "Traditional Arabic", serif; }
-.verse { position: relative; height: 290vh; background: var(--navy); color: var(--white); }
-.verse-stage { position: sticky; top: var(--head-h); height: calc(100vh - var(--head-h)); height: calc(100svh - var(--head-h)); overflow: hidden; display: grid; place-items: center; isolation: isolate; }
-.verse-glow { position: absolute; width: min(90vw, 760px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(242, 176, 37, .2), rgba(54, 192, 202, .08) 45%, transparent 68%); opacity: calc(.35 + .65 * var(--p, 1)); transform: scale(calc(.85 + .3 * var(--p, 1))); z-index: -1; pointer-events: none; }
+.verse { position: relative; z-index: 1; height: calc(2 * (100vh - var(--head-h)) + 170vh); height: calc(2 * (100svh - var(--head-h)) + 170vh); background: radial-gradient(ellipse 80% 70% at 50% 42%, var(--white), var(--mist) 72%); color: var(--navy); }
+.verse-stage { position: sticky; top: var(--head-h); height: calc(100vh - var(--head-h)); height: calc(100svh - var(--head-h)); overflow: hidden; display: grid; place-items: center; isolation: isolate; transform-origin: 50% 35%; transform: scale(calc(1 - .07 * var(--q, 0))); opacity: calc(1 - .5 * var(--q, 0)); }
+.verse-glow { position: absolute; width: min(90vw, 760px); aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle, rgba(242, 176, 37, .16), rgba(54, 192, 202, .1) 45%, transparent 68%); opacity: calc(.35 + .65 * var(--p, 1)); transform: scale(calc(.85 + .3 * var(--p, 1))); z-index: -1; pointer-events: none; }
 .verse-inner { display: flex; flex-direction: column; align-items: center; gap: clamp(14px, 2.4vh, 26px); text-align: center; max-width: 1080px; padding-bottom: 70px; animation: verse-in 1.4s cubic-bezier(.2, .7, .2, 1) both; }
 @keyframes verse-in { from { opacity: 0; transform: translateY(24px); } }
-.verse-intro { font-family: var(--quran); color: var(--teal); font-size: clamp(1.05rem, 1.8vw, 1.35rem); letter-spacing: 0; }
+.verse-intro { font-family: var(--quran); color: var(--teal-deep); font-size: clamp(1.05rem, 1.8vw, 1.35rem); letter-spacing: 0; }
 .verse-ar { font-family: var(--quran); font-weight: 400; font-size: clamp(2.3rem, 6.4vw, 5.2rem); line-height: 2; text-wrap: balance; max-width: 18ch; }
-.verse-en { font-size: clamp(1.02rem, 1.9vw, 1.45rem); line-height: 1.7; color: #d4e3ea; max-width: 34ch; text-wrap: balance; font-weight: 500; }
+.verse-en { font-size: clamp(1.02rem, 1.9vw, 1.45rem); line-height: 1.7; color: #3d5263; max-width: 34ch; text-wrap: balance; font-weight: 600; }
 .verse .w { display: inline-block; opacity: calc(.16 + .84 * var(--t, 1)); filter: blur(calc((1 - var(--t, 1)) * 6px)); transform: translateY(calc((1 - var(--t, 1)) * .32em)); transition: color .8s, text-shadow .8s; }
-.verse .orn { color: var(--teal); }
-.verse .key.lit { color: var(--amber); text-shadow: 0 0 34px rgba(242, 176, 37, .55); }
-.verse-cite { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; color: #9fb7c3; font-size: .95rem; opacity: var(--c, 1); transform: translateY(calc((1 - var(--c, 1)) * 10px)); }
+.verse .orn { color: var(--teal-deep); }
+/* the orphan: an amber highlighter stroke draws across the word once it is revealed */
+.verse .key { color: var(--navy); background: linear-gradient(rgba(242, 176, 37, .55), rgba(242, 176, 37, .55)) no-repeat; background-size: 0% .34em; background-position: 100% 80%; transition: background-size 1s cubic-bezier(.65, 0, .35, 1), color .6s; }
+.verse-en .key { background-position: 0% 88%; }
+.verse .key.lit { background-size: 100% .34em; color: var(--teal-ink); }
+.verse-cite { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; color: var(--muted); font-size: .95rem; opacity: var(--c, 1); transform: translateY(calc((1 - var(--c, 1)) * 10px)); }
 .verse-cite [lang="ar"] { font-family: var(--quran); font-size: 1.15rem; }
 .verse-cite i { width: 26px; height: 1px; background: currentColor; align-self: center; opacity: .6; }
 .verse-sea { position: absolute; inset: auto 0 0 0; height: 96px; z-index: -1; pointer-events: none; }
 .verse-sea svg { width: 100%; height: 100%; display: block; }
 .verse-boat { position: absolute; bottom: 40px; inset-inline-start: 3%; width: 70px; transform: translateX(var(--bx, 0px)) rotate(var(--br, 0deg)); pointer-events: none; }
-.verse-cue { position: absolute; bottom: 118px; inset-inline: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; color: #9fb7c3; font-size: .88rem; font-weight: 600; opacity: var(--cue, 1); pointer-events: none; }
-.verse-cue i { width: 2px; height: 36px; border-radius: 2px; background: linear-gradient(var(--teal), transparent); animation: cue 1.8s ease-in-out infinite; transform-origin: top; }
+.verse-cue { position: absolute; bottom: 118px; inset-inline: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; color: var(--muted); font-size: .88rem; font-weight: 600; opacity: var(--cue, 1); pointer-events: none; }
+.verse-cue i { width: 2px; height: 36px; border-radius: 2px; background: linear-gradient(var(--teal-deep), transparent); animation: cue 1.8s ease-in-out infinite; transform-origin: top; }
 @keyframes cue { 0% { transform: scaleY(0); opacity: 1; } 70% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1); opacity: 0; } }
-.verse-skip { position: absolute; top: 16px; inset-inline-end: max(20px, env(safe-area-inset-right, 0px)); color: #bcd0da; font-size: .9rem; font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(188, 208, 218, .4); }
-.verse-skip:hover { color: var(--white); }
-@media (max-width: 960px) { :root { --head-h: 67px; } .verse { height: 240vh; } .verse-boat { width: 54px; bottom: 34px; } .verse-cue { bottom: 100px; } }
+.verse-skip { position: absolute; top: 16px; inset-inline-end: max(20px, env(safe-area-inset-right, 0px)); color: var(--teal-deep); font-size: .9rem; font-weight: 700; text-decoration: none; border-bottom: 1.5px solid rgba(26, 127, 128, .35); }
+.verse-skip:hover { color: var(--teal-ink); border-color: currentColor; }
+@media (max-width: 960px) { :root { --head-h: 67px; } .verse { height: calc(2 * (100svh - var(--head-h)) + 130vh); } .verse-boat { width: 54px; bottom: 34px; } .verse-cue { bottom: 100px; } }
 @media (prefers-reduced-motion: reduce) {
   .verse { height: auto; }
-  .verse-stage { position: relative; top: 0; height: auto; min-height: 70vh; padding-block: 72px 130px; }
+  .verse-stage { position: relative; top: 0; height: auto; min-height: 70vh; padding-block: 72px 130px; transform: none; opacity: 1; }
+  .hero.rise { margin-top: 0 !important; border-radius: 0 !important; box-shadow: none !important; }
+  .verse .key { background-size: 100% .34em; }
   .verse .w { opacity: 1; filter: none; transform: none; }
   .verse-cue { display: none; }
 }
-
-/* header over the dark opening */
-.site-head { transition: background .35s, border-color .35s; }
-.logo-rev { display: none; }
-.site-head.on-dark { background: var(--navy); border-bottom-color: rgba(255, 255, 255, .08); }
-.on-dark .logo-std { display: none; }
-.on-dark .logo-rev { display: block; height: 42px; }
-.on-dark .nav a, .on-dark .drawer a { color: #e3edf1; border-color: rgba(255, 255, 255, .1); }
-.on-dark .nav a:hover { background: rgba(255, 255, 255, .08); color: var(--white); }
-.on-dark .lang, .on-dark .menu-btn { color: var(--white); border-color: rgba(255, 255, 255, .28); }
 
 /* prototype banner */
 .proto { background: var(--amber); color: var(--navy); font-size: .88rem; font-weight: 600; text-align: center; padding: 6px 16px; }
@@ -143,20 +138,30 @@ button, input, select { font: inherit; color: inherit; }
 @media (min-width: 961px) { .drawer { display: none !important; } }
 
 /* hero */
-.hero { position: relative; background: var(--navy); color: var(--white); overflow: hidden; isolation: isolate; }
-.hero::before { content: ""; position: absolute; inset: -30% auto auto -10%; width: 60%; aspect-ratio: 1; background: radial-gradient(circle, rgba(54, 192, 202, .22), transparent 65%); z-index: -1; }
+.hero { position: relative; background: var(--white); color: var(--ink); overflow: hidden; isolation: isolate; }
+/* the hero is a sheet that slides up over the pinned verse; corners flatten as it settles */
+.hero.rise { z-index: 2; margin-top: calc(-1 * (100vh - var(--head-h))); margin-top: calc(-1 * (100svh - var(--head-h))); border-radius: calc(40px * (1 - var(--q, 1))) calc(40px * (1 - var(--q, 1))) 0 0; box-shadow: 0 -30px 60px -34px rgba(15, 34, 51, calc(.45 * (1 - var(--q, 1)) + .05)); }
+.js-rise .hero .hero-copy > *, .js-rise .hero .give-card { opacity: 0; transform: translateY(54px); transition: opacity .9s cubic-bezier(.2, .7, .2, 1), transform 1.2s cubic-bezier(.16, 1, .3, 1); }
+.js-rise .hero .give-card { transform: translateY(110px) scale(.95); transition-delay: .18s; }
+.js-rise .hero .hero-copy > :nth-child(2) { transition-delay: .1s; }
+.js-rise .hero .hero-copy > :nth-child(3) { transition-delay: .2s; }
+.js-rise .hero .hero-copy > :nth-child(4) { transition-delay: .3s; }
+.js-rise .hero .hero-copy > :nth-child(5) { transition-delay: .4s; }
+.js-rise .hero.risen .hero-copy > *, .js-rise .hero.risen .give-card { opacity: 1; transform: none; }
+.hero::before { content: ""; position: absolute; inset: -30% auto auto -10%; width: 60%; aspect-ratio: 1; background: radial-gradient(circle, rgba(54, 192, 202, .14), transparent 65%); z-index: -1; }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 56px; align-items: center; padding-block: 64px 150px; }
 .hero-copy { display: flex; flex-direction: column; gap: 22px; }
-.chip-reg { align-self: flex-start; display: inline-flex; gap: 8px; align-items: center; background: rgba(54, 192, 202, .16); border: 1px solid rgba(54, 192, 202, .45); color: #bff0f3; border-radius: 999px; padding: 4px 14px; font-size: .9rem; font-weight: 600; }
+.chip-reg { align-self: flex-start; display: inline-flex; gap: 8px; align-items: center; background: var(--teal-soft); border: 1px solid rgba(26, 127, 128, .25); color: var(--teal-ink); border-radius: 999px; padding: 4px 14px; font-size: .9rem; font-weight: 600; }
 .hero h1 { font-size: clamp(2.1rem, 5vw, 3.6rem); line-height: 1.25; }
-.hero h1 em { font-style: normal; color: var(--amber); }
-.hero-sub { font-size: 1.15rem; color: #d7e6ee; max-width: 560px; }
+.hero h1 em { font-style: normal; color: var(--teal-deep); }
+.hero-sub { font-size: 1.15rem; color: var(--muted); max-width: 560px; }
 .hero-links { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-.teaser { display: flex; gap: 14px; align-items: center; background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .14); border-radius: var(--radius); padding: 10px; max-width: 470px; text-decoration: none; color: var(--white); }
+.teaser { display: flex; gap: 14px; align-items: center; background: var(--mist); border: 1px solid var(--line); border-radius: var(--radius); padding: 10px; max-width: 470px; text-decoration: none; color: var(--ink); }
+.teaser:hover { border-color: var(--teal); }
 .teaser img { width: 62px; height: 78px; object-fit: cover; object-position: top; border-radius: 10px; flex-shrink: 0; }
 .teaser q { font-weight: 600; quotes: "«" "»"; }
 [dir="ltr"] .teaser q { quotes: "“" "”"; }
-.teaser small { display: block; color: #a9c3cf; font-size: .85rem; margin-top: 2px; }
+.teaser small { display: block; color: var(--teal-deep); font-size: .85rem; margin-top: 2px; }
 .waves { position: absolute; inset: auto 0 0 0; height: 120px; z-index: -1; }
 .waves svg { width: 100%; height: 100%; display: block; }
 .boat { position: absolute; bottom: 74px; inset-inline-start: 7%; width: 84px; animation: bob 5s ease-in-out infinite; }
@@ -167,7 +172,7 @@ button, input, select { font: inherit; color: inherit; }
 }
 
 /* donation card */
-.give-card { background: var(--white); color: var(--ink); border-radius: 20px; box-shadow: var(--shadow); padding: 26px; scroll-margin-top: 96px; }
+.give-card { background: var(--white); color: var(--ink); border-radius: 20px; border: 1px solid var(--line); box-shadow: var(--shadow); padding: 26px; scroll-margin-top: 96px; }
 .give-card h2 { font-size: 1.35rem; margin-bottom: 4px; }
 .give-card .lead { color: var(--muted); font-size: .95rem; margin-bottom: 16px; }
 .step { display: flex; flex-direction: column; gap: 16px; }
@@ -386,7 +391,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 
 <header class="site-head">
   <div class="wrap head-row">
-    <a class="brand" href="#top" aria-label="سند - الصفحة الرئيسية" data-en-aria="Sanad home"><img class="logo-std" src="assets/sanad-logo.png" width="133" height="94" alt="سند" data-en-alt="Sanad"><img class="logo-rev" src="assets/sanad-logo-light.png" width="104" height="50" alt="سند" data-en-alt="Sanad"></a>
+    <a class="brand" href="#top" aria-label="سند - الصفحة الرئيسية" data-en-aria="Sanad home"><img src="assets/sanad-logo.png" width="133" height="94" alt="سند" data-en-alt="Sanad"></a>
     <nav class="nav" aria-label="القائمة الرئيسية" data-en-aria="Main menu">
       <a href="#why" data-en="About us">من نحن</a>
       <a href="#programs" data-en="Our programs">برامجنا</a>
@@ -429,14 +434,14 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
         <defs>
           <pattern id="v-stripes" width="56" height="12" patternUnits="userSpaceOnUse"><path d="M0 6 Q14 0 28 6 T56 6" fill="none" stroke="#36c0ca" stroke-width="2.4" opacity=".45"/></pattern>
         </defs>
-        <path d="M0 40 C240 14 480 66 720 40 S1200 14 1440 40 V96 H0Z" fill="#172f45"/>
+        <path d="M0 40 C240 14 480 66 720 40 S1200 14 1440 40 V96 H0Z" fill="#e3f5f6"/>
         <path d="M0 40 C240 14 480 66 720 40 S1200 14 1440 40 V96 H0Z" fill="url(#v-stripes)"/>
       </svg>
     </div>
     <svg class="verse-boat" viewBox="0 0 80 60" aria-hidden="true">
-      <path d="M39 6 L39 40" stroke="#ffffff" stroke-width="2"/>
+      <path d="M39 6 L39 40" stroke="#0f2233" stroke-width="2"/>
       <path d="M39 6 L52 10 L39 14Z" fill="#e8724a"/>
-      <path d="M37 16 L37 40 L18 40Z" fill="#ffffff"/>
+      <path d="M37 16 L37 40 L18 40Z" fill="#0f2233"/>
       <path d="M41 18 L41 40 L60 40Z" fill="#f2b025"/>
       <path d="M8 42 L72 42 L62 54 L18 54Z" fill="#36c0ca"/>
     </svg>
@@ -446,7 +451,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 </section>
 
 <!-- 1. Hero with the donation form -->
-<section class="hero" aria-labelledby="hero-title">
+<section class="hero rise" id="hero" aria-labelledby="hero-title">
   <div class="wrap hero-grid">
     <div class="hero-copy">
       <span class="chip-reg" data-en="Since 2008 · Registered with the Ministry of Social Solidarity, No. 7478">منذ 2008 · جمعية مشهرة برقم 7478 لدى وزارة التضامن الاجتماعي</span>
@@ -584,16 +589,16 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
         <pattern id="stripes" width="56" height="12" patternUnits="userSpaceOnUse"><path d="M0 6 Q14 0 28 6 T56 6" fill="none" stroke="#36c0ca" stroke-width="2.4" opacity=".55"/></pattern>
         <pattern id="stripes2" width="56" height="12" patternUnits="userSpaceOnUse"><path d="M0 6 Q14 0 28 6 T56 6" fill="none" stroke="#e8724a" stroke-width="2.4" opacity=".6"/></pattern>
       </defs>
-      <path d="M0 46 C240 6 480 86 720 46 S1200 6 1440 46 V120 H0Z" fill="#172f45"/>
+      <path d="M0 46 C240 6 480 86 720 46 S1200 6 1440 46 V120 H0Z" fill="#e3f5f6"/>
       <path d="M0 46 C240 6 480 86 720 46 S1200 6 1440 46 V120 H0Z" fill="url(#stripes)"/>
-      <path d="M0 92 C300 62 560 120 860 90 S1260 66 1440 88 V120 H0Z" fill="#0f2233"/>
+      <path d="M0 92 C300 62 560 120 860 90 S1260 66 1440 88 V120 H0Z" fill="#ffffff"/>
       <path d="M0 92 C300 62 560 120 860 90 S1260 66 1440 88 V120 H0Z" fill="url(#stripes2)"/>
     </svg>
   </div>
   <svg class="boat" viewBox="0 0 80 60" aria-hidden="true">
-    <path d="M39 6 L39 40" stroke="#ffffff" stroke-width="2"/>
+    <path d="M39 6 L39 40" stroke="#0f2233" stroke-width="2"/>
     <path d="M39 6 L52 10 L39 14Z" fill="#e8724a"/>
-    <path d="M37 16 L37 40 L18 40Z" fill="#ffffff"/>
+    <path d="M37 16 L37 40 L18 40Z" fill="#0f2233"/>
     <path d="M41 18 L41 40 L60 40Z" fill="#f2b025"/>
     <path d="M8 42 L72 42 L62 54 L18 54Z" fill="#36c0ca"/>
   </svg>
@@ -1229,7 +1234,9 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
   var stage = verse.querySelector(".verse-stage");
   var head = document.querySelector(".site-head");
   var boat = verse.querySelector(".verse-boat");
+  var hero = document.getElementById("hero");
   var still = matchMedia("(prefers-reduced-motion: reduce)");
+  if (!still.matches) root.classList.add("js-rise");
   function split(el) {
     var key = el.getAttribute("data-split"), words = el.textContent.trim().split(/\s+/);
     el.textContent = "";
@@ -1265,8 +1272,9 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
   }
   if (!still.matches) requestAnimationFrame(intro);
   function measure() {
-    var r = verse.getBoundingClientRect(), run = verse.offsetHeight - stage.offsetHeight;
-    target = run > 0 ? clamp(-r.top / run) : 1;
+    // the verse reveals over the pinned run, minus the last screen where the hero rises over it
+    var reveal = verse.offsetHeight - 2 * stage.offsetHeight;
+    target = reveal > 0 ? clamp((head.offsetHeight - verse.getBoundingClientRect().top) / reveal) : 1;
   }
   function paint() {
     // ease toward the scroll position so the reveal glides instead of stepping
@@ -1285,22 +1293,56 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
     frame = shown !== target ? requestAnimationFrame(paint) : 0;
   }
 
-  // ---------- header colour over the opening, and the sticky mobile donate bar ----------
+  // ---------- the hero rising over the verse, and the sticky mobile donate bar ----------
   var sticky = document.getElementById("sticky");
   function chrome() {
-    var vh = innerHeight, headH = head.offsetHeight;
+    var vh = innerHeight, headH = head.offsetHeight, heroTop = hero.getBoundingClientRect().top;
     root.style.setProperty("--head-h", headH + "px");
-    head.classList.toggle("on-dark", verse.getBoundingClientRect().bottom > headH + 1);
+    // q: 0 while the hero waits below the screen, 1 once it has settled under the header
+    var q = still.matches ? 1 : clamp((vh - heroTop) / (vh - headH));
+    stage.style.setProperty("--q", q.toFixed(3));
+    hero.style.setProperty("--q", q.toFixed(3));
+    if (q > .3) hero.classList.add("risen");
+    else if (q === 0) hero.classList.remove("risen");
     var c = card.getBoundingClientRect();
-    var off = (c.bottom < headH || c.top > vh) && verse.getBoundingClientRect().bottom <= headH;
+    var off = (c.bottom < headH || c.top > vh) && heroTop <= headH + 2;
     sticky.classList.toggle("show", off);
     sticky.setAttribute("aria-hidden", String(!off));
     sticky.querySelectorAll("a").forEach(function (a) { a.tabIndex = off ? 0 : -1; });
   }
+  // When scrolling stops mid-rise, finish the movement: forward lands the hero under the
+  // header, backward returns to the completed verse.
+  var lastY = scrollY, dir = 1, gliding = false, touching = false, settleTimer = 0;
+  function glide(to, ms) {
+    var from = scrollY, dist = to - from, t0 = performance.now();
+    gliding = true;
+    (function step(now) {
+      if (!gliding) return;
+      var k = Math.min(1, (now - t0) / ms), e = 1 - Math.pow(1 - k, 4);
+      scrollTo({ top: from + dist * e, behavior: "instant" });
+      if (k < 1) requestAnimationFrame(step); else gliding = false;
+    })(t0);
+  }
+  function settle() {
+    if (still.matches || gliding || touching) return;
+    var vh = innerHeight, headH = head.offsetHeight, top = hero.getBoundingClientRect().top;
+    if (top <= headH + 2 || top >= vh - 2) return;
+    if (dir > 0) glide(scrollY + top - headH, 1000);
+    else glide(scrollY + top - vh, 800);
+  }
+  ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (type) {
+    addEventListener(type, function () { gliding = false; }, { passive: true });
+  });
+  addEventListener("touchstart", function () { touching = true; }, { passive: true });
+  addEventListener("touchend", function () { touching = false; clearTimeout(settleTimer); settleTimer = setTimeout(settle, 160); }, { passive: true });
+
   function onScroll() {
     chrome();
     measure();
     if (!frame) frame = requestAnimationFrame(paint);
+    if (scrollY !== lastY) dir = scrollY > lastY ? 1 : -1;
+    lastY = scrollY;
+    if (!gliding) { clearTimeout(settleTimer); settleTimer = setTimeout(settle, 160); }
   }
   addEventListener("scroll", onScroll, { passive: true });
   addEventListener("resize", onScroll);
