@@ -250,22 +250,23 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 .ppl { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
 .p-card { grid-column: span 2; --c: var(--teal-deep); --soft: var(--teal-soft); border: 1px solid var(--line); border-radius: 22px; background: var(--white); overflow: hidden; display: flex; flex-direction: column; transition: transform .45s cubic-bezier(.16, 1, .3, 1), box-shadow .45s, border-color .45s; }
 .p-card.big { grid-column: span 3; }
-.p-card:hover { transform: translateY(-5px); box-shadow: 0 24px 44px -28px rgba(15, 34, 51, .45); border-color: var(--c); }
+.p-card:hover { transform: translateY(-6px); box-shadow: 0 34px 60px -40px var(--c); border-color: var(--c); }
 .p-media { position: relative; aspect-ratio: 16 / 8; background: var(--soft); display: grid; place-items: center; overflow: hidden; }
 .p-card.big .p-media { aspect-ratio: 16 / 7; }
 .p-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.16, 1, .3, 1); }
 .p-media img.poster { object-fit: contain; padding-block: 14px; }
 .c-youth .p-media { background: var(--paper); }
 .p-card:hover .p-media img { transform: scale(1.04); }
-.p-media::after { content: ""; position: absolute; inset: auto 0 0 0; height: 6px; background: var(--c); }
+.p-media { -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 28' preserveAspectRatio='none'%3E%3Cpath d='M0 0H400V10Q350 30 300 16T200 14T100 16T0 8Z'/%3E%3C/svg%3E") bottom / 100% 28px no-repeat, linear-gradient(#000 0 0) top / 100% calc(100% - 27px) no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 28' preserveAspectRatio='none'%3E%3Cpath d='M0 0H400V10Q350 30 300 16T200 14T100 16T0 8Z'/%3E%3C/svg%3E") bottom / 100% 28px no-repeat, linear-gradient(#000 0 0) top / 100% calc(100% - 27px) no-repeat; }
 .p-media.art { background: var(--paper); }
-.p-body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.p-body { position: relative; isolation: isolate; padding: 14px 22px 24px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+.p-body::before { content: ""; position: absolute; z-index: -1; top: 10px; inset-inline-end: 16px; width: 96px; height: 70px; background-image: radial-gradient(var(--c) 1.6px, transparent 1.9px); background-size: 13px 13px; opacity: .22; -webkit-mask-image: linear-gradient(135deg, #000 25%, transparent 85%); mask-image: linear-gradient(135deg, #000 25%, transparent 85%); }
 .p-ring { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 700; color: var(--c); background: var(--soft); border-radius: 999px; padding: 1px 10px; }
 .p-ring::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
-.p-body h3 { font-size: 1.32rem; }
+.p-body h3 { font-size: 1.4rem; --w: var(--c); }
 .p-body p { color: var(--muted); }
-.p-nums { display: flex; flex-wrap: wrap; gap: 6px 22px; margin-top: auto; padding-top: 12px; border-top: 1px dashed var(--line); }
-.p-nums div { display: flex; flex-direction: column; line-height: 1.35; }
+.p-nums { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 6px; }
+.p-nums div { display: flex; flex-direction: column; line-height: 1.35; background: var(--soft); border-radius: 16px; padding: 10px 16px; }
 .p-nums b { font-size: 1.75rem; font-weight: 800; color: var(--c); font-variant-numeric: tabular-nums; }
 .p-nums span { font-size: .86rem; color: var(--muted); font-weight: 600; }
 .p-cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
@@ -284,9 +285,12 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 .route-track svg.line { position: absolute; inset: 0; width: 100%; height: 100%; }
 .route-boat { position: absolute; top: 2px; inset-inline-start: 0; width: 66px; transform: translateX(var(--bx, 0px)) translateY(var(--by, 0px)) rotate(var(--br, 0deg)); }
 .route-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
-.route-steps li { background: var(--white); border: 1px solid var(--line); border-radius: 18px; padding: 20px; display: flex; flex-direction: column; gap: 8px; transition: border-color .5s, box-shadow .5s, transform .5s; }
+.route-steps li { position: relative; isolation: isolate; overflow: hidden; background: var(--white); border: 1px solid var(--line); border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 8px; transition: border-color .5s, box-shadow .5s, transform .5s; }
+.route-steps li::after { content: ""; position: absolute; z-index: -1; top: 14px; inset-inline-end: 14px; width: 84px; height: 60px; background-image: radial-gradient(var(--sc) 1.5px, transparent 1.8px); background-size: 12px 12px; opacity: .22; -webkit-mask-image: linear-gradient(135deg, #000 25%, transparent 85%); mask-image: linear-gradient(135deg, #000 25%, transparent 85%); }
 .route-steps li.on { border-color: var(--sc); box-shadow: 0 18px 36px -26px rgba(15, 34, 51, .5); transform: translateY(-3px); }
-.route-steps .n { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; background: var(--sc); color: var(--white); }
+.route-steps .n { position: relative; width: 46px; height: 46px; margin: 4px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 1.1rem; background: var(--sc); color: var(--white); }
+.route-steps .n::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px dashed var(--sc); opacity: .4; transition: transform 1s cubic-bezier(.16, 1, .3, 1); }
+.route-steps li.on .n::after { transform: rotate(140deg); }
 .route-steps li:nth-child(1) { --sc: var(--give); }
 .route-steps li:nth-child(2) { --sc: var(--teal-deep); }
 .route-steps li:nth-child(3) { --sc: #b07a00; }
@@ -332,7 +336,8 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 
 /* zakat + transparency */
 .zt { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: 24px; align-items: start; }
-.panel { border: 1px solid var(--line); border-radius: 18px; padding: 28px; display: flex; flex-direction: column; gap: 16px; background: var(--white); }
+.panel { position: relative; isolation: isolate; overflow: hidden; border: 1px solid var(--line); border-radius: 24px; padding: 28px; display: flex; flex-direction: column; gap: 16px; background: var(--white); }
+.panel::before { content: ""; position: absolute; z-index: -1; top: 18px; inset-inline-end: 18px; width: 110px; height: 80px; background-image: radial-gradient(var(--teal) 1.6px, transparent 1.9px); background-size: 13px 13px; opacity: .25; -webkit-mask-image: linear-gradient(135deg, #000 25%, transparent 85%); mask-image: linear-gradient(135deg, #000 25%, transparent 85%); }
 .panel h2 { font-size: clamp(1.5rem, 2.8vw, 2rem); }
 .panel > p { color: var(--muted); }
 .calc { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
@@ -357,35 +362,61 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 /* other ways */
 .ways { background: var(--mist); }
 .banks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.bank { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
-.bank h3 { font-size: 1.08rem; }
-.bank .acct { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: var(--mist); border-radius: 10px; padding: 6px 6px 6px 12px; }
-[dir="rtl"] .bank .acct { padding: 6px 12px 6px 6px; }
-.bank .acct code { font-family: var(--font); font-weight: 700; font-size: 1.05rem; direction: ltr; unicode-bidi: isolate; overflow-wrap: anywhere; min-width: 0; }
-.copy { flex-shrink: 0; border: 0; background: var(--teal-deep); color: var(--white); border-radius: 8px; min-height: 40px; padding: 4px 14px; font-weight: 700; cursor: pointer; }
+.bank { background: var(--white); border: 1px solid var(--line); border-radius: 24px; padding: 14px 14px 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; transition: transform .45s cubic-bezier(.16, 1, .3, 1), box-shadow .45s, border-color .45s; }
+.bank:hover { transform: translateY(-4px); border-color: var(--teal); box-shadow: 0 26px 44px -32px rgba(15, 34, 51, .55); }
+.bank-logo { position: relative; height: 112px; border-radius: 16px; display: grid; place-items: center; margin-bottom: 4px; background-color: #f1f7f8; background-image: radial-gradient(rgba(26, 127, 128, .16) 1.4px, transparent 1.7px); background-size: 14px 14px; }
+.bank-logo img { max-height: 64px; width: auto; mix-blend-mode: multiply; }
+.bank h3, .bank .lbl, .bank .todo { margin-inline: 8px; }
+.bank h3 { font-size: 1.1rem; }
+.bank .todo { align-self: flex-start; }
+.bank .acct { display: flex; align-items: center; justify-content: space-between; gap: 10px; background: var(--teal-soft); border: 1px solid rgba(26, 127, 128, .2); border-radius: 999px; padding: 5px 5px 5px 18px; }
+[dir="rtl"] .bank .acct { padding: 5px 18px 5px 5px; }
+.bank .acct code { font-family: var(--font); font-weight: 800; font-size: 1.08rem; color: var(--teal-ink); letter-spacing: .02em; direction: ltr; unicode-bidi: isolate; overflow-wrap: anywhere; min-width: 0; }
+.copy { flex-shrink: 0; display: inline-flex; align-items: center; gap: 6px; border: 0; background: var(--teal-deep); color: var(--white); border-radius: 999px; min-height: 42px; padding: 4px 16px; font-weight: 700; cursor: pointer; }
 .copy:hover { background: var(--teal-ink); }
 .bank .lbl { font-size: .85rem; color: var(--muted); font-weight: 600; }
 .ways-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 16px; }
-.way { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.way { background: var(--white); border: 1px solid var(--line); border-radius: 24px; padding: 24px; display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
 .way p { color: var(--muted); }
 @media (max-width: 960px) { .banks, .ways-row { grid-template-columns: 1fr; } }
 
 /* involved */
-.involve { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-.inv { border-top: 3px solid var(--teal); padding-top: 16px; display: flex; flex-direction: column; gap: 8px; }
-.inv p { color: var(--muted); }
-@media (max-width: 860px) { .involve { grid-template-columns: 1fr; gap: 26px; } }
+.involve { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+.inv { --bg: var(--navy); --fg: var(--white); --sub: #cfe0e8; --wv: rgba(255, 255, 255, .18); position: relative; isolation: isolate; overflow: hidden; background: var(--bg); color: var(--fg); border-radius: 26px; padding: 28px 24px 66px; display: flex; flex-direction: column; gap: 12px; transition: transform .5s cubic-bezier(.16, 1, .3, 1), box-shadow .5s; }
+.inv::before { content: ""; position: absolute; z-index: -1; width: 190px; aspect-ratio: 1; border-radius: 50%; top: -70px; inset-inline-end: -60px; background: rgba(255, 255, 255, .09); transition: transform .8s cubic-bezier(.16, 1, .3, 1); }
+.inv::after { content: ""; position: absolute; z-index: -1; width: 250px; aspect-ratio: 1; border-radius: 50%; top: -100px; inset-inline-end: -90px; border: 2px solid rgba(255, 255, 255, .14); transition: transform .8s cubic-bezier(.16, 1, .3, 1); }
+.inv:hover { transform: translateY(-6px); box-shadow: 0 34px 60px -36px var(--bg); }
+.inv:hover::before { transform: scale(1.25); }
+.inv:hover::after { transform: scale(1.12); }
+.inv .ic-c { --soft: rgba(255, 255, 255, .14); --c: var(--fg); --w: var(--fg); }
+.inv h3 { font-size: 1.3rem; }
+.inv p { color: var(--sub); font-size: .95rem; flex: 1; }
+.inv-btn { align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; padding: 8px 18px; border-radius: 999px; background: var(--white); color: var(--bg); font-weight: 800; font-size: .95rem; text-decoration: none; box-shadow: 0 10px 20px -14px rgba(0, 0, 0, .6); transition: transform .3s; }
+.inv-btn:hover { transform: translateY(-2px); }
+.inv.i-serv { --bg: var(--teal-deep); }
+.inv.i-give { --bg: var(--give); --sub: #fde3d8; }
+.inv.i-vol { --bg: var(--amber); --fg: var(--navy); --sub: #3a3320; --wv: rgba(255, 255, 255, .5); }
+.inv.i-vol::before { background: rgba(255, 255, 255, .28); }
+.inv.i-vol::after { border-color: rgba(15, 34, 51, .14); }
+.inv.i-vol .ic-c { --soft: rgba(255, 255, 255, .45); }
+.inv.i-vol .inv-btn { background: var(--navy); color: var(--white); }
+@media (max-width: 1060px) { .involve { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 600px) { .involve { grid-template-columns: 1fr; } }
 
 /* news */
 .news { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
-.news a { text-decoration: none; color: var(--ink); display: flex; flex-direction: column; gap: 10px; }
-.news img { width: 100%; aspect-ratio: 278 / 230; object-fit: cover; border-radius: 14px; }
-.news time { color: var(--muted); font-size: .88rem; font-weight: 600; }
-.news h3 { font-size: 1.05rem; font-weight: 700; line-height: 1.55; }
+.news a { text-decoration: none; color: var(--ink); display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; transition: transform .45s cubic-bezier(.16, 1, .3, 1), box-shadow .45s, border-color .45s; }
+.news a:hover { transform: translateY(-5px); border-color: var(--teal); box-shadow: 0 30px 50px -36px rgba(15, 34, 51, .6); }
+.n-img { display: block; overflow: hidden; aspect-ratio: 278 / 200; }
+.news img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s cubic-bezier(.16, 1, .3, 1); }
+.news a:hover img { transform: scale(1.06); }
+.news a > div { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 16px 20px 22px; }
+.news time { color: var(--teal-ink); background: var(--teal-soft); border-radius: 999px; padding: 1px 12px; font-size: .82rem; font-weight: 700; }
+.news h3 { font-size: 1.05rem; font-weight: 700; line-height: 1.6; }
 .news a:hover h3 { color: var(--teal-deep); }
 .head-split { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 12px; margin-bottom: 32px; }
 .head-split .sec-head { margin: 0; }
-@media (max-width: 860px) { .news { grid-template-columns: 1fr; } .news a { display: grid; grid-template-columns: 120px minmax(0, 1fr); align-items: center; gap: 14px; } }
+@media (max-width: 860px) { .news { grid-template-columns: 1fr; } .news a { display: grid; grid-template-columns: 128px minmax(0, 1fr); align-items: stretch; } .n-img { aspect-ratio: auto; height: 100%; } .news a > div { padding: 14px 16px; } }
 
 /* footer */
 .foot { background: var(--navy); color: #c7d6de; padding-block: 64px 28px; font-size: .95rem; }
@@ -413,6 +444,185 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 .sticky-give.show ~ .wa { bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
 @media (min-width: 961px) { .sticky-give { display: none; } }
 .toast { position: fixed; inset-inline: 0; bottom: 100px; margin-inline: auto; width: max-content; max-width: calc(100% - 32px); background: var(--navy); color: var(--white); border-radius: 10px; padding: 8px 16px; font-weight: 600; z-index: 60; }
+
+/* shared card motifs, taken from the current site and pushed further: dot grids, waves, icon circles, colour bars */
+.dots { position: absolute; width: 104px; height: 78px; background-image: radial-gradient(var(--w, var(--teal)) 1.6px, transparent 1.9px); background-size: 13px 13px; opacity: .32; pointer-events: none; z-index: -1; -webkit-mask-image: linear-gradient(135deg, #000 25%, transparent 85%); mask-image: linear-gradient(135deg, #000 25%, transparent 85%); }
+.wave { position: absolute; inset: auto 0 0 0; height: 30px; overflow: hidden; pointer-events: none; transition: height .6s cubic-bezier(.16, 1, .3, 1); }
+.wave svg { position: absolute; bottom: 0; left: 0; width: 200%; height: 100%; display: block; }
+.wave path { transform-box: fill-box; }
+.wave .w1 { fill: var(--wv, var(--w)); }
+.wave .w2 { fill: var(--wv, var(--w)); opacity: .35; }
+.anim .wave .w1 { animation: wave-x 10s linear infinite; }
+.anim .wave .w2 { animation: wave-x 16s linear infinite reverse; }
+@keyframes wave-x { to { transform: translateX(-50%); } }
+.ic-c { position: relative; width: 64px; height: 64px; flex-shrink: 0; border-radius: 50%; background: var(--soft); color: var(--c); display: grid; place-items: center; }
+.ic-c::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px dashed var(--w); opacity: .45; transition: transform 1.2s cubic-bezier(.16, 1, .3, 1); }
+.bar-h::after { content: ""; display: block; width: 44px; height: 4px; border-radius: 4px; background: var(--w); margin-top: 8px; transition: width .5s cubic-bezier(.16, 1, .3, 1); }
+
+/* hero: the film chip */
+.film-chip { align-self: flex-start; display: inline-flex; align-items: center; gap: 12px; background: var(--white); border: 1.5px solid var(--line); border-radius: 999px; padding: 5px; padding-inline-end: 20px; cursor: pointer; text-align: start; box-shadow: 0 10px 24px -18px rgba(15, 34, 51, .6); transition: border-color .3s, box-shadow .3s, transform .3s; }
+.film-chip:hover { border-color: var(--teal); box-shadow: 0 14px 30px -18px rgba(26, 127, 128, .7); transform: translateY(-2px); }
+.fc-thumb { position: relative; width: 74px; height: 46px; border-radius: 999px; overflow: hidden; flex-shrink: 0; }
+.fc-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.fc-thumb i { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(15, 34, 51, .35); color: var(--white); }
+.fc-thumb i svg { width: 20px; height: 20px; }
+.fc-txt { display: flex; flex-direction: column; line-height: 1.35; }
+.fc-txt b { font-size: .98rem; }
+.fc-txt small { color: var(--muted); font-size: .82rem; font-weight: 600; }
+
+/* trusted partners */
+.partners { background: var(--mist); padding-block: 64px 72px; overflow: hidden; }
+.partners-head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 40px; margin-bottom: 32px; }
+.partners-head .sec-head { margin: 0; }
+.p-count { display: flex; align-items: center; gap: 14px; }
+.p-count b { font-size: clamp(2.6rem, 5vw, 3.6rem); line-height: 1; color: var(--teal-deep); font-variant-numeric: tabular-nums; }
+.p-count > span { font-weight: 700; color: var(--muted); line-height: 1.45; max-width: 12em; }
+.mq-toggle { background: var(--white); border: 1.5px solid var(--line); border-radius: 999px; min-height: 40px; padding: 4px 16px; font-weight: 700; font-size: .88rem; cursor: pointer; }
+.mq-toggle:hover { border-color: var(--teal); }
+.mq-toggle .t-play, .mq-toggle[aria-pressed="true"] .t-pause { display: none; }
+.mq-toggle[aria-pressed="true"] .t-play { display: inline; }
+.marquee { direction: ltr; display: flex; flex-direction: column; gap: 14px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
+.m-row { display: flex; width: max-content; }
+.m-set { list-style: none; margin: 0; padding: 0 14px 0 0; display: flex; gap: 14px; }
+.logo { flex: none; height: 86px; min-width: 136px; padding: 10px 22px; background: var(--white); border: 1px solid var(--line); border-radius: 18px; display: grid; place-items: center; transition: border-color .3s, box-shadow .3s; }
+.logo img { filter: grayscale(1); opacity: .75; transition: filter .35s, opacity .35s, transform .35s; }
+.logo:hover { border-color: var(--teal); box-shadow: 0 12px 24px -18px rgba(15, 34, 51, .5); }
+.logo:hover img { filter: none; opacity: 1; transform: scale(1.06); }
+.anim .m-row { animation: marquee 90s linear infinite; }
+.anim .m-row.rev { animation-duration: 105s; animation-direction: reverse; }
+.marquee:hover .m-row, .marquee.paused .m-row { animation-play-state: paused; }
+@keyframes marquee { to { transform: translateX(-50%); } }
+html:not(.anim) .marquee { -webkit-mask-image: none; mask-image: none; }
+html:not(.anim) .m-row { width: auto; }
+html:not(.anim) .m-set { flex-wrap: wrap; justify-content: center; padding: 0; }
+html:not(.anim) .m-set[aria-hidden], html:not(.anim) .mq-toggle { display: none; }
+@media (max-width: 620px) { .logo { height: 72px; min-width: 112px; padding: 8px 16px; } .logo img { transform: scale(.85); } .logo:hover img { transform: scale(.9); } }
+
+/* the challenge: world, Africa, Egypt drawn to scale */
+.ch-grid { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: 32px 56px; align-items: center; }
+.zoom { position: relative; width: min(100%, 470px); aspect-ratio: 1; margin-inline: auto; }
+.zoom svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.zoom svg * { transform-box: view-box; }
+.zoom .z1 { fill: #edf3f6; stroke: #c4d3dc; stroke-width: 1.5; transform-origin: 50% 97.5%; }
+.zoom .z2 { fill: #d4eff1; stroke: var(--teal); stroke-width: 2; transform-origin: 50% 97.5%; }
+.zoom .z3 { fill: var(--give); transform-origin: 50% 92.75%; }
+.zoom .z-pulse { fill: none; stroke: var(--give); stroke-width: 2; transform-origin: 50% 92.75%; animation: z-pulse 2.6s cubic-bezier(.2, .6, .3, 1) infinite; }
+.zoom .z-lead { stroke: var(--give); stroke-width: 1.5; stroke-dasharray: 3 4; }
+@keyframes z-pulse { from { transform: scale(1); opacity: .8; } to { transform: scale(3.2); opacity: 0; } }
+.z-lab { position: absolute; left: 50%; top: var(--y); transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; text-align: center; line-height: 1.3; }
+.z-lab b { font-size: clamp(1.6rem, 4vw, 2.5rem); font-weight: 800; font-variant-numeric: tabular-nums; }
+.z-lab b small { font-size: .5em; margin-inline-start: 4px; }
+.z-lab > span { font-weight: 700; font-size: .9rem; color: var(--muted); }
+.z-lab.zl1 b { color: #4c5f6e; }
+.z-lab.zl2 b { color: var(--teal-deep); }
+.z-lab.zl3 { left: 76%; transform: translate(0, -50%); align-items: flex-start; text-align: left; }
+.z-lab.zl3 b { color: var(--give); font-size: clamp(1.3rem, 3vw, 1.8rem); }
+.anim .zoom .z, .anim .zoom .z-lead, .anim .zoom .z-lab { opacity: 0; }
+.anim .zoom.in .z { animation: z-in 1.1s cubic-bezier(.16, 1, .3, 1) forwards; animation-delay: var(--zd); }
+.anim .zoom.in .z-lead, .anim .zoom.in .z-lab { animation: fade-in .7s forwards; animation-delay: var(--zd); }
+@keyframes z-in { from { opacity: 0; transform: scale(.2); } to { opacity: 1; transform: none; } }
+.ch-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px; }
+.ch-list li { --w: #8da3b1; position: relative; overflow: hidden; isolation: isolate; display: grid; grid-template-columns: minmax(118px, auto) minmax(0, 1fr); gap: 4px 20px; align-items: center; border: 1px solid var(--line); border-radius: 20px; padding: 18px 22px; background: var(--white); }
+.ch-list li.af { --w: var(--teal); }
+.ch-list li.eg { --w: var(--give); background: #fdf0ea; border-color: #f3c6b3; }
+.ch-list li::before { content: ""; position: absolute; inset-block: 18px; inset-inline-start: 0; width: 5px; border-radius: 0 5px 5px 0; background: var(--w); }
+[dir="rtl"] .ch-list li::before { border-radius: 5px 0 0 5px; }
+.ch-n { font-size: clamp(2rem, 4vw, 2.6rem); line-height: 1.1; font-weight: 800; font-variant-numeric: tabular-nums; color: var(--ink); }
+.eg .ch-n { color: var(--give); }
+.ch-n small { font-size: .45em; margin-inline-start: 4px; }
+.ch-list h3 { font-size: 1.05rem; }
+.ch-list p { color: var(--muted); font-size: .93rem; grid-column: 2; }
+.ch-list cite { display: block; font-style: normal; font-size: .8rem; font-weight: 700; color: var(--muted); opacity: .85; }
+.ch-approach { margin-top: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; background: var(--navy); color: var(--white); border-radius: 22px; padding: 22px 24px; }
+.ch-approach div { flex: 1 1 260px; }
+.ch-approach b { display: block; color: var(--teal); font-size: 1.05rem; }
+.ch-approach p { color: #cfe0e8; font-size: .95rem; }
+.ch-approach .film-chip { border-color: transparent; }
+@media (max-width: 960px) { .ch-grid { grid-template-columns: 1fr; } .zoom { width: min(100%, 380px); } }
+@media (max-width: 480px) { .ch-list li { grid-template-columns: 1fr; padding: 16px 18px; } .ch-list p { grid-column: 1; } .z-lab > span { font-size: .78rem; } }
+
+/* the film */
+.film { position: relative; isolation: isolate; overflow: hidden; background: var(--navy); color: var(--white); padding-block: 88px; }
+.film::before, .film::after { content: ""; position: absolute; z-index: -1; width: 60%; aspect-ratio: 1; border-radius: 50%; }
+.film::before { inset: -30% auto auto -15%; background: radial-gradient(circle, rgba(54, 192, 202, .22), transparent 62%); }
+.film::after { inset: auto -18% -40% auto; background: radial-gradient(circle, rgba(232, 114, 74, .2), transparent 62%); }
+.film-head { text-align: center; margin-inline: auto; align-items: center; }
+.film-head .eyebrow { color: var(--teal); }
+.film-head p { color: #cfe0e8; }
+.film-frame { --fp: 1; position: relative; display: block; width: 100%; aspect-ratio: 16 / 9; padding: 0; border: 0; border-radius: 28px; overflow: hidden; cursor: pointer; background: #000; color: var(--white); box-shadow: 0 50px 90px -50px rgba(0, 0, 0, .9), 0 0 0 1px rgba(255, 255, 255, .08); transform-origin: 50% 0; transform: scale(calc(.9 + var(--fp) * .1)); }
+.film-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(calc(1.14 - var(--fp) * .14)); transition: filter .5s; }
+.film-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(15, 34, 51, .92) 0%, rgba(15, 34, 51, .35) 32%, transparent 60%); }
+.film-frame:hover img { filter: brightness(1.06) saturate(1.1); }
+.film-play { position: absolute; z-index: 1; left: 50%; top: 46%; width: 104px; height: 104px; margin: -52px 0 0 -52px; border-radius: 50%; background: var(--give); color: var(--white); display: grid; place-items: center; box-shadow: 0 18px 40px -12px rgba(201, 80, 42, .9); transition: transform .4s cubic-bezier(.34, 1.56, .64, 1); }
+.film-play svg { margin-left: 6px; }
+.film-play::before, .film-play::after { content: ""; position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(255, 255, 255, .7); animation: play-ring 2.4s cubic-bezier(.2, .6, .3, 1) infinite; }
+.film-play::after { animation-delay: 1.2s; }
+@keyframes play-ring { from { transform: scale(1); opacity: .9; } to { transform: scale(1.9); opacity: 0; } }
+.film-frame:hover .film-play { transform: scale(1.1); }
+.film-cap { position: absolute; z-index: 1; inset: auto 28px 24px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 18px; text-align: start; }
+.film-cap b { font-size: clamp(1.4rem, 3.2vw, 2.3rem); line-height: 1.3; }
+.film-cap span { color: #cfe0e8; font-weight: 600; font-size: .95rem; }
+.film-cta { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 14px 22px; margin-top: 34px; text-align: center; }
+.film-cta p { color: #cfe0e8; font-weight: 600; font-size: 1.05rem; }
+@media (max-width: 620px) { .film { padding-block: 64px; } .film-frame { border-radius: 18px; } .film-play { width: 76px; height: 76px; margin: -38px 0 0 -38px; } .film-play svg { width: 26px; height: 26px; } .film-cap { inset: auto 16px 12px; } .film-cap span { display: none; } }
+.film-modal { width: min(1040px, calc(100% - 32px)); max-width: none; max-height: none; padding: 0; border: 0; background: transparent; color: var(--white); overflow: visible; }
+.film-modal::backdrop { background: rgba(8, 18, 28, .86); backdrop-filter: blur(5px); }
+.fm-box { display: flex; flex-direction: column; gap: 14px; }
+.film-modal[open] .fm-box { animation: card-in .55s cubic-bezier(.16, 1, .3, 1); }
+.fm-top, .fm-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; }
+.fm-top h2 { font-size: 1.3rem; }
+.fm-close { width: 46px; height: 46px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, .35); background: rgba(255, 255, 255, .08); color: var(--white); display: grid; place-items: center; cursor: pointer; }
+.fm-close:hover { background: rgba(255, 255, 255, .18); }
+.film-player { position: relative; aspect-ratio: 16 / 9; background: #000; border-radius: 18px; overflow: hidden; }
+.film-player iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.fm-foot .link { color: var(--teal); }
+
+/* what we do: three pillars */
+.what { background: var(--mist); }
+.what .sec-head { text-align: center; align-items: center; margin-inline: auto; }
+.pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.pillar { --c: #17805f; --w: #1f9e77; --soft: #e2f4ec; position: relative; isolation: isolate; overflow: hidden; background: var(--white); border: 1px solid var(--line); border-radius: 26px; padding: 30px 28px 70px; display: flex; flex-direction: column; gap: 14px; transition: transform .5s cubic-bezier(.16, 1, .3, 1), box-shadow .5s, border-color .5s; }
+.pillar.pl-prot { --c: #24609b; --w: #2f74b8; --soft: #e6eff8; }
+.pillar.pl-emp { --c: #8a5a00; --w: #f2b025; --soft: #fdf2d6; }
+.pillar:hover { transform: translateY(-6px); border-color: var(--w); box-shadow: 0 34px 60px -40px var(--c); }
+.pillar:hover .ic-c::after, .p-card:hover .ic-c::after, .inv:hover .ic-c::after { transform: rotate(120deg); }
+.pillar:hover .bar-h::after, .p-card:hover .bar-h::after { width: 84px; }
+.pillar:hover .wave, .inv:hover .wave { height: 46px; }
+.pillar .dots { top: 20px; inset-inline-end: 20px; }
+.pl-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.pl-num { font-size: 3.4rem; font-weight: 800; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px var(--w); opacity: .55; font-variant-numeric: tabular-nums; }
+.pillar h3 { font-size: 1.6rem; color: var(--c); }
+.pl-lead { font-weight: 600; font-size: 1.04rem; }
+.pl-more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .55s cubic-bezier(.16, 1, .3, 1); }
+.pl-more > div { overflow: hidden; visibility: hidden; transition: visibility .55s; }
+.pl-more.open { grid-template-rows: 1fr; }
+.pl-more.open > div { visibility: visible; }
+.pl-more p { color: var(--muted); font-size: .95rem; padding-top: 2px; }
+.pl-toggle { align-self: flex-start; background: none; border: 0; padding: 2px 0; color: var(--c); font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+.pl-toggle::after { content: ""; width: 8px; height: 8px; border: solid currentColor; border-width: 0 2px 2px 0; transform: translateY(-2px) rotate(45deg); transition: transform .3s; }
+.pl-toggle[aria-expanded="true"]::after { transform: translateY(2px) rotate(-135deg); }
+.pl-toggle .t-less, .pl-toggle[aria-expanded="true"] .t-more { display: none; }
+.pl-toggle[aria-expanded="true"] .t-less { display: inline; }
+.pl-list { list-style: none; margin: 4px 0 0; padding: 16px; background: var(--soft); border-radius: 18px; display: flex; flex-direction: column; gap: 10px; }
+.pl-list li { display: flex; gap: 10px; font-weight: 600; font-size: .95rem; line-height: 1.6; }
+.pl-list li::before { content: ""; flex-shrink: 0; width: 24px; height: 24px; margin-top: 2px; border-radius: 50%; background: var(--w) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E") center / 14px no-repeat; }
+.pl-emp .pl-list li::before { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f2233' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 12.5l4 4 8-9'/%3E%3C/svg%3E"); }
+.pl-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; margin-top: auto; padding-top: 6px; }
+.pl-foot .link { color: var(--c); }
+.pl-give { display: inline-flex; align-items: center; min-height: 42px; padding: 6px 16px; border-radius: 999px; border: 2px solid var(--give); color: var(--give); font-weight: 700; font-size: .92rem; text-decoration: none; transition: background .2s, color .2s; }
+.pl-give:hover { background: var(--give); color: var(--white); }
+@media (max-width: 960px) { .pillars { grid-template-columns: 1fr; max-width: 640px; margin-inline: auto; } }
+
+/* full impact figures under the multiplier */
+.impact-grid { grid-column: 1 / -1; list-style: none; margin: 8px 0 0; padding: 22px 0 0; border-top: 1px solid rgba(255, 255, 255, .14); display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 18px; }
+.impact-grid li { display: flex; flex-direction: column; gap: 2px; line-height: 1.35; }
+.impact-grid b { font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 800; color: var(--white); font-variant-numeric: tabular-nums; }
+.impact-grid li::before { content: ""; width: 26px; height: 3px; border-radius: 3px; background: var(--teal); margin-bottom: 8px; }
+.impact-grid li:nth-child(3n+2)::before { background: var(--amber); }
+.impact-grid li:nth-child(3n)::before { background: var(--coral); }
+.impact-grid li > span { color: #cfe0e8; font-size: .88rem; font-weight: 600; }
+@media (max-width: 1000px) { .impact-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .impact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 </style>
 </head>
 <body>
@@ -423,6 +633,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
   <div class="wrap head-row">
     <a class="brand" href="#top" aria-label="سند - الصفحة الرئيسية" data-en-aria="Sanad home"><img src="assets/sanad-logo.webp" width="420" height="294" alt="سند" data-en-alt="Sanad"></a>
     <nav class="nav" aria-label="القائمة الرئيسية" data-en-aria="Main menu">
+      <a href="#what" data-en="What we do">ماذا نفعل</a>
       <a href="#who" data-en="Who we strengthen">من نُقوّي</a>
       <a href="#how" data-en="How it works">كيف نعمل</a>
       <a href="#impact" data-en="Our impact">أثرنا</a>
@@ -438,6 +649,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
     </div>
   </div>
   <div class="drawer wrap" id="drawer" hidden>
+    <a href="#what" data-en="What we do">ماذا نفعل</a>
     <a href="#who" data-en="Who we strengthen">من نُقوّي</a>
     <a href="#how" data-en="How it works">كيف نعمل</a>
     <a href="#impact" data-en="Our impact">أثرنا</a>
@@ -456,6 +668,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
       <span class="chip-reg" data-reveal data-en="Support for those who support · Since 2008 · Reg. No. 7478">سند لمن يكون سندًا · منذ 2008 · مشهرة برقم 7478</span>
       <h1 id="hero-title" data-en-html="Behind every child is a caring hand. <em>We make that hand stronger.</em>">وراء كل طفل يدٌ ترعاه… <em>ونحن نقوّي هذه اليد</em></h1>
       <p class="hero-sub" data-reveal style="--d:.55s" data-en="Sanad doesn't run care homes. We stand behind the people who care for children without parental care: we train caregivers, raise the quality of care homes, prepare kafala families and help young people become independent. Your gift reaches the child through every one of these hands.">سند لا تدير دور رعاية، بل تقف خلف من يرعون الأطفال فاقدي الرعاية الوالدية: ندرّب مقدّمي الرعاية، ونرفع جودة دور الرعاية، ونجهّز أسر الكفالة، ونؤهّل الشباب للاستقلال. تبرعك يصل إلى الطفل عبر كل هذه الأيدي.</p>
+      <button class="film-chip" type="button" data-film data-reveal style="--d:.75s"><span class="fc-thumb"><img src="assets/film-thumb.webp" width="240" height="135" alt=""><i><svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></i></span><span class="fc-txt"><b data-en="Watch: What does Sanad mean?">شاهد: يعني إيه سند؟</b><small data-en="A short film from Sanad">فيلم قصير من سند</small></span></button>
     </div>
     <figure class="care" id="care" data-focus="caregiver">
       <figcaption class="sr-only" data-en="Circle of care: the child at the centre, held by a trained caregiver, inside a safe care home or kafala family, supported by Sanad, made possible by you.">دائرة الرعاية: الطفل في المركز، يحيط به مقدّم رعاية مدرَّب، داخل دار آمنة أو أسرة كفالة، تدعمهم سند، وتجعل ذلك ممكنًا أنت.</figcaption>
@@ -641,7 +854,128 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
   </ul>
 </section>
 
-<!-- 3. Who we strengthen -->
+<!-- 3. Trusted partners -->
+<section class="partners" aria-labelledby="partners-title">
+  <div class="wrap">
+    <div class="partners-head">
+      <div class="sec-head">
+        <span class="eyebrow" data-en="Trusted by">شركاء الأثر</span>
+        <h2 id="partners-title" data-en="Trusted by government, UN agencies and leading companies">تثق بنا الحكومة ووكالات الأمم المتحدة وكبرى الشركات</h2>
+        <p data-en="From the Ministry of Social Solidarity, UNICEF, UNFPA and SOS Children's Villages to Pearson, the American University in Cairo and the private sector.">من وزارة التضامن الاجتماعي واليونيسف وصندوق الأمم المتحدة للسكان وقرى الأطفال SOS، إلى Pearson والجامعة الأمريكية بالقاهرة والقطاع الخاص.</p>
+      </div>
+      <div class="p-count"><b data-count>69</b><span data-en="partners who work with Sanad">شريكًا يعملون مع سند</span></div>
+      <button class="mq-toggle" type="button" id="mq-toggle" aria-pressed="false"><span class="t-pause" data-en="Pause logos">أوقف الحركة</span><span class="t-play" data-en="Play logos">شغّل الحركة</span></button>
+    </div>
+  </div>
+  <div class="marquee" role="region" aria-label="شعارات الشركاء" data-en-aria="Partner logos">
+      <div class="m-row"><ul class="m-set"><li class="logo"><img src="assets/partners/p01.webp" width="55" height="55" alt="وزارة التضامن الاجتماعي" data-en-alt="Ministry of Social Solidarity" loading="lazy"></li><li class="logo"><img src="assets/partners/p02.webp" width="55" height="55" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p03.webp" width="97" height="31" alt="EGMED" loading="lazy"></li><li class="logo"><img src="assets/partners/p04.webp" width="39" height="58" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p05.webp" width="57" height="53" alt="Ezz Dekheila Steel" loading="lazy"></li><li class="logo"><img src="assets/partners/p06.webp" width="87" height="35" alt="Ezz Steel" loading="lazy"></li><li class="logo"><img src="assets/partners/p07.webp" width="88" height="34" alt="Kemet Corporation" loading="lazy"></li><li class="logo"><img src="assets/partners/p08.webp" width="65" height="46" alt="Sawiris Foundation" loading="lazy"></li><li class="logo"><img src="assets/partners/p09.webp" width="106" height="28" alt="Drosos Foundation" loading="lazy"></li><li class="logo"><img src="assets/partners/p10.webp" width="77" height="39" alt="Emaar" loading="lazy"></li><li class="logo"><img src="assets/partners/p11.webp" width="47" height="58" alt="MIDOR" loading="lazy"></li><li class="logo"><img src="assets/partners/p12.webp" width="102" height="30" alt="Crédit Agricole" loading="lazy"></li><li class="logo"><img src="assets/partners/p13.webp" width="97" height="31" alt="Export Development Bank of Egypt" loading="lazy"></li><li class="logo"><img src="assets/partners/p14.webp" width="71" height="42" alt="Deutsche Bank" loading="lazy"></li><li class="logo"><img src="assets/partners/p15.webp" width="93" height="32" alt="HSBC" loading="lazy"></li><li class="logo"><img src="assets/partners/p16.webp" width="105" height="28" alt="Bank ABC" loading="lazy"></li><li class="logo"><img src="assets/partners/p17.webp" width="58" height="51" alt="Alexbank" loading="lazy"></li><li class="logo"><img src="assets/partners/p18.webp" width="100" height="30" alt="Midbank" loading="lazy"></li><li class="logo"><img src="assets/partners/p19.webp" width="63" height="48" alt="Tri Chem" loading="lazy"></li><li class="logo"><img src="assets/partners/p20.webp" width="96" height="31" alt="UNICEF" loading="lazy"></li><li class="logo"><img src="assets/partners/p21.webp" width="76" height="39" alt="UNFPA" loading="lazy"></li><li class="logo"><img src="assets/partners/p22.webp" width="106" height="28" alt="Samusocial International Egypt" loading="lazy"></li><li class="logo"><img src="assets/partners/p23.webp" width="103" height="29" alt="SOS Children's Villages" loading="lazy"></li><li class="logo"><img src="assets/partners/p24.webp" width="92" height="33" alt="Don Bosco Institute" loading="lazy"></li><li class="logo"><img src="assets/partners/p25.webp" width="69" height="43" alt="Baseera" loading="lazy"></li><li class="logo"><img src="assets/partners/p26.webp" width="43" height="58" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p27.webp" width="81" height="37" alt="جمعية الأورمان" data-en-alt="Al Orman Association" loading="lazy"></li><li class="logo"><img src="assets/partners/p28.webp" width="55" height="55" alt="FACE" loading="lazy"></li><li class="logo"><img src="assets/partners/p29.webp" width="93" height="32" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p30.webp" width="48" height="58" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p31.webp" width="77" height="39" alt="Lifevision" loading="lazy"></li><li class="logo"><img src="assets/partners/p32.webp" width="54" height="55" alt="جمعية شباب الخير" data-en-alt="Shabab El Kheir" loading="lazy"></li><li class="logo"><img src="assets/partners/p33.webp" width="61" height="49" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p34.webp" width="76" height="40" alt="Education for Employment (EFE)" loading="lazy"></li><li class="logo"><img src="assets/partners/p35.webp" width="66" height="45" alt="IECD" loading="lazy"></li></ul><ul class="m-set" aria-hidden="true"><li class="logo"><img src="assets/partners/p01.webp" width="55" height="55" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p02.webp" width="55" height="55" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p03.webp" width="97" height="31" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p04.webp" width="39" height="58" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p05.webp" width="57" height="53" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p06.webp" width="87" height="35" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p07.webp" width="88" height="34" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p08.webp" width="65" height="46" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p09.webp" width="106" height="28" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p10.webp" width="77" height="39" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p11.webp" width="47" height="58" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p12.webp" width="102" height="30" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p13.webp" width="97" height="31" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p14.webp" width="71" height="42" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p15.webp" width="93" height="32" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p16.webp" width="105" height="28" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p17.webp" width="58" height="51" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p18.webp" width="100" height="30" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p19.webp" width="63" height="48" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p20.webp" width="96" height="31" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p21.webp" width="76" height="39" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p22.webp" width="106" height="28" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p23.webp" width="103" height="29" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p24.webp" width="92" height="33" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p25.webp" width="69" height="43" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p26.webp" width="43" height="58" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p27.webp" width="81" height="37" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p28.webp" width="55" height="55" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p29.webp" width="93" height="32" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p30.webp" width="48" height="58" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p31.webp" width="77" height="39" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p32.webp" width="54" height="55" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p33.webp" width="61" height="49" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p34.webp" width="76" height="40" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p35.webp" width="66" height="45" alt="" loading="lazy"></li></ul></div>
+      <div class="m-row rev"><ul class="m-set"><li class="logo"><img src="assets/partners/p36.webp" width="84" height="36" alt="NEP" loading="lazy"></li><li class="logo"><img src="assets/partners/p37.webp" width="73" height="41" alt="PwC" loading="lazy"></li><li class="logo"><img src="assets/partners/p38.webp" width="91" height="33" alt="Courtyard" loading="lazy"></li><li class="logo"><img src="assets/partners/p39.webp" width="102" height="29" alt="Dorra" loading="lazy"></li><li class="logo"><img src="assets/partners/p40.webp" width="44" height="58" alt="Microsoft" loading="lazy"></li><li class="logo"><img src="assets/partners/p41.webp" width="63" height="47" alt="Brainquil" loading="lazy"></li><li class="logo"><img src="assets/partners/p42.webp" width="53" height="57" alt="Tamara" loading="lazy"></li><li class="logo"><img src="assets/partners/p43.webp" width="110" height="27" alt="Fiorito" loading="lazy"></li><li class="logo"><img src="assets/partners/p44.webp" width="66" height="45" alt="Homzmart" loading="lazy"></li><li class="logo"><img src="assets/partners/p45.webp" width="65" height="46" alt="Aspire" loading="lazy"></li><li class="logo"><img src="assets/partners/p46.webp" width="69" height="43" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p48.webp" width="55" height="55" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p49.webp" width="100" height="30" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p50.webp" width="54" height="56" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p51.webp" width="38" height="58" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p52.webp" width="91" height="33" alt="Pearson" loading="lazy"></li><li class="logo"><img src="assets/partners/p53.webp" width="47" height="58" alt="الجامعة الأمريكية بالقاهرة" data-en-alt="The American University in Cairo" loading="lazy"></li><li class="logo"><img src="assets/partners/p54.webp" width="103" height="29" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p55.webp" width="73" height="41" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p56.webp" width="57" height="53" alt="CSR Regional Network" loading="lazy"></li><li class="logo"><img src="assets/partners/p57.webp" width="91" height="33" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p58.webp" width="55" height="55" alt="Skills Bank" loading="lazy"></li><li class="logo"><img src="assets/partners/p59.webp" width="66" height="45" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p60.webp" width="61" height="49" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p61.webp" width="59" height="51" alt="ICF Egypt" loading="lazy"></li><li class="logo"><img src="assets/partners/p62.webp" width="89" height="34" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p63.webp" width="66" height="45" alt="Spark" loading="lazy"></li><li class="logo"><img src="assets/partners/p64.webp" width="106" height="28" alt="Intellect" loading="lazy"></li><li class="logo"><img src="assets/partners/p65.webp" width="82" height="37" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p66.webp" width="56" height="53" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p67.webp" width="55" height="55" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/p68.webp" width="90" height="33" alt="Blissify" loading="lazy"></li><li class="logo"><img src="assets/partners/p69.webp" width="55" height="54" alt="شريك من شركاء سند" data-en-alt="A Sanad partner" loading="lazy"></li><li class="logo"><img src="assets/partners/beit-el-khayata.webp" width="58" height="52" alt="بيت الخياطة" data-en-alt="Beit El Khayata" loading="lazy"></li></ul><ul class="m-set" aria-hidden="true"><li class="logo"><img src="assets/partners/p36.webp" width="84" height="36" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p37.webp" width="73" height="41" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p38.webp" width="91" height="33" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p39.webp" width="102" height="29" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p40.webp" width="44" height="58" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p41.webp" width="63" height="47" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p42.webp" width="53" height="57" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p43.webp" width="110" height="27" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p44.webp" width="66" height="45" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p45.webp" width="65" height="46" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p46.webp" width="69" height="43" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p48.webp" width="55" height="55" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p49.webp" width="100" height="30" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p50.webp" width="54" height="56" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p51.webp" width="38" height="58" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p52.webp" width="91" height="33" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p53.webp" width="47" height="58" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p54.webp" width="103" height="29" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p55.webp" width="73" height="41" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p56.webp" width="57" height="53" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p57.webp" width="91" height="33" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p58.webp" width="55" height="55" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p59.webp" width="66" height="45" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p60.webp" width="61" height="49" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p61.webp" width="59" height="51" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p62.webp" width="89" height="34" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p63.webp" width="66" height="45" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p64.webp" width="106" height="28" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p65.webp" width="82" height="37" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p66.webp" width="56" height="53" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p67.webp" width="55" height="55" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p68.webp" width="90" height="33" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/p69.webp" width="55" height="54" alt="" loading="lazy"></li><li class="logo"><img src="assets/partners/beit-el-khayata.webp" width="58" height="52" alt="" loading="lazy"></li></ul></div>
+  </div>
+</section>
+
+<!-- 4. The challenge -->
+<section class="section challenge" id="challenge" aria-labelledby="challenge-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-en="The challenge we face">التحدي الذي نواجهه</span>
+      <h2 id="challenge-title" data-en="1.4 million orphans in Egypt alone. The system needs to change.">1.4 مليون يتيم في مصر وحدها… والمنظومة تحتاج تحوّلًا جذريًا</h2>
+    </div>
+    <div class="ch-grid">
+      <figure class="zoom" style="margin:0 auto">
+        <figcaption class="sr-only" data-en="Drawn to scale: 140 million children without parental care worldwide, 35 million in Africa, 1.4 million orphans in Egypt.">بمقياس الرسم: 140 مليون طفل بلا رعاية والدية في العالم، و35 مليونًا في أفريقيا، و1.4 مليون يتيم في مصر.</figcaption>
+        <svg viewBox="0 0 400 400" aria-hidden="true">
+          <circle class="z z1" style="--zd:.1s" cx="200" cy="200" r="190"/>
+          <circle class="z z2" style="--zd:.55s" cx="200" cy="295" r="95"/>
+          <line class="z-lead" style="--zd:1.2s" x1="222" y1="371" x2="296" y2="371"/>
+          <circle class="z-pulse" cx="200" cy="371" r="19"/>
+          <circle class="z z3" style="--zd:1s" cx="200" cy="371" r="19"/>
+        </svg>
+        <span class="z-lab zl1" style="--y:26%;--zd:.4s" aria-hidden="true"><b><span data-count>140</span><small data-en="M">مليون</small></b><span data-en="The world">العالم</span></span>
+        <span class="z-lab zl2" style="--y:62%;--zd:.85s" aria-hidden="true"><b><span data-count>35</span><small data-en="M">مليون</small></b><span data-en="Africa">أفريقيا</span></span>
+        <span class="z-lab zl3" style="--y:92.75%;--zd:1.3s" aria-hidden="true"><b><span data-count>1.4</span><small data-en="M">مليون</small></b><span data-en="Egypt">مصر</span></span>
+      </figure>
+      <div>
+        <ul class="ch-list">
+          <li><span class="ch-n"><span data-count>140</span><small data-en="million">مليون</small></span><div><h3 data-en="children without parental care worldwide">طفل بلا رعاية والدية حول العالم</h3><cite data-en="UNICEF, 2014">اليونيسف، 2014</cite></div><p data-en="Most live in institutions, even though family-based care produces far better outcomes.">معظمهم في مؤسسات، رغم أن الرعاية الأسرية تحقق نتائج أفضل بكثير.</p></li>
+          <li class="af"><span class="ch-n"><span data-count>35</span><small data-en="million">مليون</small></span><div><h3 data-en="children without parental care in Africa">طفل بلا رعاية والدية في أفريقيا</h3><cite data-en="SOS Children's Villages, 2023">قرى الأطفال SOS، 2023</cite></div><p data-en="Africa carries one of the heaviest burdens. Egypt, at its heart, has the MENA region's largest orphan population.">تحمل أفريقيا عبء الأزمة مضاعفًا، ومصر في قلبها تضم أكبر تجمع للأيتام في الشرق الأوسط وشمال أفريقيا.</p></li>
+          <li class="eg"><span class="ch-n"><span data-count>1.4</span><small data-en="million">مليون</small></span><div><h3 data-en="orphans in Egypt">يتيم في مصر</h3><cite data-en="Ministry of Social Solidarity, 2023">وزارة التضامن الاجتماعي، 2023</cite></div><p data-en="Many leave care at 18 with no family support, no savings and no preparation.">كثيرون يغادرون دور الرعاية في سن 18 بلا دعم أسري ولا مدخرات ولا تأهيل.</p></li>
+        </ul>
+        <div class="ch-approach">
+          <div><b data-en="Our approach: change the whole system">نهجنا: التغيير المنظومي</b><p data-en="We don't stop at one child. We transform the alternative care system: developing care homes, empowering caregivers, supporting kafala and preparing young people for independent life.">لا نكتفي بدعم طفل واحد؛ نحوّل منظومة الرعاية البديلة كلها: نطوّر دور الرعاية، ونمكّن مقدّمي الرعاية، وندعم الكفالة، ونؤهّل الشباب للحياة المستقلة.</p></div>
+          <button class="film-chip" type="button" data-film><span class="fc-thumb"><img src="assets/film-thumb.webp" width="240" height="135" alt=""><i><svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></i></span><span class="fc-txt"><b data-en="Watch: What does Sanad mean?">شاهد: يعني إيه سند؟</b><small data-en="A short film from Sanad">فيلم قصير من سند</small></span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. The film -->
+<section class="film" id="film" aria-labelledby="film-title">
+  <div class="wrap">
+    <div class="sec-head film-head">
+      <span class="eyebrow" data-en="A film from Sanad">فيلم من سند</span>
+      <h2 id="film-title" data-en="What does Sanad mean?">يعني إيه سند؟</h2>
+      <p data-en="A short film that answers one question: what it means to stand behind the people who care for children.">فيلم قصير يجيب عن سؤال واحد: ماذا يعني أن تكون سندًا لمن يرعون الأطفال؟</p>
+    </div>
+    <button class="film-frame" type="button" data-film aria-label="شغّل الفيلم: يعني إيه سند؟" data-en-aria="Play the film: What does Sanad mean?">
+      <img src="assets/film-poster.webp" width="1280" height="720" alt="" loading="lazy">
+      <span class="film-play"><svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
+      <span class="film-cap"><b data-en="Watch the film">شاهد الفيلم</b><span data-en="Plays here · YouTube">يعمل هنا · YouTube</span></span>
+    </button>
+    <div class="film-cta">
+      <p data-en="Now you know what Sanad means. Be part of it.">الآن عرفت معنى سند. كن جزءًا منه.</p>
+      <a class="btn btn-give" href="#give" data-give-fund="general" data-en="Be a Sanad today">كن سندًا الآن</a>
+    </div>
+  </div>
+</section>
+
+<!-- 6. What we do -->
+<section class="section what" id="what" aria-labelledby="what-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-en="What we do">ماذا نفعل</span>
+      <h2 id="what-title" data-en="Three pillars, one mission">ثلاثة محاور.. رسالة واحدة</h2>
+      <p data-en="Our programs work across every layer of the alternative care system: from prevention and child protection to empowering young people and the community around them.">تعمل برامجنا عبر جميع طبقات منظومة الرعاية البديلة: من الوقاية وحماية الأطفال، إلى تمكين الشباب والمجتمع المحيط بهم.</p>
+    </div>
+    <div class="pillars">
+      <article class="pillar pl-prev">
+        <span class="dots" aria-hidden="true"></span>
+        <div class="pl-top"><span class="ic-c"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 18 0z"/><path d="M12 12v6a2 2 0 0 0 4 0"/><path d="M12 3v0"/></svg></span><span class="pl-num" aria-hidden="true">01</span></div>
+        <h3 class="bar-h" data-en="Prevention">الوقاية</h3>
+        <p class="pl-lead" data-en="We take a proactive approach that aims to reduce reliance on institutional care.">نتبنى نهجًا استباقيًا يهدف إلى الحد من الاعتماد على الرعاية المؤسسية.</p>
+        <div class="pl-more" id="more-prev"><div><p data-en="Our work focuses on strengthening family-based care by equipping families applying for kafala and fostering with the knowledge and psychological preparation they need, and by close follow-up that keeps the child stable and prevents a return to care homes. Because our vision extends to the future, we provide safety nets and empower our care-leaver youth to build stable families of their own, protecting their children (the second generation) and breaking the cycle of alternative care across generations.">يرتكز عملنا على تقوية منظومة الرعاية الأسرية، من خلال تزويد الأسر المتقدمة للكفالة والاحتضان بالمعارف والتهيئة النفسية اللازمة، وتفعيل آليات متابعة دقيقة تضمن استقرار الطفل وتمنع خطر ارتداده إلى دور الرعاية. ولأن رؤيتنا تمتد للمستقبل، نعمل على توفير شبكات أمان وتمكين شبابنا من خريجي الرعاية لتأسيس أسرهم المستقرة، مما يحمي أبناءهم (الجيل الثاني) ويكسر دائرة الرعاية البديلة عبر الأجيال.</p></div></div>
+        <button class="pl-toggle" type="button" aria-expanded="false" aria-controls="more-prev"><span class="t-more" data-en="Read more">عرض المزيد</span><span class="t-less" data-en="Show less">عرض أقل</span></button>
+        <ul class="pl-list" aria-label="البرامج" data-en-aria="Programs"><li data-en="Economic and Social Empowerment Program for Youth Without Parental Care">برنامج التمكين الاقتصادي والاجتماعي للشباب فاقدي الرعاية الوالدية</li><li data-en="Kafala Family Capacity Building Program for Raising Children Without Parental Care">برنامج تأهيل الأسر الكافلة لتنشئة الأطفال فاقدي الرعاية الوالدية</li></ul>
+        <div class="pl-foot"><a class="link arw" href="#who" data-en="Learn more">اعرف أكثر</a><a class="pl-give" href="#give" data-give-fund="family" data-en="Support prevention">ادعم الوقاية</a></div>
+        <div class="wave" aria-hidden="true"><svg viewBox="0 0 800 30" preserveAspectRatio="none"><path class="w2" d="M0 12 Q50 26 100 12 T200 12 T300 12 T400 12 T500 12 T600 12 T700 12 T800 12 V30 H0Z"/><path class="w1" d="M0 16 Q50 4 100 16 T200 16 T300 16 T400 16 T500 16 T600 16 T700 16 T800 16 V30 H0Z"/></svg></div>
+      </article>
+      <article class="pillar pl-prot">
+        <span class="dots" aria-hidden="true"></span>
+        <div class="pl-top"><span class="ic-c"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg></span><span class="pl-num" aria-hidden="true">02</span></div>
+        <h3 class="bar-h" data-en="Protection">الحماية</h3>
+        <p class="pl-lead" data-en="We are committed to strengthening the alternative care system so it is a safe, supportive environment that preserves the dignity and rights of children and young people.">نلتزم بتقوية منظومة الرعاية البديلة لتكون بيئة آمنة وداعمة تحفظ كرامة وحقوق الأطفال والشباب.</p>
+        <div class="pl-more" id="more-prot"><div><p data-en="In this pillar we develop and activate care quality standards and institutionalise strict safeguarding policies that guarantee an environment free from harm. Our work ranges from raising the quality of semi-family care inside care homes to advocating for better legislation, while establishing clear complaint channels and raising awareness of them, to build a system defined by transparency, accountability and safety.">نرتكز في هذا المحور على تطوير وتفعيل معايير جودة الرعاية، ومأسسة سياسات حماية صارمة تضمن بيئة خالية من أي أذى. ويمتد تدخلنا من الارتقاء الفعلي بجودة الرعاية شبه الأسرية داخل الدور، إلى كسب التأييد لتطوير التشريعات الحاكمة، مع إرساء قنوات واضحة للشكاوى ونشر الوعي بها، لبناء منظومة تتسم بالشفافية والمساءلة والأمان.</p></div></div>
+        <button class="pl-toggle" type="button" aria-expanded="false" aria-controls="more-prot"><span class="t-more" data-en="Read more">عرض المزيد</span><span class="t-less" data-en="Show less">عرض أقل</span></button>
+        <ul class="pl-list" aria-label="البرامج" data-en-aria="Programs"><li data-en="Caregivers and Alternative Care Workers Capacity Building Program">برنامج تأهيل العاملين بمجال الرعاية البديلة</li><li data-en="Empowering Care Homes to Provide Semi-Family Care for Children and Youth Without Parental Care">برنامج تمكين دور الأيتام من تقديم رعاية شبه أسرية للأطفال والشباب فاقدي الرعاية الوالدية</li></ul>
+        <div class="pl-foot"><a class="link arw" href="#who" data-en="Learn more">اعرف أكثر</a><a class="pl-give" href="#give" data-give-fund="home" data-en="Support protection">ادعم الحماية</a></div>
+        <div class="wave" aria-hidden="true"><svg viewBox="0 0 800 30" preserveAspectRatio="none"><path class="w2" d="M0 12 Q50 26 100 12 T200 12 T300 12 T400 12 T500 12 T600 12 T700 12 T800 12 V30 H0Z"/><path class="w1" d="M0 16 Q50 4 100 16 T200 16 T300 16 T400 16 T500 16 T600 16 T700 16 T800 16 V30 H0Z"/></svg></div>
+      </article>
+      <article class="pillar pl-emp">
+        <span class="dots" aria-hidden="true"></span>
+        <div class="pl-top"><span class="ic-c"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21v-9"/><path d="M12 12c0-4 3-6 7-6 0 4-3 6-7 6z"/><path d="M12 14c0-3-2.5-5-6-5 0 3 2.5 5 6 5z"/></svg></span><span class="pl-num" aria-hidden="true">03</span></div>
+        <h3 class="bar-h" data-en="Empowerment">التمكين</h3>
+        <p class="pl-lead" data-en="We believe real change requires empowering every part of the system around our children and young people.">نؤمن بأن التغيير الحقيقي يتطلب تمكين المنظومة المحيطة بأطفالنا وشبابنا بكافة أطرافها.</p>
+        <div class="pl-more" id="more-emp"><div><p data-en="That is why we invest heavily in the alternative care workforce, equipping them with the knowledge and tools to raise a psychologically and socially healthy generation. Empowerment extends to the wider community: we work with schools, employers and the private sector so they become active partners offering nurturing environments and equal opportunities. At the heart of it all, we empower children and young people, building their confidence so they go out into society as active, independent citizens who shape their own future.">لذلك نستثمر بقوة في تمكين القوى العاملة في مجال الرعاية البديلة، وتزويدهم بالمعرفة والأدوات لتنشئة جيل سوي نفسيًا واجتماعيًا. ويمتد التمكين للمجتمع الأوسع؛ إذ نعمل مع المدارس وجهات التوظيف والقطاع الخاص ليكونوا شركاء فاعلين يوفّرون بيئات حاضنة وفرصًا متكافئة. وفي قلب هذه المنظومة نوجّه طاقتنا لتمكين الأطفال والشباب وبناء ثقتهم بأنفسهم، ليخرجوا إلى المجتمع مواطنين فاعلين ومستقلين قادرين على تشكيل مستقبلهم.</p></div></div>
+        <button class="pl-toggle" type="button" aria-expanded="false" aria-controls="more-emp"><span class="t-more" data-en="Read more">عرض المزيد</span><span class="t-less" data-en="Show less">عرض أقل</span></button>
+        <ul class="pl-list" aria-label="البرامج" data-en-aria="Programs"><li data-en="Raising Awareness, Advocacy and Support Program">برنامج رفع الوعي وكسب التأييد والمناصرة</li></ul>
+        <div class="pl-foot"><a class="link arw" href="#who" data-en="Learn more">اعرف أكثر</a><a class="pl-give" href="#give" data-give-fund="general" data-en="Support empowerment">ادعم التمكين</a></div>
+        <div class="wave" aria-hidden="true"><svg viewBox="0 0 800 30" preserveAspectRatio="none"><path class="w2" d="M0 12 Q50 26 100 12 T200 12 T300 12 T400 12 T500 12 T600 12 T700 12 T800 12 V30 H0Z"/><path class="w1" d="M0 16 Q50 4 100 16 T200 16 T300 16 T400 16 T500 16 T600 16 T700 16 T800 16 V30 H0Z"/></svg></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Who we strengthen -->
 <section class="section strengthen" id="who" aria-labelledby="who-title">
   <div class="wrap">
     <div class="sec-head">
@@ -654,7 +988,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
         <div class="p-media"><img src="assets/news-graduation-forum.webp" width="1100" height="731" alt="مقدّمو رعاية في حفل تخرّج برنامج تدريب سند" data-en-alt="Caregivers at the graduation of a Sanad training programme" loading="lazy"></div>
         <div class="p-body">
           <span class="p-ring" data-en="Around the child every day">حول الطفل كل يوم</span>
-          <h3 data-en="Caregivers">مقدّمو الرعاية</h3>
+          <h3 class="bar-h" data-en="Caregivers">مقدّمو الرعاية</h3>
           <p data-en="We train the mothers, fathers and staff who raise children in care: safe care, emotional support and each stage of growing up, with a Pearson-accredited certificate.">ندرّب الأمهات والآباء والعاملين الذين يربّون الأطفال في الرعاية: الرعاية الآمنة، والدعم النفسي، وكل مرحلة من مراحل النمو، بشهادة معتمدة من Pearson.</p>
           <div class="p-nums"><div><b data-count>3,283</b><span data-en="caregivers and managers trained">مقدّم رعاية ومدير تم تدريبهم</span></div></div>
           <div class="p-cta"><a class="btn btn-give" href="#give" data-give-fund="home" data-en="Train a caregiver">ادعم تدريب مقدّم رعاية</a></div>
@@ -664,7 +998,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
         <div class="p-media"><img class="poster" src="assets/story-alaa.webp" width="560" height="820" alt="ملصق قصة علاء، أحد شباب سند" data-en-alt="Poster of Alaa, one of Sanad's young people" loading="lazy"></div>
         <div class="p-body">
           <span class="p-ring" data-en="The child, grown up">الطفل حين يكبر</span>
-          <h3 data-en="Young people leaving care">الشباب بعد الرعاية</h3>
+          <h3 class="bar-h" data-en="Young people leaving care">الشباب بعد الرعاية</h3>
           <p data-en="At 18, many leave care with no family and no savings. We prepare them for work and independent life with skills, mentoring and jobs with our partners.">في سن 18 يغادر كثيرون الدار بلا أسرة ولا مدخرات. نؤهّلهم للعمل والحياة المستقلة بالمهارات والإرشاد وفرص العمل مع شركائنا.</p>
           <div class="p-nums"><div><b data-count>5,622</b><span data-en="children and young people reached">طفلًا وشابًا وصلهم الأثر</span></div></div>
           <div class="p-cta"><a class="btn btn-give" href="#give" data-give-fund="youth" data-en="Back a young person">ادعم شابًا يبدأ حياته</a></div>
@@ -674,7 +1008,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
         <div class="p-media art"><img src="assets/art/care-home.webp" width="1100" height="614" alt="رسم لمقدّمة رعاية تقرأ قصة لأطفال في دار رعاية" data-en-alt="Illustration of a caregiver reading to children in a care home" loading="lazy"></div>
         <div class="p-body">
           <span class="p-ring" data-en="The place a child calls home">المكان الذي يسمّيه الطفل بيتًا</span>
-          <h3 data-en="Care homes">دور الرعاية</h3>
+          <h3 class="bar-h" data-en="Care homes">دور الرعاية</h3>
           <p data-en="We put quality standards and child-protection policies in place, so a care home feels safe and close to a family.">نطبّق معايير الجودة وسياسات حماية الطفل، حتى تصبح الدار مكانًا آمنًا قريبًا من الأسرة.</p>
           <div class="p-nums"><div><b data-count>538</b><span data-en="care homes">دار رعاية</span></div></div>
           <div class="p-cta"><a class="btn btn-give" href="#give" data-give-fund="home" data-en="Support a safe home">ادعم دارًا آمنة</a></div>
@@ -684,7 +1018,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
         <div class="p-media art"><img src="assets/art/kafala-family.webp" width="1100" height="614" alt="رسم لأسرة كافلة تمشي مع طفلها إلى بيتها" data-en-alt="Illustration of a kafala family walking their child home" loading="lazy"></div>
         <div class="p-body">
           <span class="p-ring" data-en="A family instead of an institution">أسرة بدل المؤسسة</span>
-          <h3 data-en="Kafala families">أسر الكفالة</h3>
+          <h3 class="bar-h" data-en="Kafala families">أسر الكفالة</h3>
           <p data-en="We prepare families before kafala and follow up after it, so the child settles and never returns to care.">نُعدّ الأسر قبل الكفالة ونتابع الطفل بعدها، حتى يستقر ولا يعود إلى دار الرعاية.</p>
           <div class="p-cta"><a class="btn btn-give" href="#give" data-give-fund="family" data-en="Support a kafala family">ادعم أسرة كافلة</a></div>
         </div>
@@ -693,7 +1027,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
         <div class="p-media art"><img src="assets/art/care-system.webp" width="1100" height="614" alt="رسم لجلسة تدريب لمقدّمي الرعاية والمسؤولين" data-en-alt="Illustration of a training session for caregivers and officials" loading="lazy"></div>
         <div class="p-body">
           <span class="p-ring" data-en="The rules everyone works by">القواعد التي يعمل بها الجميع</span>
-          <h3 data-en="The care system">منظومة الرعاية</h3>
+          <h3 class="bar-h" data-en="The care system">منظومة الرعاية</h3>
           <p data-en="We train Ministry of Social Solidarity teams and work with universities and companies on policy and quality standards.">ندرّب فرق وزارة التضامن الاجتماعي، ونعمل مع الجامعات والشركات على السياسات ومعايير الجودة.</p>
           <div class="p-nums"><div><b data-count>1,385</b><span data-en="ministry staff trained">موظفًا بالوزارة تم تدريبهم</span></div><div><b data-count>1,921</b><span data-en="civil society organisations">منظمة مجتمع مدني</span></div></div>
           <div class="p-cta"><a class="link arw" href="#organisations" data-en="For organisations">للمؤسسات</a></div>
@@ -703,7 +1037,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
   </div>
 </section>
 
-<!-- 4. How your gift travels -->
+<!-- 8. How your gift travels -->
 <section class="section travel" id="how" aria-labelledby="how-title">
   <div class="wrap">
     <div class="sec-head">
@@ -737,12 +1071,20 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
       </div>
       <p data-en="Every hand we train stays with children for years, so your gift keeps working long after you give it.">كل يد ندرّبها تبقى مع الأطفال سنوات، فيظل تبرعك يعمل طويلًا بعد أن تقدّمه.</p>
       <a class="btn btn-give" href="#give" data-en="Multiply your gift">ضاعف أثر تبرعك</a>
-      <span class="mult-foot" data-en="Figures as published on the Sanad website, October 2026 · 538 care homes in 20 governorates">الأرقام كما نشرتها سند على موقعها، أكتوبر 2026 · 538 دار رعاية في 20 محافظة</span>
+      <ul class="impact-grid">
+        <li><b data-count>538</b><span data-en="care homes">دار رعاية</span></li>
+        <li><b data-count>3,490,500</b><span data-en="people reached by awareness">فردًا في المجتمع وصلتهم التوعية</span></li>
+        <li><b data-count>1,385</b><span data-en="Ministry of Social Solidarity staff trained">كادرًا بوزارة التضامن الاجتماعي</span></li>
+        <li><b data-count>1,921</b><span data-en="civil society organisations">منظمة مجتمع مدني</span></li>
+        <li><b data-count>20</b><span data-en="governorates">محافظة</span></li>
+        <li><b><span class="ltr" data-count>18+</span></b><span data-en="years of impact">عامًا من الأثر</span></li>
+      </ul>
+      <span class="mult-foot" data-en="Figures as published on the Sanad website, October 2026">الأرقام كما نشرتها سند على موقعها، أكتوبر 2026</span>
     </div>
   </div>
 </section>
 
-<!-- 5. Stories -->
+<!-- 9. Stories -->
 <section class="section stories" id="stories" aria-labelledby="stories-title">
   <div class="wrap">
     <div class="sec-head">
@@ -780,7 +1122,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
   </div>
 </section>
 
-<!-- 7. Zakat and transparency -->
+<!-- 10. Zakat and transparency -->
 <section class="section" id="zakat" aria-label="الزكاة والشفافية" data-en-aria="Zakat and transparency">
   <div class="wrap zt">
     <div class="panel">
@@ -816,7 +1158,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
   </div>
 </section>
 
-<!-- 8. Other ways to give -->
+<!-- 11. Other ways to give -->
 <section class="section ways" id="ways" aria-labelledby="ways-title">
   <div class="wrap">
     <div class="sec-head">
@@ -826,21 +1168,24 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
     </div>
     <div class="banks">
       <div class="bank">
+        <div class="bank-logo"><img src="assets/banks/cib.webp" width="148" height="64" alt="" loading="lazy"></div>
         <h3 data-en="Commercial International Bank (CIB)">البنك التجاري الدولي (CIB)</h3>
         <span class="lbl" data-en="Account number">رقم الحساب</span>
-        <div class="acct"><code>100035764423</code><button class="copy" type="button" data-copy="100035764423" data-en="Copy">نسخ</button></div>
+        <div class="acct"><code>100035764423</code><button class="copy" type="button" data-copy="100035764423"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg><span data-en="Copy">نسخ</span></button></div>
         <span class="todo">IBAN · SWIFT</span>
       </div>
       <div class="bank">
+        <div class="bank-logo"><img src="assets/banks/united-bank.webp" width="212" height="50" alt="" loading="lazy"></div>
         <h3 data-en="The United Bank">المصرف المتحد</h3>
         <span class="lbl" data-en="Account number">رقم الحساب</span>
-        <div class="acct"><code>605-961-203</code><button class="copy" type="button" data-copy="605961203" data-en="Copy">نسخ</button></div>
+        <div class="acct"><code>605-961-203</code><button class="copy" type="button" data-copy="605961203"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg><span data-en="Copy">نسخ</span></button></div>
         <span class="todo">IBAN · SWIFT</span>
       </div>
       <div class="bank">
+        <div class="bank-logo"><img src="assets/banks/nbe.webp" width="206" height="50" alt="" loading="lazy"></div>
         <h3 data-en="National Bank of Egypt">البنك الأهلي المصري</h3>
         <span class="lbl" data-en="Account number">رقم الحساب</span>
-        <div class="acct"><code>1323070717596601018</code><button class="copy" type="button" data-copy="1323070717596601018" data-en="Copy">نسخ</button></div>
+        <div class="acct"><code>1323070717596601018</code><button class="copy" type="button" data-copy="1323070717596601018"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg><span data-en="Copy">نسخ</span></button></div>
         <span class="todo">IBAN · SWIFT</span>
       </div>
     </div>
@@ -859,34 +1204,48 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
   </div>
 </section>
 
-<!-- 9. Other ways to get involved -->
+<!-- 12. Other ways to get involved -->
 <section class="section" id="organisations" aria-labelledby="org-title">
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow" data-en="Get involved">شارك معنا</span>
-      <h2 id="org-title" data-en="More ways to stand with Sanad">طرق أخرى لتكون سندًا</h2>
+      <h2 id="org-title" data-en="There are many ways to support Sanad">طرق كثيرة لتكون سندًا</h2>
+      <p data-en="Your role in this mission matters.">دورك في هذه الرسالة مهم.</p>
     </div>
     <div class="involve">
-      <div class="inv">
-        <h3 data-en="Volunteer your skills">تطوّع بمهاراتك</h3>
-        <p data-en="Lawyer, designer, trainer or student with passion: we match your skills to our live needs.">محامٍ أو مصمم أو مدرّب أو طالب شغوف: نوفّق بين مهاراتك واحتياجاتنا الفعلية.</p>
-        <a class="link arw" href="#organisations" data-en="Apply to volunteer">قدّم للتطوع</a>
+      <div class="inv i-partner">
+        <span class="ic-c"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M10 21v-4h4v4"/></svg></span>
+        <h3 data-en="Partner with us">شارك مؤسسيًا</h3>
+        <p data-en="Build measurable CSR impact through certified child protection training. We work with corporations, foundations and government.">ابنِ أثرًا اجتماعيًا يمكن قياسه عبر تدريب معتمد على حماية الطفل. نعمل مع الشركات والمؤسسات والجهات الحكومية.</p>
+        <a class="inv-btn arw" href="#organisations" data-en="Explore partnership">استكشف الشراكة</a>
+        <div class="wave" aria-hidden="true"><svg viewBox="0 0 800 30" preserveAspectRatio="none"><path class="w2" d="M0 12 Q50 26 100 12 T200 12 T300 12 T400 12 T500 12 T600 12 T700 12 T800 12 V30 H0Z"/><path class="w1" d="M0 16 Q50 4 100 16 T200 16 T300 16 T400 16 T500 16 T600 16 T700 16 T800 16 V30 H0Z"/></svg></div>
       </div>
-      <div class="inv">
-        <h3 data-en="For companies and organisations">للشركات والمؤسسات</h3>
-        <p data-en="CSR partnerships, donor advisory, certified child-protection training and capacity building for care organisations.">شراكات المسؤولية المجتمعية، واستشارات المانحين، وتدريب معتمد على حماية الطفل، وبناء قدرات مؤسسات الرعاية.</p>
-        <a class="link arw" href="#organisations" data-en="Partnerships and consulting">الشراكات والاستشارات</a>
+      <div class="inv i-serv">
+        <span class="ic-c"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1"/><path d="M9 11h6M9 15h4"/></svg></span>
+        <h3 data-en="Apply for our services">اطلب خدماتنا</h3>
+        <p data-en="Are you a caregiver, guardian or family in need? Explore our support services and apply. We are here to help.">هل أنت مقدّم رعاية أو وليّ أمر أو أسرة تحتاج إلى دعم؟ اكتشف خدماتنا وقدّم طلبك، نحن هنا لمساعدتك.</p>
+        <a class="inv-btn arw" href="#organisations" data-en="Apply now">قدّم الآن</a>
+        <div class="wave" aria-hidden="true"><svg viewBox="0 0 800 30" preserveAspectRatio="none"><path class="w2" d="M0 12 Q50 26 100 12 T200 12 T300 12 T400 12 T500 12 T600 12 T700 12 T800 12 V30 H0Z"/><path class="w1" d="M0 16 Q50 4 100 16 T200 16 T300 16 T400 16 T500 16 T600 16 T700 16 T800 16 V30 H0Z"/></svg></div>
       </div>
-      <div class="inv">
-        <h3 data-en="Ask for our support">اطلب خدماتنا</h3>
-        <p data-en="Are you a caregiver, guardian or family in need? Apply for our support services and we'll get back to you.">هل أنت مقدّم رعاية أو وليّ أمر أو أسرة تحتاج إلى دعم؟ قدّم طلبك وسنتواصل معك.</p>
-        <a class="link arw" href="#organisations" data-en="Apply now">قدّم الآن</a>
+      <div class="inv i-give">
+        <span class="ic-c"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span>
+        <h3 data-en="Donate">تبرّع</h3>
+        <p data-en="Your Zakat, Sadaqah or general gift funds programs that reach children through the people who care for them. Every pound makes a measurable difference.">زكاتك أو صدقتك أو تبرعك العام يموّل برامج تصل إلى الأطفال عبر من يرعونهم. كل جنيه يُحدث فرقًا ملموسًا.</p>
+        <a class="inv-btn arw" href="#give" data-give-fund="general" data-en="Donate now">تبرّع الآن</a>
+        <div class="wave" aria-hidden="true"><svg viewBox="0 0 800 30" preserveAspectRatio="none"><path class="w2" d="M0 12 Q50 26 100 12 T200 12 T300 12 T400 12 T500 12 T600 12 T700 12 T800 12 V30 H0Z"/><path class="w1" d="M0 16 Q50 4 100 16 T200 16 T300 16 T400 16 T500 16 T600 16 T700 16 T800 16 V30 H0Z"/></svg></div>
+      </div>
+      <div class="inv i-vol">
+        <span class="ic-c"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3"/><path d="M3 20a6 6 0 0 1 12 0"/><path d="M17 4l1.3 2.6 2.7.4-2 1.9.5 2.7-2.5-1.3-2.5 1.3.5-2.7-2-1.9 2.7-.4z"/></svg></span>
+        <h3 data-en="Volunteer">تطوّع</h3>
+        <p data-en="Share your expertise, whether you're a lawyer, designer, trainer or student with passion. We match your skills to our live needs.">شارك بخبرتك، سواء كنت محاميًا أو مصممًا أو مدربًا أو طالبًا شغوفًا. نوفّق بين مهاراتك واحتياجاتنا الفعلية.</p>
+        <a class="inv-btn arw" href="#organisations" data-en="Apply to volunteer">سجّل للتطوع</a>
+        <div class="wave" aria-hidden="true"><svg viewBox="0 0 800 30" preserveAspectRatio="none"><path class="w2" d="M0 12 Q50 26 100 12 T200 12 T300 12 T400 12 T500 12 T600 12 T700 12 T800 12 V30 H0Z"/><path class="w1" d="M0 16 Q50 4 100 16 T200 16 T300 16 T400 16 T500 16 T600 16 T700 16 T800 16 V30 H0Z"/></svg></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 10. News -->
+<!-- 13. News -->
 <section class="section" style="padding-top:0" aria-labelledby="news-title">
   <div class="wrap">
     <div class="head-split">
@@ -898,17 +1257,17 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
     </div>
     <div class="news">
       <a href="#news-title">
-        <img src="assets/news-graduation-forum.webp" width="1100" height="731" alt="" loading="lazy">
+        <span class="n-img"><img src="assets/news-graduation-forum.webp" width="1100" height="731" alt="" loading="lazy"></span>
         <div><time datetime="2026-10" data-en="October 2026">أكتوبر 2026</time>
         <h3 data-en="Sanad holds a graduation and recruitment forum for practitioners, with the Ministry of Social Solidarity, universities and the private sector">سند تنظّم ملتقى التخرج والتوظيف للممارسين، بالتعاون مع وزارة التضامن الاجتماعي والجامعات والقطاع الخاص</h3></div>
       </a>
       <a href="#news-title">
-        <img src="assets/news-princess-taghrid.webp" width="900" height="535" alt="" loading="lazy">
+        <span class="n-img"><img src="assets/news-princess-taghrid.webp" width="900" height="535" alt="" loading="lazy"></span>
         <div><time datetime="2026-10" data-en="October 2026">أكتوبر 2026</time>
         <h3 data-en="Sanad and the Princess Taghrid Foundation: a regional partnership to develop alternative parental care">سند ومؤسسة الأميرة تغريد للتنمية والتدريب: شراكة إقليمية لتطوير منظومة الرعاية الوالدية البديلة</h3></div>
       </a>
       <a href="#news-title">
-        <img src="assets/news-edbe-partnership.webp" width="900" height="535" alt="" loading="lazy">
+        <span class="n-img"><img src="assets/news-edbe-partnership.webp" width="900" height="535" alt="" loading="lazy"></span>
         <div><time datetime="2026-09" data-en="September 2026">سبتمبر 2026</time>
         <h3 data-en="A renewed partnership and lasting impact with the Export Development Bank of Egypt">شراكة متجددة وأثر مستدام مع البنك المصري لتنمية الصادرات</h3></div>
       </a>
@@ -982,6 +1341,14 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
   </div>
 </footer>
 
+<dialog class="film-modal" id="film-modal" aria-labelledby="fm-title">
+  <div class="fm-box">
+    <div class="fm-top"><h2 id="fm-title" data-en="What does Sanad mean?">يعني إيه سند؟</h2><button class="fm-close" type="button" data-film-close aria-label="إغلاق الفيلم" data-en-aria="Close the film"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="film-player"></div>
+    <div class="fm-foot"><a class="link arw" href="https://www.youtube.com/watch?v=lNpo7sIex6s" target="_blank" rel="noopener" data-en="Watch on YouTube">شاهد على YouTube</a><a class="btn btn-give" href="#give" data-film-close data-give-fund="general" data-en="Be a Sanad today">كن سندًا الآن</a></div>
+  </div>
+</dialog>
+
 <div class="sticky-give" id="sticky" aria-hidden="true">
   <a class="btn btn-give" href="#give" tabindex="-1" data-en="Donate now">تبرّع الآن</a>
   <a class="btn btn-ghost" href="#give" tabindex="-1" data-give-type="zakat" data-en="Zakat">زكاة</a>
@@ -1023,7 +1390,8 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
       zBelow: "مالك أقل من النصاب، فلا تجب عليه الزكاة.",
       zNoNisab: "أدخل قيمة النصاب للتأكد من وجوب الزكاة.",
       zDue: "2.5% من صافي مالك الخاضع للزكاة.",
-      waText: "مرحبًا، قمت بتحويل تبرع إلى حساب سند وأرفق صورة الإيصال."
+      waText: "مرحبًا، قمت بتحويل تبرع إلى حساب سند وأرفق صورة الإيصال.",
+      filmTitle: "يعني إيه سند؟"
     },
     en: {
       title: "Sanad for Alternative Parental Care",
@@ -1050,7 +1418,8 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
       zBelow: "Your wealth is below the nisab, so no Zakat is due.",
       zNoNisab: "Enter the nisab value to check whether Zakat is due.",
       zDue: "2.5% of your net zakatable wealth.",
-      waText: "Hello, I transferred a donation to Sanad's account and am attaching the receipt."
+      waText: "Hello, I transferred a donation to Sanad's account and am attaching the receipt.",
+      filmTitle: "What does Sanad mean?"
     }
   };
   var T = function () { return TEXT[lang]; };
@@ -1282,6 +1651,50 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
     if (e.target.closest("[data-copy-link]")) copyText(location.href.split("#")[0], null);
   });
 
+  // ---------- the film: nothing loads from YouTube until the visitor presses play ----------
+  var filmDlg = document.getElementById("film-modal"), filmBox = filmDlg.querySelector(".film-player"), filmOpener = null;
+  function openFilm(btn) {
+    filmOpener = btn;
+    var f = document.createElement("iframe");
+    f.src = "https://www.youtube-nocookie.com/embed/lNpo7sIex6s?autoplay=1&rel=0&playsinline=1&hl=" + lang;
+    f.title = T().filmTitle;
+    f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+    f.allowFullscreen = true;
+    filmBox.appendChild(f);
+    if (filmDlg.showModal) filmDlg.showModal(); else filmDlg.setAttribute("open", "");
+  }
+  function closeFilm() { if (filmDlg.close) filmDlg.close(); else { filmDlg.removeAttribute("open"); filmDlg.dispatchEvent(new Event("close")); } }
+  filmDlg.addEventListener("close", function () {
+    filmBox.innerHTML = "";
+    if (filmOpener) filmOpener.focus({ preventScroll: true });
+  });
+  filmDlg.addEventListener("click", function (e) {
+    if (e.target === filmDlg || e.target.closest("[data-film-close]")) {
+      if (e.target.closest("[data-give-fund]")) filmOpener = null;
+      closeFilm();
+    }
+  });
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-film]");
+    if (b) { e.preventDefault(); openFilm(b); }
+  });
+
+  // ---------- what we do: read more ----------
+  document.querySelectorAll(".pl-toggle").forEach(function (b) {
+    b.addEventListener("click", function () {
+      var open = b.getAttribute("aria-expanded") !== "true";
+      b.setAttribute("aria-expanded", String(open));
+      document.getElementById(b.getAttribute("aria-controls")).classList.toggle("open", open);
+    });
+  });
+
+  // ---------- partner logos: hover pauses, and a button pauses for good ----------
+  var marquee = document.querySelector(".marquee"), mqBtn = document.getElementById("mq-toggle");
+  mqBtn.addEventListener("click", function () {
+    var paused = marquee.classList.toggle("paused");
+    mqBtn.setAttribute("aria-pressed", String(paused));
+  });
+
   // ---------- newsletter ----------
   document.getElementById("newsletter").addEventListener("submit", function (e) {
     e.preventDefault();
@@ -1379,7 +1792,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
   }
 
   // ---------- page-wide reveals and counters ----------
-  var revealSel = ".sec-head, .trust li, .p-card, .route-steps li, .multiply, .story, .panel, .bank, .way, .inv, .news a, .head-split > a";
+  var revealSel = ".sec-head, .trust li, .p-count, .zoom, .ch-list li, .ch-approach, .film-cta, .pillar, .p-card, .route-steps li, .multiply, .impact-grid li, .story, .panel, .bank, .way, .inv, .news a, .head-split > a";
   document.querySelectorAll(revealSel).forEach(function (el) {
     if (el.closest(".hero")) return;
     el.setAttribute("data-reveal", "");
@@ -1387,11 +1800,15 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
     el.style.setProperty("--d", (Math.max(0, sibs.indexOf(el)) * .09).toFixed(2) + "s");
   });
   var counters = document.querySelectorAll("[data-count]");
+  // counts up to the number as written, keeping its decimals and any suffix such as "+"
   function countUp(el) {
-    var end = parseInt(el.textContent.replace(/[^\d]/g, ""), 10), t0 = performance.now();
+    var m = el.textContent.trim().match(/^([\d,]+(?:\.\d+)?)(.*)$/);
+    if (!m) return;
+    var end = parseFloat(m[1].replace(/,/g, "")), dec = (m[1].split(".")[1] || "").length, t0 = performance.now();
+    var opt = { minimumFractionDigits: dec, maximumFractionDigits: dec };
     (function step(now) {
       var k = clamp((now - t0) / 1600), e = 1 - Math.pow(1 - k, 3);
-      el.textContent = fmt(Math.round(end * e));
+      el.textContent = (end * e).toLocaleString("en-US", opt) + m[2];
       if (k < 1) requestAnimationFrame(step);
     })(t0);
   }
@@ -1422,7 +1839,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
   }
 
   // ---------- scroll: hero depth, the route, and the sticky mobile donate bar ----------
-  var sticky = document.getElementById("sticky");
+  var sticky = document.getElementById("sticky"), filmFrame = document.querySelector(".film-frame");
   function onScroll() {
     var vh = innerHeight, headH = head.offsetHeight;
     root.style.setProperty("--head-h", headH + "px");
@@ -1430,6 +1847,9 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
       var hb = hero.getBoundingClientRect();
       if (hb.bottom > 0) care.querySelector(".care-stage").style.setProperty("--hs", clamp(-hb.top / (hb.height * .9)).toFixed(3));
       sail();
+      // the film grows to full size and its poster settles as it scrolls into view
+      var fr = filmFrame.getBoundingClientRect();
+      if (fr.top < vh && fr.bottom > 0) filmFrame.style.setProperty("--fp", clamp((vh - fr.top) / (vh * .75)).toFixed(3));
     }
     // shown whenever the form is out of view, once the visitor has started scrolling
     var cr = card.getBoundingClientRect();
