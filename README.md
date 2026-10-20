@@ -19,7 +19,7 @@ The page is built around one idea: Sanad doesn't care for orphans directly, it s
 
 - **Hero**: the headline, Sanad's film «يعني إيه سند؟» and the donation form. The film's poster wipes in, slowly zooms, and plays in a dialog. Nothing loads from YouTube (youtube-nocookie.com) until the visitor presses play, and closing the dialog stops the film. This is the only place the film appears.
 - **Donation form**: the same four purposes as the current site's form (تنمية الأطفال، تمكين الشباب، تدريب مقدمي الرعاية، تبرع عام). It also uses the current site's amounts and captions: 150 for school supplies, 500 for psychosocial support and 1,000 for caregiver training.
-- **Trusted partners**: 69 partner logos from the current site, in colour, in two rows that drift in opposite directions. Hovering pauses them, and a button stops them for good.
+- **Trusted partners**: 69 partner logos from the current site, in colour, in two rows that drift in opposite directions. Hovering pauses them.
 - **The challenge**: 140 million children without parental care worldwide, 35 million in Africa and 1.4 million orphans in Egypt, with their sources. Each figure has a bar drawn to scale, set over a photo.
 - **What we do**: the three pillars (prevention, protection, empowerment) with their programs, a "read more" panel and a give link for each.
 - **Who we strengthen**: opens with Sanad's own "نهجنا: التغيير المنظومي" text, then shows the five groups Sanad works with. Each card gives the group, the pillar its program belongs to, a description drawn from Sanad's pillar texts and the program name from the current site. The cards carry no figures, because Sanad doesn't publish one for every group. All eight published figures appear in the impact panel under the cards.

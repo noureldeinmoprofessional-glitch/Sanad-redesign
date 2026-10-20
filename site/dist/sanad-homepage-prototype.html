@@ -416,10 +416,6 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 .p-count { display: flex; align-items: center; gap: 14px; }
 .p-count b { font-size: clamp(2.6rem, 5vw, 3.6rem); line-height: 1; color: var(--teal-deep); font-variant-numeric: tabular-nums; }
 .p-count > span { font-weight: 700; color: var(--muted); line-height: 1.45; max-width: 12em; }
-.mq-toggle { background: var(--white); border: 1.5px solid var(--line); border-radius: 999px; min-height: 40px; padding: 4px 16px; font-weight: 700; font-size: .88rem; cursor: pointer; }
-.mq-toggle:hover { border-color: var(--teal); }
-.mq-toggle .t-play, .mq-toggle[aria-pressed="true"] .t-pause { display: none; }
-.mq-toggle[aria-pressed="true"] .t-play { display: inline; }
 .marquee { direction: ltr; display: flex; flex-direction: column; gap: 14px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
 .m-row { display: flex; width: max-content; }
 .m-set { list-style: none; margin: 0; padding: 0 14px 0 0; display: flex; gap: 14px; }
@@ -429,12 +425,12 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 .logo:hover img { transform: scale(1.06); }
 .anim .m-row { animation: marquee 90s linear infinite; }
 .anim .m-row.rev { animation-duration: 105s; animation-direction: reverse; }
-.marquee:hover .m-row, .marquee.paused .m-row { animation-play-state: paused; }
+.marquee:hover .m-row { animation-play-state: paused; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 html:not(.anim) .marquee { -webkit-mask-image: none; mask-image: none; }
 html:not(.anim) .m-row { width: auto; }
 html:not(.anim) .m-set { flex-wrap: wrap; justify-content: center; padding: 0; }
-html:not(.anim) .m-set[aria-hidden], html:not(.anim) .mq-toggle { display: none; }
+html:not(.anim) .m-set[aria-hidden] { display: none; }
 @media (max-width: 620px) { .logo { height: 72px; min-width: 112px; padding: 8px 16px; } .logo img { transform: scale(.85); } .logo:hover img { transform: scale(.9); } }
 
 /* the challenge */
@@ -734,7 +730,6 @@ html:not(.anim) .m-set[aria-hidden], html:not(.anim) .mq-toggle { display: none;
         <p data-en="From the Ministry of Social Solidarity, UNICEF, UNFPA and SOS Children's Villages to Pearson, the American University in Cairo and the private sector.">من وزارة التضامن الاجتماعي واليونيسف وصندوق الأمم المتحدة للسكان وقرى الأطفال SOS، إلى Pearson والجامعة الأمريكية بالقاهرة والقطاع الخاص.</p>
       </div>
       <div class="p-count"><b data-count>69</b><span data-en="partners who work with Sanad">شريكًا يعملون مع سند</span></div>
-      <button class="mq-toggle" type="button" id="mq-toggle" aria-pressed="false"><span class="t-pause" data-en="Pause logos">أوقف الحركة</span><span class="t-play" data-en="Play logos">شغّل الحركة</span></button>
     </div>
   </div>
   <div class="marquee" role="region" aria-label="شعارات الشركاء" data-en-aria="Partner logos">
@@ -1444,13 +1439,6 @@ html:not(.anim) .m-set[aria-hidden], html:not(.anim) .mq-toggle { display: none;
       b.setAttribute("aria-expanded", String(open));
       document.getElementById(b.getAttribute("aria-controls")).classList.toggle("open", open);
     });
-  });
-
-  // ---------- partner logos: hover pauses, and a button pauses for good ----------
-  var marquee = document.querySelector(".marquee"), mqBtn = document.getElementById("mq-toggle");
-  mqBtn.addEventListener("click", function () {
-    var paused = marquee.classList.toggle("paused");
-    mqBtn.setAttribute("aria-pressed", String(paused));
   });
 
   // ---------- newsletter ----------
