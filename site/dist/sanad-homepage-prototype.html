@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=Cairo:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@600;700;800&family=Roboto:wght@500;700;800&display=swap">
 <style>
 /* Sanad homepage. Brand palette sampled from the live site; deeper teal and coral carry white text at WCAG AA. Coral is reserved for donate actions. */
 :root {
@@ -31,6 +31,8 @@
   --ok: #17704a;
   --err: #b3262d;
   --font: "Cairo", "Segoe UI", Tahoma, system-ui, sans-serif;
+  /* Roboto has no Arabic glyphs, so Arabic letters in headlines fall through to Noto Sans Arabic, the Arabic face designed to pair with Roboto */
+  --font-head: "Roboto", "Noto Sans Arabic", "Cairo", "Segoe UI", system-ui, sans-serif;
   --radius: 14px;
   --shadow: 0 18px 40px -18px rgba(15, 34, 51, .35);
   color-scheme: light;
@@ -42,7 +44,8 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--white); color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.75; }
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--teal-deep); }
-h1, h2, h3, h4 { margin: 0; line-height: 1.35; text-wrap: balance; font-weight: 800; }
+h1, h2, h3, h4 { margin: 0; line-height: 1.35; text-wrap: balance; font-weight: 800; font-family: var(--font-head); }
+.story blockquote, .hf-cap b { font-family: var(--font-head); }
 p { margin: 0; }
 button, input, select { font: inherit; color: inherit; }
 :focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; border-radius: 6px; }
@@ -244,26 +247,8 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 @media (max-width: 960px) { .ppl { grid-template-columns: 1fr 1fr; } .p-card, .p-card.big { grid-column: span 1; } .p-card.wide-sm { grid-column: span 2; } }
 @media (max-width: 620px) { .ppl { grid-template-columns: 1fr; } .p-card.wide-sm { grid-column: span 1; } }
 
-/* how your gift travels */
-.travel { background: var(--mist); }
-.route { position: relative; }
-.route-track { position: relative; height: 70px; margin-bottom: 8px; }
-.route-track svg.line { position: absolute; inset: 0; width: 100%; height: 100%; }
-.route-boat { position: absolute; top: 2px; inset-inline-start: 0; width: 66px; transform: translateX(var(--bx, 0px)) translateY(var(--by, 0px)) rotate(var(--br, 0deg)); }
-.route-steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
-.route-steps li { position: relative; isolation: isolate; overflow: hidden; background: var(--white); border: 1px solid var(--line); border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 8px; transition: border-color .5s, box-shadow .5s, transform .5s; }
-.route-steps li::after { content: ""; position: absolute; z-index: -1; top: 14px; inset-inline-end: 14px; width: 84px; height: 60px; background-image: radial-gradient(var(--sc) 1.5px, transparent 1.8px); background-size: 12px 12px; opacity: .22; -webkit-mask-image: linear-gradient(135deg, #000 25%, transparent 85%); mask-image: linear-gradient(135deg, #000 25%, transparent 85%); }
-.route-steps li.on { border-color: var(--sc); box-shadow: 0 18px 36px -26px rgba(15, 34, 51, .5); transform: translateY(-3px); }
-.route-steps .n { position: relative; width: 46px; height: 46px; margin: 4px; border-radius: 50%; display: grid; place-items: center; font-weight: 800; font-size: 1.1rem; background: var(--sc); color: var(--white); }
-.route-steps .n::after { content: ""; position: absolute; inset: -6px; border-radius: 50%; border: 2px dashed var(--sc); opacity: .4; transition: transform 1s cubic-bezier(.16, 1, .3, 1); }
-.route-steps li.on .n::after { transform: rotate(140deg); }
-.route-steps li:nth-child(1) { --sc: var(--give); }
-.route-steps li:nth-child(2) { --sc: var(--teal-deep); }
-.route-steps li:nth-child(3) { --sc: #b07a00; }
-.route-steps li:nth-child(4) { --sc: var(--teal-ink); }
-.route-steps h3 { font-size: 1.12rem; }
-.route-steps p { color: var(--muted); font-size: .96rem; }
-.multiply { position: relative; isolation: isolate; overflow: hidden; margin-top: 28px; border-radius: 24px; background: var(--navy); color: var(--white); padding: 34px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px 32px; align-items: center; scroll-margin-top: 96px; }
+/* impact figures */
+.multiply { position: relative; isolation: isolate; overflow: hidden; margin-top: 40px; border-radius: 24px; background: var(--navy); color: var(--white); padding: 34px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px 32px; align-items: center; scroll-margin-top: 96px; }
 .multiply .ripple { position: absolute; inset-inline-start: 18%; top: 50%; width: 120px; aspect-ratio: 1; border-radius: 50%; border: 2px solid rgba(54, 192, 202, .5); transform: translate(-50%, -50%); z-index: -1; animation: ripple 4.5s cubic-bezier(.2, .6, .3, 1) infinite; }
 .multiply .ripple:nth-child(2) { animation-delay: 1.5s; }
 .multiply .ripple:nth-child(3) { animation-delay: 3s; }
@@ -273,13 +258,10 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 .mult-nums b { font-size: clamp(2.2rem, 5vw, 3.4rem); line-height: 1.1; font-variant-numeric: tabular-nums; color: var(--teal); }
 .mult-nums div:last-child b { color: var(--amber); }
 .mult-nums span { color: #cfe0e8; font-weight: 600; }
-.mult-nums .to { font-size: 2rem; color: #9fb7c3; }
 .multiply p { color: #cfe0e8; grid-column: 1; }
 .multiply .btn { grid-column: 2; grid-row: 1 / span 2; }
 .mult-foot { grid-column: 1 / -1; font-size: .85rem; color: #93abb8; }
 @media (max-width: 860px) {
-  .route-track { display: none; }
-  .route-steps { grid-template-columns: 1fr; }
   .multiply { grid-template-columns: 1fr; padding: 26px; }
   .multiply .btn { grid-column: 1; grid-row: auto; justify-self: start; }
 }
@@ -566,8 +548,7 @@ html:not(.anim) .m-set[aria-hidden], html:not(.anim) .mq-toggle { display: none;
     <nav class="nav" aria-label="القائمة الرئيسية" data-en-aria="Main menu">
       <a href="#what" data-en="What we do">ماذا نفعل</a>
       <a href="#who" data-en="Who we strengthen">من نُقوّي</a>
-      <a href="#how" data-en="Our approach">نهجنا</a>
-      <a href="#impact" data-en="Our impact">أثرنا</a>
+            <a href="#impact" data-en="Our impact">أثرنا</a>
       <a href="#stories" data-en="Stories">قصص</a>
       <a href="#organisations" data-en="For organisations">للمؤسسات</a>
     </nav>
@@ -582,8 +563,7 @@ html:not(.anim) .m-set[aria-hidden], html:not(.anim) .mq-toggle { display: none;
   <div class="drawer wrap" id="drawer" hidden>
     <a href="#what" data-en="What we do">ماذا نفعل</a>
     <a href="#who" data-en="Who we strengthen">من نُقوّي</a>
-    <a href="#how" data-en="Our approach">نهجنا</a>
-    <a href="#impact" data-en="Our impact">أثرنا</a>
+        <a href="#impact" data-en="Our impact">أثرنا</a>
     <a href="#stories" data-en="Stories">قصص</a>
     <a href="#organisations" data-en="For organisations">للمؤسسات</a>
     <button class="lang" type="button" data-lang-toggle lang="en">English</button>
@@ -828,13 +808,13 @@ html:not(.anim) .m-set[aria-hidden], html:not(.anim) .mq-toggle { display: none;
   </div>
 </section>
 
-<!-- 7. Who we strengthen -->
+<!-- 7. Who we strengthen, our approach and impact -->
 <section class="section strengthen" id="who" aria-labelledby="who-title">
   <div class="wrap">
     <div class="sec-head">
       <span class="eyebrow" data-en="Who we strengthen">من نُقوّي</span>
       <h2 id="who-title" data-en="We don't run care homes. We strengthen everyone around the child.">لا ندير دور رعاية. نحن نقوّي كل من يحيط بالطفل.</h2>
-      <p data-en="Sanad means presence: with knowledge, action and an unwavering promise. We work across 20 governorates to transform alternative parental care in Egypt and the MENA region.">سند تعني الحضور: بالمعرفة والعمل والوعد الثابت. نعمل في 20 محافظة لتحويل منظومة الرعاية الوالدية البديلة في مصر ومنطقة الشرق الأوسط وشمال أفريقيا.</p>
+      <p data-en="Our approach is systemic change. We don't just support children: we transform the whole alternative care system, developing care homes, empowering caregivers, supporting kafala and preparing young people for independent life.">نهجنا هو التغيير المنظومي: لا نكتفي بدعم الأطفال، بل نحوّل منظومة الرعاية البديلة بالكامل، فنطوّر دور الرعاية، ونمكّن مقدّمي الرعاية، وندعم الكفالة، ونؤهّل الشباب للحياة المستقلة.</p>
     </div>
     <div class="ppl">
       <article class="p-card big c-care pil-prot">
@@ -888,34 +868,6 @@ html:not(.anim) .m-set[aria-hidden], html:not(.anim) .mq-toggle { display: none;
         </div>
       </article>
     </div>
-  </div>
-</section>
-
-<!-- 8. How your gift travels -->
-<section class="section travel" id="how" aria-labelledby="how-title">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow" data-en="Our approach: systemic change">نهجنا: التغيير المنظومي</span>
-      <h2 id="how-title" data-en="We don't just support children. We transform the whole alternative care system.">لا نكتفي بدعم الأطفال، بل نحوّل منظومة الرعاية البديلة بالكامل</h2>
-    </div>
-    <div class="route" id="route">
-      <div class="route-track" aria-hidden="true">
-        <svg class="line" viewBox="0 0 1200 70" preserveAspectRatio="none"><path d="M0 48 C150 18 300 62 450 40 S750 18 900 42 S1100 60 1200 36" fill="none" stroke="#1a7f80" stroke-width="2.5" stroke-dasharray="2 10" stroke-linecap="round"/></svg>
-        <svg class="route-boat" viewBox="0 0 80 60">
-          <path d="M39 6 L39 40" stroke="#0f2233" stroke-width="2"/>
-          <path d="M39 6 L52 10 L39 14Z" fill="#e8724a"/>
-          <path d="M37 16 L37 40 L18 40Z" fill="#0f2233"/>
-          <path d="M41 18 L41 40 L60 40Z" fill="#f2b025"/>
-          <path d="M8 42 L72 42 L62 54 L18 54Z" fill="#36c0ca"/>
-        </svg>
-      </div>
-      <ol class="route-steps">
-        <li><span class="n">1</span><h3 data-en="Developing care homes">تطوير دور الرعاية</h3><p data-en="Raising the quality of semi-family care inside care homes, with quality standards and safeguarding policies.">الارتقاء بجودة الرعاية شبه الأسرية داخل الدور، بمعايير جودة وسياسات حماية واضحة.</p></li>
-        <li><span class="n">2</span><h3 data-en="Empowering caregivers">تمكين مقدّمي الرعاية</h3><p data-en="Equipping the alternative care workforce with the knowledge and tools to raise a psychologically and socially healthy generation.">تزويد العاملين في الرعاية البديلة بالمعرفة والأدوات لتنشئة جيل سوي نفسيًا واجتماعيًا.</p></li>
-        <li><span class="n">3</span><h3 data-en="Supporting kafala">تيسير الكفالة</h3><p data-en="Preparing families applying for kafala with knowledge and psychological readiness, and following up so the child stays stable.">تهيئة الأسر المتقدمة للكفالة بالمعارف والتهيئة النفسية، ومتابعة تضمن استقرار الطفل.</p></li>
-        <li><span class="n">4</span><h3 data-en="Preparing youth for independent life">تأهيل الشباب للحياة المستقلة</h3><p data-en="Safety nets and empowerment for care leavers, so they build stable families and shape their own future.">شبكات أمان وتمكين لشباب خريجي الرعاية، ليؤسسوا أسرًا مستقرة ويشكّلوا مستقبلهم.</p></li>
-      </ol>
-    </div>
     <div class="multiply" id="impact">
       <span class="ripple" aria-hidden="true"></span><span class="ripple" aria-hidden="true"></span><span class="ripple" aria-hidden="true"></span>
       <div class="mult-nums">
@@ -937,7 +889,7 @@ html:not(.anim) .m-set[aria-hidden], html:not(.anim) .mq-toggle { display: none;
   </div>
 </section>
 
-<!-- 9. Stories -->
+<!-- 8. Stories -->
 <section class="section stories" id="stories" aria-labelledby="stories-title">
   <div class="wrap">
     <div class="st-head">
@@ -1009,7 +961,7 @@ html:not(.anim) .m-set[aria-hidden], html:not(.anim) .mq-toggle { display: none;
   </div>
 </section>
 
-<!-- 11. Other ways to give -->
+<!-- 9. Other ways to give -->
 <section class="section ways" id="ways" aria-labelledby="ways-title">
   <div class="wrap">
     <div class="sec-head">
@@ -1052,7 +1004,7 @@ html:not(.anim) .m-set[aria-hidden], html:not(.anim) .mq-toggle { display: none;
   </div>
 </section>
 
-<!-- 12. Other ways to get involved -->
+<!-- 10. Other ways to get involved -->
 <section class="section" id="organisations" aria-labelledby="org-title">
   <div class="wrap">
     <div class="sec-head">
@@ -1093,7 +1045,7 @@ html:not(.anim) .m-set[aria-hidden], html:not(.anim) .mq-toggle { display: none;
   </div>
 </section>
 
-<!-- 13. News -->
+<!-- 11. News -->
 <section class="section" style="padding-top:0" aria-labelledby="news-title">
   <div class="wrap">
     <div class="head-split">
@@ -1535,7 +1487,7 @@ html:not(.anim) .m-set[aria-hidden], html:not(.anim) .mq-toggle { display: none;
   }
 
   // ---------- page-wide reveals and counters ----------
-  var revealSel = ".sec-head, .trust li, .p-count, .ch-stats li, .ch-note, .pillar, .p-card, .route-steps li, .multiply, .impact-grid li, .st-picker button, .bank, .way, .inv, .news a, .head-split > a";
+  var revealSel = ".sec-head, .trust li, .p-count, .ch-stats li, .ch-note, .pillar, .p-card, .multiply, .impact-grid li, .st-picker button, .bank, .way, .inv, .news a, .head-split > a";
   document.querySelectorAll(revealSel).forEach(function (el) {
     if (el.closest(".hero")) return;
     el.setAttribute("data-reveal", "");
@@ -1569,26 +1521,11 @@ html:not(.anim) .m-set[aria-hidden], html:not(.anim) .mq-toggle { display: none;
     document.querySelectorAll("[data-reveal]").forEach(function (el) { el.classList.add("in"); });
   }
 
-  // ---------- the boat sails the route as the section scrolls past ----------
-  var route = document.getElementById("route"), routeBoat = route.querySelector(".route-boat"), steps = route.querySelectorAll(".route-steps li");
-  function sail() {
-    var r = route.getBoundingClientRect(), vh = innerHeight;
-    var p = clamp((vh * .85 - r.top) / (r.height + vh * .35));
-    var travel = route.clientWidth - routeBoat.getBoundingClientRect().width;
-    route.style.setProperty("--bx", (p * travel * (root.dir === "rtl" ? -1 : 1)).toFixed(1) + "px");
-    route.style.setProperty("--by", (Math.sin(p * 14) * 6).toFixed(1) + "px");
-    route.style.setProperty("--br", (Math.sin(p * 14 + 1) * 5).toFixed(1) + "deg");
-    steps.forEach(function (li, i) { li.classList.toggle("on", p > (i + .35) / steps.length); });
-  }
-
-  // ---------- scroll: hero depth, the route, and the sticky mobile donate bar ----------
+  // ---------- scroll: the sticky mobile donate bar ----------
   var sticky = document.getElementById("sticky");
   function onScroll() {
     var vh = innerHeight, headH = head.offsetHeight;
     root.style.setProperty("--head-h", headH + "px");
-    if (!still) {
-      sail();
-    }
     // shown whenever the form is out of view, once the visitor has started scrolling
     var cr = card.getBoundingClientRect();
     var off = scrollY > 120 && (cr.bottom < headH || cr.top > vh);

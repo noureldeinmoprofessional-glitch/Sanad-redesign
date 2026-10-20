@@ -12,7 +12,7 @@ Open the HTML file in a browser to read it.
 
 ## Homepage prototype
 
-- `site/index.html` is the redesigned homepage, built from the research wireframe. It is Arabic first, with an English toggle (or `?lang=en`), and uses Sanad's Cairo font, brand palette, figures, stories and bank details from the current site.
+- `site/index.html` is the redesigned homepage, built from the research wireframe. It is Arabic first, with an English toggle (or `?lang=en`), uses Cairo for body text and Roboto with Noto Sans Arabic for headlines (Roboto has no Arabic letters, so Arabic headline text uses Noto Sans Arabic, the Arabic face designed to pair with Roboto), and uses brand palette, figures, stories and bank details from the current site.
 - `site/dist/sanad-homepage-prototype.html` is the same page as one self-contained file for sharing. Rebuild it with `python3 site/build.py` after editing `index.html`.
 
 The page is built around one idea: Sanad doesn't care for orphans directly, it strengthens the people who do («نكون سندًا لمن يكونون سندًا لهم»). It has no religious framing: gifts are monthly or one-time, with no Zakat or Sadaqah choice.
@@ -22,8 +22,7 @@ The page is built around one idea: Sanad doesn't care for orphans directly, it s
 - **Trusted partners**: 69 partner logos from the current site, in colour, in two rows that drift in opposite directions. Hovering pauses them, and a button stops them for good.
 - **The challenge**: 140 million children without parental care worldwide, 35 million in Africa and 1.4 million orphans in Egypt, with their sources. Each figure has a bar drawn to scale, set over a photo.
 - **What we do**: the three pillars (prevention, protection, empowerment) with their programs, a "read more" panel and a give link for each.
-- **Who we strengthen**: the five groups Sanad works with. Each card gives the group, the pillar its program belongs to, a description drawn from Sanad's pillar texts and the program name from the current site. The cards carry no figures, because Sanad doesn't publish one for every group. All eight published figures appear under "Our approach".
-- **Our approach**: four steps taken from Sanad's own "نهجنا: التغيير المنظومي" text and pillar descriptions, followed by every impact figure from the current site.
+- **Who we strengthen**: opens with Sanad's own "نهجنا: التغيير المنظومي" text, then shows the five groups Sanad works with. Each card gives the group, the pillar its program belongs to, a description drawn from Sanad's pillar texts and the program name from the current site. The cards carry no figures, because Sanad doesn't publish one for every group. All eight published figures appear in the impact panel under the cards.
 - **Stories**: all four stories from the current site (Raniah, Wageeh, Sahar and Alaa), each with its Arabic or English poster, quote and hashtags. Visitors move between them with a picker or arrows.
 - **Get involved**: four colour cards.
 - **Bank transfer**: each bank card shows that bank's logo.
