@@ -22,7 +22,7 @@ The page is built around one idea: Sanad doesn't care for orphans directly, it s
 - **Trusted partners**: 69 partner logos from the current site, in colour, in two rows that drift in opposite directions. Hovering pauses them, and a button stops them for good.
 - **The challenge**: 140 million children without parental care worldwide, 35 million in Africa and 1.4 million orphans in Egypt, with their sources. Each figure has a bar drawn to scale, set over a photo.
 - **What we do**: the three pillars (prevention, protection, empowerment) with their programs, a "read more" panel and a give link for each.
-- **Who we strengthen**: the five groups Sanad works with.
+- **Who we strengthen**: the five groups Sanad works with. Each card gives the group, the pillar its program belongs to, a description drawn from Sanad's pillar texts and the program name from the current site. The cards carry no figures, because Sanad doesn't publish one for every group. All eight published figures appear under "Our approach".
 - **Our approach**: four steps taken from Sanad's own "نهجنا: التغيير المنظومي" text and pillar descriptions, followed by every impact figure from the current site.
 - **Stories**: all four stories from the current site (Raniah, Wageeh, Sahar and Alaa), each with its Arabic or English poster, quote and hashtags. Visitors move between them with a picker or arrows.
 - **Get involved**: four colour cards.
@@ -30,7 +30,7 @@ The page is built around one idea: Sanad doesn't care for orphans directly, it s
 
 Cards share motifs taken from the current site: dot grids, wave bottoms, icon circles and colour bars. With reduced motion turned on, everything shows in its final state.
 
-Sources for every piece of content: the text, figures, programs, stories, partner list, bank details and donation purposes all come from sanadorphans.org (Arabic and English homepage, October 2026). The one exception is "Pearson-accredited training", which comes from Sanad's impact page. The section headlines and short connecting lines are new copy.
+Sources for every piece of content: the text, figures, programs, stories, partner list, bank details and donation purposes all come from sanadorphans.org (Arabic and English homepage, October 2026). The one exception is "Pearson-accredited training", which comes from Sanad's impact page. The section headlines, the five-group framing of "Who we strengthen" and the short connecting lines are new copy.
 
 Images:
 - The logo, story posters, news photos and the caregivers' graduation photo are Sanad's originals from sanadorphans.org.

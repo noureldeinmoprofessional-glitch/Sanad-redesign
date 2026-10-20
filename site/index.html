@@ -231,18 +231,16 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 .p-body::before { content: ""; position: absolute; z-index: -1; top: 10px; inset-inline-end: 16px; width: 96px; height: 70px; background-image: radial-gradient(var(--c) 1.6px, transparent 1.9px); background-size: 13px 13px; opacity: .22; -webkit-mask-image: linear-gradient(135deg, #000 25%, transparent 85%); mask-image: linear-gradient(135deg, #000 25%, transparent 85%); }
 .p-ring { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 700; color: var(--c); background: var(--soft); border-radius: 999px; padding: 1px 10px; }
 .p-ring::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
-.p-body h3 { font-size: 1.4rem; --w: var(--c); }
+.p-body h3 { font-size: 1.4rem; }
 .p-body p { color: var(--muted); }
-.p-nums { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; padding-top: 6px; }
-.p-nums div { display: flex; flex-direction: column; line-height: 1.35; background: var(--soft); border-radius: 16px; padding: 10px 16px; }
-.p-nums b { font-size: 1.75rem; font-weight: 800; color: var(--c); font-variant-numeric: tabular-nums; }
-.p-nums span { font-size: .86rem; color: var(--muted); font-weight: 600; }
 .p-cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 .p-cta .btn { min-height: 44px; padding: 8px 18px; font-size: .95rem; }
-.c-care { --c: #1a7f80; --soft: #e3f5f6; }
-.c-home, .c-family { --c: #8a5a00; --soft: #fdf2d6; }
-.c-youth { --c: #b54a24; --soft: #fde9e1; }
-.c-system { --c: #0f2233; --soft: #e8eef2; }
+.pil-prev { --c: #17805f; --w: #1f9e77; --soft: #e2f4ec; }
+.pil-prot { --c: #24609b; --w: #2f74b8; --soft: #e6eff8; }
+.pil-emp { --c: #8a5a00; --w: #f2b025; --soft: #fdf2d6; }
+.p-prog { margin-top: auto; display: flex; flex-direction: column; gap: 2px; background: var(--soft); border-radius: 14px; padding: 10px 14px; line-height: 1.5; }
+.p-prog span { font-size: .78rem; font-weight: 700; color: var(--c); }
+.p-prog b { font-size: .92rem; font-weight: 700; }
 @media (max-width: 960px) { .ppl { grid-template-columns: 1fr 1fr; } .p-card, .p-card.big { grid-column: span 1; } .p-card.wide-sm { grid-column: span 2; } }
 @media (max-width: 620px) { .ppl { grid-template-columns: 1fr; } .p-card.wide-sm { grid-column: span 1; } }
 
@@ -836,56 +834,57 @@ html:not(.anim) .m-set[aria-hidden], html:not(.anim) .mq-toggle { display: none;
     <div class="sec-head">
       <span class="eyebrow" data-en="Who we strengthen">من نُقوّي</span>
       <h2 id="who-title" data-en="We don't run care homes. We strengthen everyone around the child.">لا ندير دور رعاية. نحن نقوّي كل من يحيط بالطفل.</h2>
-      <p data-en="There are 1.4 million orphans in Egypt (Ministry of Social Solidarity, 2023). Every one of them is reached through the adults who care for them, so that is where we work.">في مصر 1.4 مليون يتيم (وزارة التضامن الاجتماعي، 2023). لا يصل إليهم أحد إلا عبر الكبار الذين يرعونهم، ولذلك نعمل معهم.</p>
+      <p data-en="Sanad means presence: with knowledge, action and an unwavering promise. We work across 20 governorates to transform alternative parental care in Egypt and the MENA region.">سند تعني الحضور: بالمعرفة والعمل والوعد الثابت. نعمل في 20 محافظة لتحويل منظومة الرعاية الوالدية البديلة في مصر ومنطقة الشرق الأوسط وشمال أفريقيا.</p>
     </div>
     <div class="ppl">
-      <article class="p-card big c-care">
+      <article class="p-card big c-care pil-prot">
         <div class="p-media"><img src="assets/news-graduation-forum.webp" width="1100" height="731" alt="مقدّمو رعاية في حفل تخرّج برنامج تدريب سند" data-en-alt="Caregivers at the graduation of a Sanad training programme" loading="lazy"></div>
         <div class="p-body">
-          <span class="p-ring" data-en="Around the child every day">حول الطفل كل يوم</span>
+          <span class="p-ring" data-en="Protection pillar">محور الحماية</span>
           <h3 class="bar-h" data-en="Caregivers">مقدّمو الرعاية</h3>
-          <p data-en="We train the mothers, fathers and staff who raise children in care: safe care, emotional support and each stage of growing up, with a Pearson-accredited certificate.">ندرّب الأمهات والآباء والعاملين الذين يربّون الأطفال في الرعاية: الرعاية الآمنة، والدعم النفسي، وكل مرحلة من مراحل النمو، بشهادة معتمدة من Pearson.</p>
-          <div class="p-nums"><div><b data-count>3,283</b><span data-en="caregivers and managers trained">مقدّم رعاية ومدير تم تدريبهم</span></div></div>
+          <p data-en="We invest in the alternative care workforce, equipping them with the knowledge and tools to raise a psychologically and socially healthy generation, with a Pearson-accredited certificate.">نستثمر في تمكين العاملين في الرعاية البديلة، ونزوّدهم بالمعرفة والأدوات لتنشئة جيل سوي نفسيًا واجتماعيًا، بشهادة معتمدة من Pearson.</p>
+          <p class="p-prog"><span data-en="Program">البرنامج</span><b data-en="Caregivers and Alternative Care Workers Capacity Building Program">برنامج تأهيل العاملين بمجال الرعاية البديلة</b></p>
           <div class="p-cta"><a class="btn btn-give" href="#give" data-give-fund="caregivers" data-en="Train a caregiver">ادعم تدريب مقدّم رعاية</a></div>
         </div>
       </article>
-      <article class="p-card big c-youth">
+      <article class="p-card big c-youth pil-prev">
         <div class="p-media"><img src="assets/photos/youth.webp" width="1100" height="614" alt="شاب يتعلّم النجارة مع مدرّبه في ورشة" data-en-alt="A young man learning carpentry with his mentor in a workshop" loading="lazy"><span class="img-tag" data-en="Illustrative image">صورة تعبيرية</span></div>
         <div class="p-body">
-          <span class="p-ring" data-en="The child, grown up">الطفل حين يكبر</span>
+          <span class="p-ring" data-en="Prevention pillar">محور الوقاية</span>
           <h3 class="bar-h" data-en="Young people leaving care">الشباب بعد الرعاية</h3>
-          <p data-en="At 18, many leave care with no family and no savings. We prepare them for work and independent life with skills, mentoring and jobs with our partners.">في سن 18 يغادر كثيرون الدار بلا أسرة ولا مدخرات. نؤهّلهم للعمل والحياة المستقلة بالمهارات والإرشاد وفرص العمل مع شركائنا.</p>
-          <div class="p-nums"><div><b data-count>5,622</b><span data-en="children and young people reached">طفلًا وشابًا وصلهم الأثر</span></div></div>
+          <p data-en="Many leave care at 18 with no family support, no savings and no preparation. We give them safety nets and empower them to go out into society as active, independent citizens.">كثيرون يغادرون دور الرعاية في سن 18 بلا دعم أسري ولا مدخرات ولا تأهيل. نوفّر لهم شبكات أمان ونمكّنهم ليخرجوا إلى المجتمع مواطنين فاعلين ومستقلين.</p>
+          <p class="p-prog"><span data-en="Program">البرنامج</span><b data-en="Economic and Social Empowerment Program for Youth Without Parental Care">برنامج التمكين الاقتصادي والاجتماعي للشباب فاقدي الرعاية الوالدية</b></p>
           <div class="p-cta"><a class="btn btn-give" href="#give" data-give-fund="youth" data-en="Back a young person">ادعم شابًا يبدأ حياته</a></div>
         </div>
       </article>
-      <article class="p-card c-home">
+      <article class="p-card c-home pil-prot">
         <div class="p-media"><img src="assets/photos/care-home.webp" width="1100" height="614" alt="مقدّمة رعاية تقرأ قصة لأطفال في دار رعاية" data-en-alt="A caregiver reading to children in a care home" loading="lazy"><span class="img-tag" data-en="Illustrative image">صورة تعبيرية</span></div>
         <div class="p-body">
-          <span class="p-ring" data-en="The place a child calls home">المكان الذي يسمّيه الطفل بيتًا</span>
+          <span class="p-ring" data-en="Protection pillar">محور الحماية</span>
           <h3 class="bar-h" data-en="Care homes">دور الرعاية</h3>
-          <p data-en="We put quality standards and child-protection policies in place, so a care home feels safe and close to a family.">نطبّق معايير الجودة وسياسات حماية الطفل، حتى تصبح الدار مكانًا آمنًا قريبًا من الأسرة.</p>
-          <div class="p-nums"><div><b data-count>538</b><span data-en="care homes">دار رعاية</span></div></div>
+          <p data-en="We raise the quality of semi-family care inside care homes, with quality standards and safeguarding policies that guarantee an environment free from harm.">نرتقي بجودة الرعاية شبه الأسرية داخل الدور، ونفعّل معايير الجودة وسياسات حماية تضمن بيئة خالية من أي أذى.</p>
+          <p class="p-prog"><span data-en="Program">البرنامج</span><b data-en="Empowering Care Homes to Provide Semi-Family Care">برنامج تمكين دور الأيتام من تقديم رعاية شبه أسرية</b></p>
           <div class="p-cta"><a class="btn btn-give" href="#give" data-give-fund="children" data-en="Support a safe home">ادعم دارًا آمنة</a></div>
         </div>
       </article>
-      <article class="p-card c-family">
+      <article class="p-card c-family pil-prev">
         <div class="p-media"><img src="assets/photos/kafala-family.webp" width="1100" height="614" alt="أسرة كافلة تساعد ابنتها في واجباتها المدرسية" data-en-alt="A kafala family helping their daughter with homework" loading="lazy"><span class="img-tag" data-en="Illustrative image">صورة تعبيرية</span></div>
         <div class="p-body">
-          <span class="p-ring" data-en="A family instead of an institution">أسرة بدل المؤسسة</span>
+          <span class="p-ring" data-en="Prevention pillar">محور الوقاية</span>
           <h3 class="bar-h" data-en="Kafala families">أسر الكفالة</h3>
-          <p data-en="We prepare families before kafala and follow up after it, so the child settles and never returns to care.">نُعدّ الأسر قبل الكفالة ونتابع الطفل بعدها، حتى يستقر ولا يعود إلى دار الرعاية.</p>
+          <p data-en="We equip families applying for kafala with the knowledge and psychological preparation they need, and follow up so the child stays stable and never returns to a care home.">نزوّد الأسر المتقدمة للكفالة بالمعارف والتهيئة النفسية اللازمة، ونتابع الطفل لنضمن استقراره ونمنع عودته إلى دور الرعاية.</p>
+          <p class="p-prog"><span data-en="Program">البرنامج</span><b data-en="Kafala Family Capacity Building Program">برنامج تأهيل الأسر الكافلة لتنشئة الأطفال فاقدي الرعاية الوالدية</b></p>
           <div class="p-cta"><a class="btn btn-give" href="#give" data-give-fund="children" data-en="Support a kafala family">ادعم أسرة كافلة</a></div>
         </div>
       </article>
-      <article class="p-card c-system wide-sm">
+      <article class="p-card c-system pil-emp wide-sm">
         <div class="p-media"><img src="assets/photos/care-system.webp" width="1100" height="614" alt="ورشة تدريب لأخصائيين اجتماعيين ومقدّمي رعاية" data-en-alt="A training workshop for social workers and caregivers" loading="lazy"><span class="img-tag" data-en="Illustrative image">صورة تعبيرية</span></div>
         <div class="p-body">
-          <span class="p-ring" data-en="The rules everyone works by">القواعد التي يعمل بها الجميع</span>
+          <span class="p-ring" data-en="Empowerment pillar">محور التمكين</span>
           <h3 class="bar-h" data-en="The care system">منظومة الرعاية</h3>
-          <p data-en="We train Ministry of Social Solidarity teams and work with universities and companies on policy and quality standards.">ندرّب فرق وزارة التضامن الاجتماعي، ونعمل مع الجامعات والشركات على السياسات ومعايير الجودة.</p>
-          <div class="p-nums"><div><b data-count>1,385</b><span data-en="ministry staff trained">موظفًا بالوزارة تم تدريبهم</span></div><div><b data-count>1,921</b><span data-en="civil society organisations">منظمة مجتمع مدني</span></div></div>
-          <div class="p-cta"><a class="link arw" href="#organisations" data-en="For organisations">للمؤسسات</a></div>
+          <p data-en="We advocate for better legislation and work with schools, employers and the private sector so they become partners offering nurturing environments and equal opportunities.">نكسب التأييد لتطوير التشريعات الحاكمة، ونعمل مع المدارس وجهات التوظيف والقطاع الخاص ليكونوا شركاء يوفّرون بيئات حاضنة وفرصًا متكافئة.</p>
+          <p class="p-prog"><span data-en="Program">البرنامج</span><b data-en="Raising Awareness, Advocacy and Support Program">برنامج رفع الوعي وكسب التأييد والمناصرة</b></p>
+          <div class="p-cta"><a class="btn btn-give" href="#give" data-give-fund="general" data-en="Support advocacy">ادعم المناصرة</a></div>
         </div>
       </article>
     </div>
