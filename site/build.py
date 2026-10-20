@@ -1,6 +1,6 @@
 """Bundle site/index.html into one self-contained file for sharing.
 
-Inlines every assets/* image as a data URI and writes
+Inlines every assets/* image (including the English story posters) as a data URI and writes
 site/dist/sanad-homepage-prototype.html. Run: python3 site/build.py
 """
 import base64
@@ -21,7 +21,7 @@ def inline(match):
 
 
 html = SRC.read_text(encoding="utf-8")
-html = re.sub(r'((?:src|href)=)"(assets/[^"]+)"', inline, html)
+html = re.sub(r'((?:src|href|data-en-src)=)"(assets/[^"]+)"', inline, html)
 OUT.parent.mkdir(exist_ok=True)
 OUT.write_text(html, encoding="utf-8")
 print(f"Wrote {OUT.relative_to(SITE.parent)} ({OUT.stat().st_size // 1024} KB)")

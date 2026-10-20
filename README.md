@@ -15,26 +15,35 @@ Open the HTML file in a browser to read it.
 - `site/index.html` is the redesigned homepage, built from the research wireframe. It is Arabic first, with an English toggle (or `?lang=en`), and uses Sanad's Cairo font, brand palette, figures, stories and bank details from the current site.
 - `site/dist/sanad-homepage-prototype.html` is the same page as one self-contained file for sharing. Rebuild it with `python3 site/build.py` after editing `index.html`.
 
-The page is built around one idea: Sanad doesn't care for orphans directly, it strengthens the people who do («نكون سندًا لمن يكونون سندًا لهم»). The hero shows this as a "circle of care": the child at the centre, then a trained caregiver, the care home or kafala family, Sanad, and the donor. The rings draw in sequence on load, dots of support flow inward to the child, and the amount chosen in the donation form lights up the ring it strengthens. Below the hero, the page brings back everything the current homepage carries, redesigned:
+The page is built around one idea: Sanad doesn't care for orphans directly, it strengthens the people who do («نكون سندًا لمن يكونون سندًا لهم»). It has no religious framing: gifts are monthly or one-time, with no Zakat or Sadaqah choice.
 
-- **Trusted partners**: 69 partner logos from the current site in two rows that drift in opposite directions. They turn to full colour on hover, hovering pauses them, and a button stops them for good.
-- **The challenge**: 140 million children without parental care worldwide, 35 million in Africa and 1.4 million orphans in Egypt, drawn as nested circles at true scale, with sources.
-- **The film**: Sanad's film «يعني إيه سند؟». It opens from a chip in the hero, from the challenge section, or from a cinematic poster that grows into place as you scroll. It plays in a dialog. Nothing loads from YouTube (youtube-nocookie.com) until the visitor presses play, and closing the dialog stops the film.
+- **Hero**: the headline, Sanad's film «يعني إيه سند؟» and the donation form. The film's poster wipes in, slowly zooms, and plays in a dialog. Nothing loads from YouTube (youtube-nocookie.com) until the visitor presses play, and closing the dialog stops the film. This is the only place the film appears.
+- **Donation form**: the same four purposes as the current site's form (تنمية الأطفال، تمكين الشباب، تدريب مقدمي الرعاية، تبرع عام). It also uses the current site's amounts and captions: 150 for school supplies, 500 for psychosocial support and 1,000 for caregiver training.
+- **Trusted partners**: 69 partner logos from the current site, in colour, in two rows that drift in opposite directions. Hovering pauses them, and a button stops them for good.
+- **The challenge**: 140 million children without parental care worldwide, 35 million in Africa and 1.4 million orphans in Egypt, with their sources. Each figure has a bar drawn to scale, set over a photo.
 - **What we do**: the three pillars (prevention, protection, empowerment) with their programs, a "read more" panel and a give link for each.
-- **Who we strengthen**: introduces the five groups Sanad works with.
-- **How your gift travels**: follows the brand's boat along a four-step route as you scroll. It ends with every impact figure from the current site.
+- **Who we strengthen**: the five groups Sanad works with.
+- **Our approach**: four steps taken from Sanad's own "نهجنا: التغيير المنظومي" text and pillar descriptions, followed by every impact figure from the current site.
+- **Stories**: all four stories from the current site (Raniah, Wageeh, Sahar and Alaa), each with its Arabic or English poster, quote and hashtags. Visitors move between them with a picker or arrows.
 - **Get involved**: four colour cards.
 - **Bank transfer**: each bank card shows that bank's logo.
 
-Cards share motifs taken from the current site: dot grids, wave bottoms, icon circles and colour bars. The rest of the page fades in gently. With reduced motion turned on, everything shows in its final state.
+Cards share motifs taken from the current site: dot grids, wave bottoms, icon circles and colour bars. With reduced motion turned on, everything shows in its final state.
 
-Images: the logo, story posters and photos are Sanad's own full-size originals from sanadorphans.org. The illustrations in `site/assets/art/` (the caregiver and child at the centre of the circle, the care home, the kafala family and the training session) were generated with Magnific (Nano Banana 2) in the style of Sanad's story posters. They are illustrations, not photos of real beneficiaries. The partner logos (`site/assets/partners/`), bank logos (`site/assets/banks/`) and the film poster (the video's YouTube thumbnail) come from sanadorphans.org and Sanad's YouTube channel.
+Sources for every piece of content: the text, figures, programs, stories, partner list, bank details and donation purposes all come from sanadorphans.org (Arabic and English homepage, October 2026). The one exception is "Pearson-accredited training", which comes from Sanad's impact page. The section headlines and short connecting lines are new copy.
 
-Working in the prototype: the two-step donation form (monthly or one-time, Zakat / Sadaqah / General, fund, amount, payment method, validation, thank-you and monthly upsell), the zakat calculator, story tabs, copy buttons for bank accounts, the WhatsApp receipt link, the language switch and the sticky mobile donate bar. No payment details are collected and nothing is sent anywhere.
+Images:
+- The logo, story posters, news photos and the caregivers' graduation photo are Sanad's originals from sanadorphans.org.
+- The partner logos (`site/assets/partners/`) and bank logos (`site/assets/banks/`) come from sanadorphans.org.
+- The film poster is the video's YouTube thumbnail, cropped above the burned-in subtitle.
+- The photos in `site/assets/photos/` were generated with Magnific (Nano Banana 2). They cover the care home, kafala family, training workshop, young man at work and the challenge photo. They are not real beneficiaries, so each one carries a small «صورة تعبيرية» (illustrative image) label.
+
+Working in the prototype: the two-step donation form (monthly or one-time, purpose, amount, payment method, validation, thank-you and monthly upsell), the film player, the story picker, copy buttons for bank accounts, the WhatsApp receipt link, the language switch and the sticky mobile donate bar. No payment details are collected and nothing is sent anywhere.
 
 Before production:
-- Fill the marked placeholders: the zakat Sharia statement, program and operations percentages, and the IBAN / SWIFT numbers.
+- Add the IBAN / SWIFT numbers to the bank cards if Sanad wants them shown.
+- Replace the generated photos with real Sanad photos (with consent) when they are available.
 - Confirm the partner list and get each partner's logo approval. Some logos are named only in the file names, so add proper alt text for those.
-- Confirm the fund-to-amount labels, the campaign progress figures (currently examples), the landline number (+20 2 26907195) and the consent for each story.
+- Confirm the landline number (+20 2 26907195) and the consent for each story.
 - Point the in-page `#` links at the real pages and connect the form to the payment gateway.
 - The payment logos in `site/assets/pay/` were supplied by the project team. Show only the methods the chosen gateway actually supports, and follow each provider's logo guidelines.
