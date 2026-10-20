@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Noto+Sans+Arabic:wght@600;700;800&family=Roboto:wght@500;700;800&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@600;700&family=Roboto:wght@500;700&display=swap">
 <style>
 /* Sanad homepage. Brand palette sampled from the live site; deeper teal and coral carry white text at WCAG AA. Coral is reserved for donate actions. */
 :root {
@@ -31,8 +31,8 @@
   --ok: #17704a;
   --err: #b3262d;
   --font: "Cairo", "Segoe UI", Tahoma, system-ui, sans-serif;
-  /* Roboto has no Arabic glyphs, so Arabic letters in headlines fall through to Noto Sans Arabic, the Arabic face designed to pair with Roboto */
-  --font-head: "Roboto", "Noto Sans Arabic", "Cairo", "Segoe UI", system-ui, sans-serif;
+  /* Roboto has no Arabic glyphs, so Arabic letters in headlines fall through to IBM Plex Sans Arabic */
+  --font-head: "Roboto", "IBM Plex Sans Arabic", "Cairo", "Segoe UI", system-ui, sans-serif;
   --radius: 14px;
   --shadow: 0 18px 40px -18px rgba(15, 34, 51, .35);
   color-scheme: light;
@@ -44,7 +44,7 @@ html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
 body { margin: 0; background: var(--white); color: var(--ink); font-family: var(--font); font-size: 17px; line-height: 1.75; }
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--teal-deep); }
-h1, h2, h3, h4 { margin: 0; line-height: 1.35; text-wrap: balance; font-weight: 800; font-family: var(--font-head); }
+h1, h2, h3, h4 { margin: 0; line-height: 1.35; text-wrap: balance; font-weight: 700; font-family: var(--font-head); }
 .story blockquote, .hf-cap b { font-family: var(--font-head); }
 p { margin: 0; }
 button, input, select { font: inherit; color: inherit; }
@@ -285,9 +285,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 .st-body { position: relative; isolation: isolate; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
 .st-trait { display: inline-flex; align-items: center; gap: 8px; color: var(--sc); background: color-mix(in srgb, var(--sc) 12%, transparent); border-radius: 999px; padding: 2px 14px; font-weight: 800; }
 .st-trait::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--sc); }
-.story blockquote { position: relative; margin: 0; font-size: clamp(1.6rem, 3.4vw, 2.5rem); font-weight: 800; line-height: 1.45; text-wrap: balance; }
-.story blockquote::before { content: "”"; position: absolute; inset-block-start: -.55em; inset-inline-start: -.08em; font-size: 4.2em; line-height: 1; color: var(--sc); opacity: .18; z-index: -1; }
-[dir="ltr"] .story blockquote::before { content: "“"; }
+.story blockquote { position: relative; margin: 0; font-size: clamp(1.6rem, 3.4vw, 2.5rem); font-weight: 700; line-height: 1.45; text-wrap: balance; }
 .st-who { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 16px; padding-top: 16px; border-top: 2px solid color-mix(in srgb, var(--sc) 25%, transparent); width: 100%; }
 .st-who b { font-size: 1.45rem; }
 .st-who .tags { color: var(--muted); font-weight: 600; font-size: .95rem; }
@@ -310,7 +308,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 .st-picker b { font-size: 1.05rem; }
 .st-picker small { color: var(--sc); font-weight: 700; font-size: .84rem; overflow-wrap: anywhere; }
 .s-raniah { --sc: #a3306e; } .s-wageeh { --sc: #9a4f2a; } .s-sahar { --sc: #c23b6b; } .s-alaa { --sc: #2f7d3a; }
-@media (max-width: 860px) { .story blockquote::before { display: none; } .story { grid-template-columns: 1fr; gap: 34px; } .st-poster { width: min(78%, 300px); margin-inline: auto; } .st-picker { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 860px) { .story { grid-template-columns: 1fr; gap: 34px; } .st-poster { width: min(78%, 300px); margin-inline: auto; } .st-picker { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 420px) { .st-picker button { padding: 8px 10px; gap: 8px; } .st-picker img { width: 44px; height: 44px; } }
 
 /* other ways */
