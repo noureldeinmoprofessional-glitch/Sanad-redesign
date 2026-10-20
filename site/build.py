@@ -21,7 +21,7 @@ def inline(match):
 
 
 html = SRC.read_text(encoding="utf-8")
-html = re.sub(r'(src=)"(assets/[^"]+)"', inline, html)
+html = re.sub(r'((?:src|href)=)"(assets/[^"]+)"', inline, html)
 OUT.parent.mkdir(exist_ok=True)
 OUT.write_text(html, encoding="utf-8")
 print(f"Wrote {OUT.relative_to(SITE.parent)} ({OUT.stat().st_size // 1024} KB)")

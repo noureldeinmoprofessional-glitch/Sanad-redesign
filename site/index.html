@@ -123,7 +123,7 @@ button, input, select { font: inherit; color: inherit; }
 .care .hand { fill: var(--teal); }
 .care-label { position: absolute; left: 50%; top: var(--y); transform: translate(-50%, -50%); display: inline-flex; align-items: center; gap: 6px; padding: 3px 12px; border-radius: 999px; background: var(--white); border: 1.5px solid currentColor; font-size: .86rem; font-weight: 700; white-space: nowrap; box-shadow: 0 6px 16px -10px rgba(15, 34, 51, .45); transition: transform .5s cubic-bezier(.34, 1.56, .64, 1); }
 .care-label i { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
-.care-label.l0 { border: 0; background: none; box-shadow: none; color: var(--teal-ink); font-size: .92rem; }
+.care-label.l0 { color: #8a5a00; }
 .care-label.l1 { color: var(--teal-ink); }
 .care-label.l2 { color: #8a5a00; }
 .care-label.l3 { color: var(--teal-deep); }
@@ -131,7 +131,9 @@ button, input, select { font: inherit; color: inherit; }
 .care-cap { min-height: 3.4em; max-width: 470px; text-align: center; color: var(--ink); font-weight: 600; font-size: 1rem; line-height: 1.7; transition: opacity .3s; }
 .care-cap b { color: var(--give); }
 /* focus: the ring the chosen amount strengthens lights up; the donor ring always stays lit */
-.care.done[data-focus] .lvl:not(.lv4) { opacity: .25; }
+.care.done[data-focus] :is(.lv1, .lv2, .lv3) { opacity: .25; }
+.care .core-ring { fill: none; stroke: var(--amber); stroke-width: 0; transition: stroke-width .5s, filter .5s; }
+.care.done[data-focus="child"] .core-ring { stroke-width: 8; filter: drop-shadow(0 0 10px rgba(242, 176, 37, .7)); }
 .care.done[data-focus="child"] .lvl.lv0, .care.done[data-focus="caregiver"] .lvl.lv1, .care.done[data-focus="sanad"] .lvl.lv3 { opacity: 1; }
 .care.done[data-focus="caregiver"] .r1, .care.done[data-focus="sanad"] .r3 { stroke-width: 17; filter: drop-shadow(0 0 10px rgba(54, 192, 202, .55)); }
 .care.done[data-focus="child"] .care-label.l0, .care.done[data-focus="caregiver"] .care-label.l1, .care.done[data-focus="sanad"] .care-label.l3 { transform: translate(-50%, -50%) scale(1.12); }
@@ -158,8 +160,6 @@ button, input, select { font: inherit; color: inherit; }
 .anim .care.play .care-label { animation: pop .55s cubic-bezier(.34, 1.56, .64, 1) forwards; animation-delay: var(--d); }
 /* once the intro has played, settle everything so focus highlights and the monthly flow can take over */
 .anim .care.done .care-label, .anim .care.done .r4, .anim .care.done .hand, .anim .care.done .lv0, .anim .care.done .glow { animation: none; opacity: 1; }
-.anim .care.done[data-focus] .lvl.lv0 { opacity: .25; }
-.anim .care.done[data-focus="child"] .lvl.lv0 { opacity: 1; }
 .anim .care.monthly.done .r4 { animation: flow 2.4s linear infinite; opacity: 1; }
 @keyframes draw { to { stroke-dashoffset: 0; } }
 @keyframes ring-in { from { opacity: 0; transform: scale(.9) rotate(-25deg); } to { opacity: 1; transform: none; } }
@@ -258,8 +258,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 .c-youth .p-media { background: var(--paper); }
 .p-card:hover .p-media img { transform: scale(1.04); }
 .p-media::after { content: ""; position: absolute; inset: auto 0 0 0; height: 6px; background: var(--c); }
-.p-media .emblem { width: 46%; max-width: 150px; }
-.p-media.stripes { background-image: repeating-linear-gradient(-35deg, transparent 0 14px, rgba(255, 255, 255, .55) 14px 17px); }
+.p-media.art { background: var(--paper); }
 .p-body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
 .p-ring { align-self: flex-start; display: inline-flex; align-items: center; gap: 6px; font-size: .8rem; font-weight: 700; color: var(--c); background: var(--soft); border-radius: 999px; padding: 1px 10px; }
 .p-ring::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--c); }
@@ -395,7 +394,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 .foot ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 .foot a { color: #c7d6de; text-decoration: none; }
 .foot a:hover { color: var(--teal); }
-.foot .logo-light { height: 46px; width: auto; margin-bottom: 14px; }
+.foot .logo-light { height: 70px; width: auto; margin-bottom: 14px; }
 .foot form { display: flex; flex-direction: column; gap: 10px; }
 .foot input { border: 1px solid #36506a; background: var(--navy-2); color: var(--white); border-radius: 10px; min-height: 46px; padding: 6px 12px; }
 .foot input::placeholder { color: #8ea6b4; }
@@ -422,7 +421,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 
 <header class="site-head">
   <div class="wrap head-row">
-    <a class="brand" href="#top" aria-label="سند - الصفحة الرئيسية" data-en-aria="Sanad home"><img src="assets/sanad-logo.png" width="133" height="94" alt="سند" data-en-alt="Sanad"></a>
+    <a class="brand" href="#top" aria-label="سند - الصفحة الرئيسية" data-en-aria="Sanad home"><img src="assets/sanad-logo.webp" width="420" height="294" alt="سند" data-en-alt="Sanad"></a>
     <nav class="nav" aria-label="القائمة الرئيسية" data-en-aria="Main menu">
       <a href="#who" data-en="Who we strengthen">من نُقوّي</a>
       <a href="#how" data-en="How it works">كيف نعمل</a>
@@ -465,35 +464,34 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
           <defs>
             <radialGradient id="care-glow"><stop offset="0" stop-color="#f2b025" stop-opacity=".35"/><stop offset="1" stop-color="#f2b025" stop-opacity="0"/></radialGradient>
           </defs>
-          <circle class="glow" r="140" fill="url(#care-glow)" style="--d:0s"/>
-          <g class="lvl lv4"><path class="ring r4" style="--d:1.75s" d="M33.82 -240.64 A243 243 0 1 1 -33.82 -240.64"/></g>
+          <circle class="glow" r="150" fill="url(#care-glow)" style="--d:0s"/>
+          <g class="lvl lv4"><path class="ring r4" style="--d:1.75s" d="M37.48 -242.12 A245 245 0 1 1 -37.48 -242.12"/></g>
           <g class="lvl lv3">
-            <path class="ring r3" pathLength="1" style="--d:1.25s" d="M0 198 A198 198 0 0 1 -37.78 -194.36"/>
-            <path class="ring r3" pathLength="1" style="--d:1.25s" d="M0 198 A198 198 0 0 0 37.78 -194.36"/>
+            <path class="ring r3" pathLength="1" style="--d:1.25s" d="M0 206 A206 206 0 0 1 -37.54 -202.55"/>
+            <path class="ring r3" pathLength="1" style="--d:1.25s" d="M0 206 A206 206 0 0 0 37.54 -202.55"/>
           </g>
           <g class="lvl lv2">
-            <path class="ring r2" pathLength="1" style="--d:.8s" d="M0 150 A150 150 0 0 1 -38.82 -144.89"/>
-            <path class="ring r2" pathLength="1" style="--d:.8s" d="M0 150 A150 150 0 0 0 38.82 -144.89"/>
+            <path class="ring r2" pathLength="1" style="--d:.8s" d="M0 163 A163 163 0 0 1 -37.5 -158.63"/>
+            <path class="ring r2" pathLength="1" style="--d:.8s" d="M0 163 A163 163 0 0 0 37.5 -158.63"/>
           </g>
           <g class="lvl lv1">
-            <path class="ring r1" pathLength="1" style="--d:.35s" d="M0 100 A100 100 0 0 1 -37.46 -92.72"/>
-            <path class="ring r1" pathLength="1" style="--d:.35s" d="M0 100 A100 100 0 0 0 37.46 -92.72"/>
-            <circle class="hand" style="--d:1.4s" cx="-37.46" cy="-92.72" r="9"/>
-            <circle class="hand" style="--d:1.4s" cx="37.46" cy="-92.72" r="9"/>
+            <path class="ring r1" pathLength="1" style="--d:.35s" d="M0 118 A118 118 0 0 1 -37.44 -111.9"/>
+            <path class="ring r1" pathLength="1" style="--d:.35s" d="M0 118 A118 118 0 0 0 37.44 -111.9"/>
+            <circle class="hand" style="--d:1.4s" cx="-37.44" cy="-111.9" r="9"/>
+            <circle class="hand" style="--d:1.4s" cx="37.44" cy="-111.9" r="9"/>
           </g>
           <g class="flow"></g>
           <g class="lvl lv0" style="--d:.1s">
-            <circle r="58" fill="#fdf2d6"/>
-            <circle r="58" fill="none" stroke="#f2b025" stroke-width="2" stroke-dasharray="3 7"/>
-            <circle cy="-18" r="15" fill="#135f60"/>
-            <path d="M-25 30 C-25 4 25 4 25 30 Z" fill="#135f60"/>
+            <circle r="88" fill="#f4efe6"/>
+            <image href="assets/art/care-center.webp" x="-92" y="-92" width="184" height="184"/>
+            <circle class="core-ring" r="91"/>
           </g>
         </svg>
-        <span class="care-label l4" style="--y:3.3%;--d:2s"><i></i><span data-en="You, the donor">أنت: المتبرع</span></span>
-        <span class="care-label l3" style="--y:11.9%;--d:1.55s"><i></i><span data-en="Sanad: training, standards, follow-up">سند: تدريب ومعايير ومتابعة</span></span>
-        <span class="care-label l2" style="--y:21.2%;--d:1.1s"><i></i><span data-en="Care home or kafala family">الدار أو أسرة الكفالة</span></span>
-        <span class="care-label l1" style="--y:30.8%;--d:.65s"><i></i><span data-en="A trained caregiver">مقدّم رعاية مدرَّب</span></span>
-        <span class="care-label l0" style="--y:62%;--d:.4s" data-en="The child">الطفل</span>
+        <span class="care-label l4" style="--y:2.9%;--d:2s"><i></i><span data-en="You, the donor">أنت: المتبرع</span></span>
+        <span class="care-label l3" style="--y:10.4%;--d:1.55s"><i></i><span data-en="Sanad: training, standards, follow-up">سند: تدريب ومعايير ومتابعة</span></span>
+        <span class="care-label l2" style="--y:18.7%;--d:1.1s"><i></i><span data-en="Care home or kafala family">الدار أو أسرة الكفالة</span></span>
+        <span class="care-label l1" style="--y:27.3%;--d:.65s"><i></i><span data-en="A trained caregiver">مقدّم رعاية مدرَّب</span></span>
+        <span class="care-label l0" style="--y:67%;--d:.4s"><i></i><span data-en="The child">الطفل</span></span>
       </div>
       <p class="care-cap" id="care-cap" aria-live="polite"></p>
     </figure>
@@ -653,7 +651,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
     </div>
     <div class="ppl">
       <article class="p-card big c-care">
-        <div class="p-media"><img src="assets/news-graduation-forum.jpg" width="278" height="230" alt="مقدّمو رعاية في حفل تخرّج برنامج تدريب سند" data-en-alt="Caregivers at the graduation of a Sanad training programme" loading="lazy"></div>
+        <div class="p-media"><img src="assets/news-graduation-forum.webp" width="1100" height="731" alt="مقدّمو رعاية في حفل تخرّج برنامج تدريب سند" data-en-alt="Caregivers at the graduation of a Sanad training programme" loading="lazy"></div>
         <div class="p-body">
           <span class="p-ring" data-en="Around the child every day">حول الطفل كل يوم</span>
           <h3 data-en="Caregivers">مقدّمو الرعاية</h3>
@@ -663,7 +661,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
         </div>
       </article>
       <article class="p-card big c-youth">
-        <div class="p-media"><img class="poster" src="assets/story-alaa.jpg" width="232" height="337" alt="ملصق قصة علاء، أحد شباب سند" data-en-alt="Poster of Alaa, one of Sanad's young people" loading="lazy"></div>
+        <div class="p-media"><img class="poster" src="assets/story-alaa.webp" width="560" height="820" alt="ملصق قصة علاء، أحد شباب سند" data-en-alt="Poster of Alaa, one of Sanad's young people" loading="lazy"></div>
         <div class="p-body">
           <span class="p-ring" data-en="The child, grown up">الطفل حين يكبر</span>
           <h3 data-en="Young people leaving care">الشباب بعد الرعاية</h3>
@@ -673,7 +671,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
         </div>
       </article>
       <article class="p-card c-home">
-        <div class="p-media stripes"><svg class="emblem" viewBox="-60 -60 120 120" aria-hidden="true"><circle r="9" fill="#cfdcdf"/><path d="M9.0 -15.59 A18 18 0 1 1 -9.0 -15.59" fill="none" stroke="#cfdcdf" stroke-width="4" stroke-linecap="round"/><path d="M10.49 -25.96 A28 28 0 1 1 -10.49 -25.96" fill="none" stroke="#b07a00" stroke-width="7" stroke-linecap="round"/><path d="M10.47 -36.53 A38 38 0 1 1 -10.47 -36.53" fill="none" stroke="#cfdcdf" stroke-width="4" stroke-linecap="round"/><path d="M9.98 -46.95 A48 48 0 1 1 -9.98 -46.95" fill="none" stroke="#cfdcdf" stroke-width="4" stroke-linecap="round"/></svg></div>
+        <div class="p-media art"><img src="assets/art/care-home.webp" width="1100" height="614" alt="رسم لمقدّمة رعاية تقرأ قصة لأطفال في دار رعاية" data-en-alt="Illustration of a caregiver reading to children in a care home" loading="lazy"></div>
         <div class="p-body">
           <span class="p-ring" data-en="The place a child calls home">المكان الذي يسمّيه الطفل بيتًا</span>
           <h3 data-en="Care homes">دور الرعاية</h3>
@@ -683,7 +681,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
         </div>
       </article>
       <article class="p-card c-family">
-        <div class="p-media stripes"><svg class="emblem" viewBox="-60 -60 120 120" aria-hidden="true"><circle r="9" fill="#cfdcdf"/><path d="M9.0 -15.59 A18 18 0 1 1 -9.0 -15.59" fill="none" stroke="#cfdcdf" stroke-width="4" stroke-linecap="round"/><path d="M10.49 -25.96 A28 28 0 1 1 -10.49 -25.96" fill="none" stroke="#b07a00" stroke-width="7" stroke-linecap="round"/><path d="M10.47 -36.53 A38 38 0 1 1 -10.47 -36.53" fill="none" stroke="#cfdcdf" stroke-width="4" stroke-linecap="round"/><path d="M9.98 -46.95 A48 48 0 1 1 -9.98 -46.95" fill="none" stroke="#cfdcdf" stroke-width="4" stroke-linecap="round"/></svg></div>
+        <div class="p-media art"><img src="assets/art/kafala-family.webp" width="1100" height="614" alt="رسم لأسرة كافلة تمشي مع طفلها إلى بيتها" data-en-alt="Illustration of a kafala family walking their child home" loading="lazy"></div>
         <div class="p-body">
           <span class="p-ring" data-en="A family instead of an institution">أسرة بدل المؤسسة</span>
           <h3 data-en="Kafala families">أسر الكفالة</h3>
@@ -692,7 +690,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
         </div>
       </article>
       <article class="p-card c-system wide-sm">
-        <div class="p-media stripes"><svg class="emblem" viewBox="-60 -60 120 120" aria-hidden="true"><circle r="9" fill="#cfdcdf"/><path d="M9.0 -15.59 A18 18 0 1 1 -9.0 -15.59" fill="none" stroke="#cfdcdf" stroke-width="4" stroke-linecap="round"/><path d="M10.49 -25.96 A28 28 0 1 1 -10.49 -25.96" fill="none" stroke="#cfdcdf" stroke-width="4" stroke-linecap="round"/><path d="M10.47 -36.53 A38 38 0 1 1 -10.47 -36.53" fill="none" stroke="#0f2233" stroke-width="7" stroke-linecap="round"/><path d="M9.98 -46.95 A48 48 0 1 1 -9.98 -46.95" fill="none" stroke="#cfdcdf" stroke-width="4" stroke-linecap="round"/></svg></div>
+        <div class="p-media art"><img src="assets/art/care-system.webp" width="1100" height="614" alt="رسم لجلسة تدريب لمقدّمي الرعاية والمسؤولين" data-en-alt="Illustration of a training session for caregivers and officials" loading="lazy"></div>
         <div class="p-body">
           <span class="p-ring" data-en="The rules everyone works by">القواعد التي يعمل بها الجميع</span>
           <h3 data-en="The care system">منظومة الرعاية</h3>
@@ -756,7 +754,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
       <button type="button" role="tab" id="tab-alaa" aria-controls="story-alaa" aria-selected="false" tabindex="-1" data-en="Alaa">علاء</button>
     </div>
     <div class="story" id="story-wageeh" role="tabpanel" aria-labelledby="tab-wageeh">
-      <img src="assets/story-wageeh.jpg" width="236" height="337" alt="ملصق قصة وجيه" data-en-alt="Wageeh's story poster">
+      <img src="assets/story-wageeh.webp" width="560" height="820" alt="ملصق قصة وجيه" data-en-alt="Wageeh's story poster">
       <div>
         <blockquote data-en="“I have several plans in mind to achieve my goals. If one fails, another will work.”">«عندي أكثر من خطة لتحقيق أهدافي. لو واحدة ما نجحتش، التانية هتنجح.»</blockquote>
         <p class="orig" lang="en" data-ar-only>“I have several plans in mind, to achieve my goals, if one fails, another will work.”</p>
@@ -768,7 +766,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
       </div>
     </div>
     <div class="story" id="story-alaa" role="tabpanel" aria-labelledby="tab-alaa" hidden>
-      <img src="assets/story-alaa.jpg" width="232" height="337" alt="ملصق قصة علاء" data-en-alt="Alaa's story poster">
+      <img src="assets/story-alaa.webp" width="560" height="820" alt="ملصق قصة علاء" data-en-alt="Alaa's story poster">
       <div>
         <blockquote data-en="“I didn't care what anyone said. For me, it was fuel that drove me forward.”">«ما كانش يهمني كلام الناس. بالعكس، كان هو الوقود اللي دفعني لقدّام.»</blockquote>
         <p class="orig" lang="en" data-ar-only>“I didn't care what anyone said. For me, it was fuel that drove me forward.”</p>
@@ -900,17 +898,17 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
     </div>
     <div class="news">
       <a href="#news-title">
-        <img src="assets/news-graduation-forum.jpg" width="278" height="230" alt="" loading="lazy">
+        <img src="assets/news-graduation-forum.webp" width="1100" height="731" alt="" loading="lazy">
         <div><time datetime="2026-10" data-en="October 2026">أكتوبر 2026</time>
         <h3 data-en="Sanad holds a graduation and recruitment forum for practitioners, with the Ministry of Social Solidarity, universities and the private sector">سند تنظّم ملتقى التخرج والتوظيف للممارسين، بالتعاون مع وزارة التضامن الاجتماعي والجامعات والقطاع الخاص</h3></div>
       </a>
       <a href="#news-title">
-        <img src="assets/news-princess-taghrid.jpg" width="278" height="230" alt="" loading="lazy">
+        <img src="assets/news-princess-taghrid.webp" width="900" height="535" alt="" loading="lazy">
         <div><time datetime="2026-10" data-en="October 2026">أكتوبر 2026</time>
         <h3 data-en="Sanad and the Princess Taghrid Foundation: a regional partnership to develop alternative parental care">سند ومؤسسة الأميرة تغريد للتنمية والتدريب: شراكة إقليمية لتطوير منظومة الرعاية الوالدية البديلة</h3></div>
       </a>
       <a href="#news-title">
-        <img src="assets/news-edbe-partnership.jpg" width="278" height="230" alt="" loading="lazy">
+        <img src="assets/news-edbe-partnership.webp" width="900" height="535" alt="" loading="lazy">
         <div><time datetime="2026-09" data-en="September 2026">سبتمبر 2026</time>
         <h3 data-en="A renewed partnership and lasting impact with the Export Development Bank of Egypt">شراكة متجددة وأثر مستدام مع البنك المصري لتنمية الصادرات</h3></div>
       </a>
@@ -924,7 +922,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <img class="logo-light" src="assets/sanad-logo-light.png" width="104" height="50" alt="سند" data-en-alt="Sanad">
+        <img class="logo-light" src="assets/sanad-logo-light.webp" width="420" height="294" alt="سند" data-en-alt="Sanad">
         <p data-en="Sanad is a centre of expertise advancing quality alternative parental care through evidence, capacity building and systems change.">سند مركز خبرة يطوّر جودة الرعاية الوالدية البديلة من خلال الأدلة وبناء القدرات وتطوير المنظومة.</p>
         <div class="socials">
           <a href="https://www.facebook.com/Sanadorphans" target="_blank" rel="noopener">Facebook</a>
@@ -1345,10 +1343,10 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
     var a;
     do { a = Math.random() * 360; } while (a > 238 && a < 302);
     d.a = a * Math.PI / 180;
-    d.r = fresh ? 70 + Math.random() * 175 : 250 + Math.random() * 12;
+    d.r = fresh ? 96 + Math.random() * 150 : 250 + Math.random() * 12;
     d.v = 34 + Math.random() * 26;
   }
-  function colourAt(r) { return r > 222 ? "#e8724a" : r > 174 ? "#1a7f80" : r > 125 ? "#f2b025" : "#36c0ca"; }
+  function colourAt(r) { return r > 226 ? "#e8724a" : r > 185 ? "#1a7f80" : r > 141 ? "#f2b025" : "#36c0ca"; }
   function startFlow() {
     if (still || flowing) return;
     flowing = true;
@@ -1365,8 +1363,8 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
     if (careVisible && !document.hidden) {
       dots.forEach(function (d) {
         d.r -= d.v * dt;
-        if (d.r < 64) spawn(d, false);
-        var fade = clamp((d.r - 64) / 30) * clamp((262 - d.r) / 20);
+        if (d.r < 92) spawn(d, false);
+        var fade = clamp((d.r - 92) / 28) * clamp((262 - d.r) / 20);
         d.el.setAttribute("cx", (Math.cos(d.a) * d.r).toFixed(1));
         d.el.setAttribute("cy", (Math.sin(d.a) * d.r).toFixed(1));
         d.el.setAttribute("r", (2.2 + d.r / 90).toFixed(2));
