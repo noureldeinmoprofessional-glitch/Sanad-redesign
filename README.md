@@ -8,6 +8,8 @@ Website redesign for Sanad for Alternative Parental Care (sanadorphans.org). The
 - `research/donation-ux-research-ar.html` is the full Arabic (right-to-left) version of the same report, for the client.
 - `research/assets/` holds section crops of the current English desktop homepage (October 2026) used in the audit.
 
+- `research/homepage-audit-ar-en.pdf` is a bilingual (Arabic, then English) devil's-advocate audit of the homepage prototype. It checks the design against the client's brief, Sanad's About page and the rest of sanadorphans.org, an automated accessibility scan and page-weight measurements. It's an internal review to settle before handover, and it lists the decisions needed from Sanad. Rebuild it with `python3 research/audit/build_audit.py`; the source text is in that script and the screenshots are in `research/audit/shots/`.
+
 Open the HTML file in a browser to read it.
 
 ## Homepage prototype
