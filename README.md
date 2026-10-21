@@ -60,6 +60,7 @@ Before production:
 - Add the IBAN / SWIFT numbers to the bank cards if Sanad wants them shown.
 - Replace the generated photos with real Sanad photos (with consent) before launch. They show people who are not Sanad's beneficiaries and are no longer labelled as illustrative.
 - Confirm the partner list and get each partner's logo approval. Some logos are named only in the file names, so add proper alt text for those.
+- Confirm with Sanad that 1,921 counts civil society staff (people), as the page now says, and ask it to align its team page (19 governorates) and portfolio PDF (older figures) with its homepage counters.
 - Confirm the landline number (+20 2 26907195) and the consent for each story.
 - Point the in-page `#` links at the real pages and connect the form to the payment gateway.
 - The payment logos in `site/assets/pay/` were supplied by the project team. Show only the methods the chosen gateway actually supports, and follow each provider's logo guidelines.
