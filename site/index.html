@@ -503,6 +503,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 .foot ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 .foot a { color: #c7d6de; text-decoration: none; }
 .foot a:hover { color: var(--teal); }
+.foot .btn-give, .foot .btn-give:hover { color: var(--white); }
 .foot .logo-light { height: 70px; width: auto; margin-bottom: 14px; }
 .foot form { display: flex; flex-direction: column; gap: 10px; }
 .foot input { border: 1px solid #36506a; background: var(--navy-2); color: var(--white); border-radius: 10px; min-height: 46px; padding: 6px 12px; }
@@ -519,7 +520,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 .sticky-give { position: fixed; inset: auto 0 0 0; z-index: 45; background: var(--white); border-top: 1px solid var(--line); box-shadow: 0 -10px 24px -16px rgba(15, 34, 51, .4); padding: 10px max(16px, env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); display: flex; gap: 10px; transform: translateY(110%); transition: transform .25s; }
 .sticky-give .btn-give { flex: 1; }
 .sticky-give.show { transform: none; }
-.sticky-give.show ~ .wa { bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
+.sticky-give.show ~ aside .wa { bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
 @media (min-width: 961px) { .sticky-give { display: none; } }
 .toast { position: fixed; inset-inline: 0; bottom: 100px; margin-inline: auto; width: max-content; max-width: calc(100% - 32px); background: var(--navy); color: var(--white); border-radius: 10px; padding: 8px 16px; font-weight: 600; z-index: 60; }
 
@@ -1030,7 +1031,7 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
         <button type="button" data-st="1" aria-label="القصة التالية" data-en-aria="Next story"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
       </div>
     </div>
-    <article class="story s-raniah" id="story-raniah" role="tabpanel" aria-labelledby="tab-raniah">
+    <div class="story s-raniah" id="story-raniah" role="tabpanel" aria-labelledby="tab-raniah">
       <div class="st-poster"><img src="assets/story-raniah-ar.webp" data-en-src="assets/story-raniah-en.webp" width="560" height="820" alt="ملصق قصة رانيا" data-en-alt="Raniah's story poster" loading="lazy"></div>
       <div class="st-body">
         <span class="st-trait" data-en="#passionate">#شغوفة</span>
@@ -1041,8 +1042,8 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
           <a class="link arw" href="#stories" data-en="All stories">كل القصص</a>
         </div>
       </div>
-    </article>
-    <article class="story s-wageeh" id="story-wageeh" role="tabpanel" aria-labelledby="tab-wageeh" hidden>
+    </div>
+    <div class="story s-wageeh" id="story-wageeh" role="tabpanel" aria-labelledby="tab-wageeh" hidden>
       <div class="st-poster"><img src="assets/story-wageeh-ar.webp" data-en-src="assets/story-wageeh-en.webp" width="560" height="820" alt="ملصق قصة وجيه" data-en-alt="Wageeh's story poster" loading="lazy"></div>
       <div class="st-body">
         <span class="st-trait" data-en="#ambitious">#طموح</span>
@@ -1053,8 +1054,8 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
           <a class="link arw" href="#stories" data-en="All stories">كل القصص</a>
         </div>
       </div>
-    </article>
-    <article class="story s-sahar" id="story-sahar" role="tabpanel" aria-labelledby="tab-sahar" hidden>
+    </div>
+    <div class="story s-sahar" id="story-sahar" role="tabpanel" aria-labelledby="tab-sahar" hidden>
       <div class="st-poster"><img src="assets/story-sahar-ar.webp" data-en-src="assets/story-sahar-en.webp" width="560" height="820" alt="ملصق قصة سحر" data-en-alt="Sahar's story poster" loading="lazy"></div>
       <div class="st-body">
         <span class="st-trait" data-en="#courage">#شجاعة</span>
@@ -1065,8 +1066,8 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
           <a class="link arw" href="#stories" data-en="All stories">كل القصص</a>
         </div>
       </div>
-    </article>
-    <article class="story s-alaa" id="story-alaa" role="tabpanel" aria-labelledby="tab-alaa" hidden>
+    </div>
+    <div class="story s-alaa" id="story-alaa" role="tabpanel" aria-labelledby="tab-alaa" hidden>
       <div class="st-poster"><img src="assets/story-alaa-ar.webp" data-en-src="assets/story-alaa-en.webp" width="560" height="820" alt="ملصق قصة علاء" data-en-alt="Alaa's story poster" loading="lazy"></div>
       <div class="st-body">
         <span class="st-trait" data-en="#iron_will">#إرادة_حديدية</span>
@@ -1077,7 +1078,7 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
           <a class="link arw" href="#stories" data-en="All stories">كل القصص</a>
         </div>
       </div>
-    </article>
+    </div>
     <div class="st-picker" role="tablist" aria-label="القصص" data-en-aria="Stories">
       <button type="button" class="s-raniah" role="tab" id="tab-raniah" aria-controls="story-raniah" aria-selected="true"><img src="assets/story-raniah-face.webp" width="160" height="160" alt=""><span><b data-en="Raniah">رانيا</b><small data-en="#passionate">#شغوفة</small></span></button>
       <button type="button" class="s-wageeh" role="tab" id="tab-wageeh" aria-controls="story-wageeh" aria-selected="false" tabindex="-1"><img src="assets/story-wageeh-face.webp" width="160" height="160" alt=""><span><b data-en="Wageeh">وجيه</b><small data-en="#ambitious">#طموح</small></span></button>
@@ -1279,9 +1280,9 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
 <div class="sticky-give" id="sticky" aria-hidden="true">
   <a class="btn btn-give" href="#give" tabindex="-1" data-en="Donate now">تبرّع الآن</a>
 </div>
-<a class="wa" href="https://wa.me/201027744425" target="_blank" rel="noopener" aria-label="تواصل معنا على واتساب" data-en-aria="Chat with us on WhatsApp">
+<aside aria-label="تواصل سريع" data-en-aria="Quick contact"><a class="wa" href="https://wa.me/201027744425" target="_blank" rel="noopener" aria-label="تواصل معنا على واتساب" data-en-aria="Chat with us on WhatsApp">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.4-4.2A8 8 0 1 1 8.5 19z"/><path d="M9 9.5c.3 2 2.5 4.2 4.5 4.5l1-1.2 1.8.8c-.2 1-1 1.6-2 1.6-3 0-6-3-6-6 0-1 .6-1.8 1.6-2l.8 1.8z" fill="currentColor" stroke="none"/></svg>
-</a>
+</a></aside>
 
 <script>
 (function () {
