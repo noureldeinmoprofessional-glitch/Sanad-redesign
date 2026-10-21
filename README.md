@@ -27,7 +27,22 @@ The page is built around one idea: Sanad doesn't care for orphans directly, it s
 - **Get involved**: four colour cards.
 - **Bank transfer**: each bank card shows that bank's logo.
 
-Cards share motifs taken from the current site: dot grids, wave bottoms, icon circles and colour bars. With reduced motion turned on, everything shows in its final state.
+- **Header**: the nav, «اطلب استشارة» (request a consultation), the donate button and a compact language button (globe + EN / ع). Below 1100px the nav folds into the menu, and on phones the consultation link moves there too.
+
+Cards share motifs taken from the current site: dot grids, wave bottoms, icon circles and colour bars. Each section has its own entrance:
+- **Headlines:** a line draws beside the eyebrow and the words rise out of a mask.
+- **Trust strip:** the icons pop in.
+- **Partner logos:** the rows slide in from opposite sides.
+- **Challenge:** the photo wipes open, with a slight parallax.
+- **Pillars:** the cards tilt up into place.
+- **Who we strengthen:** the photos rise like a curtain.
+- **Impact panel:** it opens from its centre.
+- **Stories:** the first poster slides in.
+- **Bank cards:** they swing in, and a light sweeps across each logo.
+- **Get-involved cards:** each colour spreads out from its icon.
+- **News:** the photos wipe down.
+
+With reduced motion turned on, everything shows in its final state.
 
 Sources for every piece of content: the text, figures, programs, stories, partner list, bank details and donation purposes all come from sanadorphans.org (Arabic and English homepage, October 2026). The one exception is "Pearson-accredited training", which comes from Sanad's impact page. The section headlines, the five-group framing of "Who we strengthen" and the short connecting lines are new copy.
 
