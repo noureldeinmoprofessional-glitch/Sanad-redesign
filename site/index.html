@@ -153,7 +153,6 @@ button, input, select { font: inherit; color: inherit; }
 .hv-teal span { font-family: "Aref Ruqaa", var(--font); font-weight: 700; color: var(--white); font-size: clamp(1rem, 4.3cqw, 1.75rem); line-height: 1.55; text-align: center; transform: rotate(-6deg); }
 [dir="ltr"] .hv-teal span { font-size: clamp(.9rem, 3.3cqw, 1.3rem); line-height: 1.35; }
 .hv-teal span::after { content: ""; display: block; width: 34%; height: 4px; margin: 6px auto 0; border-radius: 4px; background: var(--amber); }
-.hv-art .img-tag { inset-block: 14px auto; inset-inline: auto 14px; }
 
 /* faded brand boats drifting behind everything */
 .hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
@@ -510,8 +509,6 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
 .ch-here { grid-column: 1 / -1; justify-self: start; margin-top: 6px; display: inline-flex; align-items: center; gap: 8px; background: var(--coral); color: var(--navy); font-weight: 800; font-size: .85rem; border-radius: 999px; padding: 2px 12px; }
 .ch-here::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--navy); }
 .ch-note { color: #cfe0e8; font-size: .98rem; border-inline-start: 3px solid var(--teal); padding-inline-start: 14px; }
-.img-tag { position: absolute; z-index: 1; inset-block-end: 12px; inset-inline-start: 12px; background: rgba(15, 34, 51, .6); color: #e9f1f4; font-size: .72rem; font-weight: 600; border-radius: 6px; padding: 0 8px; pointer-events: none; }
-.ch-media .img-tag { inset-inline-start: auto; inset-inline-end: 12px; }
 @media (max-width: 900px) {
   .ch-media { position: relative; aspect-ratio: 16 / 10; }
   .ch-media::after { background: linear-gradient(to top, var(--navy) 0%, rgba(15, 34, 51, .2) 45%, transparent 70%); }
@@ -583,7 +580,6 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
 .impact-grid li > span { color: #cfe0e8; font-size: .88rem; font-weight: 600; }
 @media (max-width: 1000px) { .impact-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 520px) { .impact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-.p-media .img-tag { inset-block-end: 22px; }
 </style>
 </head>
 <body>
@@ -653,7 +649,6 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
         <figure class="hv-sat s3"><div class="hv-ph"><img src="assets/hero/child.webp" width="520" height="520" alt="طفلة ترسم في دار رعاية" data-en-alt="A girl drawing in a care home"></div><figcaption data-en="We raise the quality of care">نرتقي بجودة الرعاية</figcaption></figure>
         <div class="hv-blob hv-amber" aria-hidden="true"></div>
         <div class="hv-blob hv-teal"><span data-en="A world where every orphan shapes their future">عالم يستطيع فيه كل يتيم تشكيل مستقبله</span></div>
-        <span class="img-tag" data-en="Illustrative images">صور تعبيرية</span>
       </div>
       <div class="form-slot">
     <div class="give-card" id="give" tabindex="-1" aria-labelledby="give-title">
@@ -794,7 +789,7 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
 
 <!-- 4. The challenge -->
 <section class="challenge" id="challenge" aria-labelledby="challenge-title">
-  <div class="ch-media"><img src="assets/photos/challenge.webp" width="1376" height="768" alt="" loading="lazy"><span class="img-tag" data-en="Illustrative image">صورة تعبيرية</span></div>
+  <div class="ch-media"><img src="assets/photos/challenge.webp" width="1376" height="768" alt="" loading="lazy"></div>
   <div class="wrap ch-inner">
     <div class="ch-content">
       <div class="sec-head" style="margin:0">
@@ -877,7 +872,7 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
         </div>
       </article>
       <article class="p-card big c-youth pil-prev">
-        <div class="p-media"><img src="assets/photos/youth.webp" width="1100" height="614" alt="شاب يتعلّم النجارة مع مدرّبه في ورشة" data-en-alt="A young man learning carpentry with his mentor in a workshop" loading="lazy"><span class="img-tag" data-en="Illustrative image">صورة تعبيرية</span></div>
+        <div class="p-media"><img src="assets/photos/youth.webp" width="1100" height="614" alt="شاب يتعلّم النجارة مع مدرّبه في ورشة" data-en-alt="A young man learning carpentry with his mentor in a workshop" loading="lazy"></div>
         <div class="p-body">
           <span class="p-ring" data-en="Prevention pillar">محور الوقاية</span>
           <h3 class="bar-h" data-en="Young people leaving care">الشباب بعد الرعاية</h3>
@@ -887,7 +882,7 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
         </div>
       </article>
       <article class="p-card c-home pil-prot">
-        <div class="p-media"><img src="assets/photos/care-home.webp" width="1100" height="614" alt="مقدّمة رعاية تقرأ قصة لأطفال في دار رعاية" data-en-alt="A caregiver reading to children in a care home" loading="lazy"><span class="img-tag" data-en="Illustrative image">صورة تعبيرية</span></div>
+        <div class="p-media"><img src="assets/photos/care-home.webp" width="1100" height="614" alt="مقدّمة رعاية تقرأ قصة لأطفال في دار رعاية" data-en-alt="A caregiver reading to children in a care home" loading="lazy"></div>
         <div class="p-body">
           <span class="p-ring" data-en="Protection pillar">محور الحماية</span>
           <h3 class="bar-h" data-en="Care homes">دور الرعاية</h3>
@@ -897,7 +892,7 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
         </div>
       </article>
       <article class="p-card c-family pil-prev">
-        <div class="p-media"><img src="assets/photos/kafala-family.webp" width="1100" height="614" alt="أسرة كافلة تساعد ابنتها في واجباتها المدرسية" data-en-alt="A kafala family helping their daughter with homework" loading="lazy"><span class="img-tag" data-en="Illustrative image">صورة تعبيرية</span></div>
+        <div class="p-media"><img src="assets/photos/kafala-family.webp" width="1100" height="614" alt="أسرة كافلة تساعد ابنتها في واجباتها المدرسية" data-en-alt="A kafala family helping their daughter with homework" loading="lazy"></div>
         <div class="p-body">
           <span class="p-ring" data-en="Prevention pillar">محور الوقاية</span>
           <h3 class="bar-h" data-en="Kafala families">أسر الكفالة</h3>
@@ -907,7 +902,7 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
         </div>
       </article>
       <article class="p-card c-system pil-emp wide-sm">
-        <div class="p-media"><img src="assets/photos/care-system.webp" width="1100" height="614" alt="ورشة تدريب لأخصائيين اجتماعيين ومقدّمي رعاية" data-en-alt="A training workshop for social workers and caregivers" loading="lazy"><span class="img-tag" data-en="Illustrative image">صورة تعبيرية</span></div>
+        <div class="p-media"><img src="assets/photos/care-system.webp" width="1100" height="614" alt="ورشة تدريب لأخصائيين اجتماعيين ومقدّمي رعاية" data-en-alt="A training workshop for social workers and caregivers" loading="lazy"></div>
         <div class="p-body">
           <span class="p-ring" data-en="Empowerment pillar">محور التمكين</span>
           <h3 class="bar-h" data-en="The care system">منظومة الرعاية</h3>
@@ -1571,7 +1566,7 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
   var heroEl = document.getElementById("hero"), stage = heroEl.querySelector(".hero-stage"), copyEl = heroEl.querySelector(".hero-copy");
   var art = heroEl.querySelector(".hv-art"), mainPh = art.querySelector(".hv-main"), sats = art.querySelectorAll(".hv-sat");
   var linkPath = art.querySelector(".hv-path path"), vortex = art.querySelector(".hv-vortex"), vPath = vortex.querySelector("path");
-  var blobs = art.querySelectorAll(".hv-blob"), artTag = art.querySelector(".img-tag"), slot = heroEl.querySelector(".form-slot");
+  var blobs = art.querySelectorAll(".hv-blob"), slot = heroEl.querySelector(".form-slot");
   // resting places, as fractions of the art box (RTL); on phones the art is full width, so the photos keep clear of the screen edge
   var SAT_WIDE = [[.80, .19], [.90, .49], [.80, .79]], SAT_NARROW = [[.74, .2], [.83, .5], [.74, .8]], SAT = SAT_WIDE;
   var INTRO_MS = 4200;
@@ -1664,7 +1659,6 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
     mainPh.style.clipPath = "circle(" + (75 * mIn * (1 - mOut)).toFixed(2) + "% at var(--cx) 50%)";
     mainPh.style.transform = "rotate(" + (spin * 16 * mOut).toFixed(2) + "deg) scale(" + (1.1 - .1 * mIn - .14 * mOut).toFixed(3) + ")";
     mainPh.style.opacity = (1 - .35 * mOut).toFixed(3);
-    artTag.style.opacity = (mIn * (1 - seg(p, 0, .12))).toFixed(3);
     // three photos spiral out of the centre into place, then swirl outward and away
     sats.forEach(function (sat, i) {
       var g = geo.sat[i], e1 = seg(it, .18 + .1 * i, .7 + .1 * i), e2 = seg(p, .02 + .06 * i, .4 + .06 * i);
