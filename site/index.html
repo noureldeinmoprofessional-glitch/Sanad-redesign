@@ -8,7 +8,7 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=IBM+Plex+Sans+Arabic:wght@600;700&family=Roboto:wght@500;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Aref+Ruqaa:wght@700&family=IBM+Plex+Sans+Arabic:wght@600;700&family=Roboto:wght@500;700&display=swap">
 <style>
 /* Sanad homepage. Brand palette sampled from the live site; deeper teal and coral carry white text at WCAG AA. Coral is reserved for donate actions. */
 :root {
@@ -45,7 +45,7 @@ body { margin: 0; background: var(--white); color: var(--ink); font-family: var(
 img { max-width: 100%; height: auto; display: block; }
 a { color: var(--teal-deep); }
 h1, h2, h3, h4 { margin: 0; line-height: 1.35; text-wrap: balance; font-weight: 700; font-family: var(--font-head); }
-.story blockquote, .hf-cap b { font-family: var(--font-head); }
+.story blockquote { font-family: var(--font-head); }
 p { margin: 0; }
 button, input, select { font: inherit; color: inherit; }
 :focus-visible { outline: 3px solid var(--amber); outline-offset: 2px; border-radius: 6px; }
@@ -99,51 +99,100 @@ button, input, select { font: inherit; color: inherit; }
 }
 @media (min-width: 961px) { .drawer { display: none !important; } }
 
-/* hero: the circle of care */
-.hero { position: relative; background: var(--white); color: var(--ink); overflow: hidden; isolation: isolate; }
-.hero::before { content: ""; position: absolute; inset: -20% auto auto -12%; width: 62%; aspect-ratio: 1; background: radial-gradient(circle, rgba(54, 192, 202, .13), transparent 65%); z-index: -1; }
-.hero-head { grid-area: head; display: flex; flex-direction: column; gap: 14px; }
-.chip-reg { align-self: flex-start; display: inline-flex; gap: 8px; align-items: center; background: var(--teal-soft); border: 1px solid rgba(26, 127, 128, .25); color: var(--teal-ink); border-radius: 999px; padding: 4px 14px; font-size: .9rem; font-weight: 700; }
-.hero h1 { font-size: clamp(2rem, 4vw, 3.15rem); line-height: 1.32; }
+/* hero: the people Sanad strengthens spiral into view, then swirl away and open onto the donation form */
+.hero { position: relative; isolation: isolate; overflow: clip; color: var(--ink); background-color: #f6f1e7; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .25 0 0 0 0 .2 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.hero-stage { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); overflow: clip; }
+.hero-copy { position: relative; z-index: 2; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 18px; padding-block: 56px; padding-inline: max(20px, calc((100vw - 1200px) / 2 + 20px)) 44px; }
+.chip-reg { display: inline-flex; gap: 8px; align-items: center; background: var(--teal-soft); border: 1px solid rgba(26, 127, 128, .25); color: var(--teal-ink); border-radius: 999px; padding: 4px 14px; font-size: .9rem; font-weight: 700; }
+.hero h1 { font-size: clamp(2.2rem, 4.4vw, 3.8rem); line-height: 1.25; }
+.hero.is-pin h1 { font-size: clamp(2.1rem, min(4.4vw, 7vh), 3.9rem); }
 .hero h1 em { font-style: normal; color: var(--teal-deep); }
-.hero-sub { font-size: 1.08rem; color: var(--muted); max-width: 640px; }
-.hero-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); grid-template-areas: "head form" "film form"; grid-template-rows: auto 1fr; gap: 8px 48px; align-items: start; padding-block: 40px 150px; }
-.hero .give-card { grid-area: form; }
-.hero-film { grid-area: film; position: relative; isolation: isolate; margin-top: 18px; }
-.hf-frame { position: relative; display: block; width: 100%; aspect-ratio: 16 / 9.4; padding: 0; border: 0; border-radius: 26px; overflow: hidden; cursor: pointer; background: var(--navy); color: var(--white); text-align: start; }
-.hf-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 40% 40%; transform-origin: 60% 40%; }
-.hf-frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(15, 34, 51, .94) 0%, rgba(15, 34, 51, .5) 26%, transparent 52%); }
-.hf-play { position: absolute; z-index: 1; left: 50%; top: 44%; width: 92px; height: 92px; margin: -46px 0 0 -46px; border-radius: 50%; background: var(--give); color: var(--white); display: grid; place-items: center; outline: 8px solid rgba(255, 255, 255, .28); transition: transform .4s cubic-bezier(.34, 1.56, .64, 1), outline-color .3s; }
-.hf-play svg { margin-left: 5px; }
-.hf-frame:hover .hf-play { transform: scale(1.08); outline-color: rgba(255, 255, 255, .45); }
-.hf-cap { position: absolute; z-index: 1; inset: auto 24px 20px; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 16px; }
-.hf-cap b { font-size: clamp(1.25rem, 2.4vw, 1.7rem); line-height: 1.3; }
-.hf-cap span { color: #cfe0e8; font-weight: 600; font-size: .92rem; }
+.hero-sub { font-size: 1.08rem; color: var(--muted); max-width: 560px; }
+.hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
+.btn-lg { min-height: 58px; padding: 12px 30px; border-radius: 999px; font-size: 1.08rem; }
+.btn-film { background: var(--white); color: var(--navy); border: 1.5px solid var(--navy); }
+.btn-film:hover { background: var(--navy); color: var(--white); }
+.btn-film .pc { width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid currentColor; display: grid; place-items: center; }
+.hero-stats { list-style: none; margin: 10px 0 0; padding: 0; display: flex; }
+.hero-stats li { display: flex; flex-direction: column; padding-inline: 24px; border-inline-start: 1.5px solid #d8cfbf; line-height: 1.35; }
+.hero-stats li:first-child { padding-inline-start: 0; border: 0; }
+.hero-stats b { font-size: clamp(1.6rem, 2.6vw, 2.2rem); font-weight: 800; color: var(--teal-deep); font-variant-numeric: tabular-nums; }
+.hero-stats li > span { color: var(--muted); font-size: .88rem; font-weight: 600; max-width: 10em; }
+.hero-visual { position: relative; z-index: 1; min-width: 0; }
+.form-slot { display: flex; justify-content: center; padding-block: 56px; padding-inline: 44px max(20px, calc((100vw - 1200px) / 2 + 20px)); }
+.hero .give-card { width: 100%; max-width: 520px; transform-origin: 50% 50%; }
+.anim .hero:not(.is-pin) .give-card { animation: card-in 1.1s .45s cubic-bezier(.16, 1, .3, 1) both; }
+
+/* the photo composition */
+.hv-art { position: relative; container-type: inline-size; }
+.hero:not(.is-pin) .hv-art { display: none; }
+.hv-main { position: absolute; inset-block: 0; inset-inline-end: 0; width: 76%; overflow: hidden; transform-origin: var(--cx, 68%) 50%; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H84C95 9 81 21 89 33S99 55 90 67S81 88 93 100H0Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M0 0H84C95 9 81 21 89 33S99 55 90 67S81 88 93 100H0Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat; }
+[dir="ltr"] .hv-main { -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M100 0H16C5 9 19 21 11 33S1 55 10 67S19 88 7 100H100Z'/%3E%3C/svg%3E"); mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath d='M100 0H16C5 9 19 21 11 33S1 55 10 67S19 88 7 100H100Z'/%3E%3C/svg%3E"); }
+.hv-main img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 35%; }
+.hv-path, .hv-vortex { position: absolute; pointer-events: none; overflow: visible; }
+.hv-path { inset: 0; width: 100%; height: 100%; }
+.hv-path path { fill: none; stroke: var(--teal-deep); stroke-width: 1.6; stroke-linecap: round; }
+.hv-vortex { left: 0; top: 0; width: 100cqw; height: 100cqw; }
+.hv-vortex path { fill: none; stroke: var(--teal); stroke-width: 1.5; stroke-dasharray: 1; vector-effect: non-scaling-stroke; }
+.hv-sat { position: absolute; margin: 0; width: clamp(84px, 25cqw, 196px); transform: translate(-50%, -50%); }
+.hv-sat.s1 { --c: var(--teal); --r: 58% 42% 50% 50% / 50% 56% 44% 50%; left: 80%; top: 19%; }
+.hv-sat.s2 { --c: var(--amber); --r: 46% 54% 42% 58% / 56% 44% 56% 44%; left: 90%; top: 49%; }
+.hv-sat.s3 { --c: var(--coral); --r: 52% 48% 60% 40% / 44% 52% 48% 56%; left: 80%; top: 79%; }
+[dir="ltr"] .hv-sat.s1, [dir="ltr"] .hv-sat.s3 { left: 20%; }
+[dir="ltr"] .hv-sat.s2 { left: 10%; }
+.hero.js .hv-sat { left: 0; top: 0; }
+.hv-ph { aspect-ratio: 1; padding: 5px; background: #fbf8f2; border-radius: var(--r); box-shadow: 0 22px 36px -22px rgba(15, 34, 51, .6); }
+.hv-ph img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--r); }
+.hv-sat figcaption { position: absolute; left: 50%; top: calc(100% - 12px); transform: translateX(-50%); white-space: nowrap; background: var(--white); border-radius: 999px; padding: 3px 14px 6px; font-family: var(--font-head); font-weight: 700; font-size: clamp(.72rem, 2.3cqw, .98rem); box-shadow: 0 10px 20px -14px rgba(15, 34, 51, .6); }
+.hv-sat figcaption::after { content: ""; display: block; width: 58%; height: 3px; margin: 2px auto 0; border-radius: 3px; background: var(--c); }
+.hv-blob { position: absolute; }
+.hv-amber { width: 26cqw; aspect-ratio: 1; inset-block-end: -12cqw; inset-inline-end: -7cqw; background: var(--amber); border-radius: 48% 52% 60% 40% / 52% 44% 56% 48%; }
+.hv-teal { width: 46cqw; aspect-ratio: 1.08; inset-block-end: -5cqw; inset-inline-end: -8cqw; display: grid; place-items: center; padding: 6cqw 7cqw 9cqw 11cqw; background: #1d6967; border-radius: 58% 42% 50% 50% / 46% 52% 48% 54%; }
+[dir="ltr"] .hv-teal { padding: 6cqw 11cqw 9cqw 7cqw; }
+.hv-teal span { font-family: "Aref Ruqaa", var(--font); font-weight: 700; color: var(--white); font-size: clamp(1rem, 4.3cqw, 1.75rem); line-height: 1.55; text-align: center; transform: rotate(-6deg); }
+[dir="ltr"] .hv-teal span { font-size: clamp(.9rem, 3.3cqw, 1.3rem); line-height: 1.35; }
+.hv-teal span::after { content: ""; display: block; width: 34%; height: 4px; margin: 6px auto 0; border-radius: 4px; background: var(--amber); }
+.hv-art .img-tag { inset-block: 14px auto; inset-inline: auto 14px; }
+
+/* faded brand boats drifting behind everything */
+.hero-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.hb { position: absolute; width: var(--w); opacity: calc(.15 - var(--p, 0) * .09); transform: translateX(calc(var(--p, 0) * var(--dx))); }
+.hb svg { width: 100%; display: block; }
+.anim .hb svg { animation: bob 7s ease-in-out infinite; animation-delay: var(--bd, 0s); }
+@keyframes bob { 0%, 100% { transform: translateY(0) rotate(-1.5deg); } 50% { transform: translateY(-7px) rotate(1.5deg); } }
+.hb.b1 { --w: 190px; --dx: 220px; top: 7%; left: 40%; }
+.hb.b2 { --w: 150px; --dx: -180px; bottom: 7%; right: 22%; --bd: -2s; }
+.hb.b3 { --w: 110px; --dx: 140px; top: 33%; right: 2%; --bd: -4s; }
+.hb-wave { position: absolute; left: 0; right: 0; bottom: 3%; height: 26px; opacity: calc(.22 - var(--p, 0) * .12); }
+.hb-wave svg { width: 200%; height: 100%; display: block; }
+.anim .hb-wave svg { animation: wave-x 60s linear infinite; }
+
+/* pinned: the hero holds still while you scroll, the photos swirl away and the form opens in their place */
+.hero.is-pin { height: calc(var(--stage-h, 100vh) + 140vh); }
+.hero.is-pin .hero-stage { position: sticky; top: var(--head-h, 76px); height: var(--stage-h, 100vh); }
+.hero.is-pin .hero-copy { padding-block: 24px; }
+.hero.is-pin .hv-art { position: absolute; inset: 0; }
+.hero.is-pin .form-slot { position: absolute; inset: 0; z-index: 3; padding: 0; display: block; }
+/* centred by hand: a grid would stop centring once the unscaled card is taller than the stage */
+.hero.is-pin .give-card { position: absolute; left: 50%; top: 50%; width: min(520px, calc(100% - 48px)); }
+
 @media (max-width: 960px) {
-  .hero-grid { grid-template-columns: 1fr; grid-template-areas: "head" "film" "form"; gap: 18px; padding-block: 30px 120px; }
-  .hero-film { margin-top: 4px; }
+  .hero-stage { grid-template-columns: 1fr; }
+  .hero-copy { padding: 30px 20px 8px; }
+  .hero:not(.is-pin) .hv-art { display: block; aspect-ratio: 1 / 1.08; overflow: clip; margin-top: 12px; }
+  .form-slot { padding: 8px 20px 56px; }
+  .hero-stats li { padding-inline: 16px; }
+  .hb.b1 { left: 55%; top: 3%; --w: 120px; }
+  .hb.b3 { display: none; }
 }
-@media (max-width: 520px) { .hf-frame { border-radius: 18px; } .hf-play { width: 68px; height: 68px; margin: -34px 0 0 -34px; outline-width: 6px; } .hf-play svg { width: 26px; height: 26px; } .hf-cap { inset: auto 14px 12px; } .hf-cap span { display: none; } }
-.waves { position: absolute; inset: auto 0 0 0; height: 120px; z-index: -1; }
-.waves svg { width: 100%; height: 100%; display: block; }
-.boat { position: absolute; bottom: 74px; inset-inline-start: 7%; width: 84px; animation: bob 5s ease-in-out infinite; }
-@keyframes bob { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-6px) rotate(2deg); } }
-@media (max-width: 960px) { .boat { width: 64px; bottom: 60px; } }
+@media (max-width: 420px) { .btn-lg { padding-inline: 22px; } .hero-stats b { font-size: 1.45rem; } .hero-stats li > span { font-size: .8rem; } }
 
 /* motion: hidden start states exist only when JS has switched animation on (html.anim) */
-.anim .hf-frame { animation: hf-in 1.3s .3s cubic-bezier(.16, 1, .3, 1) both; }
-.anim .hf-frame img { animation: kenburns 22s 1.2s ease-in-out infinite alternate; }
-.anim .hf-play { animation: pop-c .7s 1.15s cubic-bezier(.34, 1.56, .64, 1) both; }
-.anim .hf-cap { animation: fade-up .8s 1.3s cubic-bezier(.16, 1, .3, 1) both; }
-@keyframes hf-in { from { clip-path: inset(100% 0 0 0 round 26px); transform: translateY(40px); } to { clip-path: inset(0 0 0 0 round 26px); transform: none; } }
-@keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.09) translate(-1.5%, 1%); } }
-@keyframes pop-c { from { opacity: 0; transform: scale(.4); } to { opacity: 1; transform: none; } }
 @keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 @keyframes draw { to { stroke-dashoffset: 0; } }
 @keyframes fade-in { to { opacity: 1; } }
 .anim .hero h1 .hw { display: inline-block; opacity: 0; transform: translateY(.45em); filter: blur(6px); animation: word-in .9s cubic-bezier(.2, .7, .2, 1) forwards; animation-delay: calc(.15s + var(--i) * 80ms); }
 @keyframes word-in { to { opacity: 1; transform: none; filter: none; } }
-.anim .hero .give-card { animation: card-in 1.1s .45s cubic-bezier(.16, 1, .3, 1) both; }
 .anim [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity .8s cubic-bezier(.2, .7, .2, 1), transform 1s cubic-bezier(.16, 1, .3, 1); transition-delay: var(--d, 0s); }
 .anim [data-reveal].in { opacity: 1; transform: none; }
 
@@ -570,20 +619,42 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
 
 <!-- 1. Hero with the donation form -->
 <section class="hero" id="hero" aria-labelledby="hero-title">
-  <div class="wrap hero-grid">
-    <div class="hero-head">
+  <div class="hero-stage">
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hb b1"><svg viewBox="0 0 200 60" aria-hidden="true"><path d="M0 52 Q25 46 50 52 T100 52 T130 52" fill="none" stroke="#1a7f80" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round"/><g transform="translate(120 0)"><path d="M39 6 L39 40" stroke="#0f2233" stroke-width="2"/><path d="M39 6 L52 10 L39 14Z" fill="#e8724a"/><path d="M37 16 L37 40 L18 40Z" fill="#0f2233"/><path d="M41 18 L41 40 L60 40Z" fill="#f2b025"/><path d="M8 42 L72 42 L62 54 L18 54Z" fill="#36c0ca"/></g></svg></div>
+      <div class="hb b2"><svg viewBox="0 0 200 60" aria-hidden="true"><path d="M0 52 Q25 46 50 52 T100 52 T130 52" fill="none" stroke="#1a7f80" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round"/><g transform="translate(120 0)"><path d="M39 6 L39 40" stroke="#0f2233" stroke-width="2"/><path d="M39 6 L52 10 L39 14Z" fill="#e8724a"/><path d="M37 16 L37 40 L18 40Z" fill="#0f2233"/><path d="M41 18 L41 40 L60 40Z" fill="#f2b025"/><path d="M8 42 L72 42 L62 54 L18 54Z" fill="#36c0ca"/></g></svg></div>
+      <div class="hb b3"><svg viewBox="0 0 200 60" aria-hidden="true"><path d="M0 52 Q25 46 50 52 T100 52 T130 52" fill="none" stroke="#1a7f80" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round"/><g transform="translate(120 0)"><path d="M39 6 L39 40" stroke="#0f2233" stroke-width="2"/><path d="M39 6 L52 10 L39 14Z" fill="#e8724a"/><path d="M37 16 L37 40 L18 40Z" fill="#0f2233"/><path d="M41 18 L41 40 L60 40Z" fill="#f2b025"/><path d="M8 42 L72 42 L62 54 L18 54Z" fill="#36c0ca"/></g></svg></div>
+      <div class="hb-wave"><svg viewBox="0 0 800 26" preserveAspectRatio="none"><path d="M0 13 Q50 3 100 13 T200 13 T300 13 T400 13 T500 13 T600 13 T700 13 T800 13" fill="none" stroke="#1a7f80" stroke-width="2"/></svg></div>
+    </div>
+
+    <div class="hero-copy">
       <span class="chip-reg" data-reveal data-en="Support for those who support · Since 2008 · Reg. No. 7478">سند لمن يكون سندًا · منذ 2008 · مشهرة برقم 7478</span>
       <h1 id="hero-title" data-en-html="Behind every child is a caring hand. <em>We make that hand stronger.</em>">وراء كل طفل يدٌ ترعاه… <em>ونحن نقوّي هذه اليد</em></h1>
       <p class="hero-sub" data-reveal style="--d:.55s" data-en="Sanad doesn't run care homes. We stand behind the people who care for children without parental care: we train caregivers, raise the quality of care homes, prepare kafala families and help young people become independent. Your gift reaches the child through every one of these hands.">سند لا تدير دور رعاية، بل تقف خلف من يرعون الأطفال فاقدي الرعاية الوالدية: ندرّب مقدّمي الرعاية، ونرفع جودة دور الرعاية، ونجهّز أسر الكفالة، ونؤهّل الشباب للاستقلال. تبرعك يصل إلى الطفل عبر كل هذه الأيدي.</p>
-    </div>
-    <div class="hero-film">
-      <button class="hf-frame" type="button" data-film aria-label="شغّل فيلم سند: يعني إيه سند؟" data-en-aria="Play Sanad's film: What does Sanad mean?">
-        <img src="assets/film-poster.webp" width="1280" height="600" alt="">
-        <span class="hf-play"><svg width="34" height="34" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>
-        <span class="hf-cap"><b data-en="Watch: What does Sanad mean?">شاهد: يعني إيه سند؟</b><span data-en="A short film from Sanad">فيلم قصير من سند</span></span>
-      </button>
+      <div class="hero-ctas" data-reveal style="--d:.7s">
+        <a class="btn btn-give btn-lg arw" href="#give" data-en="Donate now">تبرّع الآن</a>
+        <button class="btn btn-film btn-lg" type="button" data-film aria-label="تعرّف على سند: شاهد فيلم يعني إيه سند؟" data-en-aria="Meet Sanad: watch the film What does Sanad mean?"><span class="pc"><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="currentColor"/></svg></span><span data-en="Meet Sanad">تعرّف على سند</span></button>
+      </div>
+      <ul class="hero-stats" data-reveal style="--d:.85s">
+        <li><b><span class="ltr" data-count>18+</span></b><span data-en="years of impact">عامًا من الأثر</span></li>
+        <li><b data-count>20</b><span data-en="governorates">محافظة</span></li>
+        <li><b data-count>5,622</b><span data-en="children and young people reached">طفلًا وشابًا وصلهم الأثر</span></li>
+      </ul>
     </div>
 
+    <div class="hero-visual">
+      <div class="hv-art">
+        <div class="hv-main"><img src="assets/hero/main.webp" width="848" height="1264" alt="مقدّمة رعاية تذاكر مع طفل في البيت" data-en-alt="A caregiver studying with a child at home"></div>
+        <svg class="hv-vortex" viewBox="-100 -100 200 200" aria-hidden="true"><path pathLength="1" d="M3.0 0.0 L3.4 0.3 L3.7 0.7 L4.0 1.1 L4.3 1.6 L4.5 2.1 L4.6 2.7 L4.7 3.4 L4.6 4.0 L4.5 4.7 L4.4 5.4 L4.1 6.1 L3.7 6.7 L3.3 7.4 L2.7 8.0 L2.1 8.6 L1.4 9.2 L0.6 9.6 L-0.3 10.0 L-1.3 10.4 L-2.3 10.6 L-3.3 10.7 L-4.4 10.8 L-5.5 10.7 L-6.6 10.5 L-7.8 10.1 L-8.9 9.7 L-10.0 9.1 L-11.1 8.4 L-12.2 7.6 L-13.1 6.7 L-14.0 5.6 L-14.9 4.5 L-15.6 3.2 L-16.2 1.9 L-16.7 0.4 L-17.1 -1.1 L-17.3 -2.6 L-17.4 -4.3 L-17.3 -5.9 L-17.1 -7.6 L-16.7 -9.3 L-16.1 -10.9 L-15.4 -12.6 L-14.5 -14.2 L-13.4 -15.7 L-12.2 -17.1 L-10.8 -18.5 L-9.3 -19.7 L-7.6 -20.8 L-5.8 -21.8 L-4.0 -22.6 L-2.0 -23.3 L0.1 -23.8 L2.3 -24.0 L4.5 -24.1 L6.7 -24.0 L9.0 -23.7 L11.2 -23.2 L13.4 -22.4 L15.6 -21.4 L17.7 -20.3 L19.7 -18.9 L21.6 -17.3 L23.4 -15.5 L25.0 -13.6 L26.5 -11.5 L27.8 -9.2 L28.9 -6.8 L29.7 -4.2 L30.4 -1.6 L30.8 1.1 L31.0 3.9 L30.9 6.7 L30.5 9.6 L29.9 12.4 L29.0 15.2 L27.9 17.9 L26.5 20.6 L24.9 23.1 L23.0 25.5 L20.8 27.8 L18.5 29.8 L16.0 31.7 L13.2 33.4 L10.3 34.8 L7.3 36.0 L4.1 36.9 L0.8 37.5 L-2.6 37.8 L-6.0 37.8 L-9.4 37.5 L-12.8 36.9 L-16.2 35.9 L-19.5 34.7 L-22.8 33.1 L-25.9 31.3 L-28.8 29.1 L-31.6 26.7 L-34.2 24.0 L-36.5 21.1 L-38.6 17.9 L-40.4 14.5 L-41.9 11.0 L-43.1 7.3 L-44.0 3.5 L-44.5 -0.5 L-44.7 -4.5 L-44.5 -8.5 L-43.9 -12.5 L-43.0 -16.5 L-41.7 -20.4 L-40.1 -24.3 L-38.1 -28.0 L-35.7 -31.5 L-33.1 -34.8 L-30.1 -38.0 L-26.8 -40.8 L-23.3 -43.4 L-19.5 -45.6 L-15.5 -47.6 L-11.2 -49.1 L-6.9 -50.3 L-2.4 -51.1 L2.2 -51.5 L6.8 -51.5 L11.4 -51.1 L16.0 -50.2 L20.6 -49.0 L25.0 -47.3 L29.4 -45.2 L33.5 -42.7 L37.4 -39.9 L41.1 -36.6 L44.5 -33.1 L47.6 -29.2 L50.4 -25.0 L52.8 -20.6 L54.8 -15.9 L56.4 -11.1 L57.5 -6.0 L58.2 -0.9 L58.5 4.3 L58.2 9.5 L57.5 14.8 L56.4 20.0 L54.7 25.1 L52.6 30.0 L50.1 34.8 L47.1 39.4 L43.7 43.7 L39.9 47.7 L35.7 51.3 L31.2 54.7 L26.4 57.6 L21.3 60.1 L15.9 62.1 L10.4 63.6 L4.8 64.7 L-1.0 65.3 L-6.9 65.3 L-12.7 64.8 L-18.5 63.8 L-24.3 62.3 L-29.9 60.2 L-35.3 57.7 L-40.6 54.6 L-45.5 51.1 L-50.2 47.1 L-54.4 42.7 L-58.4 37.9 L-61.8 32.7 L-64.9 27.3 L-67.4 21.5 L-69.4 15.5 L-70.9 9.3 L-71.9 3.0 L-72.2 -3.4 L-72.0 -9.9 L-71.3 -16.3 L-69.9 -22.7 L-68.0 -29.0 L-65.5 -35.1 L-62.4 -41.0 L-58.8 -46.6 L-54.7 -51.9 L-50.2 -56.9 L-45.1 -61.4 L-39.7 -65.5 L-33.9 -69.2 L-27.7 -72.3 L-21.3 -74.8 L-14.7 -76.8 L-7.8 -78.2 L-0.8 -79.0 L6.2 -79.1 L13.3 -78.6 L20.3 -77.5 L27.3 -75.8 L34.1 -73.4 L40.7 -70.4 L47.0 -66.9 L53.0 -62.7 L58.6 -58.0 L63.9 -52.8 L68.6 -47.2 L72.9 -41.1 L76.6 -34.6 L79.8 -27.8 L82.3 -20.7 L84.2 -13.3 L85.4 -5.8 L86.0 1.8 L85.9 9.5 L85.1 17.2 L83.6 24.8 L81.4 32.2 L78.6 39.5 L75.1 46.6 L71.0 53.3 L66.3 59.7 L61.0 65.6 L55.1 71.1 L48.8 76.0 L42.0 80.4 L34.9 84.2 L27.4 87.3 L19.6 89.8 L11.6 91.6 L3.4 92.6 L-4.9 93.0 L-13.2 92.5 L-21.4 91.4 L-29.6 89.5 L-37.6 86.9 L-45.3 83.5 L-52.8 79.5 L-59.9 74.8 L-66.6 69.4 L-72.8 63.5 L-78.5 57.0"/></svg>
+        <svg class="hv-path" aria-hidden="true"><path/></svg>
+        <figure class="hv-sat s1"><div class="hv-ph"><img src="assets/hero/trainer.webp" width="520" height="520" alt="مدرّبة مقدّمي رعاية" data-en-alt="A caregiver trainer"></div><figcaption data-en="We train caregivers">نؤهّل مقدّمي الرعاية</figcaption></figure>
+        <figure class="hv-sat s2"><div class="hv-ph"><img src="assets/hero/youth.webp" width="520" height="520" alt="شاب يبتسم" data-en-alt="A smiling young man"></div><figcaption data-en="We empower youth">نمكّن الشباب</figcaption></figure>
+        <figure class="hv-sat s3"><div class="hv-ph"><img src="assets/hero/child.webp" width="520" height="520" alt="طفلة ترسم في دار رعاية" data-en-alt="A girl drawing in a care home"></div><figcaption data-en="We raise the quality of care">نرتقي بجودة الرعاية</figcaption></figure>
+        <div class="hv-blob hv-amber" aria-hidden="true"></div>
+        <div class="hv-blob hv-teal"><span data-en="A world where every orphan shapes their future">عالم يستطيع فيه كل يتيم تشكيل مستقبله</span></div>
+        <span class="img-tag" data-en="Illustrative images">صور تعبيرية</span>
+      </div>
+      <div class="form-slot">
     <div class="give-card" id="give" tabindex="-1" aria-labelledby="give-title">
       <!-- Step 1: choose -->
       <form class="step" id="step1" novalidate>
@@ -687,27 +758,9 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
         <button class="back" type="button" data-restart data-en="Give again">تبرّع مرة أخرى</button>
       </div>
     </div>
+      </div>
+    </div>
   </div>
-
-  <div class="waves" aria-hidden="true">
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-      <defs>
-        <pattern id="stripes" width="56" height="12" patternUnits="userSpaceOnUse"><path d="M0 6 Q14 0 28 6 T56 6" fill="none" stroke="#36c0ca" stroke-width="2.4" opacity=".55"/></pattern>
-        <pattern id="stripes2" width="56" height="12" patternUnits="userSpaceOnUse"><path d="M0 6 Q14 0 28 6 T56 6" fill="none" stroke="#e8724a" stroke-width="2.4" opacity=".6"/></pattern>
-      </defs>
-      <path d="M0 46 C240 6 480 86 720 46 S1200 6 1440 46 V120 H0Z" fill="#e3f5f6"/>
-      <path d="M0 46 C240 6 480 86 720 46 S1200 6 1440 46 V120 H0Z" fill="url(#stripes)"/>
-      <path d="M0 92 C300 62 560 120 860 90 S1260 66 1440 88 V120 H0Z" fill="#ffffff"/>
-      <path d="M0 92 C300 62 560 120 860 90 S1260 66 1440 88 V120 H0Z" fill="url(#stripes2)"/>
-    </svg>
-  </div>
-  <svg class="boat" viewBox="0 0 80 60" aria-hidden="true">
-    <path d="M39 6 L39 40" stroke="#0f2233" stroke-width="2"/>
-    <path d="M39 6 L52 10 L39 14Z" fill="#e8724a"/>
-    <path d="M37 16 L37 40 L18 40Z" fill="#0f2233"/>
-    <path d="M41 18 L41 40 L60 40Z" fill="#f2b025"/>
-    <path d="M8 42 L72 42 L62 54 L18 54Z" fill="#36c0ca"/>
-  </svg>
 </section>
 
 <!-- 2. Trust strip -->
@@ -1157,7 +1210,7 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
 (function () {
   "use strict";
   var root = document.documentElement;
-  var lang = "ar";
+  var lang = "ar", heroReady = false;
 
   // ---------- i18n: Arabic is in the markup, English lives in data-en* attributes ----------
   var TEXT = {
@@ -1225,6 +1278,7 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
     });
     render();
     splitHeadline();
+    if (heroReady) decideMode();
     if (typeof onScroll === "function") onScroll();
     try { localStorage.setItem("sanad-lang", lang); } catch (e) {}
   }
@@ -1296,8 +1350,10 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
 
   function show(step, focusEl) {
     [step1, step2, step3].forEach(function (s) { s.hidden = s !== step; });
+    // details and thank-you are taller than the pinned stage, so the hero lets go
+    if (step !== step1 && pinned) unpin();
     if (focusEl) focusEl.focus({ preventScroll: true });
-    if (card.getBoundingClientRect().top < 0) card.scrollIntoView({ block: "start" });
+    if (card.getBoundingClientRect().top < head.offsetHeight) card.scrollIntoView({ block: "start" });
   }
   function fieldError(input, errEl, msg) {
     input.setAttribute("aria-invalid", msg ? "true" : "false");
@@ -1339,14 +1395,14 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
 
   // Any "give" call-to-action preselects the form and brings it into view
   document.addEventListener("click", function (e) {
-    var a = e.target.closest("[data-give-fund]");
+    var a = e.target.closest('[data-give-fund], a[href="#give"]');
     if (!a) return;
     e.preventDefault();
-    step1.querySelector("input[name=fund][value=" + a.getAttribute("data-give-fund") + "]").checked = true;
+    var f = a.getAttribute("data-give-fund");
+    if (f) step1.querySelector("input[name=fund][value=" + f + "]").checked = true;
     render();
     show(step1);
-    card.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
-    card.focus({ preventScroll: true });
+    revealForm();
   });
 
   // ---------- stories: picker, arrows and arrow keys ----------
@@ -1510,11 +1566,145 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
     document.querySelectorAll("[data-reveal]").forEach(function (el) { el.classList.add("in"); });
   }
 
-  // ---------- scroll: the sticky mobile donate bar ----------
+  // ---------- hero: the people Sanad strengthens spiral into view, then swirl away and open onto the form ----------
+  var heroEl = document.getElementById("hero"), stage = heroEl.querySelector(".hero-stage"), copyEl = heroEl.querySelector(".hero-copy");
+  var art = heroEl.querySelector(".hv-art"), mainPh = art.querySelector(".hv-main"), sats = art.querySelectorAll(".hv-sat");
+  var linkPath = art.querySelector(".hv-path path"), vortex = art.querySelector(".hv-vortex"), vPath = vortex.querySelector("path");
+  var blobs = art.querySelectorAll(".hv-blob"), artTag = art.querySelector(".img-tag"), slot = heroEl.querySelector(".form-slot");
+  // resting places, as fractions of the art box (RTL); on phones the art is full width, so the photos keep clear of the screen edge
+  var SAT_WIDE = [[.80, .19], [.90, .49], [.80, .79]], SAT_NARROW = [[.74, .2], [.83, .5], [.74, .8]], SAT = SAT_WIDE;
+  var geo = null, pinned = false, unpinned = false, introT0 = null, heroP = 0, linkLen = 0, fs = 1, painting = false;
+  var easeOut = function (k) { return 1 - Math.pow(1 - k, 3); };
+  function seg(t, a, b) { return easeOut(clamp((t - a) / (b - a))); }
+  function stageH() { return innerHeight - head.offsetHeight; }
+  heroEl.classList.add("js");
+
+  function catmull(p) {
+    var d = "M" + p[0][0].toFixed(1) + " " + p[0][1].toFixed(1);
+    for (var i = 0; i < p.length - 1; i++) {
+      var a = p[i - 1] || p[i], b = p[i], c = p[i + 1], e = p[i + 2] || c;
+      d += " C" + [b[0] + (c[0] - a[0]) / 6, b[1] + (c[1] - a[1]) / 6, c[0] - (e[0] - b[0]) / 6, c[1] - (e[1] - b[1]) / 6, c[0], c[1]]
+        .map(function (n) { return n.toFixed(1); }).join(" ");
+    }
+    return d;
+  }
+  function layoutArt() {
+    var W = art.clientWidth, H = art.clientHeight;
+    if (!W || !H) { geo = null; return; }
+    SAT = innerWidth > 960 ? SAT_WIDE : SAT_NARROW;
+    var rtl = root.dir === "rtl", fx = function (f) { return rtl ? f * W : (1 - f) * W; }, pts = [];
+    geo = { cx: fx(.52), cy: H * .5, sat: [] };
+    sats.forEach(function (sat, i) {
+      var x = fx(SAT[i][0]), y = SAT[i][1] * H;
+      geo.sat.push({ R: Math.hypot(x - geo.cx, y - geo.cy), a: Math.atan2(y - geo.cy, x - geo.cx), sz: sat.offsetWidth });
+      pts.push([x, y]);
+    });
+    // the hand-drawn line enters above the first photo and leaves below the last
+    var side = rtl ? 1 : -1;
+    pts.unshift([pts[0][0] + side * W * .07, -H * .04]);
+    pts.push([pts[pts.length - 1][0] + side * W * .09, H * 1.04]);
+    linkPath.parentNode.setAttribute("viewBox", "0 0 " + W + " " + H);
+    linkPath.setAttribute("d", catmull(pts));
+    linkLen = linkPath.getTotalLength();
+    linkPath.style.strokeDasharray = linkLen;
+    var vs = W; // the spiral is as wide as the art box (100cqw)
+    vortex.style.left = (geo.cx - vs / 2).toFixed(1) + "px";
+    vortex.style.top = (geo.cy - vs / 2).toFixed(1) + "px";
+    mainPh.style.setProperty("--cx", ((rtl ? .52 / .76 : .24 / .76) * 100).toFixed(1) + "%");
+  }
+  function decideMode() {
+    heroEl.style.setProperty("--stage-h", stageH() + "px");
+    var want = !still && !unpinned && innerWidth > 960;
+    heroEl.classList.toggle("is-pin", want);
+    if (want) {
+      fs = Math.min(1, (stageH() - 32) / card.offsetHeight);
+      if (fs < .74 || copyEl.scrollHeight > copyEl.clientHeight + 2) want = false;
+    }
+    heroEl.classList.toggle("is-pin", want);
+    pinned = want;
+    if (!pinned) { slot.inert = false; slot.style.clipPath = slot.style.opacity = card.style.transform = ""; heroP = 0; }
+    layoutArt();
+    heroScroll();
+    paint();
+  }
+  function unpin() { unpinned = true; decideMode(); }
+  function heroScroll() {
+    if (!pinned) return;
+    heroP = clamp((scrollY + head.offsetHeight - heroEl.offsetTop) / (heroEl.offsetHeight - stageH()));
+  }
+  // the scroll position at which the form has fully opened
+  function revealForm() {
+    var how = still ? "auto" : "smooth";
+    if (pinned) {
+      scrollTo({ top: heroEl.offsetTop - head.offsetHeight + (heroEl.offsetHeight - stageH()) * .78, behavior: how });
+      setTimeout(function () { card.focus({ preventScroll: true }); }, still ? 0 : 900);
+    } else {
+      card.scrollIntoView({ behavior: how, block: "start" });
+      card.focus({ preventScroll: true });
+    }
+  }
+  function paint() {
+    var it = introT0 === null ? 0 : still ? 1 : clamp((performance.now() - introT0) / 2600);
+    var p = pinned ? heroP : 0, rtl = root.dir === "rtl", spin = rtl ? -1 : 1;
+    stage.style.setProperty("--p", p.toFixed(3));
+    if (pinned) {
+      var f = seg(p, .4, .7);
+      slot.style.clipPath = f >= 1 ? "none" : "circle(" + (75 * f).toFixed(2) + "% at " + (rtl ? 52 : 48) + "% 50%)";
+      slot.style.opacity = Math.min(1, f * 1.8).toFixed(3);
+      card.style.transform = "translate(-50%, calc(-50% + " + (36 * (1 - f)).toFixed(1) + "px)) scale(" + (fs * (.9 + .1 * f)).toFixed(3) + ")";
+      slot.inert = f < .5;
+    }
+    if (!geo) return;
+    // the main photo opens out of the spiral's centre, and later collapses back into it
+    var mIn = seg(it, .02, .5), mOut = seg(p, .14, .52);
+    mainPh.style.clipPath = "circle(" + (75 * mIn * (1 - mOut)).toFixed(2) + "% at var(--cx) 50%)";
+    mainPh.style.transform = "rotate(" + (spin * 16 * mOut).toFixed(2) + "deg) scale(" + (1.1 - .1 * mIn - .14 * mOut).toFixed(3) + ")";
+    mainPh.style.opacity = (1 - .35 * mOut).toFixed(3);
+    artTag.style.opacity = (mIn * (1 - seg(p, 0, .12))).toFixed(3);
+    // three photos spiral out of the centre into place, then swirl outward and away
+    sats.forEach(function (sat, i) {
+      var g = geo.sat[i], e1 = seg(it, .18 + .1 * i, .7 + .1 * i), e2 = seg(p, .02 + .06 * i, .4 + .06 * i);
+      var a = g.a + spin * (-1.6 * Math.PI * (1 - e1) + 1.3 * Math.PI * e2), R = g.R * e1 * (1 + 1.15 * e2);
+      var x = geo.cx + Math.cos(a) * R - g.sz / 2, y = geo.cy + Math.sin(a) * R - g.sz / 2;
+      sat.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px) rotate(" + (spin * (-120 * (1 - e1) + 150 * e2)).toFixed(1) +
+        "deg) scale(" + ((.35 + .65 * e1) * (1 - .55 * e2)).toFixed(3) + ")";
+      sat.style.opacity = (Math.min(1, e1 * 1.4) * (1 - e2)).toFixed(3);
+    });
+    // the line that joins them draws in last and is the first thing to go
+    var lIn = seg(it, .62, 1), lOut = seg(p, 0, .16);
+    linkPath.style.strokeDashoffset = (linkLen * (1 - lIn + lOut)).toFixed(1);
+    // the spiral itself shows only while things are moving through it
+    var vIn = seg(it, 0, .42), vEx = seg(p, .16, .46);
+    vortex.style.opacity = Math.max(.5 * vIn * (1 - seg(it, .45, .85)), .45 * vEx * (1 - seg(p, .5, .64))).toFixed(3);
+    vPath.style.strokeDashoffset = (1 - Math.max(it < 1 ? vIn : 0, vEx)).toFixed(3);
+    vortex.style.transform = "rotate(" + (spin * (200 * it + 300 * p)).toFixed(1) + "deg)";
+    blobs.forEach(function (b, i) {
+      var e1 = seg(it, .4 + .08 * i, .85 + .08 * i), e2 = seg(p, .05, .4);
+      b.style.transform = "translate(" + (spin * 90 * e2).toFixed(1) + "px," + (120 * e2).toFixed(1) + "px) rotate(" +
+        (spin * (-30 * (1 - e1) + 25 * e2)).toFixed(1) + "deg) scale(" + (.4 + .6 * e1).toFixed(3) + ")";
+      b.style.opacity = (Math.min(1, e1 * 1.5) * (1 - e2)).toFixed(3);
+    });
+  }
+  function requestPaint() {
+    if (painting) return;
+    painting = true;
+    requestAnimationFrame(function () { painting = false; paint(); });
+  }
+  function introLoop() { paint(); if (performance.now() - introT0 < 2700) requestAnimationFrame(introLoop); }
+  function startIntro() { if (introT0 !== null) return; introT0 = performance.now(); if (still) paint(); else introLoop(); }
+  if (!still && "IntersectionObserver" in window) {
+    var heroIO = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { startIntro(); heroIO.disconnect(); } }, { threshold: .3 });
+    heroIO.observe(art);
+  } else startIntro();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { decideMode(); });
+
+  // ---------- scroll: the hero and the sticky mobile donate bar ----------
   var sticky = document.getElementById("sticky");
   function onScroll() {
     var vh = innerHeight, headH = head.offsetHeight;
     root.style.setProperty("--head-h", headH + "px");
+    heroScroll();
+    requestPaint();
     // shown whenever the form is out of view, once the visitor has started scrolling
     var cr = card.getBoundingClientRect();
     var off = scrollY > 120 && (cr.bottom < headH || cr.top > vh);
@@ -1523,11 +1713,12 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
     sticky.querySelectorAll("a").forEach(function (a) { a.tabIndex = off ? 0 : -1; });
   }
   addEventListener("scroll", onScroll, { passive: true });
-  addEventListener("resize", onScroll);
+  addEventListener("resize", function () { decideMode(); onScroll(); });
   onScroll();
   // ?lang=en opens the English version directly; otherwise use the last choice
   var saved = new URLSearchParams(location.search).get("lang");
   if (!saved) { try { saved = localStorage.getItem("sanad-lang"); } catch (e) {} }
+  heroReady = true;
   applyLang(saved === "en" ? "en" : "ar");
 })();
 </script>
