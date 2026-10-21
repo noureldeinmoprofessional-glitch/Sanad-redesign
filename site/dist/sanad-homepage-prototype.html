@@ -121,7 +121,8 @@ button, input, select { font: inherit; color: inherit; }
 .hero-visual { position: relative; z-index: 1; min-width: 0; }
 .form-slot { display: flex; justify-content: center; padding-block: 56px; padding-inline: 44px max(20px, calc((100vw - 1200px) / 2 + 20px)); }
 .hero .give-card { width: 100%; max-width: 520px; transform-origin: 50% 50%; }
-.anim .hero:not(.is-pin) .give-card { animation: card-in 1.1s .45s cubic-bezier(.16, 1, .3, 1) both; }
+/* the form rises in on first view, but not when a pinned hero releases with the form already open */
+.anim .hero:not(.is-pin):not(.released) .give-card { animation: card-in 1.1s .45s cubic-bezier(.16, 1, .3, 1) both; }
 
 /* the photo composition */
 .hv-art { position: relative; container-type: inline-size; }
@@ -168,7 +169,7 @@ button, input, select { font: inherit; color: inherit; }
 .anim .hb-wave svg { animation: wave-x 60s linear infinite; }
 
 /* pinned: the hero holds still while you scroll, the photos swirl away and the form opens in their place */
-.hero.is-pin { height: calc(var(--stage-h, 100vh) + 140vh); }
+.hero.is-pin { height: calc(var(--stage-h, 100vh) + 220vh); }
 .hero.is-pin .hero-stage { position: sticky; top: var(--head-h, 76px); height: var(--stage-h, 100vh); }
 .hero.is-pin .hero-copy { padding-block: 24px; }
 .hero.is-pin .hv-art { position: absolute; inset: 0; }
@@ -191,7 +192,7 @@ button, input, select { font: inherit; color: inherit; }
 @keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 @keyframes draw { to { stroke-dashoffset: 0; } }
 @keyframes fade-in { to { opacity: 1; } }
-.anim .hero h1 .hw { display: inline-block; opacity: 0; transform: translateY(.45em); filter: blur(6px); animation: word-in .9s cubic-bezier(.2, .7, .2, 1) forwards; animation-delay: calc(.15s + var(--i) * 80ms); }
+.anim .hero h1 .hw { display: inline-block; opacity: 0; transform: translateY(.45em); filter: blur(6px); animation: word-in 1.3s cubic-bezier(.45, 0, .2, 1) forwards; animation-delay: calc(.2s + var(--i) * 110ms); }
 @keyframes word-in { to { opacity: 1; transform: none; filter: none; } }
 .anim [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity .8s cubic-bezier(.2, .7, .2, 1), transform 1s cubic-bezier(.16, 1, .3, 1); transition-delay: var(--d, 0s); }
 .anim [data-reveal].in { opacity: 1; transform: none; }
@@ -1573,9 +1574,10 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
   var blobs = art.querySelectorAll(".hv-blob"), artTag = art.querySelector(".img-tag"), slot = heroEl.querySelector(".form-slot");
   // resting places, as fractions of the art box (RTL); on phones the art is full width, so the photos keep clear of the screen edge
   var SAT_WIDE = [[.80, .19], [.90, .49], [.80, .79]], SAT_NARROW = [[.74, .2], [.83, .5], [.74, .8]], SAT = SAT_WIDE;
-  var geo = null, pinned = false, unpinned = false, introT0 = null, heroP = 0, linkLen = 0, fs = 1, painting = false;
-  var easeOut = function (k) { return 1 - Math.pow(1 - k, 3); };
-  function seg(t, a, b) { return easeOut(clamp((t - a) / (b - a))); }
+  var INTRO_MS = 4200;
+  var geo = null, pinned = false, unpinned = false, introT0 = null, heroP = 0, shownP = 0, linkLen = 0, fs = 1, painting = false, focusWhenOpen = false;
+  var easeInOut = function (k) { return k < .5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2; };
+  function seg(t, a, b) { return easeInOut(clamp((t - a) / (b - a))); }
   function stageH() { return innerHeight - head.offsetHeight; }
   heroEl.classList.add("js");
 
@@ -1622,12 +1624,12 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
     }
     heroEl.classList.toggle("is-pin", want);
     pinned = want;
-    if (!pinned) { slot.inert = false; slot.style.clipPath = slot.style.opacity = card.style.transform = ""; heroP = 0; }
+    if (!pinned) { slot.inert = false; slot.style.clipPath = slot.style.opacity = card.style.transform = ""; heroP = shownP = 0; }
     layoutArt();
     heroScroll();
     paint();
   }
-  function unpin() { unpinned = true; decideMode(); }
+  function unpin() { unpinned = true; heroEl.classList.add("released"); decideMode(); }
   function heroScroll() {
     if (!pinned) return;
     heroP = clamp((scrollY + head.offsetHeight - heroEl.offsetTop) / (heroEl.offsetHeight - stageH()));
@@ -1637,15 +1639,16 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
     var how = still ? "auto" : "smooth";
     if (pinned) {
       scrollTo({ top: heroEl.offsetTop - head.offsetHeight + (heroEl.offsetHeight - stageH()) * .78, behavior: how });
-      setTimeout(function () { card.focus({ preventScroll: true }); }, still ? 0 : 900);
+      focusWhenOpen = true; // focus lands once the form has opened
+      requestPaint();
     } else {
       card.scrollIntoView({ behavior: how, block: "start" });
       card.focus({ preventScroll: true });
     }
   }
   function paint() {
-    var it = introT0 === null ? 0 : still ? 1 : clamp((performance.now() - introT0) / 2600);
-    var p = pinned ? heroP : 0, rtl = root.dir === "rtl", spin = rtl ? -1 : 1;
+    var it = introT0 === null ? 0 : still ? 1 : clamp((performance.now() - introT0) / INTRO_MS);
+    var p = pinned ? shownP : 0, rtl = root.dir === "rtl", spin = rtl ? -1 : 1;
     stage.style.setProperty("--p", p.toFixed(3));
     if (pinned) {
       var f = seg(p, .4, .7);
@@ -1653,6 +1656,7 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
       slot.style.opacity = Math.min(1, f * 1.8).toFixed(3);
       card.style.transform = "translate(-50%, calc(-50% + " + (36 * (1 - f)).toFixed(1) + "px)) scale(" + (fs * (.9 + .1 * f)).toFixed(3) + ")";
       slot.inert = f < .5;
+      if (focusWhenOpen && !slot.inert) { focusWhenOpen = false; card.focus({ preventScroll: true }); }
     }
     if (!geo) return;
     // the main photo opens out of the spiral's centre, and later collapses back into it
@@ -1688,9 +1692,15 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
   function requestPaint() {
     if (painting) return;
     painting = true;
-    requestAnimationFrame(function () { painting = false; paint(); });
+    requestAnimationFrame(function () {
+      painting = false;
+      var gap = heroP - shownP;
+      shownP = Math.abs(gap) < .0005 ? heroP : shownP + gap * .09;
+      paint();
+      if (shownP !== heroP) requestPaint();
+    });
   }
-  function introLoop() { paint(); if (performance.now() - introT0 < 2700) requestAnimationFrame(introLoop); }
+  function introLoop() { paint(); if (performance.now() - introT0 < INTRO_MS + 100) requestAnimationFrame(introLoop); }
   function startIntro() { if (introT0 !== null) return; introT0 = performance.now(); if (still) paint(); else introLoop(); }
   if (!still && "IntersectionObserver" in window) {
     var heroIO = new IntersectionObserver(function (en) { if (en[0].isIntersecting) { startIntro(); heroIO.disconnect(); } }, { threshold: .3 });
