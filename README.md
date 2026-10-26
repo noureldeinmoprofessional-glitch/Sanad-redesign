@@ -54,13 +54,14 @@ Images:
 - The film poster is the video's YouTube thumbnail, cropped above the burned-in subtitle.
 - The photos in `site/assets/photos/` and `site/assets/hero/` were generated with Magnific (Nano Banana 2), with no text in them. They cover the care home, kafala family, training workshop, young man at work, the challenge photo and the four hero photos. They are not real beneficiaries and, at the client's request, carry no «صورة تعبيرية» label.
 
-Working in the prototype: the two-step donation form (monthly or one-time, purpose, amount, payment method, validation, thank-you and monthly upsell), the film player, the story picker, copy buttons for bank accounts, the WhatsApp receipt link, the language switch and the sticky mobile donate bar. No payment details are collected and nothing is sent anywhere.
+Working in the prototype: the two-step donation form (monthly or one-time, purpose, amount, payment method, validation, thank-you and monthly upsell), the film player, the story picker, copy buttons for bank accounts, the language switch and the sticky mobile donate bar. No payment details are collected and nothing is sent anywhere.
 
 Before production:
 - Add the IBAN / SWIFT numbers to the bank cards if Sanad wants them shown.
 - Replace the generated photos with real Sanad photos (with consent) before launch. They show people who are not Sanad's beneficiaries and are no longer labelled as illustrative.
 - Confirm the partner list and get each partner's logo approval. Some logos are named only in the file names, so add proper alt text for those.
 - Confirm with Sanad that 1,921 counts civil society staff (people), as the page now says, and ask it to align its team page (19 governorates) and portfolio PDF (older figures) with its homepage counters.
+- Ask Sanad whether it can send donation receipts and how. The page makes no receipt promise and doesn't mention WhatsApp anywhere until that is confirmed.
 - Confirm the landline number (+20 2 26907195) and the consent for each story.
 - Point the in-page `#` links at the real pages and connect the form to the payment gateway.
 - The payment logos in `site/assets/pay/` were supplied by the project team. Show only the methods the chosen gateway actually supports, and follow each provider's logo guidelines.
