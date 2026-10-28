@@ -697,6 +697,75 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
 .impact-grid li > span { color: #cfe0e8; font-size: .88rem; font-weight: 600; }
 @media (max-width: 1000px) { .impact-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 @media (max-width: 520px) { .impact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+/* partnership form: a modal with Sanad's expression-of-interest questions */
+button.inv-btn { border: 0; font-family: inherit; cursor: pointer; }
+html.pf-lock { overflow: hidden; }
+.pf { width: min(660px, calc(100% - 32px)); max-height: min(90vh, 920px); padding: 0; border: 0; border-radius: 22px; background: var(--white); color: var(--ink); box-shadow: 0 40px 80px -30px rgba(15, 34, 51, .55); overflow: hidden; }
+.pf[open] { display: flex; flex-direction: column; }
+.pf::backdrop { background: rgba(15, 34, 51, .55); backdrop-filter: blur(3px); }
+.anim .pf[open] { animation: pf-in .4s cubic-bezier(.2, .8, .2, 1); }
+.anim .pf[open]::backdrop { animation: pf-fade .3s ease; }
+@keyframes pf-in { from { opacity: 0; transform: translateY(18px) scale(.98); } }
+@keyframes pf-fade { from { opacity: 0; } }
+.pf-head { position: relative; display: flex; gap: 14px; align-items: flex-start; padding: 22px 24px 18px; padding-inline-end: 64px; background: linear-gradient(135deg, var(--teal-soft), var(--white) 70%); border-bottom: 1px solid var(--line); }
+.pf-ic { flex-shrink: 0; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--teal-deep); color: var(--white); }
+.pf-head h2 { font-size: 1.25rem; line-height: 1.45; }
+.pf-req { margin: 4px 0 0; color: var(--muted); font-size: .88rem; }
+.req { color: var(--err); font-weight: 800; }
+.pf-close { position: absolute; top: 16px; inset-inline-end: 16px; display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 50%; background: var(--white); color: var(--ink); cursor: pointer; box-shadow: 0 0 0 1px var(--line); }
+.pf-close:hover { background: var(--mist); color: var(--teal-deep); }
+.pf form { display: flex; flex-direction: column; flex: 1; min-height: 0; }
+.pf-body { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 22px 24px 26px; display: flex; flex-direction: column; gap: 22px; counter-reset: pfq; }
+.pf-q { counter-increment: pfq; }
+.pf-q > label, .pf-q > legend { display: flex; gap: 10px; align-items: flex-start; font-weight: 700; font-size: .98rem; line-height: 1.6; }
+.pf-q > label::before, .pf-q > legend::before { content: counter(pfq); flex-shrink: 0; display: grid; place-items: center; width: 26px; height: 26px; margin-top: 1px; border-radius: 50%; background: var(--teal-soft); color: var(--teal-ink); font-size: .82rem; font-weight: 800; }
+.pf-hint { display: block; margin: -2px 0 2px; padding-inline-start: 36px; color: var(--muted); font-size: .86rem; font-weight: 500; }
+.pf-q .field, .pf-q.field { gap: 8px; }
+/* the email and phone boxes run left to right, so the indent is set by the page's direction, not the box's */
+[dir="rtl"] .pf-q.field input { margin-right: 36px; }
+[dir="ltr"] .pf-q.field input { margin-left: 36px; }
+.pf-opts { display: grid; gap: 8px; margin-inline-start: 36px; }
+.pf-opt { display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1.5px solid var(--line); border-radius: 12px; cursor: pointer; font-size: .93rem; line-height: 1.55; transition: border-color .15s, background .15s; }
+.pf-opt:hover { border-color: var(--teal); }
+.pf-opt:has(input:checked) { border-color: var(--teal-deep); background: var(--teal-soft); }
+.pf-opt input[type="checkbox"] { flex-shrink: 0; width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--teal-deep); }
+.pf-opt.other { align-items: center; }
+.pf-opt.other input[type="text"] { flex: 1; min-width: 0; min-height: 40px; border: 1.5px solid var(--line); border-radius: 10px; padding: 4px 12px; background: var(--white); font: inherit; }
+.pf-opt.other input[type="text"]:focus { border-color: var(--teal-deep); outline: 0; box-shadow: 0 0 0 3px var(--teal-soft); }
+.pf-q .err { margin: 0; padding-inline-start: 36px; }
+fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
+.pf-foot { padding: 14px 24px 18px; border-top: 1px solid var(--line); background: var(--white); }
+.pf-submit { width: 100%; background: var(--navy); color: var(--white); }
+.pf-submit:hover { background: var(--navy-2); }
+.pf-done { flex: 1; overflow-y: auto; padding: 48px 32px 36px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 14px; background: radial-gradient(circle at 50% 0, var(--teal-soft), var(--white) 60%); }
+.pf-done h2 { font-size: 1.5rem; outline: 0; }
+.pf-done p { margin: 0; max-width: 30em; color: var(--muted); }
+.pf.is-done .pf-req { visibility: hidden; }
+.pf-done .pf-sign { color: var(--teal-ink); font-weight: 700; font-family: var(--font-head); }
+.pf-done .pf-submit { width: auto; min-width: 180px; margin-top: 10px; }
+.pf-check { width: 84px; height: 84px; color: var(--teal-deep); }
+.pf-check circle { stroke-dasharray: 220; stroke-dashoffset: 0; }
+.pf-check path { stroke-dasharray: 50; stroke-dashoffset: 0; }
+.anim .pf-done:not([hidden]) .pf-check circle { animation: pf-draw .7s ease-out both; }
+.anim .pf-done:not([hidden]) .pf-check path { animation: pf-draw-check .45s .55s ease-out both; }
+.anim .pf-done:not([hidden]) > :not(.pf-check) { animation: pf-rise .5s .7s cubic-bezier(.2, .8, .2, 1) both; }
+@keyframes pf-draw { from { stroke-dashoffset: 220; } }
+@keyframes pf-draw-check { from { stroke-dashoffset: 50; } }
+@keyframes pf-rise { from { opacity: 0; transform: translateY(10px); } }
+/* on phones the form rises as a sheet from the bottom */
+@media (max-width: 600px) {
+  .pf { width: 100%; max-width: 100%; max-height: 94dvh; margin: auto 0 0; border-radius: 22px 22px 0 0; }
+  .anim .pf[open] { animation-name: pf-sheet; }
+  @keyframes pf-sheet { from { transform: translateY(40%); opacity: .4; } }
+  .pf-head { padding: 18px 16px 14px; padding-inline-end: 60px; }
+  .pf-ic { display: none; }
+  .pf-head h2 { font-size: 1.08rem; }
+  .pf-body { padding: 18px 16px 22px; }
+  .pf-q.field input { margin-left: 0; margin-right: 0; }
+  .pf-opts { margin-inline-start: 0; }
+  .pf-hint, .pf-q .err { padding-inline-start: 0; }
+  .pf-foot { padding: 12px 16px calc(14px + env(safe-area-inset-bottom, 0px)); }
+}
 </style>
 </head>
 <body>
@@ -763,9 +832,8 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
           <button class="nav-top" type="button" aria-expanded="false" aria-controls="nav-sub-5"><span data-en="Knowledge Hub">مركز المعرفة</span><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button>
           <div class="nav-sub" id="nav-sub-5">
             <ul>
-              <li class="sub-group"><a class="sub-head" href="https://sanadorphans.org/ar/annual-reports/" data-en-href="https://sanadorphans.org/annual-reports/" data-en="Research &amp; Reports">الأبحاث والتقارير</a>
-                <ul><li><a href="https://sanadorphans.org/ar/annual-reports/" data-en-href="https://sanadorphans.org/annual-reports/" data-en="Annual Reports">التقارير السنوية</a></li><li><a href="https://sanadorphans.org/ar/newsletters/" data-en-href="https://sanadorphans.org/newsletters/" data-en="Newsletters">النشرة الدورية</a></li></ul>
-              </li>
+              <li><a href="https://sanadorphans.org/ar/annual-reports/" data-en-href="https://sanadorphans.org/annual-reports/" data-en="Annual Reports">التقارير السنوية</a></li>
+              <li><a href="https://sanadorphans.org/ar/newsletters/" data-en-href="https://sanadorphans.org/newsletters/" data-en="Newsletters">النشرة الدورية</a></li>
             </ul>
           </div>
         </li>
@@ -1249,7 +1317,7 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
         <span class="ic-c"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M10 21v-4h4v4"/></svg></span>
         <h3 data-en="Partner with us">شارك مؤسسيًا</h3>
         <p data-en="Build measurable CSR impact through certified child protection training. We work with corporations, foundations and government.">ابنِ أثرًا اجتماعيًا يمكن قياسه عبر تدريب معتمد على حماية الطفل. نعمل مع الشركات والمؤسسات والجهات الحكومية.</p>
-        <a class="inv-btn arw" href="#organisations" data-en="Explore partnership">استكشف الشراكة</a>
+        <button class="inv-btn arw" type="button" data-open-partner aria-haspopup="dialog" data-en="Explore partnership">استكشف الشراكة</button>
         <div class="wave" aria-hidden="true"><svg viewBox="0 0 800 30" preserveAspectRatio="none"><path class="w2" d="M0 12 Q50 26 100 12 T200 12 T300 12 T400 12 T500 12 T600 12 T700 12 T800 12 V30 H0Z"/><path class="w1" d="M0 16 Q50 4 100 16 T200 16 T300 16 T400 16 T500 16 T600 16 T700 16 T800 16 V30 H0Z"/></svg></div>
       </div>
       <div class="inv i-serv">
@@ -1371,6 +1439,90 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
   </div>
 </footer>
 
+<dialog class="pf" id="partner-form" aria-labelledby="pf-title">
+  <div class="pf-head">
+    <span class="pf-ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M10 21v-4h4v4"/></svg></span>
+    <div>
+      <h2 id="pf-title" data-en="Expression of interest in partnering with Sanad">استمارة إبداء رغبة في الشراكة مع جمعية سند</h2>
+      <p class="pf-req"><span class="req" aria-hidden="true">*</span> <span data-en="Required">مطلوب</span></p>
+    </div>
+    <button class="pf-close" type="button" data-pf-close aria-label="إغلاق" data-en-aria="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  </div>
+  <form id="pf-form" novalidate>
+    <div class="pf-body">
+        <div class="pf-q field">
+          <label for="pf-org"><span><span data-en="Organisation/company name">اسم المؤسسة/الشركة</span> <span class="req" aria-hidden="true">*</span></span></label>
+          <input id="pf-org" name="pf-org" type="text" required aria-describedby="pf-org-err" autocomplete="organization">
+          <p class="err" id="pf-org-err" hidden></p>
+        </div>
+        <div class="pf-q field">
+          <label for="pf-contact"><span><span data-en="Name of the contact person">اسم الشخص المسؤول عن التواصل</span> <span class="req" aria-hidden="true">*</span></span></label>
+          <small class="pf-hint" id="pf-contact-hint" data-en="(The person we can contact directly about the partnership)">(يرجى تحديد الشخص الذي يمكن التواصل معه بشكل مباشر حول الشراكة)</small>
+          <input id="pf-contact" name="pf-contact" type="text" required aria-describedby="pf-contact-hint pf-contact-err" autocomplete="name">
+          <p class="err" id="pf-contact-err" hidden></p>
+        </div>
+        <div class="pf-q field">
+          <label for="pf-job"><span><span data-en="Job title">المسمى الوظيفي</span> <span class="req" aria-hidden="true">*</span></span></label>
+          <input id="pf-job" name="pf-job" type="text" required aria-describedby="pf-job-err" autocomplete="organization-title">
+          <p class="err" id="pf-job-err" hidden></p>
+        </div>
+        <div class="pf-q field">
+          <label for="pf-email"><span><span data-en="Email">البريد الالكتروني</span> <span class="req" aria-hidden="true">*</span></span></label>
+          <input id="pf-email" name="pf-email" type="email" required aria-describedby="pf-email-err" autocomplete="email" dir="ltr">
+          <p class="err" id="pf-email-err" hidden></p>
+        </div>
+        <div class="pf-q field">
+          <label for="pf-phone"><span><span data-en="Phone number">رقم الهاتف</span> <span class="req" aria-hidden="true">*</span></span></label>
+          <input id="pf-phone" name="pf-phone" type="tel" required aria-describedby="pf-phone-err" autocomplete="tel" inputmode="tel" dir="ltr">
+          <p class="err" id="pf-phone-err" hidden></p>
+        </div>
+        <fieldset class="pf-q" id="pf-prog" aria-describedby="pf-prog-err">
+          <legend><span><span data-en="In light of the strategic goals presented at the event, which programmes do you see an opportunity to collaborate with Sanad on?">في ضوء الأهداف الاستراتيجية التي تم عرضها خلال الفعالية، ما البرامج التي ترون فيها فرصة للتعاون مع جمعية سند؟</span> <span class="req" aria-hidden="true">*</span></span></legend>
+          <small class="pf-hint" data-en="(You can choose more than one)">(يمكن اختيار أكثر من خيار)</small>
+          <div class="pf-opts">
+            <label class="pf-opt"><input type="checkbox" name="pf-prog" value="1"><span data-en="Transforming orphanages into semi-family care">برنامج تحول دور الأيتام للرعاية شبه الاسرية</span></label>
+            <label class="pf-opt"><input type="checkbox" name="pf-prog" value="2"><span data-en="Economic and community empowerment for young care leavers">برنامج التمكين الاقتصادي و المجتمعي للشباب خريجي دور الأيتام</span></label>
+            <label class="pf-opt"><input type="checkbox" name="pf-prog" value="3"><span data-en="Strengthening the kafala system and preparing kafala families">برنامج تعزيز منظومة الكفالة و تأهيل الأسر الكافلة</span></label>
+            <label class="pf-opt"><input type="checkbox" name="pf-prog" value="4"><span data-en="Qualifying new professionals in alternative care">برنامج تأهيل كوادر جديدة في مجال الرعاية البديلة</span></label>
+            <label class="pf-opt"><input type="checkbox" name="pf-prog" value="5"><span data-en="Advocacy and awareness raising">برنامج كسب التأييد ورفع الوعي</span></label>
+            <label class="pf-opt other"><input type="checkbox" name="pf-prog" value="other" data-other><span data-en="Other">أخرى</span><input type="text" name="pf-prog-other" aria-label="أخرى: اكتب إجابتك" data-en-aria="Other: type your answer" placeholder="اكتب إجابتك" data-en-ph="Type your answer"></label>
+          </div>
+          <p class="err" id="pf-prog-err" hidden></p>
+        </fieldset>
+        <fieldset class="pf-q" id="pf-type" aria-describedby="pf-type-err">
+          <legend><span><span data-en="What type of partnership could you enter into with Sanad?">ما نوع الشراكة الممكن ابرامها مع جمعية سند؟</span> <span class="req" aria-hidden="true">*</span></span></legend>
+          <small class="pf-hint" data-en="(You can choose more than one)">(يمكن اختيار أكثر من خيار)</small>
+          <div class="pf-opts">
+            <label class="pf-opt"><input type="checkbox" name="pf-type" value="1"><span data-en="Financial funding">تمويل مالي</span></label>
+            <label class="pf-opt"><input type="checkbox" name="pf-type" value="2"><span data-en="Technical support (such as training, consulting or technical expertise)">دعم فني (مثل التدريب، الاستشارات، أو الخبرة التقنية)</span></label>
+            <label class="pf-opt"><input type="checkbox" name="pf-type" value="3"><span data-en="Media partnership">شراكة إعلامية</span></label>
+            <label class="pf-opt other"><input type="checkbox" name="pf-type" value="other" data-other><span data-en="Other">أخرى</span><input type="text" name="pf-type-other" aria-label="أخرى: اكتب إجابتك" data-en-aria="Other: type your answer" placeholder="اكتب إجابتك" data-en-ph="Type your answer"></label>
+          </div>
+          <p class="err" id="pf-type-err" hidden></p>
+        </fieldset>
+        <fieldset class="pf-q" id="pf-conf" aria-describedby="pf-conf-err">
+          <legend><span><span data-en="As part of Sanad's second regional conference on alternative care for children and youth without parental care, planned for January 2025, do you see an opportunity to support or sponsor this event?">في إطار مؤتمر سند الإقليمي الثاني حول الرعاية البديلة للأطفال والشباب المحرومين من الرعاية الوالدية، المخطط عقده في يناير 2025، هل ترون فرصة لدعم أو رعاية هذا الحدث؟</span> <span class="req" aria-hidden="true">*</span></span></legend>
+          <small class="pf-hint" data-en="(You can choose more than one)">(يمكن اختيار أكثر من خيار)</small>
+          <div class="pf-opts">
+            <label class="pf-opt"><input type="checkbox" name="pf-conf" value="1"><span data-en="Yes, interested in financial sponsorship">نعم، مهتم بالرعاية المالية</span></label>
+            <label class="pf-opt"><input type="checkbox" name="pf-conf" value="2"><span data-en="Yes, interested in providing technical or logistical support">نعم، مهتم بتقديم دعم فني أو لوجستي</span></label>
+            <label class="pf-opt"><input type="checkbox" name="pf-conf" value="3"><span data-en="Yes, interested in taking part as a media partner">نعم، مهتم بالمشاركة كشريك إعلامي</span></label>
+            <label class="pf-opt"><input type="checkbox" name="pf-conf" value="4" data-exclusive><span data-en="No, not interested at the moment">لا، لست مهتم في الوقت الحالي</span></label>
+          </div>
+          <p class="err" id="pf-conf-err" hidden></p>
+        </fieldset>
+    </div>
+    <div class="pf-foot"><button class="btn pf-submit" type="submit" data-en="Submit">إرسال</button></div>
+  </form>
+  <div class="pf-done" id="pf-done" hidden>
+    <svg class="pf-check" viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="42" cy="42" r="34"/><path d="M28 43l9 9 19-20"/></svg>
+    <h2 id="pf-done-title" tabindex="-1"></h2>
+    <p id="pf-done-text"></p>
+    <p class="pf-sign" data-en="Together, we strengthen every hand that cares for a child.">معًا نقوّي كل يد ترعى طفلًا.</p>
+    <button class="btn pf-submit" type="button" data-pf-close data-en="Close">إغلاق</button>
+  </div>
+</dialog>
+
 <dialog class="film-modal" id="film-modal" aria-labelledby="fm-title">
   <div class="fm-box">
     <div class="fm-top"><h2 id="fm-title" data-en="What does Sanad mean?">يعني إيه سند؟</h2><button class="fm-close" type="button" data-film-close aria-label="إغلاق الفيلم" data-en-aria="Close the film"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
@@ -1405,7 +1557,13 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
       copied: "تم النسخ",
       subscribed: "شكرًا لاشتراكك في نشرة سند!",
       badEmail: "اكتب بريدًا إلكترونيًا صحيحًا.",
-      filmTitle: "يعني إيه سند؟"
+      filmTitle: "يعني إيه سند؟",
+      pfRequired: "هذا الحقل مطلوب.",
+      pfPhone: "اكتب رقم هاتف صحيح.",
+      pfPick: "اختر خيارًا واحدًا على الأقل.",
+      pfOther: "اكتب الخيار الآخر.",
+      pfThanks: function (org) { return "شكرًا لكم، " + org + "!"; },
+      pfDone: function (email) { return "يسعدنا اهتمامكم بالشراكة مع سند. وصلتنا استمارتكم، وسيتواصل معكم فريق الشراكات قريبًا على " + email + " لنستكشف معًا فرص التعاون."; }
     },
     en: {
       title: "Sanad for Alternative Parental Care",
@@ -1422,7 +1580,13 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
       copied: "Copied",
       subscribed: "Thanks for subscribing to Sanad's newsletter!",
       badEmail: "Please enter a valid email address.",
-      filmTitle: "What does Sanad mean?"
+      filmTitle: "What does Sanad mean?",
+      pfRequired: "This field is required.",
+      pfPhone: "Please enter a valid phone number.",
+      pfPick: "Choose at least one option.",
+      pfOther: "Please describe the other option.",
+      pfThanks: function (org) { return "Thank you, " + org + "!"; },
+      pfDone: function (email) { return "We're delighted you'd like to partner with Sanad. Your form has reached us, and our partnerships team will be in touch soon at " + email + " to explore how we can work together."; }
     }
   };
   var T = function () { return TEXT[lang]; };
@@ -1530,6 +1694,91 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
   addEventListener("resize", fitNav);
   if (document.fonts) document.fonts.ready.then(fitNav);
   fitNav();
+
+  // ---------- partnership form ----------
+  var pf = document.getElementById("partner-form");
+  var pfForm = document.getElementById("pf-form");
+  var pfDone = document.getElementById("pf-done");
+  var pfOpener = null;
+  function pfReset() {
+    pfForm.reset();
+    pfForm.hidden = false;
+    pfDone.hidden = true;
+    pf.setAttribute("aria-labelledby", "pf-title");
+    pf.classList.remove("is-done");
+    pfForm.querySelectorAll(".err").forEach(function (e) { e.hidden = true; e.textContent = ""; });
+    pfForm.querySelectorAll("[aria-invalid]").forEach(function (e) { e.removeAttribute("aria-invalid"); });
+  }
+  document.querySelectorAll("[data-open-partner]").forEach(function (b) {
+    b.addEventListener("click", function () {
+      pfOpener = b;
+      pfReset();
+      pf.showModal();
+      root.classList.add("pf-lock");
+      pfForm.querySelector(".pf-body").scrollTop = 0;
+      document.getElementById("pf-org").focus();
+    });
+  });
+  pf.addEventListener("close", function () {
+    root.classList.remove("pf-lock");
+    if (pfOpener) pfOpener.focus();
+  });
+  pf.querySelectorAll("[data-pf-close]").forEach(function (b) { b.addEventListener("click", function () { pf.close(); }); });
+  // a click on the dimmed backdrop closes the form too
+  pf.addEventListener("click", function (e) { if (e.target === pf) pf.close(); });
+  // typing an "other" answer ticks its box; "No" in the conference question clears the yeses, and the reverse
+  pfForm.addEventListener("input", function (e) {
+    if (e.target.type === "text" && e.target.name.slice(-6) === "-other") {
+      e.target.closest(".pf-opt").querySelector("[data-other]").checked = e.target.value.trim() !== "";
+    }
+    if (e.target.type === "checkbox" && e.target.checked) {
+      var group = pfForm.querySelectorAll('input[name="' + e.target.name + '"]');
+      group.forEach(function (c) {
+        if (c !== e.target && (c.hasAttribute("data-exclusive") || e.target.hasAttribute("data-exclusive"))) c.checked = false;
+      });
+    }
+  });
+  function pfCheck() {
+    var first = null;
+    function mark(el, errEl, msg) {
+      el.setAttribute("aria-invalid", msg ? "true" : "false");
+      errEl.textContent = msg || "";
+      errEl.hidden = !msg;
+      if (msg && !first) first = el;
+    }
+    ["pf-org", "pf-contact", "pf-job", "pf-email", "pf-phone"].forEach(function (id) {
+      var el = document.getElementById(id), v = el.value.trim(), msg = v ? "" : T().pfRequired;
+      if (v && id === "pf-email" && !/^\S+@\S+\.\S+$/.test(v)) msg = T().badEmail;
+      if (v && id === "pf-phone") { var d = v.replace(/[\s()+-]/g, ""); if (!/^\d{8,15}$/.test(d)) msg = T().pfPhone; }
+      mark(el, document.getElementById(id + "-err"), msg);
+    });
+    ["pf-prog", "pf-type", "pf-conf"].forEach(function (id) {
+      var set = document.getElementById(id), boxes = set.querySelectorAll('input[type="checkbox"]:checked');
+      var other = set.querySelector("[data-other]"), msg = boxes.length ? "" : T().pfPick;
+      if (!msg && other && other.checked && !set.querySelector('input[type="text"]').value.trim()) msg = T().pfOther;
+      mark(set, document.getElementById(id + "-err"), msg);
+    });
+    return first;
+  }
+  pfForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var bad = pfCheck();
+    if (bad) {
+      var target = bad.matches("fieldset") ? (bad.querySelector('input[type="checkbox"]:not(:checked)') || bad.querySelector("input")) : bad;
+      if (bad.matches("fieldset") && bad.querySelector("[data-other]:checked")) target = bad.querySelector('input[type="text"]');
+      target.focus();
+      bad.scrollIntoView({ block: "center", behavior: still ? "auto" : "smooth" });
+      return;
+    }
+    // prototype: nothing is sent yet; this is where the answers go to Sanad's form or CRM
+    document.getElementById("pf-done-title").textContent = T().pfThanks("\u2068" + document.getElementById("pf-org").value.trim() + "\u2069");
+    document.getElementById("pf-done-text").textContent = T().pfDone("\u2068" + document.getElementById("pf-email").value.trim() + "\u2069");
+    pfForm.hidden = true;
+    pfDone.hidden = false;
+    pf.classList.add("is-done");
+    pf.setAttribute("aria-labelledby", "pf-done-title");
+    document.getElementById("pf-done-title").focus();
+  });
 
   // ---------- donation form ----------
   var step1 = document.getElementById("step1");
