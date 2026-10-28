@@ -76,45 +76,83 @@ button, input, select { font: inherit; color: inherit; }
 
 /* header */
 .site-head { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, .97); backdrop-filter: saturate(1.4) blur(8px); border-bottom: 1px solid var(--line); }
-.head-row { display: flex; align-items: center; gap: 24px; min-height: 76px; }
+/* the header runs wider than the content column so Sanad's seven tabs fit beside the actions */
+.head-row { display: flex; align-items: center; gap: 14px; min-height: 76px; max-width: 1440px; }
 .brand { display: flex; align-items: center; flex-shrink: 0; }
 .brand img { height: 52px; width: auto; }
-.nav { display: flex; gap: 4px; margin-inline-start: 8px; }
-.nav a { color: var(--ink); text-decoration: none; font-weight: 600; padding: 8px 12px; border-radius: 10px; white-space: nowrap; }
+.nav { margin-inline-start: 4px; }
+.nav-list, .nav-sub ul { list-style: none; margin: 0; padding: 0; }
+.nav-list { display: flex; align-items: center; gap: 2px; }
+.nav-item { position: relative; }
+.nav-top { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 6px 7px; border: 0; border-radius: 10px; background: none; color: var(--ink); font: inherit; font-size: .95rem; font-weight: 600; white-space: nowrap; cursor: pointer; }
+.nav-top.has-link { gap: 0; padding: 0; }
+.nav-link { display: inline-flex; align-items: center; min-height: 44px; padding-block: 6px; padding-inline: 7px 2px; color: inherit; text-decoration: none; }
+.nav-caret { display: grid; place-items: center; width: 28px; min-height: 44px; padding: 0; padding-inline-end: 6px; border: 0; background: none; color: inherit; cursor: pointer; }
+.caret { flex-shrink: 0; opacity: .6; transition: transform .2s ease; }
+.nav-item.open .caret { transform: rotate(180deg); opacity: 1; }
+.nav-top:hover, .nav-item.open > .nav-top { background: var(--mist); color: var(--teal-deep); }
 .head-actions .btn { white-space: nowrap; }
-.nav a:hover { background: var(--mist); color: var(--teal-deep); }
+/* desktop: each tab drops a panel; nested items sit indented under their parent, as on Sanad's site */
+.nav-sub { display: none; position: absolute; top: calc(100% + 10px); inset-inline-start: 0; z-index: 60; width: max-content; min-width: 240px; max-width: 320px; padding: 10px; background: var(--white); border: 1px solid var(--line); border-radius: 16px; box-shadow: 0 18px 40px -18px rgba(14, 42, 58, .35); }
+.nav-sub::before { content: ""; position: absolute; inset-inline: 0; top: -12px; height: 12px; }
+.nav-item.open > .nav-sub { display: block; }
+.anim .nav-item.open > .nav-sub { animation: sub-in .22s cubic-bezier(.2, .7, .2, 1); }
+@keyframes sub-in { from { opacity: 0; transform: translateY(-6px); } }
+.nav-sub a { display: block; padding: 9px 12px; border-radius: 10px; color: var(--ink); text-decoration: none; font-weight: 600; font-size: .95rem; line-height: 1.45; }
+.nav-sub a:hover { background: var(--mist); color: var(--teal-deep); }
+.nav-sub .sub-head { font-weight: 800; color: var(--navy); }
+.sub-group > ul { margin-inline-start: 12px; padding-inline-start: 8px; border-inline-start: 2px solid var(--mist); }
+.sub-group > ul a { font-weight: 500; font-size: .9rem; color: var(--muted); padding-block: 7px; }
+.nav-sub.cols-2 { max-width: none; width: 560px; }
+.nav-sub.cols-2 > ul { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 8px; }
+.nav-sub.cols-3 { max-width: none; width: 780px; }
+.nav-sub.cols-3 > ul { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 12px; }
+.nav-sub.cols-3 .sub-group > ul { margin-inline-start: 0; }
+.nav-extra { display: none; }
 .head-actions { display: flex; align-items: center; gap: 10px; margin-inline-start: auto; }
 .lang { background: none; border: 1.5px solid var(--line); border-radius: 10px; min-height: 44px; padding: 4px 14px; font-weight: 700; cursor: pointer; }
 .lang:hover { border-color: var(--teal); }
-.btn-consult { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); min-height: 44px; padding: 8px 18px; }
+.btn-consult { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); min-height: 44px; padding: 8px 12px; font-size: .92rem; }
 .btn-consult:hover { background: var(--navy); color: var(--white); }
-.head-actions .btn-give { min-height: 44px; padding: 8px 22px; }
+.head-actions .btn-give { min-height: 44px; padding: 8px 16px; }
 .lang-sm { display: inline-flex; align-items: center; gap: 5px; min-width: 44px; min-height: 44px; padding: 4px 10px; border: 1.5px solid var(--line); border-radius: 999px; background: var(--white); color: var(--ink); font-weight: 800; font-size: .82rem; cursor: pointer; }
 .lang-sm:hover { border-color: var(--teal); color: var(--teal-deep); }
 .lang-sm span { font-family: var(--font); }
 .menu-btn { display: none; background: none; border: 1.5px solid var(--line); border-radius: 10px; width: 46px; height: 46px; cursor: pointer; }
 .menu-btn svg { margin: auto; }
-.drawer { border-top: 1px solid var(--line); padding-block: 12px 20px; }
-.drawer a { display: block; padding: 12px 4px; color: var(--ink); text-decoration: none; font-weight: 700; border-bottom: 1px solid var(--line); }
-/* below 1100px the nav folds into the menu; the consultation button stays until phone width */
-@media (max-width: 1100px) {
-  .nav { display: none; }
-  .menu-btn { display: grid; }
-  .drawer .lang { display: inline-block; margin-top: 14px; }
-}
+/* when the seven tabs don't fit beside the actions (the script measures this), they fold into the menu button
+   and open as a panel under the header, with each tab an accordion */
+.nav-compact .menu-btn { display: grid; }
+.nav-compact .nav { display: none; position: absolute; top: 100%; inset-inline: 0; margin: 0; max-height: calc(100vh - var(--head-h, 76px)); overflow-y: auto; overscroll-behavior: contain; padding: 8px max(20px, calc((100% - 1400px) / 2)) 20px; background: var(--white); border-top: 1px solid var(--line); box-shadow: 0 24px 40px -24px rgba(14, 42, 58, .4); }
+.nav-compact.nav-open .nav { display: block; }
+.nav-compact .nav-list { flex-direction: column; align-items: stretch; gap: 0; }
+.nav-compact .nav-item { border-bottom: 1px solid var(--line); }
+.nav-compact .nav-top { width: 100%; justify-content: space-between; min-height: 52px; padding-inline: 4px; font-weight: 700; border-radius: 0; }
+.nav-compact .nav-top.has-link { padding: 0; }
+.nav-compact .nav-link { flex: 1; padding-inline: 4px; }
+.nav-compact .nav-caret { width: 48px; padding: 0; padding-inline-end: 4px; place-items: center end; }
+.nav-compact .nav-top:hover, .nav-compact .nav-item.open > .nav-top { background: none; }
+.nav-compact .nav-sub { position: static; width: auto; max-width: none; min-width: 0; padding: 0 0 10px; border: 0; border-radius: 0; box-shadow: none; }
+.nav-compact .nav-sub::before { content: none; }
+.nav-compact .nav-sub > ul { display: block; }
+.nav-compact .nav-sub.cols-3 .sub-group > ul { margin-inline-start: 12px; }
+.nav-compact .nav-extra { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 16px; }
 @media (max-width: 960px) {
   .head-row { min-height: 66px; gap: 12px; }
   .brand img { height: 44px; }
   .head-actions .btn-consult { display: none; }
   .head-actions { gap: 8px; }
 }
-/* on narrower desktops the nav tightens so the three header actions still fit */
-@media (min-width: 1101px) and (max-width: 1240px) {
-  .head-row { gap: 14px; }
-  .nav a { padding: 8px 8px; font-size: .95rem; }
-  .btn-consult { padding-inline: 12px; font-size: .92rem; }
+@media (min-width: 961px) { .nav-extra .btn-consult { display: none; } }
+/* on narrower desktops the tabs tighten before they fold */
+@media (max-width: 1380px) {
+  .head-row { gap: 10px; }
+  .nav-list { gap: 0; }
+  .nav-top { gap: 4px; padding-inline: 6px; font-size: .9rem; }
+  .nav-link { padding-inline: 6px 0; font-size: .9rem; }
+  .nav-caret { width: 22px; padding-inline-end: 4px; }
+  .head-actions { gap: 8px; }
 }
-@media (min-width: 1101px) { .drawer { display: none !important; } }
 
 /* hero: the people Sanad strengthens spiral into view, then swirl away and open onto the donation form */
 .hero { position: relative; isolation: isolate; overflow: clip; color: var(--ink); background-color: #f6f1e7; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .25 0 0 0 0 .2 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
@@ -667,30 +705,104 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
 <header class="site-head">
   <div class="wrap head-row">
     <a class="brand" href="#top" aria-label="سند - الصفحة الرئيسية" data-en-aria="Sanad home"><img src="data:image/webp;base64,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" width="420" height="294" alt="سند" data-en-alt="Sanad"></a>
-    <nav class="nav" aria-label="القائمة الرئيسية" data-en-aria="Main menu">
-      <a href="#what" data-en="What we do">ماذا نفعل</a>
-      <a href="#who" data-en="Who we strengthen">من نُقوّي</a>
-            <a href="#impact" data-en="Our impact">أثرنا</a>
-      <a href="#stories" data-en="Stories">قصص</a>
-      <a href="#organisations" data-en="For organisations">للمؤسسات</a>
+    <nav class="nav" id="site-nav" aria-label="القائمة الرئيسية" data-en-aria="Main menu">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <button class="nav-top" type="button" aria-expanded="false" aria-controls="nav-sub-1"><span data-en="Who We Are">من نحن</span><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button>
+          <div class="nav-sub" id="nav-sub-1">
+            <ul>
+              <li><a href="https://sanadorphans.org/ar/about/" data-en-href="https://sanadorphans.org/about/" data-en="About Sanad">عن سند</a></li>
+              <li class="sub-group"><a class="sub-head" href="https://sanadorphans.org/ar/board-members/" data-en-href="https://sanadorphans.org/board-members/" data-en="Board &amp; Team">مجلس الإدارة وفريق العمل</a>
+                <ul><li><a href="https://sanadorphans.org/ar/board-members/" data-en-href="https://sanadorphans.org/board-members/" data-en="Board Members">مجلس الإدارة</a></li><li><a href="https://sanadorphans.org/ar/sanad-team/" data-en-href="https://sanadorphans.org/sanad-team/" data-en="Sanad Team">فريق العمل</a></li></ul>
+              </li>
+              <li><a href="https://sanadorphans.org/ar/awards/" data-en-href="https://sanadorphans.org/awards/" data-en="Accreditations &amp; Awards">الاعتمادات والجوائز</a></li>
+              <li><a href="https://sanadorphans.org/ar/partners-network/" data-en-href="https://sanadorphans.org/partners-network/" data-en="Impact Partners">شركاء الأثر</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <button class="nav-top" type="button" aria-expanded="false" aria-controls="nav-sub-2"><span data-en="Impact Programs">برامج الأثر</span><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button>
+          <div class="nav-sub cols-3" id="nav-sub-2">
+            <ul>
+              <li class="sub-group"><a class="sub-head" href="https://sanadorphans.org/ar/prevention/" data-en-href="https://sanadorphans.org/prevention/" data-en="Prevention">الوقاية</a>
+                <ul><li><a href="https://sanadorphans.org/ar/economic-and-social-empowerment-program/" data-en-href="https://sanadorphans.org/economic-and-social-empowerment-program/" data-en="Economic and Social Empowerment Program for Youth Without Parental Care">برنامج التمكين الاقتصادي والاجتماعي للشباب فاقدي الرعاية الوالدية</a></li><li><a href="https://sanadorphans.org/ar/kafala-family-capacity-building-program/" data-en-href="https://sanadorphans.org/kafala-family-capacity-building-program/" data-en="Kafala Family Capacity Building Program for Raising Children Without Parental Care">برنامج تأهيل الأسر الكافلة لتنشئة الأطفال فاقدي الرعاية الوالدية</a></li></ul>
+              </li>
+              <li class="sub-group"><a class="sub-head" href="https://sanadorphans.org/ar/protection/" data-en-href="https://sanadorphans.org/protection/" data-en="Protection">الحماية</a>
+                <ul><li><a href="https://sanadorphans.org/ar/caregivers-capacity-building-program/" data-en-href="https://sanadorphans.org/caregivers-capacity-building-program/" data-en="Caregivers and Alternative Care Workers Capacity Building Program">برنامج تأهيل العاملين بمجال الرعاية البديلة</a></li><li><a href="https://sanadorphans.org/ar/empowering-care-homes-semi-family-care/" data-en-href="https://sanadorphans.org/empowering-care-homes-semi-family-care/" data-en="Empowering Care Homes to Provide Semi-Family Care for Children and Youth Without Parental Care">برنامج تمكين دور الأيتام من تقديم رعاية شبه أسرية للأطفال والشباب فاقدي الرعاية الوالدية</a></li></ul>
+              </li>
+              <li class="sub-group"><a class="sub-head" href="https://sanadorphans.org/ar/advocacy/" data-en-href="https://sanadorphans.org/advocacy/" data-en="Empowerment">التمكين</a>
+                <ul><li><a href="https://sanadorphans.org/ar/raising-awareness-advocacy-and-support-program/" data-en-href="https://sanadorphans.org/raising-awareness-advocacy-and-support-program/" data-en="Raising Awareness, Advocacy, and Support Program">برنامج رفع الوعي وكسب التأييد والمناصرة</a></li></ul>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <div class="nav-top has-link"><a class="nav-link" href="https://sanadorphans.org/ar/services/" data-en-href="https://sanadorphans.org/services/" data-en="Consulting Services">الخدمات الاستشارية</a><button class="nav-caret" type="button" aria-expanded="false" aria-controls="nav-sub-3" aria-label="قائمة الخدمات الاستشارية" data-en-aria="Consulting Services menu"><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button></div>
+          <div class="nav-sub cols-2" id="nav-sub-3">
+            <ul>
+              <li><a href="https://sanadorphans.org/ar/services/donor-advisory-csr/" data-en-href="https://sanadorphans.org/services/donor-advisory-csr/" data-en="Donor and CSR Advisory">استشارات الجهات المانحة والمسؤولية المجتمعية</a></li>
+              <li><a href="https://sanadorphans.org/ar/services/institutional-assessment/" data-en-href="https://sanadorphans.org/services/institutional-assessment/" data-en="Institutional Development and Quality Assessment">التطوير المؤسسي وتقييم جودة الرعاية</a></li>
+              <li><a href="https://sanadorphans.org/ar/services/capacity-building-training/" data-en-href="https://sanadorphans.org/services/capacity-building-training/" data-en="Professional Training and Capacity Building">التدريب والتأهيل المهني للكوادر</a></li>
+              <li><a href="https://sanadorphans.org/ar/services/kafala-family-support/" data-en-href="https://sanadorphans.org/services/kafala-family-support/" data-en="Kafala Family Support">الإرشاد والدعم الأسري للأسر الكافلة</a></li>
+              <li><a href="https://sanadorphans.org/ar/services/aftercare-youth/" data-en-href="https://sanadorphans.org/services/aftercare-youth/" data-en="Aftercare and Youth Empowerment">الرعاية اللاحقة وتمكين الشباب</a></li>
+              <li><a href="https://sanadorphans.org/ar/services/policy-systems/" data-en-href="https://sanadorphans.org/services/policy-systems/" data-en="Policy and Systems Development">دعم السياسات وتطوير نظم الرعاية</a></li>
+              <li><a href="https://sanadorphans.org/ar/services/strategic-content/" data-en-href="https://sanadorphans.org/services/strategic-content/" data-en="Strategic Content for Conferences">تصميم المحتوى الاستراتيجي للمؤتمرات</a></li>
+              <li><a href="https://sanadorphans.org/ar/services/evidence-based-studies/" data-en-href="https://sanadorphans.org/services/evidence-based-studies/" data-en="Evidence-Based Studies">دراسات قائمة على الأدلة</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <button class="nav-top" type="button" aria-expanded="false" aria-controls="nav-sub-4"><span data-en="Our Impact">الأثر</span><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button>
+          <div class="nav-sub" id="nav-sub-4">
+            <ul>
+              <li><a href="https://sanadorphans.org/ar/achievements/" data-en-href="https://sanadorphans.org/achievements/" data-en="Data &amp; Achievements">أرقام وإنجازات</a></li>
+              <li><a href="https://sanadorphans.org/ar/success-stories/" data-en-href="https://sanadorphans.org/success-stories/" data-en="Youth Success Stories">قصص ملهمة للشباب</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <button class="nav-top" type="button" aria-expanded="false" aria-controls="nav-sub-5"><span data-en="Knowledge Hub">مركز المعرفة</span><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button>
+          <div class="nav-sub" id="nav-sub-5">
+            <ul>
+              <li class="sub-group"><a class="sub-head" href="https://sanadorphans.org/ar/annual-reports/" data-en-href="https://sanadorphans.org/annual-reports/" data-en="Research &amp; Reports">الأبحاث والتقارير</a>
+                <ul><li><a href="https://sanadorphans.org/ar/annual-reports/" data-en-href="https://sanadorphans.org/annual-reports/" data-en="Annual Reports">التقارير السنوية</a></li><li><a href="https://sanadorphans.org/ar/newsletters/" data-en-href="https://sanadorphans.org/newsletters/" data-en="Newsletters">النشرة الدورية</a></li></ul>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <div class="nav-top has-link"><a class="nav-link" href="https://sanadorphans.org/ar/news/" data-en-href="https://sanadorphans.org/news/" data-en="Media Center">المركز الإعلامي</a><button class="nav-caret" type="button" aria-expanded="false" aria-controls="nav-sub-6" aria-label="قائمة المركز الإعلامي" data-en-aria="Media Center menu"><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button></div>
+          <div class="nav-sub" id="nav-sub-6">
+            <ul>
+              <li><a href="https://sanadorphans.org/ar/news/" data-en-href="https://sanadorphans.org/news/" data-en="News">الأخبار</a></li>
+              <li><a href="https://sanadorphans.org/ar/press-releases/" data-en-href="https://sanadorphans.org/press-releases/" data-en="Press Releases">البيانات الصحفية</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <button class="nav-top" type="button" aria-expanded="false" aria-controls="nav-sub-7"><span data-en="Get Involved">شارك معنا</span><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button>
+          <div class="nav-sub" id="nav-sub-7">
+            <ul>
+              <li><a href="https://sanadorphans.org/ar/careers/" data-en-href="https://sanadorphans.org/careers/" data-en="Careers">الوظائف</a></li>
+              <li><a href="https://forms.office.com/r/ky00KxTAu0" target="_blank" rel="noopener" data-en="Skills-Based Volunteering">تطوع بخبرتك</a></li>
+              <li><a href="https://sanadorphans.org/ar/partner-ar/" data-en-href="https://forms.cloud.microsoft/r/jHynWah2Lx?origin=lprLink" data-en="Corporate &amp; Donor Partnerships">شراكات الشركات والمانحين</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+      <div class="nav-extra">
+        <a class="btn btn-consult" href="https://forms.cloud.microsoft/pages/responsepage.aspx?id=g11yLv_fmkufB2_5vZQDnU5PaS2gYgRIrD8TJ0D6LvVURVBCUVBLVVlKU1NMRTNCQkgyNTVRWlhXWi4u&amp;route=shorturl" target="_blank" rel="noopener" data-en="Request a Consultation">اطلب استشارة</a>
+        <button class="lang" type="button" data-lang-toggle lang="en">English</button>
+      </div>
     </nav>
     <div class="head-actions">
-      <a class="btn btn-consult" href="#organisations" data-en="Request a consultation">اطلب استشارة</a>
-      <a class="btn btn-give" href="#give" data-en="Donate">تبرّع</a>
+      <a class="btn btn-consult" href="https://forms.cloud.microsoft/pages/responsepage.aspx?id=g11yLv_fmkufB2_5vZQDnU5PaS2gYgRIrD8TJ0D6LvVURVBCUVBLVVlKU1NMRTNCQkgyNTVRWlhXWi4u&amp;route=shorturl" target="_blank" rel="noopener" data-en="Request a Consultation">اطلب استشارة</a>
+      <a class="btn btn-give" href="#give" data-en="Donate now">تبرع الآن</a>
       <button class="lang-sm" type="button" data-lang-toggle data-lang-short lang="en" aria-label="Switch to English"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z"/></svg><span>EN</span></button>
-      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="القائمة" data-en-aria="Menu">
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="القائمة" data-en-aria="Menu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
       </button>
     </div>
-  </div>
-  <div class="drawer wrap" id="drawer" hidden>
-    <a href="#what" data-en="What we do">ماذا نفعل</a>
-    <a href="#who" data-en="Who we strengthen">من نُقوّي</a>
-        <a href="#impact" data-en="Our impact">أثرنا</a>
-    <a href="#stories" data-en="Stories">قصص</a>
-    <a href="#organisations" data-en="For organisations">للمؤسسات</a>
-    <a href="#organisations" data-en="Request a consultation">اطلب استشارة</a>
-    <button class="lang" type="button" data-lang-toggle lang="en">English</button>
   </div>
 </header>
 
@@ -1337,6 +1449,7 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
     swap("data-en-aria", { get: function (e) { return e.getAttribute("aria-label"); }, set: function (e, v) { e.setAttribute("aria-label", v); } });
     swap("data-en-alt", { get: function (e) { return e.alt; }, set: function (e, v) { e.alt = v; } });
     swap("data-en-src", { get: function (e) { return e.getAttribute("src"); }, set: function (e, v) { e.src = v; } });
+    swap("data-en-href", { get: function (e) { return e.getAttribute("href"); }, set: function (e, v) { e.setAttribute("href", v); } });
     document.querySelectorAll("[data-ar-only]").forEach(function (e) { e.hidden = lang !== "ar"; });
     document.querySelectorAll("[data-lang-toggle]").forEach(function (b) {
       // the header's compact button shows a short code; the menu's button spells the language out
@@ -1347,6 +1460,7 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
       b.lang = lang === "ar" ? "en" : "ar";
     });
     render();
+    fitNav();
     splitHeadline();
     if (heroReady) decideMode();
     if (typeof onScroll === "function") onScroll();
@@ -1356,17 +1470,70 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
     b.addEventListener("click", function () { applyLang(lang === "ar" ? "en" : "ar"); });
   });
 
-  // ---------- mobile menu ----------
+  // ---------- main menu (Sanad's own tabs, dropdowns included) ----------
+  var siteHead = document.querySelector(".site-head");
+  var headRow = siteHead.querySelector(".head-row");
+  var navEl = document.getElementById("site-nav");
   var menuBtn = document.querySelector(".menu-btn");
-  var drawer = document.getElementById("drawer");
-  menuBtn.addEventListener("click", function () {
-    var open = menuBtn.getAttribute("aria-expanded") === "true";
-    menuBtn.setAttribute("aria-expanded", String(!open));
-    drawer.hidden = open;
+  var subBtns = navEl.querySelectorAll("[aria-controls^='nav-sub']");
+  var isCompact = function () { return siteHead.classList.contains("nav-compact"); };
+  function setSub(btn, open) {
+    btn.setAttribute("aria-expanded", String(open));
+    btn.closest(".nav-item").classList.toggle("open", open);
+  }
+  function closeSubs(except) { subBtns.forEach(function (b) { if (b !== except) setSub(b, false); }); }
+  function setMenu(open) {
+    menuBtn.setAttribute("aria-expanded", String(open));
+    siteHead.classList.toggle("nav-open", open);
+    if (!open) closeSubs();
+  }
+  // fold the tabs into the menu button whenever they can't share the row with the actions
+  function fitNav() {
+    siteHead.classList.remove("nav-compact");
+    var list = navEl.firstElementChild;
+    var fold = innerWidth <= 1100 || headRow.scrollWidth > headRow.clientWidth + 1 || list.scrollWidth > navEl.clientWidth + 1;
+    siteHead.classList.toggle("nav-compact", fold);
+    if (!fold) setMenu(false);
+    closeSubs();
+  }
+  subBtns.forEach(function (b) {
+    var item = b.closest(".nav-item"), t;
+    b.addEventListener("click", function () {
+      // a mouse that just opened the panel by hovering shouldn't close it again by clicking
+      if (item.dataset.hover) { delete item.dataset.hover; return; }
+      var open = b.getAttribute("aria-expanded") !== "true";
+      closeSubs(b);
+      setSub(b, open);
+    });
+    item.addEventListener("pointerenter", function (e) {
+      if (e.pointerType !== "mouse" || isCompact()) return;
+      clearTimeout(t);
+      if (b.getAttribute("aria-expanded") !== "true") { closeSubs(b); setSub(b, true); item.dataset.hover = "1"; }
+    });
+    item.addEventListener("pointerleave", function (e) {
+      if (e.pointerType !== "mouse" || isCompact()) return;
+      t = setTimeout(function () { delete item.dataset.hover; setSub(b, false); }, 220);
+    });
+    item.addEventListener("focusout", function (e) {
+      if (!isCompact() && !item.contains(e.relatedTarget)) setSub(b, false);
+    });
   });
-  drawer.addEventListener("click", function (e) {
-    if (e.target.closest("a")) { drawer.hidden = true; menuBtn.setAttribute("aria-expanded", "false"); }
+  menuBtn.addEventListener("click", function () { setMenu(menuBtn.getAttribute("aria-expanded") !== "true"); });
+  navEl.addEventListener("click", function (e) { if (e.target.closest("a")) setMenu(false); });
+  document.addEventListener("click", function (e) {
+    if (siteHead.contains(e.target)) return;
+    closeSubs();
+    if (isCompact()) setMenu(false);
   });
+  document.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    var open = navEl.querySelector("[aria-controls^='nav-sub'][aria-expanded='true']");
+    if (open) { setSub(open, false); open.focus(); }
+    else if (menuBtn.getAttribute("aria-expanded") === "true") { setMenu(false); menuBtn.focus(); }
+  });
+  addEventListener("resize", fitNav);
+  if (document.fonts) document.fonts.ready.then(fitNav);
+  fitNav();
 
   // ---------- donation form ----------
   var step1 = document.getElementById("step1");

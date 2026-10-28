@@ -29,7 +29,7 @@ The page is built around one idea: Sanad doesn't care for orphans directly, it s
 - **Get involved**: four colour cards.
 - **Bank transfer**: each bank card shows that bank's logo.
 
-- **Header**: the nav, «اطلب استشارة» (request a consultation), the donate button and a compact language button (globe + EN / ع). Below 1100px the nav folds into the menu, and on phones the consultation link moves there too.
+- **Header**: Sanad's own main menu, copied as it is from sanadorphans.org in Arabic and English: من نحن / Who We Are, برامج الأثر / Impact Programs, الخدمات الاستشارية / Consulting Services, الأثر / Our Impact, مركز المعرفة / Knowledge Hub, المركز الإعلامي / Media Center and شارك معنا / Get Involved. Each tab opens its submenu (on hover or click; Esc closes it), and every link goes to the matching Sanad page in the current language. Then come «اطلب استشارة» / "Request a Consultation" (Sanad's consultation form), «تبرع الآن» / "Donate now" (the form on this page) and a compact language button (globe + EN / ع). The header row runs wider than the content so the tabs fit; when they still don't (below about 1,110px in Arabic and 1,330px in English), they fold into the menu button, where each tab becomes an accordion. On phones the consultation link moves into the menu too.
 
 Cards share motifs taken from the current site: dot grids, wave bottoms, icon circles and colour bars. Each section has its own entrance:
 - **Headlines:** a line draws beside the eyebrow and the words rise out of a mask.
