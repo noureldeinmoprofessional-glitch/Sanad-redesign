@@ -61,7 +61,7 @@ Before production:
 - Replace the generated photos with real Sanad photos (with consent) before launch. They show people who are not Sanad's beneficiaries and are no longer labelled as illustrative.
 - Confirm the partner list and get each partner's logo approval. Some logos are named only in the file names, so add proper alt text for those.
 - Confirm with Sanad that 1,921 counts civil society staff (people), as the page now says, and ask it to align its team page (19 governorates) and portfolio PDF (older figures) with its homepage counters.
-- Ask Sanad whether it can send donation receipts and how. The page makes no receipt promise and doesn't mention WhatsApp anywhere until that is confirmed.
+- Ask Sanad whether it can send donation receipts and how. The page makes no receipt promise until that is confirmed; WhatsApp appears only as a label beside Sanad's mobile number in the footer.
 - Confirm the landline number (+20 2 26907195) and the consent for each story.
 - Point the in-page `#` links at the real pages and connect the form to the payment gateway.
 - The payment logos in `site/assets/pay/` were supplied by the project team. Show only the methods the chosen gateway actually supports, and follow each provider's logo guidelines.

@@ -26,8 +26,8 @@ FINDINGS = [
     ("C1", "C", ("التبرع والدفع", "Giving and payment"),
      ("وسائل الدفع والوعود في النموذج أكبر مما تقدمه سند فعليًا",
       "The form promises payment options Sanad doesn't offer today"),
-     ("يعرض النموذج Apple Pay وGoogle Pay وميزة والمحافظ الإلكترونية (فودافون كاش، اتصالات كاش، أورنج موني، WE Pay) وإنستاباي وفوري، وأربع عملات، وتبرعًا شهريًا تلقائيًا. (أزلنا وعد الإيصال وكل ذكر لواتساب، انظر قائمة ما أصلحناه.)",
-      "The form shows Apple Pay, Google Pay, Meeza, mobile wallets (Vodafone Cash, Etisalat Cash, Orange Money, WE Pay), InstaPay and Fawry, four currencies and automatic monthly giving. (We removed the receipt promise and every WhatsApp mention; see the fixed list.)"),
+     ("يعرض النموذج Apple Pay وGoogle Pay وميزة والمحافظ الإلكترونية (فودافون كاش، اتصالات كاش، أورنج موني، WE Pay) وإنستاباي وفوري، وأربع عملات، وتبرعًا شهريًا تلقائيًا. (أزلنا وعد الإيصال وذكر واتساب، انظر قائمة ما أصلحناه.)",
+      "The form shows Apple Pay, Google Pay, Meeza, mobile wallets (Vodafone Cash, Etisalat Cash, Orange Money, WE Pay), InstaPay and Fawry, four currencies and automatic monthly giving. (We removed the receipt promise and the WhatsApp mentions; see the fixed list.)"),
      ("صفحة التبرع الحالية لدى سند تقبل البطاقات فقط عبر بوابة البنك التجاري الدولي (Mastercard Hosted Checkout)، ولا تذكر أي إيصال. إذا رأى العميل وعودًا لا يستطيع الوفاء بها فسيفقد الثقة في التصميم كله، وإذا أُطلقت كما هي فسيشعر المتبرع بالخداع عند الدفع.",
       "Sanad's live donate page takes cards only, through CIB's Mastercard hosted checkout, and promises no receipt. If the client sees promises it can't keep, it will doubt the whole design; if it launches as is, donors will feel misled at checkout."),
      ("sanadorphans.org/donate/ ؛ شريط الثقة وخطوة الدفع في النموذج (الملحق، الصورة 5).",
@@ -266,8 +266,8 @@ FINDINGS = [
 ]
 
 FIXED = [
-    ("(C1) لم يذكر موقع سند أي إيصال، فأزلنا كل وعود الإيصال وكل ذكر لواتساب: سطر «إيصال فوري على واتساب» في شريط الثقة وتحت زر التبرع، وسطر الإيصال في صفحة الشكر، وتلميحات الإيصال في الخانات، وبطاقة «حوّلت بالفعل؟»، وزر واتساب العائم، و«(واتساب)» في التذييل. صار رقم الموبايل اختياريًا، وحلّ رقم الإشهار محل الإيصال في شريط الثقة.",
-     "(C1) Sanad's site never mentions a receipt, so we removed every receipt promise and every WhatsApp mention. That covers the \"instant WhatsApp receipt\" line in the trust strip and under the donate button, the receipt line on the thank-you step, the receipt hints in the fields, the \"Already transferred?\" card, the floating WhatsApp button and \"(WhatsApp)\" in the footer. The mobile number is now optional, and the registration number replaces the receipt in the trust strip."),
+    ("(C1) لم يذكر موقع سند أي إيصال، فأزلنا كل وعود الإيصال وذكر واتساب: سطر «إيصال فوري على واتساب» في شريط الثقة وتحت زر التبرع، وسطر الإيصال في صفحة الشكر، وتلميحات الإيصال في الخانات، وبطاقة «حوّلت بالفعل؟»، وزر واتساب العائم. (أبقينا «(واتساب)» بجانب رقم الموبايل في التذييل، فهو رقم سند الفعلي.) صار رقم الموبايل اختياريًا، وحلّ رقم الإشهار محل الإيصال في شريط الثقة.",
+     "(C1) Sanad's site never mentions a receipt, so we removed every receipt promise and the WhatsApp mentions. That covers the \"instant WhatsApp receipt\" line in the trust strip and under the donate button, the receipt line on the thank-you step, the receipt hints in the fields, the \"Already transferred?\" card, and the floating WhatsApp button. (\"(WhatsApp)\" stays beside the mobile number in the footer, since it is Sanad's real number.) The mobile number is now optional, and the registration number replaces the receipt in the trust strip."),
     ("(H4) وصفنا رقم 1,921 بأنه «منظمة مجتمع مدني»، والأرجح أنه أفراد كما في ملف سند التعريفي. أصبح «كادرًا في المجتمع المدني»، مثل «كادرًا بوزارة التضامن» بجانبه، بانتظار تأكيد سند.",
      "(H4) We described 1,921 as \"civil society organisations\"; it's most likely people, as in Sanad's portfolio. It now reads \"civil society staff\", like the ministry-staff figure beside it, pending Sanad's confirmation."),
     ("(H3) «18 عامًا» صارت «منذ 2008» وعام التأسيس في البطل وشريط الثقة ولوحة الأثر وقسم القصص، فلا تتعارض مع أي صفحة لسند. وثبّتنا 20 محافظة كما في عدادات سند الحالية.",
@@ -276,8 +276,8 @@ FIXED = [
      "The footer's \"Donate now\" button had grey text on coral (contrast 3.0:1). It's white now."),
     ("لوحات القصص كانت <article role=\"tabpanel\"> وهو غير مسموح. أصبحت عناصر div.",
      "Story panels were <article role=\"tabpanel\">, which isn't allowed. They're divs now."),
-    ("زر واتساب العائم كان خارج أي منطقة معلّمة. أُزيل الزر لاحقًا مع كل ذكر لواتساب.",
-     "The floating WhatsApp button sat outside any landmark. The button was later removed along with every WhatsApp mention."),
+    ("زر واتساب العائم كان خارج أي منطقة معلّمة. أُزيل الزر لاحقًا.",
+     "The floating WhatsApp button sat outside any landmark. The button was later removed."),
     ("بعد الانتقال إلى الخطوة الثانية كان النموذج يتوقف جزئيًا تحت الشريط العلوي. يتوقف الآن تحته مباشرة.",
      "After moving to step 2, the form stopped partly under the header. It now lands just below it."),
     ("تأثير الارتفاع عند المرور فوق بطاقات «من نقوّي» والأخبار كان معطلًا بسبب أنماط الظهور. يعمل الآن.",
