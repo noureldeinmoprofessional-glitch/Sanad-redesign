@@ -96,32 +96,26 @@ button, input, select { font: inherit; color: inherit; }
 .nav-top:hover, .nav-item.open > .nav-top { color: var(--teal-deep); }
 .nav-top:hover::after, .nav-item.open > .nav-top::after { transform: scaleX(1); }
 .head-actions .btn { white-space: nowrap; }
-/* panels: a card centred under its tab (the script keeps it on screen), with a navy intro beside the links */
-.nav-sub { display: none; position: absolute; top: calc(100% + 16px); inset-inline-start: 0; z-index: 60; translate: var(--dx, 0px) 0; grid-template-columns: 220px auto; gap: 6px; width: max-content; padding: 8px; background: var(--white); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 30px 60px -28px rgba(15, 34, 51, .45), 0 2px 6px rgba(15, 34, 51, .05); }
+/* panels: a plain list centred under its tab (the script keeps it on screen) */
+.nav-sub { display: none; position: absolute; top: calc(100% + 16px); inset-inline-start: 0; z-index: 60; translate: var(--dx, 0px) 0; width: max-content; padding: 12px 10px; background: var(--white); border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 30px 60px -28px rgba(15, 34, 51, .45), 0 2px 6px rgba(15, 34, 51, .05); }
 .nav-sub::before { content: ""; position: absolute; inset-inline: 0; top: -18px; height: 18px; }
-.nav-item.open > .nav-sub { display: grid; }
+.nav-item.open > .nav-sub { display: block; }
 .anim .nav:not(.instant) .nav-item.open > .nav-sub { animation: sub-in .3s cubic-bezier(.2, .7, .2, 1); }
 .anim .nav:not(.instant) .nav-item.open .sub-links > li { animation: sub-row .35s calc(60ms + var(--i, 0) * 35ms) cubic-bezier(.2, .7, .2, 1) both; }
 @keyframes sub-in { from { opacity: 0; transform: translateY(-8px); } }
 @keyframes sub-row { from { opacity: 0; transform: translateY(6px); } }
-.sub-intro { display: flex; flex-direction: column; gap: 6px; padding: 18px 18px 16px; border-radius: 14px; color: #c7d6de; background: radial-gradient(rgba(54, 192, 202, .22) 1.2px, transparent 1.5px) 0 0 / 14px 14px, linear-gradient(160deg, var(--navy-2), var(--navy)); }
-.sub-intro p { margin: 0; }
-.sub-title { color: var(--white); font-family: var(--font-head); font-weight: 700; font-size: 1.1rem; line-height: 1.4; }
-.sub-desc { font-size: .86rem; line-height: 1.65; }
-.sub-all { margin-top: auto; padding-top: 10px; color: var(--teal); font-weight: 800; font-size: .88rem; text-decoration: none; }
-.sub-all:hover { color: var(--white); }
-.sub-links { align-self: start; min-width: 250px; max-width: 300px; padding: 4px; }
-.nav-sub .sub-links a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border-radius: 10px; color: var(--ink); text-decoration: none; font-weight: 600; font-size: .94rem; line-height: 1.5; transition: background .18s, color .18s; }
+.sub-links { display: flex; flex-direction: column; gap: 4px; min-width: 250px; max-width: 300px; }
+.nav-sub .sub-links a { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 11px 14px; color: var(--ink); text-decoration: none; font-weight: 600; font-size: .94rem; line-height: 1.5; transition: color .18s; }
 .nav-sub .sub-links a::after { flex-shrink: 0; font-weight: 700; color: var(--teal-deep); opacity: 0; transform: translateX(var(--nudge)); transition: opacity .18s, transform .18s; }
 [dir="rtl"] .nav-sub .sub-links a::after { content: "←"; --nudge: 6px; }
 [dir="ltr"] .nav-sub .sub-links a::after { content: "→"; --nudge: -6px; }
-.nav-sub .sub-links a:hover, .nav-sub .sub-links a:focus-visible { background: var(--teal-soft); color: var(--teal-ink); }
+.nav-sub .sub-links a:hover, .nav-sub .sub-links a:focus-visible { color: var(--teal-deep); }
 .nav-sub .sub-links a:hover::after, .nav-sub .sub-links a:focus-visible::after { opacity: 1; transform: none; }
-.sub-group > ul { margin: 2px 0 4px; margin-inline-start: 14px; padding-inline-start: 6px; border-inline-start: 2px solid var(--line); }
+.sub-group > ul { display: flex; flex-direction: column; gap: 2px; margin: 2px 0 6px; margin-inline-start: 16px; padding-inline-start: 4px; border-inline-start: 3px solid #c6dadd; }
 .nav-sub .sub-group > ul a { font-weight: 500; font-size: .9rem; color: var(--muted); padding-block: 7px; }
 .nav-sub .sub-head { font-weight: 800; color: var(--navy); }
-.nav-sub.cols-2 .sub-links { display: grid; grid-template-columns: repeat(2, 265px); gap: 2px; max-width: none; }
-.nav-sub.cols-3 .sub-links { display: grid; grid-template-columns: repeat(3, 240px); gap: 2px 8px; max-width: none; }
+.nav-sub.cols-2 .sub-links { display: grid; grid-template-columns: repeat(2, 265px); gap: 4px 12px; max-width: none; }
+.nav-sub.cols-3 .sub-links { display: grid; grid-template-columns: repeat(3, 240px); gap: 4px 16px; max-width: none; }
 /* the three pillars carry their colour as a dot */
 .nav-sub.cols-3 .sub-head { justify-content: flex-start; }
 .nav-sub.cols-3 .sub-head::before { content: ""; flex-shrink: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--dot); }
@@ -129,7 +123,7 @@ button, input, select { font: inherit; color: inherit; }
 .nav-sub.cols-3 .sub-group:nth-child(1) { --dot: var(--teal); }
 .nav-sub.cols-3 .sub-group:nth-child(2) { --dot: var(--amber); }
 .nav-sub.cols-3 .sub-group:nth-child(3) { --dot: var(--coral); }
-.nav-sub.cols-3 .sub-group > ul { margin-inline-start: 4px; border-inline-start-color: transparent; }
+.nav-sub.cols-3 .sub-group > ul { margin-inline-start: 18px; border-inline-start-color: var(--dot); }
 .nav-extra { display: none; }
 .head-actions { display: flex; align-items: center; gap: 10px; margin-inline-start: auto; }
 .lang { background: none; border: 1.5px solid var(--line); border-radius: 10px; min-height: 44px; padding: 4px 14px; font-weight: 700; cursor: pointer; }
@@ -157,8 +151,8 @@ button, input, select { font: inherit; color: inherit; }
 .nav-compact .nav-sub { position: static; translate: none; width: auto; max-width: none; min-width: 0; padding: 0 0 10px; border: 0; border-radius: 0; box-shadow: none; }
 .nav-compact .nav-item.open > .nav-sub { display: block; }
 .nav-compact .nav-sub::before, .nav-compact .nav-top::after { content: none; }
-.nav-compact .sub-intro { display: none; }
-.nav-compact .nav-sub .sub-links { display: block; min-width: 0; max-width: none; padding: 0; }
+.nav-compact .nav-sub .sub-links { display: flex; gap: 0; min-width: 0; max-width: none; padding: 0; }
+.nav-compact .nav-sub .sub-links a { padding-inline: 4px; }
 .nav-compact .nav-sub .sub-links a::after { content: none; }
 .nav-compact .nav-sub.cols-3 .sub-group > ul { margin-inline-start: 18px; }
 .nav-compact .nav-extra { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 16px; }
@@ -806,10 +800,6 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
         <li class="nav-item">
           <button class="nav-top" type="button" aria-expanded="false" aria-controls="nav-sub-1"><span data-en="Who We Are">من نحن</span><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button>
           <div class="nav-sub" id="nav-sub-1">
-            <div class="sub-intro">
-              <p class="sub-title" data-en="Who We Are">من نحن</p>
-              <p class="sub-desc" data-en="Sanad for Alternative Parental Care: our story, the people who lead it and the partners who share our impact.">سند للرعاية الوالدية البديلة: قصتنا، ومن يقودها، ومن يشاركنا الأثر.</p>
-            </div>
             <ul class="sub-links">
               <li><a href="https://sanadorphans.org/ar/about/" data-en-href="https://sanadorphans.org/about/" data-en="About Sanad">عن سند</a></li>
               <li class="sub-group"><a class="sub-head" href="https://sanadorphans.org/ar/board-members/" data-en-href="https://sanadorphans.org/board-members/" data-en="Board &amp; Team">مجلس الإدارة وفريق العمل</a>
@@ -823,10 +813,6 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
         <li class="nav-item">
           <button class="nav-top" type="button" aria-expanded="false" aria-controls="nav-sub-2"><span data-en="Impact Programs">برامج الأثر</span><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button>
           <div class="nav-sub cols-3" id="nav-sub-2">
-            <div class="sub-intro">
-              <p class="sub-title" data-en="Impact Programs">برامج الأثر</p>
-              <p class="sub-desc" data-en="Three pillars working together: prevention, protection and empowerment.">ثلاثة محاور تعمل معًا: الوقاية والحماية والتمكين.</p>
-            </div>
             <ul class="sub-links">
               <li class="sub-group"><a class="sub-head" href="https://sanadorphans.org/ar/prevention/" data-en-href="https://sanadorphans.org/prevention/" data-en="Prevention">الوقاية</a>
                 <ul><li><a href="https://sanadorphans.org/ar/economic-and-social-empowerment-program/" data-en-href="https://sanadorphans.org/economic-and-social-empowerment-program/" data-en="Economic and Social Empowerment Program for Youth Without Parental Care">برنامج التمكين الاقتصادي والاجتماعي للشباب فاقدي الرعاية الوالدية</a></li><li><a href="https://sanadorphans.org/ar/kafala-family-capacity-building-program/" data-en-href="https://sanadorphans.org/kafala-family-capacity-building-program/" data-en="Kafala Family Capacity Building Program for Raising Children Without Parental Care">برنامج تأهيل الأسر الكافلة لتنشئة الأطفال فاقدي الرعاية الوالدية</a></li></ul>
@@ -843,11 +829,6 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
         <li class="nav-item">
           <div class="nav-top has-link"><a class="nav-link" href="https://sanadorphans.org/ar/services/" data-en-href="https://sanadorphans.org/services/" data-en="Consulting Services">الخدمات الاستشارية</a><button class="nav-caret" type="button" aria-expanded="false" aria-controls="nav-sub-3" aria-label="قائمة الخدمات الاستشارية" data-en-aria="Consulting Services menu"><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button></div>
           <div class="nav-sub cols-2" id="nav-sub-3">
-            <div class="sub-intro">
-              <p class="sub-title" data-en="Consulting Services">الخدمات الاستشارية</p>
-              <p class="sub-desc" data-en="Sanad's expertise since 2008, for donors, organisations and care systems.">خبرة سند منذ 2008 في خدمة الجهات المانحة والمؤسسات وأنظمة الرعاية.</p>
-              <a class="sub-all arw" href="https://sanadorphans.org/ar/services/" data-en-href="https://sanadorphans.org/services/" data-en="All services">كل الخدمات</a>
-            </div>
             <ul class="sub-links">
               <li><a href="https://sanadorphans.org/ar/services/donor-advisory-csr/" data-en-href="https://sanadorphans.org/services/donor-advisory-csr/" data-en="Donor and CSR Advisory">استشارات الجهات المانحة والمسؤولية المجتمعية</a></li>
               <li><a href="https://sanadorphans.org/ar/services/institutional-assessment/" data-en-href="https://sanadorphans.org/services/institutional-assessment/" data-en="Institutional Development and Quality Assessment">التطوير المؤسسي وتقييم جودة الرعاية</a></li>
@@ -863,10 +844,6 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
         <li class="nav-item">
           <button class="nav-top" type="button" aria-expanded="false" aria-controls="nav-sub-4"><span data-en="Our Impact">الأثر</span><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button>
           <div class="nav-sub" id="nav-sub-4">
-            <div class="sub-intro">
-              <p class="sub-title" data-en="Our Impact">الأثر</p>
-              <p class="sub-desc" data-en="Sanad's figures and achievements, and stories of young people who found their way.">أرقام سند وإنجازاتها، وقصص شباب شقّوا طريقهم.</p>
-            </div>
             <ul class="sub-links">
               <li><a href="https://sanadorphans.org/ar/achievements/" data-en-href="https://sanadorphans.org/achievements/" data-en="Data &amp; Achievements">أرقام وإنجازات</a></li>
               <li><a href="https://sanadorphans.org/ar/success-stories/" data-en-href="https://sanadorphans.org/success-stories/" data-en="Youth Success Stories">قصص ملهمة للشباب</a></li>
@@ -876,10 +853,6 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
         <li class="nav-item">
           <button class="nav-top" type="button" aria-expanded="false" aria-controls="nav-sub-5"><span data-en="Knowledge Hub">مركز المعرفة</span><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button>
           <div class="nav-sub" id="nav-sub-5">
-            <div class="sub-intro">
-              <p class="sub-title" data-en="Knowledge Hub">مركز المعرفة</p>
-              <p class="sub-desc" data-en="Our annual reports and our newsletter.">تقاريرنا السنوية ونشرتنا الدورية.</p>
-            </div>
             <ul class="sub-links">
               <li><a href="https://sanadorphans.org/ar/annual-reports/" data-en-href="https://sanadorphans.org/annual-reports/" data-en="Annual Reports">التقارير السنوية</a></li>
               <li><a href="https://sanadorphans.org/ar/newsletters/" data-en-href="https://sanadorphans.org/newsletters/" data-en="Newsletters">النشرة الدورية</a></li>
@@ -889,11 +862,6 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
         <li class="nav-item">
           <div class="nav-top has-link"><a class="nav-link" href="https://sanadorphans.org/ar/news/" data-en-href="https://sanadorphans.org/news/" data-en="Media Center">المركز الإعلامي</a><button class="nav-caret" type="button" aria-expanded="false" aria-controls="nav-sub-6" aria-label="قائمة المركز الإعلامي" data-en-aria="Media Center menu"><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button></div>
           <div class="nav-sub" id="nav-sub-6">
-            <div class="sub-intro">
-              <p class="sub-title" data-en="Media Center">المركز الإعلامي</p>
-              <p class="sub-desc" data-en="Sanad's latest news and press releases.">آخر أخبار سند وبياناتها الصحفية.</p>
-              <a class="sub-all arw" href="https://sanadorphans.org/ar/news/" data-en-href="https://sanadorphans.org/news/" data-en="All news">كل الأخبار</a>
-            </div>
             <ul class="sub-links">
               <li><a href="https://sanadorphans.org/ar/news/" data-en-href="https://sanadorphans.org/news/" data-en="News">الأخبار</a></li>
               <li><a href="https://sanadorphans.org/ar/press-releases/" data-en-href="https://sanadorphans.org/press-releases/" data-en="Press Releases">البيانات الصحفية</a></li>
@@ -903,10 +871,6 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
         <li class="nav-item">
           <button class="nav-top" type="button" aria-expanded="false" aria-controls="nav-sub-7"><span data-en="Get Involved">شارك معنا</span><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button>
           <div class="nav-sub" id="nav-sub-7">
-            <div class="sub-intro">
-              <p class="sub-title" data-en="Get Involved">شارك معنا</p>
-              <p class="sub-desc" data-en="Join our team, volunteer your skills or become a partner.">انضم إلى فريقنا، أو تطوّع بخبرتك، أو كن شريكًا.</p>
-            </div>
             <ul class="sub-links">
               <li><a href="https://sanadorphans.org/ar/careers/" data-en-href="https://sanadorphans.org/careers/" data-en="Careers">الوظائف</a></li>
               <li><a href="https://forms.office.com/r/ky00KxTAu0" target="_blank" rel="noopener" data-en="Skills-Based Volunteering">تطوع بخبرتك</a></li>
