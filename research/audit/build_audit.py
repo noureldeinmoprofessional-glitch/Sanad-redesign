@@ -26,14 +26,14 @@ FINDINGS = [
     ("C1", "C", ("التبرع والدفع", "Giving and payment"),
      ("وسائل الدفع والوعود في النموذج أكبر مما تقدمه سند فعليًا",
       "The form promises payment options Sanad doesn't offer today"),
-     ("يعرض النموذج Apple Pay وGoogle Pay وميزة والمحافظ الإلكترونية (فودافون كاش، اتصالات كاش، أورنج موني، WE Pay) وإنستاباي وفوري، وأربع عملات، وتبرعًا شهريًا تلقائيًا. (أزلنا وعد الإيصال وذكر واتساب، انظر قائمة ما أصلحناه.)",
-      "The form shows Apple Pay, Google Pay, Meeza, mobile wallets (Vodafone Cash, Etisalat Cash, Orange Money, WE Pay), InstaPay and Fawry, four currencies and automatic monthly giving. (We removed the receipt promise and the WhatsApp mentions; see the fixed list.)"),
+     ("أزلنا شعارات وسائل الدفع واختيار وسيلة الدفع (انظر قائمة ما أصلحناه)، لكن النموذج ما زال يعرض أربع عملات وتبرعًا شهريًا تلقائيًا. (وأزلنا كذلك وعد الإيصال وذكر واتساب.)",
+      "We removed the payment logos and the payment-method choice (see the fixed list), but the form still offers four currencies and automatic monthly giving. (The receipt promise and the WhatsApp mentions are gone too.)"),
      ("صفحة التبرع الحالية لدى سند تقبل البطاقات فقط عبر بوابة البنك التجاري الدولي (Mastercard Hosted Checkout)، ولا تذكر أي إيصال. إذا رأى العميل وعودًا لا يستطيع الوفاء بها فسيفقد الثقة في التصميم كله، وإذا أُطلقت كما هي فسيشعر المتبرع بالخداع عند الدفع.",
       "Sanad's live donate page takes cards only, through CIB's Mastercard hosted checkout, and promises no receipt. If the client sees promises it can't keep, it will doubt the whole design; if it launches as is, donors will feel misled at checkout."),
      ("sanadorphans.org/donate/ ؛ شريط الثقة وخطوة الدفع في النموذج (الملحق، الصورة 5).",
       "sanadorphans.org/donate/; the prototype's trust strip and payment step (appendix, image 5)."),
-     ("نسأل سند عن خطة بوابة الدفع، ونعرض فقط الوسائل المتاحة يوم الإطلاق، ونعرض الباقي كخطة مستقبلية في عرض التسليم لا في الواجهة.",
-      "Ask Sanad for its gateway plan, show only the methods live on launch day, and present the rest as a roadmap in the handover deck rather than in the interface."),
+     ("نسأل سند عن خطة بوابة الدفع: هل تقبل عملات أخرى غير الجنيه، وهل تدعم التبرع الشهري التلقائي؟ ونعرض فقط ما يعمل يوم الإطلاق.",
+      "Ask Sanad for its gateway plan: does it take currencies other than the pound, and does it support automatic monthly giving? Show only what works on launch day."),
      ("سند + الوكالة", "Sanad + agency")),
     ("C2", "C", ("المصداقية والصور", "Credibility and imagery"),
      ("صور مولّدة بالذكاء الاصطناعي لأطفال ومستفيدين بلا أي إشارة",
@@ -266,6 +266,8 @@ FINDINGS = [
 ]
 
 FIXED = [
+    ("(C1 جزئيًا) أزلنا شريط شعارات وسائل الدفع تحت زر التبرع، واختيار «وسيلة الدفع» في الخطوة الثانية، وملاحظة كود فوري والتنبيه المرتبط بالتبرع الشهري، بطلب العميل حتى تتضح وسائل الدفع الفعلية.",
+     "(C1, in part) At the client's request we removed the payment-logo row under the donate button, the \"payment method\" choice in step 2, the Fawry code note and the monthly-giving hint tied to it, until the real payment methods are settled."),
     ("(M8 جزئيًا) زر «استكشف الشراكة» يفتح الآن استمارة الشراكة داخل الصفحة بأسئلة سند الثمانية، مع رسالة شكر عند الإرسال. وقائمة «مركز المعرفة» صارت قائمة واحدة: التقارير السنوية والنشرة الدورية.",
      "(M8, in part) \"Explore partnership\" now opens the partnership form on the page, with Sanad's eight questions and a thank-you message on submit. The Knowledge Hub menu is now a single list: Annual Reports and Newsletters."),
     ("(M8 جزئيًا) التذييل صار بأعمدة تذييل سند ونصوصها: من نحن (عن سند، مجلس الإدارة، فريق العمل، الشركاء، تكريم جهود سند)، وخدماتنا (الخدمات الثماني)، ومعلومات التواصل بروابط اتصال وبريد، وكلها تقود إلى صفحات سند بلغة الصفحة. وصححنا العنوان إلى «بجوار قصر البارون» كما عند سند.",
@@ -291,8 +293,8 @@ FIXED = [
 ]
 
 STRENGTHS = [
-    ("مسار تبرع واضح بخطوتين، بالأغراض الأربعة ذاتها التي يستخدمها موقع سند.",
-     "A clear two-step giving flow, with the same four purposes Sanad's site uses."),
+    ("مسار تبرع واضح بخطوتين، بأغراض موقع سند الأربعة ذاتها، ومعها «تدريب الأسر الكافلة» بطلب العميل.",
+     "A clear two-step giving flow, with the four purposes Sanad's site uses plus \"kafala family training\", added at the client's request."),
     ("كل أرقام التحدي بمصادرها كما يذكرها موقع سند (اليونيسف 2014، SOS 2023، وزارة التضامن 2023).",
      "Every challenge figure carries its source as Sanad's site gives it (UNICEF 2014, SOS 2023, MoSS 2023)."),
     ("القصص الأربع حقيقية من موقع سند، والدعوة «ساعد في كتابة القصة القادمة» تموّل تمكين الشباب، وهو ما ينطبق على أصحابها.",
@@ -321,7 +323,7 @@ SCORE = [
 
 QUESTIONS = [
     ("هل تريد سند إبراز الزكاة في الموقع؟ (C4)", "Does Sanad want Zakat featured on the site? (C4)"),
-    ("ما وسائل الدفع المتاحة يوم الإطلاق؟ (C1)", "Which payment methods will be live on launch day? (C1)"),
+    ("ما وسائل الدفع والعملات المتاحة يوم الإطلاق، وهل يدعم التبرع الشهري التلقائي؟ (C1)", "Which payment methods and currencies will be live on launch day, and is automatic monthly giving supported? (C1)"),
     ("هل يمكن إرسال إيصال تبرع، وبأي وسيلة؟ أزلنا الوعد حتى تؤكد سند. (C1)", "Can Sanad send donation receipts, and how? We removed the promise until Sanad confirms. (C1)"),
     ("هل توافق سند على الصور المولّدة؟ وهل لديها صور حقيقية بموافقات؟ (C2)", "Does Sanad approve the generated photos? Does it have real, consented photos? (C2)"),
     ("هل تعتمد سند جملة «سند لا تدير دور رعاية…»؟ (C3)", "Does Sanad approve the line «سند لا تدير دور رعاية…»? (C3)"),
@@ -337,7 +339,7 @@ SHOTS = [
     ("../../../tmp/shots/d-p0.45.jpg", "منتصف التمرير: الصور تدور بعيدًا والنموذج يتفتح من المركز", "Mid-scroll: the photos swirl away and the form opens from the centre"),
     ("../../../tmp/shots/d-p0.8.jpg", "النموذج مكتمل الظهور داخل البطل المثبّت", "The form fully open inside the pinned hero"),
     ("../../../tmp/shots/m-t5000.jpg", "الجوال (390px): النص أولًا ثم الصور", "Mobile (390px): copy first, then the photos"),
-    ("../../../tmp/shots/step2.jpg", "الخطوة 2: وسائل الدفع المعروضة", "Step 2: the payment methods shown"),
+    ("../../../tmp/shots/step2.jpg", "الخطوة 2 على الجوال بعد إزالة وسائل الدفع", "Step 2 on a phone, after the payment methods were removed"),
 ]
 
 TESTS = [

@@ -341,10 +341,10 @@ fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
 legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 .seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; background: var(--mist); border: 1px solid var(--line); border-radius: 12px; padding: 4px; gap: 4px; }
 .seg label { position: relative; }
-.seg input, .chips input, .amts input, .methods input { position: absolute; opacity: 0; pointer-events: none; }
+.seg input, .chips input, .amts input { position: absolute; opacity: 0; pointer-events: none; }
 .seg > label > span { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 2px 6px; min-height: 42px; border-radius: 9px; font-weight: 700; cursor: pointer; text-align: center; padding: 2px 6px; font-size: .97rem; }
 .seg input:checked + span { background: var(--white); color: var(--teal-ink); box-shadow: 0 1px 0 var(--line), 0 2px 8px -4px rgba(15, 34, 51, .3); }
-.seg input:focus-visible + span, .chips input:focus-visible + span, .amts input:focus-visible + span, .methods input:focus-visible + span { outline: 3px solid var(--amber); outline-offset: 2px; }
+.seg input:focus-visible + span, .chips input:focus-visible + span, .amts input:focus-visible + span { outline: 3px solid var(--amber); outline-offset: 2px; }
 .badge-m { font-size: .7rem; line-height: 1.7; background: var(--amber); color: var(--navy); border-radius: 999px; padding: 0 7px; font-weight: 700; }
 .chips { display: flex; flex-wrap: wrap; gap: 8px; }
 .chips span { display: inline-flex; align-items: center; min-height: 40px; padding: 4px 14px; border: 1.5px solid var(--line); border-radius: 999px; cursor: pointer; font-weight: 600; font-size: .92rem; }
@@ -367,35 +367,18 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 .field input[aria-invalid="true"] { border-color: var(--err); }
 .err { color: var(--err); font-size: .88rem; font-weight: 600; }
 .give-btn { font-size: 1.08rem; min-height: 56px; }
-.pay-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
-.pay-logo { display: inline-flex; align-items: center; justify-content: center; height: 38px; padding: 3px 7px; background: var(--white); border: 1px solid var(--line); border-radius: 8px; }
-.pay-logo img { height: 21px; width: auto; }
-/* square and stacked marks need more height to match the visual weight of the wide wordmarks */
-.pay-logo.tall img { height: 30px; }
-.pay-row .pay-logo { height: 34px; padding: 3px 6px; }
-.pay-row .pay-logo img { height: 18px; }
-.pay-row .pay-logo.tall img { height: 26px; }
 .secure { display: flex; justify-content: center; align-items: center; gap: 6px; color: var(--muted); font-size: .86rem; text-align: center; }
 .hint { color: var(--muted); font-size: .86rem; text-align: center; }
 .back { align-self: flex-start; background: none; border: 0; color: var(--teal-deep); font-weight: 700; cursor: pointer; padding: 4px 0; }
 [dir="rtl"] .back::before { content: "→ "; }
 [dir="ltr"] .back::before { content: "← "; }
 .summary { background: var(--mist); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; font-weight: 700; }
-.methods { display: grid; gap: 8px; }
-.methods label > span { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; min-height: 62px; border: 1.5px solid var(--line); border-radius: 12px; padding: 10px 14px; cursor: pointer; }
-.methods .m-txt { display: flex; flex-direction: column; min-width: 0; line-height: 1.45; }
-.methods b { font-weight: 700; }
-.methods small { color: var(--muted); font-size: .84rem; }
-.methods .m-logos { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
-.methods input:checked + span { border: 2px solid var(--teal-deep); background: var(--teal-soft); }
-.note { background: #fff8e6; border: 1px solid #f1d58a; border-radius: 12px; padding: 10px 14px; font-size: .9rem; }
 .check { display: flex; gap: 10px; align-items: flex-start; font-size: .93rem; cursor: pointer; }
 .check input { width: 20px; height: 20px; margin-top: 4px; accent-color: var(--teal-deep); flex-shrink: 0; }
 .thanks { text-align: center; align-items: center; }
 .thanks .tick { width: 64px; height: 64px; border-radius: 50%; background: var(--teal-soft); color: var(--teal-deep); display: grid; place-items: center; }
 .thanks h3 { font-size: 1.5rem; }
 .upsell { background: var(--mist); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 10px; width: 100%; }
-.codebox { border: 2px dashed var(--line); border-radius: 12px; padding: 14px; color: var(--muted); width: 100%; }
 
 /* trust strip */
 .trust { border-bottom: 1px solid var(--line); }
@@ -541,6 +524,8 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 @media (max-width: 600px) { .involve { grid-template-columns: 1fr; } }
 
 /* news */
+/* the news sits mid-page between two light sections, so it gets its own soft band */
+.news-sec { background: var(--mist); border-block: 1px solid var(--line); }
 .news { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .news a { text-decoration: none; color: var(--ink); display: flex; flex-direction: column; background: var(--white); border: 1px solid var(--line); border-radius: 24px; overflow: hidden; transition: transform .45s cubic-bezier(.16, 1, .3, 1), box-shadow .45s, border-color .45s; }
 .news a:hover { transform: translateY(-5px); border-color: var(--teal); box-shadow: 0 30px 50px -36px rgba(15, 34, 51, .6); }
@@ -954,6 +939,7 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
             <label><input type="radio" name="fund" value="children" checked><span data-en="Children's development">تنمية الأطفال</span></label>
             <label><input type="radio" name="fund" value="youth"><span data-en="Youth empowerment">تمكين الشباب</span></label>
             <label><input type="radio" name="fund" value="caregivers"><span data-en="Caregiver training">تدريب مقدّمي الرعاية</span></label>
+            <label><input type="radio" name="fund" value="kafala"><span data-en="Kafala family training">تدريب الأسر الكافلة</span></label>
             <label><input type="radio" name="fund" value="general"><span data-en="General donation">تبرع عام</span></label>
           </div>
         </fieldset>
@@ -974,11 +960,10 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
           <p class="err" id="amt-err" hidden></p>
         </div>
         <button class="btn btn-give btn-block give-btn" type="submit" id="give-btn">أكون سندًا بـ 500 ج.م شهريًا</button>
-        <div class="pay-row" role="list" aria-label="وسائل الدفع المتاحة" data-en-aria="Accepted payment methods"><span class="pay-logo" role="listitem"><img src="assets/pay/apple-pay.webp" width="216" height="96" alt="Apple Pay"></span><span class="pay-logo" role="listitem"><img src="assets/pay/google-pay.webp" width="256" height="96" alt="Google Pay"></span><span class="pay-logo" role="listitem"><img src="assets/pay/visa.webp" width="145" height="96" alt="Visa"></span><span class="pay-logo tall" role="listitem"><img src="assets/pay/mastercard.webp" width="121" height="96" alt="Mastercard"></span><span class="pay-logo tall" role="listitem"><img src="assets/pay/meeza.webp" width="141" height="96" alt="Meeza"></span><span class="pay-logo tall" role="listitem"><img src="assets/pay/instapay.webp" width="147" height="96" alt="InstaPay"></span><span class="pay-logo" role="listitem"><img src="assets/pay/fawry.webp" width="296" height="96" alt="Fawry"></span><span class="pay-logo tall" role="listitem"><img src="assets/pay/vodafone-cash.webp" width="204" height="96" alt="Vodafone Cash"></span><span class="pay-logo tall" role="listitem"><img src="assets/pay/etisalat-cash.webp" width="137" height="96" alt="Etisalat Cash"></span><span class="pay-logo" role="listitem"><img src="assets/pay/orange-money.webp" width="310" height="96" alt="Orange Money"></span><span class="pay-logo tall" role="listitem"><img src="assets/pay/we-pay.webp" width="106" height="96" alt="WE Pay"></span></div>
         <p class="secure"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg><span data-en="Secure, encrypted payment">دفع آمن ومشفّر</span></p>
       </form>
 
-      <!-- Step 2: details and payment method -->
+      <!-- Step 2: details -->
       <form class="step" id="step2" novalidate hidden>
         <button type="button" class="back" data-back data-en="Back">رجوع</button>
         <p class="summary" id="summary"></p>
@@ -996,16 +981,6 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
           <label for="d-email" data-en-html="Email <small>(optional)</small>">البريد الإلكتروني <small>(اختياري)</small></label>
           <input id="d-email" name="email" type="email" autocomplete="email" dir="ltr">
         </div>
-        <fieldset>
-          <legend data-en="Payment method">وسيلة الدفع</legend>
-          <div class="methods">
-            <label><input type="radio" name="method" value="mobile" checked><span><span class="m-txt"><b data-en="Pay by phone">الدفع بالهاتف</b><small data-en="Fastest on mobile">الأسرع على الموبايل</small></span><span class="m-logos"><span class="pay-logo"><img src="assets/pay/apple-pay.webp" width="216" height="96" alt="Apple Pay"></span><span class="pay-logo"><img src="assets/pay/google-pay.webp" width="256" height="96" alt="Google Pay"></span></span></span></label>
-            <label><input type="radio" name="method" value="card"><span><span class="m-txt"><b data-en="Bank card">بطاقة بنكية</b><small data-en="Debit, credit or prepaid">خصم أو ائتمان أو مسبقة الدفع</small></span><span class="m-logos"><span class="pay-logo"><img src="assets/pay/visa.webp" width="145" height="96" alt="Visa"></span><span class="pay-logo tall"><img src="assets/pay/mastercard.webp" width="121" height="96" alt="Mastercard"></span><span class="pay-logo tall"><img src="assets/pay/meeza.webp" width="141" height="96" alt="Meeza"></span></span></span></label>
-            <label><input type="radio" name="method" value="wallet"><span><span class="m-txt"><b data-en="Mobile wallet">محفظة إلكترونية</b><small data-en="Pay from your phone wallet">ادفع من محفظة موبايلك</small></span><span class="m-logos"><span class="pay-logo tall"><img src="assets/pay/vodafone-cash.webp" width="204" height="96" alt="Vodafone Cash"></span><span class="pay-logo tall"><img src="assets/pay/etisalat-cash.webp" width="137" height="96" alt="Etisalat Cash"></span><span class="pay-logo"><img src="assets/pay/orange-money.webp" width="310" height="96" alt="Orange Money"></span><span class="pay-logo tall"><img src="assets/pay/we-pay.webp" width="106" height="96" alt="WE Pay"></span></span></span></label>
-            <label><input type="radio" name="method" value="instapay"><span><span class="m-txt"><b data-en="Instant bank transfer">تحويل بنكي فوري</b><small data-en="Straight from your bank account">مباشرة من حسابك البنكي</small></span><span class="m-logos"><span class="pay-logo tall"><img src="assets/pay/instapay.webp" width="147" height="96" alt="InstaPay"></span></span></span></label>
-            <label><input type="radio" name="method" value="fawry"><span><span class="m-txt"><b data-en="Pay in cash">ادفع نقدًا</b><small data-en="At any Fawry outlet">في أي منفذ فوري</small></span><span class="m-logos"><span class="pay-logo"><img src="assets/pay/fawry.webp" width="296" height="96" alt="Fawry"></span></span></span></label>
-          </div>
-        </fieldset>
         <div class="field" id="currency-field">
           <label for="d-cur" data-en="Pay in">عملة الدفع</label>
           <select id="d-cur" name="currency">
@@ -1015,7 +990,6 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
             <option value="AED" data-en="UAE dirham (AED)">الدرهم الإماراتي (AED)</option>
           </select>
         </div>
-        <p class="note" id="monthly-note" hidden data-en="Automatic monthly giving works with cards or Apple Pay / Google Pay.">التبرع الشهري التلقائي متاح بالبطاقة أو Apple Pay / Google Pay.</p>
         <label class="check"><input type="checkbox" name="fees" checked><span data-en="I'll cover the payment fee so my full gift arrives">أتحمّل رسوم الدفع حتى يصل تبرعي كاملًا</span></label>
         <button class="btn btn-give btn-block give-btn" type="submit" data-en="Continue to secure payment">متابعة إلى الدفع الآمن</button>
         <p class="hint" data-en="We never share your details.">لن نشارك بياناتك مع أي جهة.</p>
@@ -1025,7 +999,6 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
       <div class="step thanks" id="step3" hidden aria-live="polite">
         <div class="tick"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
         <h3 id="thanks-title" tabindex="-1"></h3>
-        <p class="codebox" id="fawry-box" hidden data-en="You'll find your Fawry payment code and its expiry date on the payment page.">ستجد كود الدفع في فوري وتاريخ صلاحيته في صفحة الدفع.</p>
         <div class="upsell" id="upsell" hidden>
           <b data-en="Make it monthly?">هل تجعله تبرعًا شهريًا؟</b>
           <p data-en="Monthly gifts let us plan programs that run all year.">التبرعات الشهرية تتيح لنا التخطيط لبرامج تستمر طوال العام.</p>
@@ -1180,7 +1153,7 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
           <h3 class="bar-h" data-en="Kafala families">أسر الكفالة</h3>
           <p data-en="We equip families applying for kafala with the knowledge and psychological preparation they need, and follow up so the child stays stable and never returns to a care home.">نزوّد الأسر المتقدمة للكفالة بالمعارف والتهيئة النفسية اللازمة، ونتابع الطفل لنضمن استقراره ونمنع عودته إلى دور الرعاية.</p>
           <p class="p-prog"><span data-en="Program">البرنامج</span><b data-en="Kafala Family Capacity Building Program">برنامج تأهيل الأسر الكافلة لتنشئة الأطفال فاقدي الرعاية الوالدية</b></p>
-          <div class="p-cta"><a class="btn btn-give" href="#give" data-give-fund="children" data-en="Support a kafala family">ادعم أسرة كافلة</a></div>
+          <div class="p-cta"><a class="btn btn-give" href="#give" data-give-fund="kafala" data-en="Support a kafala family">ادعم أسرة كافلة</a></div>
         </div>
       </article>
       <article class="p-card c-system pil-emp wide-sm">
@@ -1217,6 +1190,35 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
 </section>
 
 <!-- 8. Stories -->
+<section class="section news-sec" id="news" aria-labelledby="news-title">
+  <div class="wrap">
+    <div class="head-split">
+      <div class="sec-head">
+        <span class="eyebrow" data-en="From the field">من الميدان</span>
+        <h2 id="news-title" data-en="Latest news">آخر الأخبار</h2>
+      </div>
+      <a class="link arw" href="#news-title" data-en="All news">كل الأخبار</a>
+    </div>
+    <div class="news">
+      <a href="#news-title">
+        <span class="n-img"><img src="assets/news-graduation-forum.webp" width="1100" height="731" alt="" loading="lazy"></span>
+        <div><time datetime="2026-10" data-en="October 2026">أكتوبر 2026</time>
+        <h3 data-en="Sanad holds a graduation and recruitment forum for practitioners, with the Ministry of Social Solidarity, universities and the private sector">سند تنظّم ملتقى التخرج والتوظيف للممارسين، بالتعاون مع وزارة التضامن الاجتماعي والجامعات والقطاع الخاص</h3></div>
+      </a>
+      <a href="#news-title">
+        <span class="n-img"><img src="assets/news-princess-taghrid.webp" width="900" height="535" alt="" loading="lazy"></span>
+        <div><time datetime="2026-10" data-en="October 2026">أكتوبر 2026</time>
+        <h3 data-en="Sanad and the Princess Taghrid Foundation: a regional partnership to develop alternative parental care">سند ومؤسسة الأميرة تغريد للتنمية والتدريب: شراكة إقليمية لتطوير منظومة الرعاية الوالدية البديلة</h3></div>
+      </a>
+      <a href="#news-title">
+        <span class="n-img"><img src="assets/news-edbe-partnership.webp" width="900" height="535" alt="" loading="lazy"></span>
+        <div><time datetime="2026-09" data-en="September 2026">سبتمبر 2026</time>
+        <h3 data-en="A renewed partnership and lasting impact with the Export Development Bank of Egypt">شراكة متجددة وأثر مستدام مع البنك المصري لتنمية الصادرات</h3></div>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section class="section stories" id="stories" aria-labelledby="stories-title">
   <div class="wrap">
     <div class="st-head">
@@ -1368,34 +1370,6 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
 </section>
 
 <!-- 11. News -->
-<section class="section" style="padding-top:0" aria-labelledby="news-title">
-  <div class="wrap">
-    <div class="head-split">
-      <div class="sec-head">
-        <span class="eyebrow" data-en="From the field">من الميدان</span>
-        <h2 id="news-title" data-en="Latest news">آخر الأخبار</h2>
-      </div>
-      <a class="link arw" href="#news-title" data-en="All news">كل الأخبار</a>
-    </div>
-    <div class="news">
-      <a href="#news-title">
-        <span class="n-img"><img src="assets/news-graduation-forum.webp" width="1100" height="731" alt="" loading="lazy"></span>
-        <div><time datetime="2026-10" data-en="October 2026">أكتوبر 2026</time>
-        <h3 data-en="Sanad holds a graduation and recruitment forum for practitioners, with the Ministry of Social Solidarity, universities and the private sector">سند تنظّم ملتقى التخرج والتوظيف للممارسين، بالتعاون مع وزارة التضامن الاجتماعي والجامعات والقطاع الخاص</h3></div>
-      </a>
-      <a href="#news-title">
-        <span class="n-img"><img src="assets/news-princess-taghrid.webp" width="900" height="535" alt="" loading="lazy"></span>
-        <div><time datetime="2026-10" data-en="October 2026">أكتوبر 2026</time>
-        <h3 data-en="Sanad and the Princess Taghrid Foundation: a regional partnership to develop alternative parental care">سند ومؤسسة الأميرة تغريد للتنمية والتدريب: شراكة إقليمية لتطوير منظومة الرعاية الوالدية البديلة</h3></div>
-      </a>
-      <a href="#news-title">
-        <span class="n-img"><img src="assets/news-edbe-partnership.webp" width="900" height="535" alt="" loading="lazy"></span>
-        <div><time datetime="2026-09" data-en="September 2026">سبتمبر 2026</time>
-        <h3 data-en="A renewed partnership and lasting impact with the Export Development Bank of Egypt">شراكة متجددة وأثر مستدام مع البنك المصري لتنمية الصادرات</h3></div>
-      </a>
-    </div>
-  </div>
-</section>
 
 </main>
 
@@ -1571,7 +1545,7 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
       monthly: function (a) { return "أكون سندًا بـ " + a + " ج.م شهريًا"; },
       once: function (a) { return "تبرّع بـ " + a + " ج.م"; },
       perMonth: "شهريًا", oneTime: "مرة واحدة",
-      funds: { children: "تنمية الأطفال", youth: "تمكين الشباب", caregivers: "تدريب مقدّمي الرعاية", general: "تبرع عام" },
+      funds: { children: "تنمية الأطفال", youth: "تمكين الشباب", caregivers: "تدريب مقدّمي الرعاية", kafala: "تدريب الأسر الكافلة", general: "تبرع عام" },
       thanks: function (n) { return "شكرًا لك يا " + n; },
       errAmt: "أقل مبلغ للتبرع 10 ج.م.",
       errName: "اكتب اسمك من فضلك.",
@@ -1594,7 +1568,7 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
       monthly: function (a) { return "Give EGP " + a + " monthly"; },
       once: function (a) { return "Give EGP " + a; },
       perMonth: "monthly", oneTime: "one-time",
-      funds: { children: "Children's development", youth: "Youth empowerment", caregivers: "Caregiver training", general: "General donation" },
+      funds: { children: "Children's development", youth: "Youth empowerment", caregivers: "Caregiver training", kafala: "Kafala family training", general: "General donation" },
       thanks: function (n) { return "Thank you, " + n; },
       errAmt: "The minimum gift is EGP 10.",
       errName: "Please enter your name.",
@@ -1848,10 +1822,6 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
     document.getElementById("summary").textContent =
       fmt(amount() || 0) + " " + t.cur + " " + (val("freq") === "monthly" ? t.perMonth : t.oneTime) +
       " · " + t.funds[val("fund")];
-    var method = step2.querySelector("input[name=method]:checked").value;
-    var recurring = method === "card" || method === "mobile";
-    document.getElementById("monthly-note").hidden = !(val("freq") === "monthly" && !recurring);
-    document.getElementById("currency-field").hidden = !recurring;
   }
   step1.addEventListener("change", function (e) {
     if (e.target.name === "amount") { custom.value = ""; amtErr.hidden = true; }
@@ -1893,10 +1863,8 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: #e9b9bb; }
     fieldError(phone, document.getElementById("phone-err"), okPhone ? "" : T().errPhone);
     if (!okName) { name.focus(); return; }
     if (!okPhone) { phone.focus(); return; }
-    var method = step2.querySelector("input[name=method]:checked").value;
     var title = document.getElementById("thanks-title");
     title.textContent = T().thanks(name.value.trim().split(/\s+/)[0]);
-    document.getElementById("fawry-box").hidden = method !== "fawry";
     document.getElementById("upsell").hidden = val("freq") !== "once";
     document.getElementById("upsell-done").hidden = true;
     show(step3, title);

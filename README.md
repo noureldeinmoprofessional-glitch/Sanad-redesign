@@ -20,7 +20,7 @@ Open the HTML file in a browser to read it.
 The page is built around one idea: Sanad doesn't care for orphans directly, it strengthens the people who do («نكون سندًا لمن يكونون سندًا لهم»). It has no religious framing: gifts are monthly or one-time, with no Zakat or Sadaqah choice.
 
 - **Hero**: the headline, two calls to action (donate, and «تعرّف على سند», which opens Sanad's film), three figures from Sanad's site, and a photo composition. The composition is a main photo with three smaller photos joined by a hand-drawn line («نؤهّل مقدّمي الرعاية»، «نمكّن الشباب»، «نرتقي بجودة الرعاية»), plus Sanad's vision («عالم يستطيع فيه كل يتيم تشكيل مستقبله») in a teal shape. On load, the main photo opens from the centre, the three photos spiral out of it into place, and the line draws through them; faint brand boats drift behind. On desktop the hero then holds still while you scroll. The photos swirl away along the spiral, the main photo collapses into its centre, and the donation form opens out of that point. After that the page carries on. Any donate link scrolls straight to the open form. Moving to the form's second step releases the hold, so the taller steps scroll normally. Phones show the copy, then the composition (which plays its intro when it comes into view), then the form. With reduced motion, desktop shows the copy and form side by side. The film opens in a dialog and loads nothing from YouTube (youtube-nocookie.com) until the visitor presses play.
-- **Donation form**: the same four purposes as the current site's form (تنمية الأطفال، تمكين الشباب، تدريب مقدمي الرعاية، تبرع عام). It also uses the current site's amounts and captions: 150 for school supplies, 500 for psychosocial support and 1,000 for caregiver training.
+- **Donation form**: the four purposes from the current site's form (تنمية الأطفال، تمكين الشباب، تدريب مقدمي الرعاية، تبرع عام), plus «تدريب الأسر الكافلة» (kafala family training), which the client asked for; "Support a kafala family" further down the page selects it. Payment methods are left out for now at the client's request: no logo row, no method choice in step 2. It also uses the current site's amounts and captions: 150 for school supplies, 500 for psychosocial support and 1,000 for caregiver training.
 - **Trusted partners**: 69 partner logos from the current site, in colour, in two rows that drift in opposite directions. Hovering pauses them.
 - **The challenge**: 140 million children without parental care worldwide, 35 million in Africa and 1.4 million orphans in Egypt, with their sources. Each figure has a bar drawn to scale, set over a photo.
 - **What we do**: the three pillars (prevention, protection, empowerment) with their programs, a "read more" panel and a give link for each.
@@ -43,7 +43,7 @@ Cards share motifs taken from the current site: dot grids, wave bottoms, icon ci
 - **Stories:** the first poster slides in.
 - **Bank cards:** they swing in, and a light sweeps across each logo.
 - **Get-involved cards:** each colour spreads out from its icon.
-- **News:** the photos wipe down.
+- **News:** the photos wipe down. At the client's request the news sits mid-page, between «من نقوّي» and the stories, on its own soft band.
 
 With reduced motion turned on, everything shows in its final state.
 
@@ -55,7 +55,7 @@ Images:
 - The film poster is the video's YouTube thumbnail, cropped above the burned-in subtitle.
 - The photos in `site/assets/photos/` and `site/assets/hero/` were generated with Magnific (Nano Banana 2), with no text in them. They cover the care home, kafala family, training workshop, young man at work, the challenge photo and the four hero photos. They are not real beneficiaries and, at the client's request, carry no «صورة تعبيرية» label.
 
-Working in the prototype: the two-step donation form (monthly or one-time, purpose, amount, payment method, validation, thank-you and monthly upsell), the film player, the story picker, copy buttons for bank accounts, the language switch and the sticky mobile donate bar. No payment details are collected and nothing is sent anywhere.
+Working in the prototype: the two-step donation form (monthly or one-time, purpose, amount, details, validation, thank-you and monthly upsell), the film player, the story picker, copy buttons for bank accounts, the language switch and the sticky mobile donate bar. No payment details are collected and nothing is sent anywhere.
 
 Before production:
 - Add the IBAN / SWIFT numbers to the bank cards if Sanad wants them shown.
