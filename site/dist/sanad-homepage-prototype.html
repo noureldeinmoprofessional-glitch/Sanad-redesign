@@ -194,6 +194,7 @@ button, input, select { font: inherit; color: inherit; }
 .hero h1 { font-size: clamp(2.1rem, 3.9vw, 3.1rem); line-height: 1.3; }
 .hero.is-pin h1 { font-size: clamp(2rem, min(3.9vw, 6.4vh), 3.1rem); }
 /* a thin Burnt Sienna line under the words, clear of the letters, matching the donate button below */
+[dir="rtl"] .hero h1 em { background-position: 100% 100%; }
 .hero h1 em { font-style: normal; color: var(--ink); padding-bottom: .12em; background: linear-gradient(var(--sienna), var(--sienna)) 0 100% / 100% .1em no-repeat; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .hero-sub { font-size: 1.08rem; color: var(--muted); max-width: 560px; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
@@ -274,8 +275,23 @@ button, input, select { font: inherit; color: inherit; }
 @keyframes fade-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
 @keyframes draw { to { stroke-dashoffset: 0; } }
 @keyframes fade-in { to { opacity: 1; } }
-.anim .hero h1 .hw { display: inline-block; opacity: 0; transform: translateY(.45em); filter: blur(6px); animation: word-in 1.3s cubic-bezier(.45, 0, .2, 1) forwards; animation-delay: calc(.2s + var(--i) * 110ms); }
+.anim .hero h1 .hw { display: inline-block; opacity: 0; transform: translateY(.45em); filter: blur(6px); animation: word-in .9s cubic-bezier(.45, 0, .2, 1) forwards; animation-delay: calc(.25s + var(--i) * 90ms); }
 @keyframes word-in { to { opacity: 1; transform: none; filter: none; } }
+/* the hero copy enters in reading order while the photos spiral in: badge, headline words, the accent underline,
+   the paragraph, the donate button then the film button, then the three stats. Each step only sets its start
+   state (fill "backwards"), so hover and press effects work as soon as it lands */
+.anim .hero-copy .chip-reg { animation: hc-drop .7s .05s cubic-bezier(.16, 1, .3, 1) backwards; }
+.anim .hero h1 em { animation: hc-line .8s 1.45s cubic-bezier(.65, 0, .35, 1) backwards; }
+.anim .hero-sub { animation: hc-rise .9s 1.35s cubic-bezier(.16, 1, .3, 1) backwards; }
+.anim .hero-ctas > * { animation: hc-pop .8s 1.65s cubic-bezier(.16, 1, .3, 1) backwards; }
+.anim .hero-ctas > :nth-child(2) { animation-delay: 1.78s; }
+.anim .hero-stats li { animation: hc-rise .9s 1.95s cubic-bezier(.16, 1, .3, 1) backwards; }
+.anim .hero-stats li:nth-child(2) { animation-delay: 2.07s; }
+.anim .hero-stats li:nth-child(3) { animation-delay: 2.19s; }
+@keyframes hc-drop { from { opacity: 0; transform: translateY(-12px) scale(.96); } }
+@keyframes hc-rise { from { opacity: 0; transform: translateY(22px); filter: blur(4px); } }
+@keyframes hc-pop { from { opacity: 0; transform: translateY(14px) scale(.92); } }
+@keyframes hc-line { from { background-size: 0 .1em; } }
 .anim [data-reveal] { opacity: 0; transform: translateY(26px); transition: opacity .8s cubic-bezier(.2, .7, .2, 1), transform 1s cubic-bezier(.16, 1, .3, 1); transition-delay: var(--d, 0s); }
 .anim [data-reveal].in { opacity: 1; transform: none; }
 /* once an entrance has played, hover effects respond without the stagger delay */
@@ -907,14 +923,14 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
     </div>
 
     <div class="hero-copy">
-      <span class="chip-reg" data-reveal data-en="Support for those who support · Since 2008 · Reg. No. 7478">سند لمن يكون سندًا · منذ 2008 · مشهرة برقم 7478</span>
+      <span class="chip-reg" data-en="Support for those who support · Since 2008 · Reg. No. 7478">سند لمن يكون سندًا · منذ 2008 · مشهرة برقم 7478</span>
       <h1 id="hero-title" data-en-html="Behind every child is a caring hand. <em>We make that hand stronger.</em>">وراء كل طفل يدٌ ترعاه… <em>ونحن نقوّي هذه اليد</em></h1>
-      <p class="hero-sub" data-reveal style="--d:.55s" data-en="Sanad doesn't run care homes. We stand behind the people who care for children without parental care: we train caregivers, raise the quality of care homes, prepare kafala families and help young people become independent. Your gift reaches the child through every one of these hands.">سند لا تدير دور رعاية، بل تقف خلف من يرعون الأطفال فاقدي الرعاية الوالدية: ندرّب مقدّمي الرعاية، ونرفع جودة دور الرعاية، ونجهّز أسر الكفالة، ونؤهّل الشباب للاستقلال. تبرعك يصل إلى الطفل عبر كل هذه الأيدي.</p>
-      <div class="hero-ctas" data-reveal style="--d:.7s">
+      <p class="hero-sub" data-en="Sanad doesn't run care homes. We stand behind the people who care for children without parental care: we train caregivers, raise the quality of care homes, prepare kafala families and help young people become independent. Your gift reaches the child through every one of these hands.">سند لا تدير دور رعاية، بل تقف خلف من يرعون الأطفال فاقدي الرعاية الوالدية: ندرّب مقدّمي الرعاية، ونرفع جودة دور الرعاية، ونجهّز أسر الكفالة، ونؤهّل الشباب للاستقلال. تبرعك يصل إلى الطفل عبر كل هذه الأيدي.</p>
+      <div class="hero-ctas">
         <a class="btn btn-give btn-lg arw" href="#give" data-en="Donate now">تبرّع الآن</a>
         <button class="btn btn-film btn-lg" type="button" data-film aria-label="تعرّف على سند: شاهد فيلم يعني إيه سند؟" data-en-aria="Meet Sanad: watch the film What does Sanad mean?"><span class="pc"><svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z" fill="currentColor"/></svg></span><span data-en="Meet Sanad">تعرّف على سند</span></button>
       </div>
-      <ul class="hero-stats" data-reveal style="--d:.85s">
+      <ul class="hero-stats">
         <li><b>2008</b><span data-en="year founded">عام التأسيس</span></li>
         <li><b data-count>20</b><span data-en="governorates">محافظة</span></li>
         <li><b data-count>5,622</b><span data-en="children and young people reached">طفلًا وشابًا وصلهم الأثر</span></li>
@@ -2059,6 +2075,9 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
       if (k < 1) requestAnimationFrame(step);
     })(t0);
   }
+  if (!still) setTimeout(function () {
+    document.querySelectorAll(".hero-stats [data-count]").forEach(function (c) { if (!c.dataset.done) { c.dataset.done = "1"; countUp(c); } });
+  }, 1950);
   if (!still && "IntersectionObserver" in window) {
     var watch = new Map();
     var io = new IntersectionObserver(function (entries) {

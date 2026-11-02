@@ -34,6 +34,7 @@ The page is built around one idea: Sanad doesn't care for orphans directly, it s
 - **Footer**: Sanad's own footer columns and wording, in both languages: من نحن / Who We Are, خدماتنا / Our Services (all eight services), معلومات التواصل / Contact Information (tap-to-call numbers and an email link) and the newsletter sign-up. Sanad's social accounts (Facebook, Instagram, LinkedIn, YouTube, TikTok) show as round icons, each with a spoken label for screen readers. Every link goes to the matching Sanad page in the current language. There are no policy links, because Sanad's site has no policy pages yet (see audit H6).
 
 Cards share motifs taken from the current site: dot grids, wave bottoms, icon circles and colour bars. Each section has its own entrance:
+- **Hero text:** it arrives in reading order while the photos spiral in, over about 2.5 seconds: the badge drops in, the headline words rise, the Burnt Sienna underline draws under «ونحن نقوّي هذه اليد» (right to left in Arabic), the paragraph rises, the donate button pops in followed by the film button, then the three stats rise one by one as their numbers count up.
 - **Headlines:** a line draws beside the eyebrow and the words rise out of a mask.
 - **Trust strip:** the icons pop in.
 - **Partner logos:** the rows slide in from opposite sides.
