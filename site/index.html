@@ -193,7 +193,8 @@ button, input, select { font: inherit; color: inherit; }
 /* El Messiri sets wider than most sans faces, so the hero line is sized to keep two lines on laptop widths */
 .hero h1 { font-size: clamp(2.1rem, 3.9vw, 3.1rem); line-height: 1.3; }
 .hero.is-pin h1 { font-size: clamp(2rem, min(3.9vw, 6.4vh), 3.1rem); }
-.hero h1 em { font-style: normal; color: var(--ink); background: linear-gradient(transparent 58%, var(--robin-40) 58% 94%, transparent 94%); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+/* the logo's yellow, so the accent doesn't compete with the Burnt Sienna donate button below it */
+.hero h1 em { font-style: normal; color: var(--ink); background: linear-gradient(transparent 58%, var(--aureolin) 58% 94%, transparent 94%); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .hero-sub { font-size: 1.08rem; color: var(--muted); max-width: 560px; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
 .btn-lg { min-height: 58px; padding: 12px 30px; border-radius: 999px; font-size: 1.08rem; }
