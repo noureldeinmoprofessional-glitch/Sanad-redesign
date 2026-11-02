@@ -16,7 +16,7 @@
   --oxford: #06213E; --oxford-90: #1F3751; --oxford-60: #6A7A8B; --oxford-40: #9BA6B2; --oxford-20: #CDD3D8;
   --aureolin: #F7E22C; --aureolin-60: #FAEE80; --aureolin-40: #FCF3AB; --aureolin-20: #FDF9D5;
   --robin: #35C0CA; --robin-60: #86D9DF; --robin-40: #AEE6EA; --robin-20: #D7F2F4;
-  --sienna: #F37246; --sienna-90: #F48058; --sienna-40: #FAC7B5;
+  --sienna: #F37246; --sienna-90: #F48058; --sienna-60: #F8AA90; --sienna-40: #FAC7B5;
   --green: #43B649; --green-40: #B4E2B6;
   --purple: #7950A0; --purple-40: #C9B9D9;
   --razz: #E82276; --razz-40: #F6A7C8;
@@ -34,7 +34,7 @@
   --give-hover: var(--sienna-90);
   --amber: var(--aureolin);
   --mist: var(--robin-20);
-  --paper: var(--aureolin-20);
+  --paper: var(--sienna-40);
   --ink: var(--oxford);
   --muted: var(--oxford-90);
   --line: var(--oxford-20);
@@ -488,7 +488,8 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 .st-picker small { color: var(--muted); font-weight: 700; font-size: .84rem; overflow-wrap: anywhere; }
 /* the classes sit on both the story and its picker button, so they must outrank the button's default */
 :is(.story, .st-picker button).s-raniah { --sc: var(--razz); --scs: var(--razz-40); }
-:is(.story, .st-picker button).s-wageeh { --sc: var(--sienna); --scs: var(--sienna-40); }
+/* the stories band is Burnt Sienna 40%, so Wageeh's frame and tag step up to the 60% tint to stay visible */
+:is(.story, .st-picker button).s-wageeh { --sc: var(--sienna); --scs: var(--sienna-60); }
 :is(.story, .st-picker button).s-sahar { --sc: var(--purple); --scs: var(--purple-40); }
 :is(.story, .st-picker button).s-alaa { --sc: var(--green); --scs: var(--green-40); }
 @media (max-width: 860px) { .story { grid-template-columns: 1fr; gap: 34px; } .st-poster { width: min(78%, 300px); margin-inline: auto; } .st-picker { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
