@@ -674,7 +674,7 @@ html:not(.anim) .m-set[aria-hidden] { display: none; }
 /* what we do: three pillars */
 .what { background: var(--white); }
 /* only the hero (Robin Egg 20%) and the stories (Aureolin 20%) are tinted; a hairline parts two white sections that meet */
-.strengthen, #organisations { border-top: 1px solid var(--line); }
+.strengthen, .ways { border-top: 1px solid var(--line); }
 .what .sec-head { text-align: center; align-items: center; margin-inline: auto; }
 .pillars { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
 .pillar { --c: var(--oxford); --w: var(--green); --soft: var(--green-40); position: relative; isolation: isolate; overflow: hidden; background: var(--white); border: 1px solid var(--line); border-radius: 26px; padding: 30px 28px 70px; display: flex; flex-direction: column; gap: 14px; transition: transform .5s cubic-bezier(.16, 1, .3, 1), box-shadow .5s, border-color .5s; }
@@ -1309,44 +1309,6 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
 </section>
 
 <!-- 9. Other ways to give -->
-<section class="section ways" id="ways" aria-labelledby="ways-title">
-  <div class="wrap">
-    <div class="sec-head">
-      <span class="eyebrow" data-en="Other ways to give">طرق أخرى للتبرع</span>
-      <h2 id="ways-title" data-en="Give the way that suits you">تبرّع بالطريقة التي تناسبك</h2>
-      <p data-en="Transfer directly to one of Sanad's bank accounts.">حوّل مباشرة إلى أحد حسابات سند البنكية.</p>
-    </div>
-    <div class="banks">
-      <div class="bank">
-        <div class="bank-logo"><img src="assets/banks/cib.webp" width="148" height="64" alt="" loading="lazy"></div>
-        <h3 data-en="Commercial International Bank (CIB)">البنك التجاري الدولي (CIB)</h3>
-        <span class="lbl" data-en="Account number">رقم الحساب</span>
-        <div class="acct"><code>100035764423</code><button class="copy" type="button" data-copy="100035764423"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg><span data-en="Copy">نسخ</span></button></div>
-      </div>
-      <div class="bank">
-        <div class="bank-logo"><img src="assets/banks/united-bank.webp" width="212" height="50" alt="" loading="lazy"></div>
-        <h3 data-en="The United Bank">المصرف المتحد</h3>
-        <span class="lbl" data-en="Account number">رقم الحساب</span>
-        <div class="acct"><code>605-961-203</code><button class="copy" type="button" data-copy="605961203"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg><span data-en="Copy">نسخ</span></button></div>
-      </div>
-      <div class="bank">
-        <div class="bank-logo"><img src="assets/banks/nbe.webp" width="206" height="50" alt="" loading="lazy"></div>
-        <h3 data-en="National Bank of Egypt">البنك الأهلي المصري</h3>
-        <span class="lbl" data-en="Account number">رقم الحساب</span>
-        <div class="acct"><code>1323070717596601018</code><button class="copy" type="button" data-copy="1323070717596601018"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg><span data-en="Copy">نسخ</span></button></div>
-      </div>
-    </div>
-    <div class="ways-row">
-      <div class="way">
-        <div><h3 data-en="Give in someone's name">تبرّع باسم شخص عزيز</h3>
-        <p data-en="Give in honour of someone you love or to mark an occasion, and we'll send them a card.">أهدِ تبرعًا باسم شخص تحبه أو في مناسبة خاصة، ونرسل له بطاقة إهداء.</p></div>
-        <a class="btn btn-ghost" href="#give" data-give-fund="general" data-en="Give a gift">أهدِ تبرعًا</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 10. Other ways to get involved -->
 <section class="section" id="organisations" aria-labelledby="org-title">
   <div class="wrap">
     <div class="sec-head">
@@ -1382,6 +1344,44 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
         <p data-en="Share your expertise, whether you're a lawyer, designer, trainer or student with passion. We match your skills to our live needs.">شارك بخبرتك، سواء كنت محاميًا أو مصممًا أو مدربًا أو طالبًا شغوفًا. نوفّق بين مهاراتك واحتياجاتنا الفعلية.</p>
         <a class="inv-btn arw" href="#organisations" data-en="Apply to volunteer">سجّل للتطوع</a>
         <div class="wave" aria-hidden="true"><svg viewBox="0 0 800 30" preserveAspectRatio="none"><path class="w2" d="M0 12 Q50 26 100 12 T200 12 T300 12 T400 12 T500 12 T600 12 T700 12 T800 12 V30 H0Z"/><path class="w1" d="M0 16 Q50 4 100 16 T200 16 T300 16 T400 16 T500 16 T600 16 T700 16 T800 16 V30 H0Z"/></svg></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. Other ways to get involved -->
+<section class="section ways" id="ways" aria-labelledby="ways-title">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-en="Other ways to give">طرق أخرى للتبرع</span>
+      <h2 id="ways-title" data-en="Give the way that suits you">تبرّع بالطريقة التي تناسبك</h2>
+      <p data-en="Transfer directly to one of Sanad's bank accounts.">حوّل مباشرة إلى أحد حسابات سند البنكية.</p>
+    </div>
+    <div class="banks">
+      <div class="bank">
+        <div class="bank-logo"><img src="assets/banks/cib.webp" width="148" height="64" alt="" loading="lazy"></div>
+        <h3 data-en="Commercial International Bank (CIB)">البنك التجاري الدولي (CIB)</h3>
+        <span class="lbl" data-en="Account number">رقم الحساب</span>
+        <div class="acct"><code>100035764423</code><button class="copy" type="button" data-copy="100035764423"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg><span data-en="Copy">نسخ</span></button></div>
+      </div>
+      <div class="bank">
+        <div class="bank-logo"><img src="assets/banks/united-bank.webp" width="212" height="50" alt="" loading="lazy"></div>
+        <h3 data-en="The United Bank">المصرف المتحد</h3>
+        <span class="lbl" data-en="Account number">رقم الحساب</span>
+        <div class="acct"><code>605-961-203</code><button class="copy" type="button" data-copy="605961203"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg><span data-en="Copy">نسخ</span></button></div>
+      </div>
+      <div class="bank">
+        <div class="bank-logo"><img src="assets/banks/nbe.webp" width="206" height="50" alt="" loading="lazy"></div>
+        <h3 data-en="National Bank of Egypt">البنك الأهلي المصري</h3>
+        <span class="lbl" data-en="Account number">رقم الحساب</span>
+        <div class="acct"><code>1323070717596601018</code><button class="copy" type="button" data-copy="1323070717596601018"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a1 1 0 0 1 1-1h10"/></svg><span data-en="Copy">نسخ</span></button></div>
+      </div>
+    </div>
+    <div class="ways-row">
+      <div class="way">
+        <div><h3 data-en="Give in someone's name">تبرّع باسم شخص عزيز</h3>
+        <p data-en="Give in honour of someone you love or to mark an occasion, and we'll send them a card.">أهدِ تبرعًا باسم شخص تحبه أو في مناسبة خاصة، ونرسل له بطاقة إهداء.</p></div>
+        <a class="btn btn-ghost" href="#give" data-give-fund="general" data-en="Give a gift">أهدِ تبرعًا</a>
       </div>
     </div>
   </div>
