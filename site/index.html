@@ -193,7 +193,8 @@ button, input, select { font: inherit; color: inherit; }
 /* El Messiri sets wider than most sans faces, so the hero line is sized to keep two lines on laptop widths */
 .hero h1 { font-size: clamp(2.1rem, 3.9vw, 3.1rem); line-height: 1.3; }
 .hero.is-pin h1 { font-size: clamp(2rem, min(3.9vw, 6.4vh), 3.1rem); }
-.hero h1 em { font-style: normal; color: var(--ink); background: linear-gradient(transparent 58%, var(--sienna) 58% 94%, transparent 94%); -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+/* a thin Burnt Sienna line under the words, clear of the letters, matching the donate button below */
+.hero h1 em { font-style: normal; color: var(--ink); padding-bottom: .12em; background: linear-gradient(var(--sienna), var(--sienna)) 0 100% / 100% .1em no-repeat; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 .hero-sub { font-size: 1.08rem; color: var(--muted); max-width: 560px; }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 4px; }
 .btn-lg { min-height: 58px; padding: 12px 30px; border-radius: 999px; font-size: 1.08rem; }
@@ -219,7 +220,7 @@ button, input, select { font: inherit; color: inherit; }
 .hv-main img { width: 100%; height: 100%; object-fit: cover; object-position: 30% 35%; }
 .hv-path, .hv-vortex { position: absolute; pointer-events: none; overflow: visible; }
 .hv-path { inset: 0; width: 100%; height: 100%; }
-.hv-path path { fill: none; stroke: var(--teal-deep); stroke-width: 1.6; stroke-linecap: round; }
+.hv-path path { fill: none; stroke: var(--robin); stroke-width: 1.4; stroke-linecap: round; }
 .hv-vortex { left: 0; top: 0; width: 100cqw; height: 100cqw; }
 .hv-vortex path { fill: none; stroke: var(--teal); stroke-width: 1.5; stroke-dasharray: 1; vector-effect: non-scaling-stroke; }
 .hv-sat { position: absolute; margin: 0; width: clamp(84px, 25cqw, 196px); transform: translate(-50%, -50%); }
@@ -232,9 +233,8 @@ button, input, select { font: inherit; color: inherit; }
 .hv-ph { aspect-ratio: 1; padding: 5px; background: var(--white); border-radius: var(--r); box-shadow: 0 22px 36px -22px rgba(6, 33, 62, .6); }
 .hv-ph img { width: 100%; height: 100%; object-fit: cover; border-radius: var(--r); }
 .hv-sat figcaption { position: absolute; left: 50%; top: calc(100% - 12px); transform: translateX(-50%); white-space: nowrap; background: var(--white); border-radius: 999px; padding: 3px 14px 6px; font-family: var(--font-head); font-weight: 700; font-size: clamp(.72rem, 2.3cqw, .98rem); box-shadow: 0 10px 20px -14px rgba(6, 33, 62, .6); }
-.hv-sat figcaption::after { content: ""; display: block; width: 58%; height: 3px; margin: 2px auto 0; border-radius: 3px; background: var(--c); }
+.hv-sat figcaption::after { content: ""; display: block; width: 58%; height: 3px; margin: 2px auto 0; border-radius: 3px; background: var(--oxford-20); }
 .hv-blob { position: absolute; }
-.hv-amber { width: 26cqw; aspect-ratio: 1; inset-block-end: -12cqw; inset-inline-end: -7cqw; background: var(--amber); border-radius: 48% 52% 60% 40% / 52% 44% 56% 48%; }
 .hv-teal { width: 46cqw; aspect-ratio: 1.08; inset-block-end: -5cqw; inset-inline-end: -8cqw; display: grid; place-items: center; padding: 6cqw 7cqw 9cqw 11cqw; background: var(--robin); border-radius: 58% 42% 50% 50% / 46% 52% 48% 54%; }
 [dir="ltr"] .hv-teal { padding: 6cqw 11cqw 9cqw 7cqw; }
 .hv-teal span { font-family: "Aref Ruqaa", var(--font); font-weight: 700; color: var(--ink); font-size: clamp(1rem, 4.3cqw, 1.75rem); line-height: 1.55; text-align: center; transform: rotate(-6deg); }
@@ -247,9 +247,7 @@ button, input, select { font: inherit; color: inherit; }
 .hb svg { width: 100%; display: block; }
 .anim .hb svg { animation: bob 7s ease-in-out infinite; animation-delay: var(--bd, 0s); }
 @keyframes bob { 0%, 100% { transform: translateY(0) rotate(-1.5deg); } 50% { transform: translateY(-7px) rotate(1.5deg); } }
-.hb.b1 { --w: 190px; --dx: 220px; top: 7%; left: 40%; }
 .hb.b2 { --w: 150px; --dx: -180px; bottom: 7%; right: 22%; --bd: -2s; }
-.hb.b3 { --w: 110px; --dx: 140px; top: 33%; right: 2%; --bd: -4s; }
 .hb-wave { position: absolute; left: 0; right: 0; bottom: 3%; height: 26px; opacity: calc(.22 - var(--p, 0) * .12); }
 .hb-wave svg { width: 200%; height: 100%; display: block; }
 .anim .hb-wave svg { animation: wave-x 60s linear infinite; }
@@ -269,8 +267,6 @@ button, input, select { font: inherit; color: inherit; }
   .hero:not(.is-pin) .hv-art { display: block; aspect-ratio: 1 / 1.08; overflow: clip; margin-top: 12px; }
   .form-slot { padding: 8px 20px 56px; }
   .hero-stats li { padding-inline: 16px; }
-  .hb.b1 { left: 55%; top: 3%; --w: 120px; }
-  .hb.b3 { display: none; }
 }
 @media (max-width: 420px) { .btn-lg { padding-inline: 22px; } .hero-stats b { font-size: 1.45rem; } .hero-stats li > span { font-size: .8rem; } }
 
@@ -906,9 +902,7 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
 <section class="hero" id="hero" aria-labelledby="hero-title">
   <div class="hero-stage">
     <div class="hero-bg" aria-hidden="true">
-      <div class="hb b1"><svg viewBox="0 0 200 60" aria-hidden="true"><path d="M0 52 Q25 46 50 52 T100 52 T130 52" fill="none" stroke="#35C0CA" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round"/><g transform="translate(120 0)"><path d="M39 6 L39 40" fill="none" stroke="#06213E" stroke-width="2"/><path d="M39 6 L52 10 L39 14Z" fill="#F37246"/><path d="M37 16 L37 40 L18 40Z" fill="#06213E"/><path d="M41 18 L41 40 L60 40Z" fill="#F7E22C"/><path d="M8 42 L72 42 L62 54 L18 54Z" fill="#35C0CA"/></g></svg></div>
       <div class="hb b2"><svg viewBox="0 0 200 60" aria-hidden="true"><path d="M0 52 Q25 46 50 52 T100 52 T130 52" fill="none" stroke="#35C0CA" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round"/><g transform="translate(120 0)"><path d="M39 6 L39 40" fill="none" stroke="#06213E" stroke-width="2"/><path d="M39 6 L52 10 L39 14Z" fill="#F37246"/><path d="M37 16 L37 40 L18 40Z" fill="#06213E"/><path d="M41 18 L41 40 L60 40Z" fill="#F7E22C"/><path d="M8 42 L72 42 L62 54 L18 54Z" fill="#35C0CA"/></g></svg></div>
-      <div class="hb b3"><svg viewBox="0 0 200 60" aria-hidden="true"><path d="M0 52 Q25 46 50 52 T100 52 T130 52" fill="none" stroke="#35C0CA" stroke-width="2" stroke-dasharray="1 7" stroke-linecap="round"/><g transform="translate(120 0)"><path d="M39 6 L39 40" fill="none" stroke="#06213E" stroke-width="2"/><path d="M39 6 L52 10 L39 14Z" fill="#F37246"/><path d="M37 16 L37 40 L18 40Z" fill="#06213E"/><path d="M41 18 L41 40 L60 40Z" fill="#F7E22C"/><path d="M8 42 L72 42 L62 54 L18 54Z" fill="#35C0CA"/></g></svg></div>
       <div class="hb-wave"><svg viewBox="0 0 800 26" preserveAspectRatio="none"><path d="M0 13 Q50 3 100 13 T200 13 T300 13 T400 13 T500 13 T600 13 T700 13 T800 13" fill="none" stroke="#35C0CA" stroke-width="2"/></svg></div>
     </div>
 
@@ -935,7 +929,6 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
         <figure class="hv-sat s1"><div class="hv-ph"><img src="assets/hero/trainer.webp" width="520" height="520" alt="مدرّبة مقدّمي رعاية" data-en-alt="A caregiver trainer"></div><figcaption data-en="We train caregivers">نؤهّل مقدّمي الرعاية</figcaption></figure>
         <figure class="hv-sat s2"><div class="hv-ph"><img src="assets/hero/youth.webp" width="520" height="520" alt="شاب يبتسم" data-en-alt="A smiling young man"></div><figcaption data-en="We empower youth">نمكّن الشباب</figcaption></figure>
         <figure class="hv-sat s3"><div class="hv-ph"><img src="assets/hero/child.webp" width="520" height="520" alt="طفلة ترسم في دار رعاية" data-en-alt="A girl drawing in a care home"></div><figcaption data-en="We raise the quality of care">نرتقي بجودة الرعاية</figcaption></figure>
-        <div class="hv-blob hv-amber" aria-hidden="true"></div>
         <div class="hv-blob hv-teal"><span data-en="A world where every orphan shapes their future">عالم يستطيع فيه كل يتيم تشكيل مستقبله</span></div>
       </div>
       <div class="form-slot">
