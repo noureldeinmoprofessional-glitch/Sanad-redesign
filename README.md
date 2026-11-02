@@ -14,7 +14,7 @@ Open the HTML file in a browser to read it.
 
 ## Homepage prototype
 
-- `site/index.html` is the redesigned homepage, built from the research wireframe. It is Arabic first, with an English toggle (or `?lang=en`), uses Cairo for body text and IBM Plex Sans Arabic for headlines (with Roboto for any Latin letters and digits in them), and uses Sanad's brand palette, figures, stories and bank details from the current site.
+- `site/index.html` is the redesigned homepage, built from the research wireframe. It is Arabic first, with an English toggle (or `?lang=en`), uses the brand book's web fonts (Cairo for body text, El Messiri for Arabic headlines, Roboto for English and for Latin letters and digits in headlines), and uses Sanad's brand palette, figures, stories and bank details from the current site.
 - `site/dist/sanad-homepage-prototype.html` is the same page as one self-contained file for sharing. Rebuild it with `python3 site/build.py` after editing `index.html`.
 
 The page is built around one idea: Sanad doesn't care for orphans directly, it strengthens the people who do («نكون سندًا لمن يكونون سندًا لهم»). It has no religious framing: gifts are monthly or one-time, with no Zakat or Sadaqah choice.

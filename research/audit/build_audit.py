@@ -103,17 +103,6 @@ FINDINGS = [
      ("أن تحدّث سند صفحة الفريق والملف التعريفي، وتعتمد ورقة أرقام واحدة بتاريخ «حتى …».",
       "Sanad updates its team page and portfolio, and approves one figures sheet with an \"as of\" date."),
      ("سند", "Sanad")),
-    ("H5", "H", ("الهوية البصرية", "Visual identity"),
-     ("الخطوط لا تطابق خط العناوين في دليل الهوية",
-      "Headline font differs from the brand book's"),
-     ("دليل سند 2024 (ص 82-83) يحدد El Messiri خطًا أساسيًا للعناوين العربية وCairo خطًا ثانويًا، وRoboto بديلًا إنجليزيًا للويب (ص 80). الصفحة تستخدم Cairo للنص وRoboto للإنجليزية كما في الدليل، لكن العناوين العربية بخط IBM Plex Sans Arabic بقرار من فريق العمل، وشعار البطل بخط Aref Ruqaa. المركب مأخوذ من ملصقات حملة «رحلة تكمل رحلة».",
-      "Sanad's 2024 brand book (pp. 82-83) sets El Messiri as the primary Arabic headline face and Cairo as the secondary, with Roboto as the English web alternative (p. 80). The page uses Cairo for text and Roboto for English as the book says, but Arabic headlines are set in IBM Plex Sans Arabic by the team's choice, and the hero tagline in Aref Ruqaa. The boat comes from the \"رحلة تكمل رحلة\" story-poster campaign."),
-     ("الطلب نصًا: «أن يتوافق مع الهوية البصرية الخاصة بالجمعية». الألوان صارت مطابقة للدليل تمامًا، ويبقى خط العناوين.",
-      "The brief says it must «يتوافق مع الهوية البصرية الخاصة بالجمعية». The colours now match the book exactly; the headline font is the remaining gap."),
-     ("SANAD_Brand_Book_2024.pdf ص 78-84 ؛ متغيرات الخطوط في site/index.html", "SANAD_Brand_Book_2024.pdf pp. 78-84; font variables in site/index.html"),
-     ("نعرض على سند خيارين للعناوين العربية: El Messiri كما في الدليل، أو IBM Plex Sans Arabic الحالي كاستثناء موثّق للويب.",
-      "Offer Sanad two options for Arabic headlines: El Messiri as the book says, or the current IBM Plex Sans Arabic as a documented web exception."),
-     ("الوكالة + سند", "Agency + Sanad")),
     ("H6", "H", ("القانون والثقة", "Legal and trust"),
      ("نجمع بيانات شخصية بلا سياسة خصوصية",
       "We collect personal data with no privacy policy"),
@@ -266,6 +255,8 @@ FINDINGS = [
 ]
 
 FIXED = [
+    ("(H5) الخطوط صارت خطوط دليل سند 2024: El Messiri للعناوين العربية (ص 82)، وCairo للنص (ص 83)، وRoboto للإنجليزية على الويب (ص 80)، وكلها من Google Fonts. يبقى Aref Ruqaa لعبارة «عالم يستطيع فيه كل يتيم تشكيل مستقبله» المكتوبة بخط اليد في البطل، وهو غير مذكور في الدليل؛ يمكن استبداله إن أرادت سند.",
+     "(H5) Fonts now follow Sanad's 2024 brand book: El Messiri for Arabic headlines (p. 82), Cairo for text (p. 83) and Roboto for English on the web (p. 80), all from Google Fonts. Aref Ruqaa remains for the handwritten line «عالم يستطيع فيه كل يتيم تشكيل مستقبله» in the hero; the book doesn't list it, so it can be swapped if Sanad prefers."),
     ("(H5) الألوان صارت ألوان دليل سند 2024 بالضبط (ص 74-75): أزرق أكسفورد #06213E، والأصفر Aureolin ‏#F7E22C، وأزرق Robin Egg ‏#35C0CA، والألوان الثانوية (Burnt Sienna ‏#F37246، والأخضر #43B649، والبنفسجي #7950A0، وRazzmatazz ‏#E82276، والأزرق السماوي #3E97C9) ودرجاتها 90/60/40/20% فقط. ولأن الألوان الفاتحة لا تحمل نصًا أبيض بتباين كافٍ، تحمل نصًا بأزرق أكسفورد كما في الدليل (ص 76)، فبقيت الصفحة بلا مخالفات تباين. واسم الشعار «Sanad for Orphans» هو النسخة المعتمدة في الدليل نفسه.",
      "(H5) Colours are now exactly those of Sanad's 2024 brand book (pp. 74-75): Oxford Blue #06213E, Aureolin #F7E22C, Robin Egg Blue #35C0CA, the secondaries (Burnt Sienna #F37246, Dark Pastel Green #43B649, Royal Purple #7950A0, Razzmatazz #E82276, Celestial Blue #3E97C9) and only their 90/60/40/20% tints. The light colours can't carry white text at a readable contrast, so they carry Oxford Blue text as the book pairs them (p. 76), and the page still has no contrast violations. The \"Sanad for Orphans\" logo lockup is the one the book itself uses."),
     ("(C1 جزئيًا) أزلنا شريط شعارات وسائل الدفع تحت زر التبرع، واختيار «وسيلة الدفع» في الخطوة الثانية، وملاحظة كود فوري والتنبيه المرتبط بالتبرع الشهري، بطلب العميل حتى تتضح وسائل الدفع الفعلية.",
@@ -319,8 +310,8 @@ SCORE = [
     ("تصميم عصري وجذاب وسهل التصفح والاستخدام", "A modern, attractive design that is easy to browse and use", "met",
      ("مُحقق مع ملاحظات: الحركة (H8، M6) وموضع النموذج على الجوال (M5).",
       "Met, with caveats: motion (H8, M6) and the form's position on mobile (M5).")),
-    ("التوافق مع الهوية البصرية للجمعية", "Consistent with Sanad's visual identity", "partial",
-     ("الألوان مطابقة لدليل الهوية؛ يبقى خط العناوين العربية (H5).", "Colours match the brand book; the Arabic headline font remains (H5).")),
+    ("التوافق مع الهوية البصرية للجمعية", "Consistent with Sanad's visual identity", "met",
+     ("الألوان والخطوط مطابقة لدليل سند 2024 (H5).", "Colours and fonts match Sanad's 2024 brand book (H5).")),
 ]
 
 QUESTIONS = [
@@ -331,7 +322,6 @@ QUESTIONS = [
     ("هل تعتمد سند جملة «سند لا تدير دور رعاية…»؟ (C3)", "Does Sanad approve the line «سند لا تدير دور رعاية…»? (C3)"),
     ("ورقة أرقام واحدة معتمدة بتاريخ، مع تأكيد أن 1,921 أفراد لا منظمات. (H3)", "One approved, dated figures sheet, confirming that 1,921 counts people, not organisations. (H3)"),
     ("أمثلة أثر لكل غرض تبرع مبنية على التكلفة. (H2)", "Cost-based impact examples for each giving purpose. (H2)"),
-    ("El Messiri كما في الدليل، أم IBM Plex Sans Arabic الحالي للعناوين العربية؟ (H5)", "El Messiri, as in the book, or the current IBM Plex Sans Arabic for Arabic headlines? (H5)"),
     ("سياسة الخصوصية وسياسة الاسترداد. (H6)", "A privacy policy and a refund policy. (H6)"),
     ("قائمة الشركاء وأذونات استخدام الشعارات. (M7)", "The partner list and permission to use the logos. (M7)"),
 ]
