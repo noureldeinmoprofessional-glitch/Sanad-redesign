@@ -1,0 +1,93 @@
+---
+title: قدّم الآن – سند
+title_en: Apply Now – Sanad
+description: أدخل بياناتك واختر الوظيفة وأرفق سيرتك الذاتية. يراجع فريقنا كل طلب يصلنا.
+scripts: forms.js
+nav: https://sanadorphans.org/ar/careers/
+---
+<main id="top" class="page">
+
+<!-- Form template. Text, fields and positions: Sanad's application page, word for word
+     (sanadorphans.org/ar/apply-now/ and /apply-now/). As on the homepage forms, nothing is sent yet. -->
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="wrap ph-grid no-media">
+    <div class="ph-copy">
+      <nav class="crumbs" aria-label="مسار الصفحة" data-en-aria="Breadcrumb">
+        <a href="/" data-en="Home">الرئيسية</a>
+        <a href="https://sanadorphans.org/ar/careers/" data-en-href="https://sanadorphans.org/careers/" data-en="Join Our Team">انضم لفريق سند</a>
+        <span aria-current="page" data-en="Apply Now">قدّم الآن</span>
+      </nav>
+      <h1 id="page-title" data-en="Apply Now">قدّم الآن</h1>
+      <a class="ph-back" href="https://sanadorphans.org/ar/careers/" data-en-href="https://sanadorphans.org/careers/" data-en="← Back to open positions">→ العودة إلى الوظائف المتاحة</a>
+    </div>
+  </div>
+</section>
+
+<section class="page-sec" aria-labelledby="form-title">
+  <div class="wrap">
+    <div class="form-card" data-rv>
+      <form id="apply-form" novalidate data-validate>
+        <div class="sec-head">
+          <h2 id="form-title" data-en="Job application form">نموذج التقدم للوظيفة</h2>
+          <p data-en="Fill in your details, choose the position and attach your CV. Our team reviews every application.">أدخل بياناتك واختر الوظيفة وأرفق سيرتك الذاتية. يراجع فريقنا كل طلب يصلنا.</p>
+        </div>
+        <div class="form-grid">
+          <div class="field">
+            <label for="ap-name" data-en="Full name *">الاسم بالكامل *</label>
+            <input id="ap-name" name="your-name" autocomplete="name" required aria-describedby="ap-name-err">
+            <p class="err" id="ap-name-err" hidden></p>
+          </div>
+          <div class="field">
+            <label for="ap-email" data-en="Email *">البريد الإلكتروني *</label>
+            <input id="ap-email" name="your-email" type="email" autocomplete="email" dir="ltr" required aria-describedby="ap-email-err">
+            <p class="err" id="ap-email-err" hidden></p>
+          </div>
+          <div class="field">
+            <label for="ap-phone" data-en="Phone number *">رقم الهاتف *</label>
+            <input id="ap-phone" name="your-phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" required aria-describedby="ap-phone-err">
+            <p class="err" id="ap-phone-err" hidden></p>
+          </div>
+          <div class="field">
+            <label for="ap-job" data-en="Position *">الوظيفة *</label>
+            <select id="ap-job" name="job-position" required aria-describedby="ap-job-err">
+              <option value="" data-en="—">—</option>
+              <option data-en="Front Office &amp; Administrative Assistant">موظف استقبال ومساعد إداري</option>
+              <option data-en="Learning and Innovation Specialist">أخصائي التعلم والابتكار</option>
+              <option data-en="Research &amp; Knowledge Management Assistant">مساعد مدير إدارة البحوث والمعرفة</option>
+              <option data-en="Project Coordinator">منسق مشروع</option>
+            </select>
+            <p class="err" id="ap-job-err" hidden></p>
+          </div>
+          <div class="field full">
+            <span class="lbl" id="ap-cv-label" data-en="CV (PDF or Word, max 5 MB) *">السيرة الذاتية (PDF أو Word، بحد أقصى 5 ميجابايت) *</span>
+            <label class="drop" for="ap-cv">
+              <span class="drop-ic" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg></span>
+              <span class="drop-txt"><b dir="ltr">PDF · DOC · DOCX</b><span class="drop-name" data-file-name></span></span>
+              <input id="ap-cv" name="cv-file" type="file" accept=".pdf,.doc,.docx" required data-max-mb="5" aria-labelledby="ap-cv-label" aria-describedby="ap-cv-err">
+            </label>
+            <p class="err" id="ap-cv-err" hidden></p>
+          </div>
+          <div class="field full">
+            <label for="ap-linkedin" data-en="LinkedIn profile (optional)">رابط لينكد إن (اختياري)</label>
+            <input id="ap-linkedin" name="linkedin" type="url" dir="ltr" placeholder="https://" aria-describedby="ap-linkedin-err">
+            <p class="err" id="ap-linkedin-err" hidden></p>
+          </div>
+          <div class="field full">
+            <label for="ap-message" data-en="Why do you want to join Sanad? (optional)">لماذا ترغب في الانضمام إلى سند؟ (اختياري)</label>
+            <textarea id="ap-message" name="your-message" maxlength="2000"></textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-dark btn-lg" type="submit" data-en="Submit application">إرسال الطلب</button>
+        </div>
+      </form>
+      <div class="form-done" data-done hidden>
+        <div class="tick" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+        <h2 tabindex="-1" data-en="Thank you! We've received your application.">شكرًا لك! وصلنا طلبك.</h2>
+        <p data-en="Our team reviews every application.">يراجع فريقنا كل طلب يصلنا.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>

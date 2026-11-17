@@ -574,7 +574,7 @@ legend { font-weight: 700; font-size: .95rem; margin-bottom: 8px; padding: 0; }
 /* footer */
 .foot { background: var(--navy); color: var(--oxford-20); padding-block: 64px 28px; font-size: .95rem; }
 .foot-grid { display: grid; grid-template-columns: 1.3fr 1fr 1.2fr 1.2fr 1.3fr; gap: 32px; }
-.foot h4 { color: var(--white); font-size: 1rem; margin-bottom: 12px; }
+.foot h2 { color: var(--white); font-size: 1rem; margin-bottom: 12px; }
 .foot ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
 .foot a { color: var(--oxford-20); text-decoration: none; }
 .foot a:hover { color: var(--teal); }
@@ -897,6 +897,125 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
   .give-band { padding: 30px 24px; }
   .doc-card { width: 100%; }
 }
+
+/* blocks written separately per language stay hidden until their language is on, so nothing flashes on load */
+html[lang="ar"] [data-en-only], html[lang="en"] [data-ar-only] { display: none !important; }
+
+/* page header extras: a back link, a pillar tag, a second title line */
+.ph-back { font-weight: 700; color: var(--teal-deep); text-decoration: none; font-size: .95rem; }
+.ph-back:hover { text-decoration: underline; text-underline-offset: 4px; }
+.ph-tag { display: inline-flex; align-items: center; gap: 8px; padding: 3px 14px; border-radius: 999px; background: var(--white); color: var(--ink); font-size: .88rem; font-weight: 800; }
+.ph-tag::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--pc, var(--robin)); }
+.page-hero h1 .h1-sub { display: block; color: var(--teal-deep); }
+.ph-media.is-poster img { aspect-ratio: auto; max-height: 560px; width: auto; max-width: 100%; margin-inline: auto; }
+
+/* programme: its projects, numbered, in the pillar's colour */
+.pg-prevention { --pc: var(--green); --pcs: var(--green-40); }
+.pg-protection { --pc: var(--celestial); --pcs: var(--celestial-40); }
+.pg-empowerment { --pc: var(--aureolin); --pcs: var(--aureolin-20); }
+.projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; counter-reset: proj; }
+.project { position: relative; isolation: isolate; overflow: hidden; display: flex; flex-direction: column; gap: 14px; padding: 30px 28px 34px; border: 1px solid var(--line); border-radius: 26px; background: var(--white); counter-increment: proj; transition: transform .45s cubic-bezier(.16, 1, .3, 1), box-shadow .45s, border-color .45s; }
+.project::before { content: counter(proj, decimal-leading-zero); font-family: var(--font-head); font-size: 3rem; font-weight: 800; line-height: 1; color: transparent; -webkit-text-stroke: 1.5px var(--pc, var(--robin)); }
+.project::after { content: ""; position: absolute; inset: 0 0 auto; height: 6px; background: var(--pc, var(--robin)); }
+.project h3 { font-size: 1.25rem; line-height: 1.5; }
+.project p { margin: 0; color: var(--muted); line-height: 1.9; }
+.project:hover { transform: translateY(-6px); border-color: var(--pc, var(--robin)); box-shadow: 0 34px 60px -40px var(--oxford); }
+.anim .project[data-reveal].in:hover { transform: translateY(-6px); }
+
+/* service: a stats panel in the header, focus areas, and a consultation call to action */
+.ph-stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; overflow: hidden; border-radius: 26px; background: rgba(255, 255, 255, .14); box-shadow: var(--shadow); }
+.ph-stats > div { display: flex; flex-direction: column; gap: 6px; padding: 26px 24px; background: var(--oxford); color: var(--white); }
+.ph-stats b { font-family: var(--font-head); font-size: clamp(1.8rem, 3vw, 2.4rem); line-height: 1.1; color: var(--aureolin); font-variant-numeric: tabular-nums; }
+.ph-stats > div:nth-child(2) b { color: var(--robin); }
+.ph-stats > div:nth-child(3) b { color: var(--sienna); }
+.ph-stats > div:nth-child(4) b { color: var(--white); }
+.ph-stats > div > span { color: var(--oxford-20); font-size: .92rem; font-weight: 600; line-height: 1.5; }
+.focus { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.focus-card { display: flex; flex-direction: column; gap: 12px; padding: 28px; border-radius: 24px; background: var(--fs, var(--robin-20)); }
+.focus-card .vm-ic { background: var(--white); }
+.focus-card h3 { font-size: 1.2rem; }
+.focus-card p { margin: 0; line-height: 1.8; }
+.focus-card:nth-child(1) { --fs: var(--celestial-40); }
+.focus-card:nth-child(2) { --fs: var(--green-40); }
+.focus-card:nth-child(3) { --fs: var(--aureolin-20); }
+.consult-band { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px; padding: 38px 44px; border-radius: 28px; background: var(--robin-20); }
+.consult-band h2 { font-size: clamp(1.4rem, 2.6vw, 2rem); }
+.consult-band p { margin: 6px 0 0; color: var(--muted); max-width: 60ch; }
+.btn-dark { background: var(--oxford); color: var(--white); }
+.btn-dark:hover { background: var(--oxford-90); }
+
+/* news listing: the homepage cards, the newest one laid out wide */
+.news.news-list { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+/* the newest item takes two of the three columns, so eight items fill three even rows */
+.news.news-list > a:first-child { grid-column: span 2; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.news.news-list > a:first-child .n-img { aspect-ratio: auto; min-height: 300px; }
+.news.news-list > a:first-child > div { justify-content: center; padding: 28px 30px; gap: 14px; }
+.news.news-list > a:first-child h3 { font-size: clamp(1.15rem, 1.7vw, 1.4rem); line-height: 1.6; }
+.news-more { color: var(--teal-deep); font-weight: 800; font-size: .92rem; margin-top: auto; }
+.news.news-list h3 { flex: 1; }
+
+/* a story: the poster beside the opening, then the article with its pull quotes */
+.story-page { --sc: var(--razz); --scs: var(--razz-40); }
+.st-trait-tag { display: inline-flex; align-items: center; gap: 8px; padding: 2px 14px; border-radius: 999px; background: var(--scs); font-weight: 800; }
+.st-trait-tag::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--sc); }
+.st-lead-quote { margin: 0; font-family: var(--font-head); font-weight: 700; font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.55; }
+.st-lead-quote::before { content: "«"; } .st-lead-quote::after { content: "»"; }
+[dir="ltr"] .st-lead-quote::before { content: "“"; } [dir="ltr"] .st-lead-quote::after { content: "”"; }
+.ph-media.is-poster::before { background: var(--scs); }
+.article { max-width: 760px; margin-inline: auto; display: flex; flex-direction: column; gap: 22px; }
+.article p { margin: 0; font-size: 1.12rem; line-height: 2.05; }
+.article .kicker { display: block; margin-bottom: 4px; color: var(--teal-deep); font-weight: 800; }
+.article blockquote { position: relative; margin: 14px 0; padding: 22px 30px; border-inline-start: 5px solid var(--sc); border-radius: 0 20px 20px 0; background: var(--scs); font-family: var(--font-head); font-weight: 700; font-size: clamp(1.15rem, 2vw, 1.4rem); line-height: 1.75; }
+[dir="rtl"] .article blockquote { border-radius: 20px 0 0 20px; }
+.article blockquote p { font-size: inherit; line-height: inherit; }
+.article .tags { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 18px; border-top: 1px solid var(--line); }
+.article .tags span { padding: 2px 12px; border-radius: 999px; background: var(--robin-20); font-weight: 700; font-size: .92rem; }
+.more-stories { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.ms-card { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border: 1.5px solid var(--line); border-radius: 18px; color: var(--ink); text-decoration: none; transition: border-color .25s, transform .3s; }
+.ms-card img { width: 58px; height: 58px; border-radius: 50%; object-fit: cover; border: 3px solid var(--white); outline: 2px solid var(--sc, var(--robin)); }
+.ms-card span { display: flex; flex-direction: column; line-height: 1.4; }
+.ms-card b { font-size: 1.05rem; }
+.ms-card small { color: var(--muted); font-weight: 700; }
+.ms-card:hover { border-color: var(--sc, var(--robin)); transform: translateY(-3px); }
+
+/* forms on their own page: the donation form's fields, in a card */
+.form-card { max-width: 780px; margin-inline: auto; padding: 38px 40px; border: 1px solid var(--line); border-radius: 28px; background: var(--white); box-shadow: 0 40px 80px -60px rgba(6, 33, 62, .55); }
+.form-card .sec-head { margin-bottom: 26px; }
+.form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 20px; }
+.form-grid .full { grid-column: 1 / -1; }
+.field select { appearance: none; background: var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2306213E' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat; background-position: left 14px center; padding-inline-end: 40px; }
+[dir="ltr"] .field select { background-position: right 14px center; }
+.field textarea { border: 1.5px solid var(--line); border-radius: 12px; min-height: 120px; padding: 12px 14px; font: inherit; resize: vertical; }
+.field textarea:focus, .field input[type="url"]:focus { border-color: var(--teal-deep); outline: 0; box-shadow: 0 0 0 3px var(--teal-soft); }
+.field select[aria-invalid="true"], .field textarea[aria-invalid="true"] { border-color: var(--err); }
+.drop { position: relative; display: flex; align-items: center; gap: 14px; min-height: 76px; padding: 14px 18px; border: 2px dashed var(--oxford-20); border-radius: 16px; background: var(--robin-20); cursor: pointer; transition: border-color .2s; }
+.drop:hover, .drop:focus-within { border-color: var(--teal-deep); }
+.drop input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.drop .drop-ic { display: grid; place-items: center; flex-shrink: 0; width: 46px; height: 46px; border-radius: 12px; background: var(--white); }
+.drop .drop-txt { display: flex; flex-direction: column; line-height: 1.45; }
+.drop .drop-name { color: var(--muted); font-size: .9rem; font-weight: 600; }
+.drop[aria-invalid="true"] { border-color: var(--err); }
+.form-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 20px; margin-top: 26px; }
+.form-done { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 30px 10px; text-align: center; }
+.form-done h2 { font-size: 1.6rem; outline: 0; }
+.form-done p { margin: 0; color: var(--muted); }
+
+@media (max-width: 960px) {
+  .projects, .focus, .more-stories { grid-template-columns: minmax(0, 1fr); }
+  .news.news-list { grid-template-columns: minmax(0, 1fr); }
+  .news.news-list > a:first-child { grid-template-columns: minmax(0, 1fr); grid-column: 1 / -1; }
+  .news.news-list > a:first-child .n-img { min-height: 0; aspect-ratio: 16 / 9; }
+}
+@media (max-width: 600px) {
+  .news.news-list { grid-template-columns: minmax(0, 1fr); }
+  .ph-stats > div { padding: 20px 18px; }
+  .form-card { padding: 26px 20px; }
+  .form-grid { grid-template-columns: minmax(0, 1fr); }
+  .consult-band { padding: 30px 24px; }
+  .article blockquote { padding: 18px 20px; }
+}
+.field .lbl { font-weight: 700; font-size: .95rem; }
+.form-done .tick { width: 64px; height: 64px; border-radius: 50%; background: var(--teal-soft); color: var(--teal-deep); display: grid; place-items: center; }
 </style>
 </head>
 <body>
@@ -924,7 +1043,7 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
           <div class="nav-sub cols-3" id="nav-sub-2">
             <ul class="sub-links">
               <li class="sub-group"><a class="sub-head" href="https://sanadorphans.org/ar/prevention/" data-en-href="https://sanadorphans.org/prevention/" data-en="Prevention">الوقاية</a>
-                <ul><li><a href="https://sanadorphans.org/ar/economic-and-social-empowerment-program/" data-en-href="https://sanadorphans.org/economic-and-social-empowerment-program/" data-en="Economic and Social Empowerment Program for Youth Without Parental Care">برنامج التمكين الاقتصادي والاجتماعي للشباب فاقدي الرعاية الوالدية</a></li><li><a href="https://sanadorphans.org/ar/kafala-family-capacity-building-program/" data-en-href="https://sanadorphans.org/kafala-family-capacity-building-program/" data-en="Kafala Family Capacity Building Program for Raising Children Without Parental Care">برنامج تأهيل الأسر الكافلة لتنشئة الأطفال فاقدي الرعاية الوالدية</a></li></ul>
+                <ul><li><a href="https://sanadorphans.org/ar/economic-and-social-empowerment-program/" data-en-href="https://sanadorphans.org/economic-and-social-empowerment-program/" data-en="Economic and Social Empowerment Program for Youth Without Parental Care">برنامج التمكين الاقتصادي والاجتماعي للشباب فاقدي الرعاية الوالدية</a></li><li><a href="kafala-family-capacity-building-program/" data-en="Kafala Family Capacity Building Program for Raising Children Without Parental Care">برنامج تأهيل الأسر الكافلة لتنشئة الأطفال فاقدي الرعاية الوالدية</a></li></ul>
               </li>
               <li class="sub-group"><a class="sub-head" href="https://sanadorphans.org/ar/protection/" data-en-href="https://sanadorphans.org/protection/" data-en="Protection">الحماية</a>
                 <ul><li><a href="https://sanadorphans.org/ar/caregivers-capacity-building-program/" data-en-href="https://sanadorphans.org/caregivers-capacity-building-program/" data-en="Caregivers and Alternative Care Workers Capacity Building Program">برنامج تأهيل العاملين بمجال الرعاية البديلة</a></li><li><a href="https://sanadorphans.org/ar/empowering-care-homes-semi-family-care/" data-en-href="https://sanadorphans.org/empowering-care-homes-semi-family-care/" data-en="Empowering Care Homes to Provide Semi-Family Care for Children and Youth Without Parental Care">برنامج تمكين دور الأيتام من تقديم رعاية شبه أسرية للأطفال والشباب فاقدي الرعاية الوالدية</a></li></ul>
@@ -939,7 +1058,7 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
           <div class="nav-top has-link"><a class="nav-link" href="https://sanadorphans.org/ar/services/" data-en-href="https://sanadorphans.org/services/" data-en="Consulting Services">الخدمات الاستشارية</a><button class="nav-caret" type="button" aria-expanded="false" aria-controls="nav-sub-3" aria-label="قائمة الخدمات الاستشارية" data-en-aria="Consulting Services menu"><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button></div>
           <div class="nav-sub cols-2" id="nav-sub-3">
             <ul class="sub-links">
-              <li><a href="https://sanadorphans.org/ar/services/donor-advisory-csr/" data-en-href="https://sanadorphans.org/services/donor-advisory-csr/" data-en="Donor and CSR Advisory">استشارات الجهات المانحة والمسؤولية المجتمعية</a></li>
+              <li><a href="services/donor-advisory-csr/" data-en="Donor and CSR Advisory">استشارات الجهات المانحة والمسؤولية المجتمعية</a></li>
               <li><a href="https://sanadorphans.org/ar/services/institutional-assessment/" data-en-href="https://sanadorphans.org/services/institutional-assessment/" data-en="Institutional Development and Quality Assessment">التطوير المؤسسي وتقييم جودة الرعاية</a></li>
               <li><a href="https://sanadorphans.org/ar/services/capacity-building-training/" data-en-href="https://sanadorphans.org/services/capacity-building-training/" data-en="Professional Training and Capacity Building">التدريب والتأهيل المهني للكوادر</a></li>
               <li><a href="https://sanadorphans.org/ar/services/kafala-family-support/" data-en-href="https://sanadorphans.org/services/kafala-family-support/" data-en="Kafala Family Support">الإرشاد والدعم الأسري للأسر الكافلة</a></li>
@@ -964,16 +1083,16 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
           <div class="nav-sub" id="nav-sub-5">
             <ul class="sub-links">
               <li><a href="https://sanadorphans.org/ar/annual-reports/" data-en-href="https://sanadorphans.org/annual-reports/" data-en="Annual Reports">التقارير السنوية</a></li>
+              <li><a href="https://sanadorphans.org/ar/knowledge-capsule/" data-en-href="https://sanadorphans.org/knowledge-capsule/" data-en="Knowledge Capsule">كبسولة المعرفة</a></li>
               <li><a href="https://sanadorphans.org/ar/newsletters/" data-en-href="https://sanadorphans.org/newsletters/" data-en="Newsletters">النشرة الدورية</a></li>
-              <li><a href="https://sanadorphans.org/ar/awareness-capsules/" data-en-href="https://sanadorphans.org/awareness-capsules/" data-en="Knowledge Capsule">كبسولة المعرفة</a></li>
             </ul>
           </div>
         </li>
         <li class="nav-item">
-          <div class="nav-top has-link"><a class="nav-link" href="https://sanadorphans.org/ar/news/" data-en-href="https://sanadorphans.org/news/" data-en="Media Center">المركز الإعلامي</a><button class="nav-caret" type="button" aria-expanded="false" aria-controls="nav-sub-6" aria-label="قائمة المركز الإعلامي" data-en-aria="Media Center menu"><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button></div>
+          <div class="nav-top has-link"><a class="nav-link" href="news/" data-en="Media Center">المركز الإعلامي</a><button class="nav-caret" type="button" aria-expanded="false" aria-controls="nav-sub-6" aria-label="قائمة المركز الإعلامي" data-en-aria="Media Center menu"><svg class="caret" width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5"/></svg></button></div>
           <div class="nav-sub" id="nav-sub-6">
             <ul class="sub-links">
-              <li><a href="https://sanadorphans.org/ar/news/" data-en-href="https://sanadorphans.org/news/" data-en="News">الأخبار</a></li>
+              <li><a href="news/" data-en="News">الأخبار</a></li>
               <li><a href="https://sanadorphans.org/ar/press-releases/" data-en-href="https://sanadorphans.org/press-releases/" data-en="Press Releases">البيانات الصحفية</a></li>
             </ul>
           </div>
@@ -1318,7 +1437,7 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
         <span class="eyebrow" data-en="From the field">من الميدان</span>
         <h2 id="news-title" data-en="Latest news">آخر الأخبار</h2>
       </div>
-      <a class="link arw" href="#news-title" data-en="All news">كل الأخبار</a>
+      <a class="link arw" href="news/" data-en="All news">كل الأخبار</a>
     </div>
     <div class="news">
       <a href="#news-title">
@@ -1507,7 +1626,7 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
         </div>
       </div>
       <div>
-        <h4 data-en="Who We Are">من نحن</h4>
+        <h2 data-en="Who We Are">من نحن</h2>
         <ul>
           <li><a href="about/" data-en="About">عن سند</a></li>
           <li><a href="https://sanadorphans.org/ar/board-members/" data-en-href="https://sanadorphans.org/board-members/" data-en="Board Members">مجلس الإدارة</a></li>
@@ -1517,9 +1636,9 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
         </ul>
       </div>
       <div>
-        <h4 data-en="Our Services">خدماتنا</h4>
+        <h2 data-en="Our Services">خدماتنا</h2>
         <ul>
-          <li><a href="https://sanadorphans.org/ar/services/donor-advisory-csr/" data-en-href="https://sanadorphans.org/services/donor-advisory-csr/" data-en="Donor and CSR Advisory">استشارات المانحين والمسؤولية المجتمعية</a></li>
+          <li><a href="services/donor-advisory-csr/" data-en="Donor and CSR Advisory">استشارات المانحين والمسؤولية المجتمعية</a></li>
           <li><a href="https://sanadorphans.org/ar/services/institutional-assessment/" data-en-href="https://sanadorphans.org/services/institutional-assessment/" data-en="Institutional Development and Quality Assessment">التطوير المؤسسي وتقييم الجودة</a></li>
           <li><a href="https://sanadorphans.org/ar/services/capacity-building-training/" data-en-href="https://sanadorphans.org/services/capacity-building-training/" data-en="Professional Training and Capacity Building">التدريب والتأهيل المهني</a></li>
           <li><a href="https://sanadorphans.org/ar/services/kafala-family-support/" data-en-href="https://sanadorphans.org/services/kafala-family-support/" data-en="Kafala Family Support">دعم الأسر الكافلة</a></li>
@@ -1530,7 +1649,7 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
         </ul>
       </div>
       <div>
-        <h4 data-en="Contact Information">معلومات التواصل</h4>
+        <h2 data-en="Contact Information">معلومات التواصل</h2>
         <ul>
           <li data-en="3 Al Bairouny St., Baron Palace, Heliopolis, Cairo">3 شارع البيروني، بجوار قصر البارون، مصر الجديدة، القاهرة</li>
           <li><a class="ltr" href="tel:+20226907195">+20 2 26907195</a></li>
@@ -1539,7 +1658,7 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
         </ul>
       </div>
       <div>
-        <h4 data-en="Subscribe for Our Newsletters">اشترك في النشرة الإخبارية</h4>
+        <h2 data-en="Subscribe for Our Newsletters">اشترك في النشرة الإخبارية</h2>
         <form id="newsletter" novalidate>
           <label for="nl-email" class="sr-only" data-en="Email address">البريد الإلكتروني</label>
           <input id="nl-email" type="email" dir="ltr" placeholder="name@email.com" autocomplete="email">
@@ -1704,7 +1823,9 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
     swap("data-en-alt", { get: function (e) { return e.alt; }, set: function (e, v) { e.alt = v; } });
     swap("data-en-src", { get: function (e) { return e.getAttribute("src"); }, set: function (e, v) { e.src = v; } });
     swap("data-en-href", { get: function (e) { return e.getAttribute("href"); }, set: function (e, v) { e.setAttribute("href", v); } });
+    // long texts that differ in shape between the languages (an article, a list) come as two blocks
     document.querySelectorAll("[data-ar-only]").forEach(function (e) { e.hidden = S.lang !== "ar"; });
+    document.querySelectorAll("[data-en-only]").forEach(function (e) { e.hidden = S.lang !== "en"; });
     document.querySelectorAll("[data-lang-toggle]").forEach(function (b) {
       // the header's compact button shows a short code; the menu's button spells the language out
       if (b.hasAttribute("data-lang-short")) {

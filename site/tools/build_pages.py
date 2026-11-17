@@ -11,6 +11,7 @@ Front matter (between two "---" lines):
     title / title_en           the tab title in Arabic and English
     description                the meta description
     scripts                    page scripts in assets/js, after the shared site.js (space separated)
+    slug                       optional: the address, for a nested page (services/donor-advisory-csr); else the file name
     nav                        optional: the href of the menu item to mark as the current page
 
 A page can pull in a shared block with <!-- include: name -->, which inserts site/src/partials/name.html.
@@ -82,7 +83,8 @@ def mark_current(header, href):
 
 def build(path):
     meta, content = parse(path)
-    slug = path.stem
+    # the page's address: its file name, or a "slug" in the front matter for nested ones (services/donor-advisory-csr)
+    slug = meta.get("slug", path.stem)
     home = slug == "index"
     content = includes(content, home)
     root = "" if home else "/"
@@ -100,7 +102,7 @@ def build(path):
         footer=footer.rstrip("\n"), after=(after + "\n") if after else "", scripts="\n".join(scripts),
         body_attrs=f' class="{body_class}"' if body_class else "")
     out = SITE / "index.html" if home else SITE / slug / "index.html"
-    out.parent.mkdir(exist_ok=True)
+    out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(html, encoding="utf-8")
     return out
 

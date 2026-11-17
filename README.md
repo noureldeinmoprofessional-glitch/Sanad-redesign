@@ -25,6 +25,24 @@ Every page shares one stylesheet, one script and one header and footer, so a cha
 - `site/src/pages/*.html` hold each page's own content: a short front matter block (title, English title, description, page scripts) and the page's `<main>`, followed by anything that belongs after the footer, such as dialogs.
 - `site/assets/css/site.css` is the whole site's stylesheet; `site/assets/js/site.js` is the shared behaviour (language switch, menu, toasts, newsletter, copy buttons, scroll reveals and counters); `site/assets/js/home.js` is the homepage's own (donation form, partnership form, stories, film, pinned hero).
 - `python3 site/tools/build_pages.py` writes the pages the browser loads (`site/index.html`, and `site/<page>/index.html` for each internal page). Then `python3 site/build.py` rebuilds the single-file homepage. Edit the files in `site/src` and `site/assets`, not the generated pages.
+- Front matter can also set `slug` (the page's address, for nested ones such as `services/donor-advisory-csr`), `nav` (the menu link to mark as the current page) and `scripts` (e.g. `forms.js`). `<!-- include: give-band -->` drops in the shared closing donate band from `site/src/partials/give-band.html`.
+- Most text switches language through `data-en` attributes. Where the Arabic and English differ in structure (a story told in a different order, a news list with different items), the page carries both versions in blocks marked `data-ar-only` and `data-en-only`, and only the one for the current language shows.
+- `site/assets/js/forms.js` checks any `form[data-validate]` field by field (required, email, phone, link, file type and size) and swaps in its thank-you message on success. Nothing is sent yet.
+
+#### Internal page templates
+
+One real page per type, with Sanad's text word for word from the current site in both languages. Once they're approved, the remaining pages follow the same patterns.
+
+| Type | Page | Address |
+|---|---|---|
+| About | سند: وطن للقضية | `/about/` |
+| Programme | Kafala family capacity building | `/kafala-family-capacity-building-program/` |
+| Service | Donor advisory and CSR | `/services/donor-advisory-csr/` |
+| Listing | News | `/news/` |
+| Story | Raniah | `/success-stories/raniah/` |
+| Form | Apply now | `/apply-now/` |
+
+They share one kit in `site.css`: a page hero with breadcrumbs, a wave bottom and an optional photo or poster; statement cards; text rows; document cards; numbered project cards coloured by pillar; focus cards and a consult band; the news grid; the story article with pull quotes; form cards; related-page links; and the closing donate band. Menu and footer links to these pages now point to them; every other link still goes to Sanad's current site.
 
 The page is built around one idea: Sanad doesn't care for orphans directly, it strengthens the people who do («نكون سندًا لمن يكونون سندًا لهم»). It has no religious framing: gifts are monthly or one-time, with no Zakat or Sadaqah choice.
 

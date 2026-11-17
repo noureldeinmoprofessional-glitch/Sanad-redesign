@@ -53,7 +53,9 @@
     swap("data-en-alt", { get: function (e) { return e.alt; }, set: function (e, v) { e.alt = v; } });
     swap("data-en-src", { get: function (e) { return e.getAttribute("src"); }, set: function (e, v) { e.src = v; } });
     swap("data-en-href", { get: function (e) { return e.getAttribute("href"); }, set: function (e, v) { e.setAttribute("href", v); } });
+    // long texts that differ in shape between the languages (an article, a list) come as two blocks
     document.querySelectorAll("[data-ar-only]").forEach(function (e) { e.hidden = S.lang !== "ar"; });
+    document.querySelectorAll("[data-en-only]").forEach(function (e) { e.hidden = S.lang !== "en"; });
     document.querySelectorAll("[data-lang-toggle]").forEach(function (b) {
       // the header's compact button shows a short code; the menu's button spells the language out
       if (b.hasAttribute("data-lang-short")) {
