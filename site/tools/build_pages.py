@@ -70,9 +70,9 @@ def fill(partial, home):
 
 
 def includes(content, home):
-    # <!-- include: give-band --> drops in site/src/partials/give-band.html
+    # <!-- include: give-band --> drops in site/src/partials/give-band.html; a partial can include another (the wave)
     return re.sub(r"<!-- include: ([\w-]+) -->",
-                  lambda m: fill((SRC / "partials" / f"{m.group(1)}.html").read_text(encoding="utf-8"), home).rstrip("\n"), content)
+                  lambda m: includes(fill((SRC / "partials" / f"{m.group(1)}.html").read_text(encoding="utf-8"), home).rstrip("\n"), home), content)
 
 
 def mark_current(header, href):

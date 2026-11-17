@@ -42,7 +42,7 @@ One real page per type, with Sanad's text word for word from the current site in
 | Story | Raniah | `/success-stories/raniah/` |
 | Form | Apply now | `/apply-now/` |
 
-They share one kit in `site.css`: a page hero with breadcrumbs, a wave bottom and an optional photo or poster; statement cards; text rows; document cards; numbered project cards coloured by pillar; focus cards and a consult band; the news grid; the story article with pull quotes; form cards; related-page links; and the closing donate band. Menu and footer links to these pages now point to them; every other link still goes to Sanad's current site.
+They share one kit in `site.css`, built from the homepage's own parts (the wave, dot grids, coloured bars, photo cards cut by a wave, the Burnt Sienna title underline): a page hero with breadcrumbs, a wave bottom and a photo, poster or photo collage; an introduction beside a second photo; statement cards; photo cards for paired topics; numbered project cards coloured by pillar; focus cards and a consult band; the news grid; the story article with pull quotes on Aureolin 20; form cards; related-page cards, with photos where there are any; and the closing donate band with its photo. Sections sit 88px apart, as on the homepage. Every photo is Sanad's own or one already generated for the homepage. `site/src/partials/wave.html` holds the wave, and partials can include each other. Menu and footer links to these pages now point to them; every other link still goes to Sanad's current site.
 
 The page is built around one idea: Sanad doesn't care for orphans directly, it strengthens the people who do («نكون سندًا لمن يكونون سندًا لهم»). It has no religious framing: gifts are monthly or one-time, with no Zakat or Sadaqah choice.
 

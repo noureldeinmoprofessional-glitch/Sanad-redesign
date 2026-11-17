@@ -121,15 +121,19 @@
 <!-- Listing template. Text and items: Sanad's news page, word for word (sanadorphans.org/ar/news/ and /news/).
      The two lists share their first six items; the last two differ, so each language has its own list. -->
 <section class="page-hero" aria-labelledby="page-title">
-  <div class="wrap ph-grid no-media">
+  <div class="wrap ph-grid">
     <div class="ph-copy">
       <nav class="crumbs" aria-label="مسار الصفحة" data-en-aria="Breadcrumb">
         <a href="/" data-en="Home">الرئيسية</a>
         <span data-en="Media">المركز الإعلامي</span>
       </nav>
-      <span class="eyebrow" data-en="MEDIA">المركز الإعلامي</span>
-      <h1 id="page-title" data-en="News">الأخبار</h1>
+      <h1 id="page-title" data-en-html="&lt;em&gt;News&lt;/em&gt;"><em>الأخبار</em></h1>
       <p class="ph-lead" data-en="The latest announcements, partnerships and field updates from Sanad.">أحدث الإعلانات والشراكات وأخبار الميدان من سند.</p>
+    </div>
+    <div class="ph-collage" aria-hidden="true">
+      <img src="/assets/pages/news/graduation-recruitment-forum.webp" width="768" height="511" alt="">
+      <img src="/assets/pages/news/kafala-tot-cohorts.webp" width="768" height="435" alt="">
+      <img src="/assets/pages/news/b2b-brand-book-agreement.webp" width="768" height="521" alt="">
     </div>
   </div>
 </section>
@@ -137,6 +141,7 @@
 <section class="page-sec" aria-labelledby="list-title">
   <div class="wrap">
     <div class="sec-head">
+      <span class="eyebrow" data-en="Media">المركز الإعلامي</span>
       <h2 id="list-title" data-en="From the field">من الميدان</h2>
     </div>
     <div class="news news-list" data-ar-only>
@@ -246,11 +251,13 @@
   <div class="wrap">
     <div class="give-band" data-rv>
       <span class="dots" aria-hidden="true"></span>
-      <div>
-        <h2 id="give-band-title" data-en="Strengthen the hands that care">قوِّ اليد التي ترعى</h2>
+      <div class="gb-copy">
+        <h2 id="give-band-title" data-en-html="Strengthen &lt;em&gt;the hands that care&lt;/em&gt;">قوِّ <em>اليد التي ترعى</em></h2>
         <p data-en="Your gift trains and equips the people who care for children every day.">تبرعك يدرّب ويجهّز من يرعون الأطفال كل يوم.</p>
+        <a class="btn btn-give btn-lg arw" href="/#give" data-en="Donate now">تبرع الآن</a>
       </div>
-      <a class="btn btn-give btn-lg arw" href="/#give" data-en="Donate now">تبرع الآن</a>
+      <figure class="gb-media" aria-hidden="true"><img src="/assets/hero/main.webp" width="848" height="1264" alt="" loading="lazy"></figure>
+      <div class="wave" aria-hidden="true"><svg viewBox="0 0 800 30" preserveAspectRatio="none"><path class="w2" d="M0 12 Q50 26 100 12 T200 12 T300 12 T400 12 T500 12 T600 12 T700 12 T800 12 V30 H0Z"/><path class="w1" d="M0 16 Q50 4 100 16 T200 16 T300 16 T400 16 T500 16 T600 16 T700 16 T800 16 V30 H0Z"/></svg></div>
     </div>
   </div>
 </section>

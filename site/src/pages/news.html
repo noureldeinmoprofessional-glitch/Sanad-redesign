@@ -9,15 +9,19 @@ nav: /news/
 <!-- Listing template. Text and items: Sanad's news page, word for word (sanadorphans.org/ar/news/ and /news/).
      The two lists share their first six items; the last two differ, so each language has its own list. -->
 <section class="page-hero" aria-labelledby="page-title">
-  <div class="wrap ph-grid no-media">
+  <div class="wrap ph-grid">
     <div class="ph-copy">
       <nav class="crumbs" aria-label="مسار الصفحة" data-en-aria="Breadcrumb">
         <a href="/" data-en="Home">الرئيسية</a>
         <span data-en="Media">المركز الإعلامي</span>
       </nav>
-      <span class="eyebrow" data-en="MEDIA">المركز الإعلامي</span>
-      <h1 id="page-title" data-en="News">الأخبار</h1>
+      <h1 id="page-title" data-en-html="&lt;em&gt;News&lt;/em&gt;"><em>الأخبار</em></h1>
       <p class="ph-lead" data-en="The latest announcements, partnerships and field updates from Sanad.">أحدث الإعلانات والشراكات وأخبار الميدان من سند.</p>
+    </div>
+    <div class="ph-collage" aria-hidden="true">
+      <img src="/assets/pages/news/graduation-recruitment-forum.webp" width="768" height="511" alt="">
+      <img src="/assets/pages/news/kafala-tot-cohorts.webp" width="768" height="435" alt="">
+      <img src="/assets/pages/news/b2b-brand-book-agreement.webp" width="768" height="521" alt="">
     </div>
   </div>
 </section>
@@ -25,6 +29,7 @@ nav: /news/
 <section class="page-sec" aria-labelledby="list-title">
   <div class="wrap">
     <div class="sec-head">
+      <span class="eyebrow" data-en="Media">المركز الإعلامي</span>
       <h2 id="list-title" data-en="From the field">من الميدان</h2>
     </div>
     <div class="news news-list" data-ar-only>
