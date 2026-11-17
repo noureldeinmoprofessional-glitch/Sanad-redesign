@@ -13,6 +13,8 @@ Front matter (between two "---" lines):
     scripts                    page scripts in assets/js, after the shared site.js (space separated)
     nav                        optional: the href of the menu item to mark as the current page
 
+A page can pull in a shared block with <!-- include: name -->, which inserts site/src/partials/name.html.
+
 Run: python3 site/tools/build_pages.py
 """
 import pathlib
@@ -66,6 +68,12 @@ def fill(partial, home):
     return re.sub(r"\{\{(\w+)\}\}", lambda m: values[m.group(1)], partial)
 
 
+def includes(content, home):
+    # <!-- include: give-band --> drops in site/src/partials/give-band.html
+    return re.sub(r"<!-- include: ([\w-]+) -->",
+                  lambda m: fill((SRC / "partials" / f"{m.group(1)}.html").read_text(encoding="utf-8"), home).rstrip("\n"), content)
+
+
 def mark_current(header, href):
     if not href:
         return header
@@ -76,6 +84,7 @@ def build(path):
     meta, content = parse(path)
     slug = path.stem
     home = slug == "index"
+    content = includes(content, home)
     root = "" if home else "/"
     header = mark_current(fill((SRC / "partials/header.html").read_text(encoding="utf-8"), home), meta.get("nav"))
     footer = fill((SRC / "partials/footer.html").read_text(encoding="utf-8"), home)
