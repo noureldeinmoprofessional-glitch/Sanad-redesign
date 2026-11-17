@@ -29,9 +29,23 @@ Every page shares one stylesheet, one script and one header and footer, so a cha
 - Most text switches language through `data-en` attributes. Where the Arabic and English differ in structure (a story told in a different order, a news list with different items), the page carries both versions in blocks marked `data-ar-only` and `data-en-only`, and only the one for the current language shows.
 - `site/assets/js/forms.js` checks any `form[data-validate]` field by field (required, email, phone, link, file type and size) and swaps in its thank-you message on success. Nothing is sent yet.
 
-#### Internal page templates
+#### Internal pages
 
-One real page per type, with Sanad's text word for word from the current site in both languages. Once they're approved, the remaining pages follow the same patterns.
+Every page in the menu and footer now has its own page here (54 with the homepage), with Sanad's text word for word from the current site in both languages, and the menu, footer and homepage link to them. Only the newsletters page (empty on the current site) and the volunteering and corporate partnership forms still point to Sanad's current site.
+
+| Section | Pages |
+|---|---|
+| Who We Are | About, Board Members, Sanad Team, Accreditations & Awards, Impact Partners (the 69 partner logos) |
+| Impact Programs | Prevention, Protection, Empowerment, and their five programmes |
+| Consulting Services | The services index and all eight services |
+| Our Impact | Data & Achievements, Youth Success Stories and all ten stories |
+| Knowledge Hub | Annual Reports (with the PDFs), Knowledge Capsule and its article |
+| Media Center | News and its ten articles, Press Releases and their three releases |
+| Get Involved | Careers (each role opens to its full description) and Apply Now |
+
+Photos are Sanad's own (programme photos, board and team portraits, report covers, story posters, news photos), downloaded from the current site and optimised, plus the photos already used on the homepage. Where the current site has a page in one language only (some news, the knowledge capsule article), it shows in that language either way.
+
+These six pages were the approved templates the others follow:
 
 | Type | Page | Address |
 |---|---|---|
