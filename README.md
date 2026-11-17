@@ -15,7 +15,16 @@ Open the HTML file in a browser to read it.
 ## Homepage prototype
 
 - `site/index.html` is the redesigned homepage, built from the research wireframe. It is Arabic first, with an English toggle (or `?lang=en`), uses the brand book's web fonts (Cairo for body text, El Messiri for Arabic headlines, Roboto for English and for Latin letters and digits in headlines), and uses Sanad's brand palette, figures, stories and bank details from the current site.
-- `site/dist/sanad-homepage-prototype.html` is the same page as one self-contained file for sharing. Rebuild it with `python3 site/build.py` after editing `index.html`.
+- `site/dist/sanad-homepage-prototype.html` is the same page as one self-contained file for sharing.
+
+### How the site is built
+
+Every page shares one stylesheet, one script and one header and footer, so a change to the menu, the colours or the footer reaches every page at once.
+
+- `site/src/partials/header.html` and `footer.html` hold the header (with the full menu) and the footer.
+- `site/src/pages/*.html` hold each page's own content: a short front matter block (title, English title, description, page scripts) and the page's `<main>`, followed by anything that belongs after the footer, such as dialogs.
+- `site/assets/css/site.css` is the whole site's stylesheet; `site/assets/js/site.js` is the shared behaviour (language switch, menu, toasts, newsletter, copy buttons, scroll reveals and counters); `site/assets/js/home.js` is the homepage's own (donation form, partnership form, stories, film, pinned hero).
+- `python3 site/tools/build_pages.py` writes the pages the browser loads (`site/index.html`, and `site/<page>/index.html` for each internal page). Then `python3 site/build.py` rebuilds the single-file homepage. Edit the files in `site/src` and `site/assets`, not the generated pages.
 
 The page is built around one idea: Sanad doesn't care for orphans directly, it strengthens the people who do («نكون سندًا لمن يكونون سندًا لهم»). It has no religious framing: gifts are monthly or one-time, with no Zakat or Sadaqah choice.
 

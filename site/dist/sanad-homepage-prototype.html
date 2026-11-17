@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>سند للرعاية الوالدية البديلة</title>
+<title data-en="Sanad for Alternative Parental Care">سند للرعاية الوالدية البديلة</title>
 <meta name="description" content="سند للرعاية الوالدية البديلة: نقوّي من يرعون الأطفال فاقدي الرعاية الوالدية في مصر منذ 2008.">
 <meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -913,7 +913,6 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
     </div>
   </div>
 </header>
-
 <main id="top">
 
 <!-- 1. Hero with the donation form -->
@@ -1400,8 +1399,6 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
   </div>
 </section>
 
-<!-- 11. News -->
-
 </main>
 
 <footer class="foot">
@@ -1465,7 +1462,6 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
     </div>
   </div>
 </footer>
-
 <dialog class="pf" id="partner-form" aria-labelledby="pf-title">
   <div class="pf-head">
     <span class="pf-ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M10 21v-4h4v4"/></svg></span>
@@ -1562,74 +1558,54 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
   <a class="btn btn-give" href="#give" tabindex="-1" data-en="Donate now">تبرّع الآن</a>
 </div>
 <script>
+/* Sanad site: what every page shares. The language switch, the main menu, toasts, the footer newsletter,
+   copy buttons, section headlines and scroll reveals. A page adds its own strings with Sanad.strings()
+   and its own behaviour with Sanad.onLang(); see assets/js/home.js. */
 (function () {
   "use strict";
   var root = document.documentElement;
-  var lang = "ar", heroReady = false;
+  var S = window.Sanad = { lang: "ar" };
+  var hooks = [];
 
   // ---------- i18n: Arabic is in the markup, English lives in data-en* attributes ----------
   var TEXT = {
     ar: {
-      title: "سند للرعاية الوالدية البديلة",
       langBtn: "English",
-      cur: "ج.م",
-      monthly: function (a) { return "أكون سندًا بـ " + a + " ج.م شهريًا"; },
-      once: function (a) { return "تبرّع بـ " + a + " ج.م"; },
-      perMonth: "شهريًا", oneTime: "مرة واحدة",
-      funds: { children: "تنمية الأطفال", youth: "تمكين الشباب", caregivers: "تدريب مقدّمي الرعاية", kafala: "تدريب الأسر الكافلة", general: "تبرع عام" },
-      thanks: function (n) { return "شكرًا لك يا " + n; },
-      errAmt: "أقل مبلغ للتبرع 10 ج.م.",
-      errName: "اكتب اسمك من فضلك.",
-      errPhone: "اكتب رقم موبايل صحيح، مثل 01012345678.",
       copied: "تم النسخ",
       subscribed: "شكرًا لاشتراكك في نشرة سند!",
-      badEmail: "اكتب بريدًا إلكترونيًا صحيحًا.",
-      filmTitle: "يعني إيه سند؟",
-      pfRequired: "هذا الحقل مطلوب.",
-      pfPhone: "اكتب رقم هاتف صحيح.",
-      pfPick: "اختر خيارًا واحدًا على الأقل.",
-      pfOther: "اكتب الخيار الآخر.",
-      pfThanks: function (org) { return "شكرًا لكم، " + org + "!"; },
-      pfDone: function (email) { return "يسعدنا اهتمامكم بالشراكة مع سند. وصلتنا استمارتكم، وسيتواصل معكم فريق الشراكات قريبًا على " + email + " لنستكشف معًا فرص التعاون."; }
+      badEmail: "اكتب بريدًا إلكترونيًا صحيحًا."
     },
     en: {
-      title: "Sanad for Alternative Parental Care",
       langBtn: "العربية",
-      cur: "EGP",
-      monthly: function (a) { return "Give EGP " + a + " monthly"; },
-      once: function (a) { return "Give EGP " + a; },
-      perMonth: "monthly", oneTime: "one-time",
-      funds: { children: "Children's development", youth: "Youth empowerment", caregivers: "Caregiver training", kafala: "Kafala family training", general: "General donation" },
-      thanks: function (n) { return "Thank you, " + n; },
-      errAmt: "The minimum gift is EGP 10.",
-      errName: "Please enter your name.",
-      errPhone: "Please enter a valid mobile number, like 01012345678.",
       copied: "Copied",
       subscribed: "Thanks for subscribing to Sanad's newsletter!",
-      badEmail: "Please enter a valid email address.",
-      filmTitle: "What does Sanad mean?",
-      pfRequired: "This field is required.",
-      pfPhone: "Please enter a valid phone number.",
-      pfPick: "Choose at least one option.",
-      pfOther: "Please describe the other option.",
-      pfThanks: function (org) { return "Thank you, " + org + "!"; },
-      pfDone: function (email) { return "We're delighted you'd like to partner with Sanad. Your form has reached us, and our partnerships team will be in touch soon at " + email + " to explore how we can work together."; }
+      badEmail: "Please enter a valid email address."
     }
   };
-  var T = function () { return TEXT[lang]; };
+  S.strings = function (t) {
+    Object.keys(t).forEach(function (l) { Object.keys(t[l]).forEach(function (k) { TEXT[l][k] = t[l][k]; }); });
+  };
+  S.T = function () { return TEXT[S.lang]; };
+  // a page's own work on every language change; it also runs once right away, for the language already shown
+  S.onLang = function (fn) { hooks.push(fn); fn(S.lang); };
+
+  S.still = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!S.still) root.classList.add("anim");
+  S.clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
+  S.head = document.querySelector(".site-head");
 
   function swap(attr, setter) {
     document.querySelectorAll("[" + attr + "]").forEach(function (el) {
       var key = "ar" + attr.replace(/^data-en/, "").replace(/-/g, "");
       if (!(key in el.dataset)) el.dataset[key] = setter.get(el);
-      setter.set(el, lang === "en" ? el.getAttribute(attr) : el.dataset[key]);
+      setter.set(el, S.lang === "en" ? el.getAttribute(attr) : el.dataset[key]);
     });
   }
   function applyLang(next) {
-    lang = next;
-    root.lang = lang;
-    root.dir = lang === "ar" ? "rtl" : "ltr";
-    document.title = T().title;
+    S.lang = next;
+    root.lang = S.lang;
+    root.dir = S.lang === "ar" ? "rtl" : "ltr";
+    // the <title> carries its English in data-en too, so this also renames the tab
     swap("data-en", { get: function (e) { return e.textContent; }, set: function (e, v) { e.textContent = v; } });
     swap("data-en-html", { get: function (e) { return e.innerHTML; }, set: function (e, v) { e.innerHTML = v; } });
     swap("data-en-ph", { get: function (e) { return e.placeholder; }, set: function (e, v) { e.placeholder = v; } });
@@ -1637,28 +1613,26 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
     swap("data-en-alt", { get: function (e) { return e.alt; }, set: function (e, v) { e.alt = v; } });
     swap("data-en-src", { get: function (e) { return e.getAttribute("src"); }, set: function (e, v) { e.src = v; } });
     swap("data-en-href", { get: function (e) { return e.getAttribute("href"); }, set: function (e, v) { e.setAttribute("href", v); } });
-    document.querySelectorAll("[data-ar-only]").forEach(function (e) { e.hidden = lang !== "ar"; });
+    document.querySelectorAll("[data-ar-only]").forEach(function (e) { e.hidden = S.lang !== "ar"; });
     document.querySelectorAll("[data-lang-toggle]").forEach(function (b) {
       // the header's compact button shows a short code; the menu's button spells the language out
       if (b.hasAttribute("data-lang-short")) {
-        b.querySelector("span").textContent = lang === "ar" ? "EN" : "ع";
-        b.setAttribute("aria-label", lang === "ar" ? "Switch to English" : "التبديل إلى العربية");
-      } else b.textContent = T().langBtn;
-      b.lang = lang === "ar" ? "en" : "ar";
+        b.querySelector("span").textContent = S.lang === "ar" ? "EN" : "ع";
+        b.setAttribute("aria-label", S.lang === "ar" ? "Switch to English" : "التبديل إلى العربية");
+      } else b.textContent = S.T().langBtn;
+      b.lang = S.lang === "ar" ? "en" : "ar";
     });
-    render();
     fitNav();
-    splitHeadline();
-    if (heroReady) decideMode();
-    if (typeof onScroll === "function") onScroll();
-    try { localStorage.setItem("sanad-lang", lang); } catch (e) {}
+    splitSectionHeads();
+    hooks.forEach(function (fn) { fn(S.lang); });
+    try { localStorage.setItem("sanad-lang", S.lang); } catch (e) {}
   }
   document.querySelectorAll("[data-lang-toggle]").forEach(function (b) {
-    b.addEventListener("click", function () { applyLang(lang === "ar" ? "en" : "ar"); });
+    b.addEventListener("click", function () { applyLang(S.lang === "ar" ? "en" : "ar"); });
   });
 
   // ---------- main menu (Sanad's own tabs, dropdowns included) ----------
-  var siteHead = document.querySelector(".site-head");
+  var siteHead = S.head;
   var headRow = siteHead.querySelector(".head-row");
   var navEl = document.getElementById("site-nav");
   var menuBtn = document.querySelector(".menu-btn");
@@ -1739,6 +1713,163 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
   if (document.fonts) document.fonts.ready.then(fitNav);
   fitNav();
 
+  // ---------- toasts and copy buttons ----------
+  var toastTimer;
+  S.toast = function (msg) {
+    var t = document.querySelector(".toast");
+    if (!t) { t = document.createElement("div"); t.className = "toast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
+    t.textContent = msg; t.hidden = false;
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.hidden = true; }, 1800);
+  };
+  function copyText(text, fallbackEl) {
+    var done = function () { S.toast(S.T().copied); };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, function () { selectEl(fallbackEl); });
+    } else selectEl(fallbackEl);
+  }
+  function selectEl(el) {
+    if (!el) return;
+    var r = document.createRange(); r.selectNodeContents(el);
+    var s = getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-copy]");
+    if (b) copyText(b.getAttribute("data-copy"), b.parentElement.querySelector("code"));
+    if (e.target.closest("[data-copy-link]")) copyText(location.href.split("#")[0], null);
+  });
+
+  // ---------- newsletter ----------
+  var nl = document.getElementById("newsletter");
+  if (nl) nl.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var email = document.getElementById("nl-email");
+    S.toast(/^\S+@\S+\.\S+$/.test(email.value) ? S.T().subscribed : S.T().badEmail);
+  });
+
+  // ---------- headlines ----------
+  // Words rise one by one (whole words, so Arabic letters stay joined).
+  // Section headlines rise out of a mask, so each word gets an inner span.
+  S.splitWords = function (h, cls, masked) {
+    var i = 0;
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          var frag = document.createDocumentFragment();
+          n.textContent.split(/(\s+)/).forEach(function (part) {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
+            var w = document.createElement("span");
+            w.className = cls; w.style.setProperty("--i", i++);
+            if (masked) { var inner = document.createElement("span"); inner.textContent = part; w.appendChild(inner); }
+            else w.textContent = part;
+            frag.appendChild(w);
+          });
+          node.replaceChild(frag, n);
+        } else if (n.nodeType === 1 && !n.classList.contains(cls)) walk(n);
+      });
+    })(h);
+  };
+  function splitSectionHeads() {
+    if (S.still) return;
+    document.querySelectorAll(".sec-head h2").forEach(function (h) { if (!h.closest(".hero")) S.splitWords(h, "sw", true); });
+  }
+
+  // ---------- page-wide reveals and counters ----------
+  var revealSel = ".sec-head, .trust li, .marquee, .p-count, .ch-media, .ch-stats li, .ch-note, .pillar, .p-card, .multiply, .impact-grid li, .st-picker button, .bank, .way, .inv, .news a, .head-split > a, [data-rv]";
+  document.querySelectorAll(revealSel).forEach(function (el) {
+    if (el.closest(".hero")) return;
+    el.setAttribute("data-reveal", "");
+    var sibs = Array.prototype.filter.call(el.parentElement.children, function (x) { return x.matches(revealSel); });
+    el.style.setProperty("--d", (Math.max(0, sibs.indexOf(el)) * .09).toFixed(2) + "s");
+  });
+  // counts up to the number as written, keeping its decimals and any suffix such as "+"
+  S.countUp = function (el) {
+    var m = el.textContent.trim().match(/^([\d,]+(?:\.\d+)?)(.*)$/);
+    if (!m) return;
+    var end = parseFloat(m[1].replace(/,/g, "")), dec = (m[1].split(".")[1] || "").length, t0 = performance.now();
+    var opt = { minimumFractionDigits: dec, maximumFractionDigits: dec };
+    (function step(now) {
+      var k = S.clamp((now - t0) / 1600), e = 1 - Math.pow(1 - k, 3);
+      el.textContent = (end * e).toLocaleString("en-US", opt) + m[2];
+      if (k < 1) requestAnimationFrame(step);
+    })(t0);
+  };
+  if (!S.still && "IntersectionObserver" in window) {
+    var watch = new Map();
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        watch.get(e.target).forEach(function (el) {
+          el.classList.add("in");
+          el.querySelectorAll("[data-count]").forEach(function (c) { if (!c.dataset.done) { c.dataset.done = "1"; S.countUp(c); } });
+          setTimeout(function () { el.classList.add("done"); }, 2000 + (parseFloat(el.style.getPropertyValue("--d")) || 0) * 1000);
+        });
+        io.unobserve(e.target);
+      });
+    }, { threshold: .14, rootMargin: "0px 0px -6% 0px" });
+    document.querySelectorAll("[data-reveal]").forEach(function (el) {
+      // a card that starts fully clipped never registers as visible, so its row is watched instead
+      var target = el.matches(".inv") ? el.parentElement : el;
+      if (!watch.has(target)) { watch.set(target, []); io.observe(target); }
+      watch.get(target).push(el);
+    });
+  } else {
+    document.querySelectorAll("[data-reveal]").forEach(function (el) { el.classList.add("in", "done"); });
+  }
+
+  // ?lang=en opens the English version directly; otherwise use the last choice
+  var saved = new URLSearchParams(location.search).get("lang");
+  if (!saved) { try { saved = localStorage.getItem("sanad-lang"); } catch (e) {} }
+  applyLang(saved === "en" ? "en" : "ar");
+})();
+</script>
+<script>
+/* Sanad homepage: the donation form, the partnership form, the stories, the film and the pinned hero.
+   Shared behaviour (language, menu, reveals, counters, toasts) lives in assets/js/site.js. */
+(function () {
+  "use strict";
+  var root = document.documentElement;
+  var S = window.Sanad, T = S.T, still = S.still, clamp = S.clamp, head = S.head;
+
+  S.strings({
+    ar: {
+      cur: "ج.م",
+      monthly: function (a) { return "أكون سندًا بـ " + a + " ج.م شهريًا"; },
+      once: function (a) { return "تبرّع بـ " + a + " ج.م"; },
+      perMonth: "شهريًا", oneTime: "مرة واحدة",
+      funds: { children: "تنمية الأطفال", youth: "تمكين الشباب", caregivers: "تدريب مقدّمي الرعاية", kafala: "تدريب الأسر الكافلة", general: "تبرع عام" },
+      thanks: function (n) { return "شكرًا لك يا " + n; },
+      errAmt: "أقل مبلغ للتبرع 10 ج.م.",
+      errName: "اكتب اسمك من فضلك.",
+      errPhone: "اكتب رقم موبايل صحيح، مثل 01012345678.",
+      filmTitle: "يعني إيه سند؟",
+      pfRequired: "هذا الحقل مطلوب.",
+      pfPhone: "اكتب رقم هاتف صحيح.",
+      pfPick: "اختر خيارًا واحدًا على الأقل.",
+      pfOther: "اكتب الخيار الآخر.",
+      pfThanks: function (org) { return "شكرًا لكم، " + org + "!"; },
+      pfDone: function (email) { return "يسعدنا اهتمامكم بالشراكة مع سند. وصلتنا استمارتكم، وسيتواصل معكم فريق الشراكات قريبًا على " + email + " لنستكشف معًا فرص التعاون."; }
+    },
+    en: {
+      cur: "EGP",
+      monthly: function (a) { return "Give EGP " + a + " monthly"; },
+      once: function (a) { return "Give EGP " + a; },
+      perMonth: "monthly", oneTime: "one-time",
+      funds: { children: "Children's development", youth: "Youth empowerment", caregivers: "Caregiver training", kafala: "Kafala family training", general: "General donation" },
+      thanks: function (n) { return "Thank you, " + n; },
+      errAmt: "The minimum gift is EGP 10.",
+      errName: "Please enter your name.",
+      errPhone: "Please enter a valid mobile number, like 01012345678.",
+      filmTitle: "What does Sanad mean?",
+      pfRequired: "This field is required.",
+      pfPhone: "Please enter a valid phone number.",
+      pfPick: "Choose at least one option.",
+      pfOther: "Please describe the other option.",
+      pfThanks: function (org) { return "Thank you, " + org + "!"; },
+      pfDone: function (email) { return "We're delighted you'd like to partner with Sanad. Your form has reached us, and our partnerships team will be in touch soon at " + email + " to explore how we can work together."; }
+    }
+  });
+
   // ---------- partnership form ----------
   var pf = document.getElementById("partner-form");
   var pfForm = document.getElementById("pf-form");
@@ -1815,8 +1946,8 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
       return;
     }
     // prototype: nothing is sent yet; this is where the answers go to Sanad's form or CRM
-    document.getElementById("pf-done-title").textContent = T().pfThanks("\u2068" + document.getElementById("pf-org").value.trim() + "\u2069");
-    document.getElementById("pf-done-text").textContent = T().pfDone("\u2068" + document.getElementById("pf-email").value.trim() + "\u2069");
+    document.getElementById("pf-done-title").textContent = T().pfThanks("⁨" + document.getElementById("pf-org").value.trim() + "⁩");
+    document.getElementById("pf-done-text").textContent = T().pfDone("⁨" + document.getElementById("pf-email").value.trim() + "⁩");
     pfForm.hidden = true;
     pfDone.hidden = false;
     pf.classList.add("is-done");
@@ -1952,38 +2083,25 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
   document.querySelectorAll("[data-st]").forEach(function (b) {
     b.addEventListener("click", function () { selectTab(step(+b.getAttribute("data-st"))); });
   });
-
-  // ---------- copy buttons ----------
-  var toastTimer;
-  function toast(msg) {
-    var t = document.querySelector(".toast");
-    if (!t) { t = document.createElement("div"); t.className = "toast"; t.setAttribute("role", "status"); document.body.appendChild(t); }
-    t.textContent = msg; t.hidden = false;
-    clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.hidden = true; }, 1800);
-  }
-  function copyText(text, fallbackEl) {
-    var done = function () { toast(T().copied); };
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(done, function () { selectEl(fallbackEl); });
-    } else selectEl(fallbackEl);
-  }
-  function selectEl(el) {
-    if (!el) return;
-    var r = document.createRange(); r.selectNodeContents(el);
-    var s = getSelection(); s.removeAllRanges(); s.addRange(r);
-  }
-  document.addEventListener("click", function (e) {
-    var b = e.target.closest("[data-copy]");
-    if (b) copyText(b.getAttribute("data-copy"), b.parentElement.querySelector("code"));
-    if (e.target.closest("[data-copy-link]")) copyText(location.href.split("#")[0], null);
-  });
+  // the first story makes its entrance the first time the section comes into view
+  var storiesEl = document.getElementById("stories");
+  if (!still && "IntersectionObserver" in window) {
+    var storyIO = new IntersectionObserver(function (en) {
+      if (!en[0].isIntersecting) return;
+      storiesEl.classList.add("seen");
+      var first = storiesEl.querySelector(".story:not([hidden])");
+      if (first) first.classList.add("enter");
+      storyIO.disconnect();
+    }, { threshold: .2 });
+    storyIO.observe(storiesEl);
+  } else storiesEl.classList.add("seen");
 
   // ---------- the film: nothing loads from YouTube until the visitor presses play ----------
   var filmDlg = document.getElementById("film-modal"), filmBox = filmDlg.querySelector(".film-player"), filmOpener = null;
   function openFilm(btn) {
     filmOpener = btn;
     var f = document.createElement("iframe");
-    f.src = "https://www.youtube-nocookie.com/embed/lNpo7sIex6s?autoplay=1&rel=0&playsinline=1&hl=" + lang;
+    f.src = "https://www.youtube-nocookie.com/embed/lNpo7sIex6s?autoplay=1&rel=0&playsinline=1&hl=" + S.lang;
     f.title = T().filmTitle;
     f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
     f.allowFullscreen = true;
@@ -2015,104 +2133,10 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
     });
   });
 
-  // ---------- newsletter ----------
-  document.getElementById("newsletter").addEventListener("submit", function (e) {
-    e.preventDefault();
-    var email = document.getElementById("nl-email");
-    toast(/^\S+@\S+\.\S+$/.test(email.value) ? T().subscribed : T().badEmail);
-  });
-
-  // ---------- motion: on unless the visitor prefers reduced motion ----------
-  var still = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var head = document.querySelector(".site-head");
-  if (!still) root.classList.add("anim");
-  var clamp = function (v) { return v < 0 ? 0 : v > 1 ? 1 : v; };
-
-  // Headline words rise one by one (whole words, so Arabic letters stay joined).
-  // Section headlines rise out of a mask, so each word gets an inner span.
-  function splitWords(h, cls, masked) {
-    var i = 0;
-    (function walk(node) {
-      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
-        if (n.nodeType === 3) {
-          var frag = document.createDocumentFragment();
-          n.textContent.split(/(\s+)/).forEach(function (part) {
-            if (!part) return;
-            if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(part)); return; }
-            var w = document.createElement("span");
-            w.className = cls; w.style.setProperty("--i", i++);
-            if (masked) { var inner = document.createElement("span"); inner.textContent = part; w.appendChild(inner); }
-            else w.textContent = part;
-            frag.appendChild(w);
-          });
-          node.replaceChild(frag, n);
-        } else if (n.nodeType === 1 && !n.classList.contains(cls)) walk(n);
-      });
-    })(h);
-  }
-  function splitHeadline() {
-    if (still) return;
-    splitWords(document.getElementById("hero-title"), "hw", false);
-    document.querySelectorAll(".sec-head h2").forEach(function (h) { if (!h.closest(".hero")) splitWords(h, "sw", true); });
-  }
-
-  // ---------- page-wide reveals and counters ----------
-  var revealSel = ".sec-head, .trust li, .marquee, .p-count, .ch-media, .ch-stats li, .ch-note, .pillar, .p-card, .multiply, .impact-grid li, .st-picker button, .bank, .way, .inv, .news a, .head-split > a";
-  document.querySelectorAll(revealSel).forEach(function (el) {
-    if (el.closest(".hero")) return;
-    el.setAttribute("data-reveal", "");
-    var sibs = Array.prototype.filter.call(el.parentElement.children, function (x) { return x.matches(revealSel); });
-    el.style.setProperty("--d", (Math.max(0, sibs.indexOf(el)) * .09).toFixed(2) + "s");
-  });
-  var counters = document.querySelectorAll("[data-count]");
-  // counts up to the number as written, keeping its decimals and any suffix such as "+"
-  function countUp(el) {
-    var m = el.textContent.trim().match(/^([\d,]+(?:\.\d+)?)(.*)$/);
-    if (!m) return;
-    var end = parseFloat(m[1].replace(/,/g, "")), dec = (m[1].split(".")[1] || "").length, t0 = performance.now();
-    var opt = { minimumFractionDigits: dec, maximumFractionDigits: dec };
-    (function step(now) {
-      var k = clamp((now - t0) / 1600), e = 1 - Math.pow(1 - k, 3);
-      el.textContent = (end * e).toLocaleString("en-US", opt) + m[2];
-      if (k < 1) requestAnimationFrame(step);
-    })(t0);
-  }
+  // the hero numbers count up as their stats land
   if (!still) setTimeout(function () {
-    document.querySelectorAll(".hero-stats [data-count]").forEach(function (c) { if (!c.dataset.done) { c.dataset.done = "1"; countUp(c); } });
+    document.querySelectorAll(".hero-stats [data-count]").forEach(function (c) { if (!c.dataset.done) { c.dataset.done = "1"; S.countUp(c); } });
   }, 1950);
-  if (!still && "IntersectionObserver" in window) {
-    var watch = new Map();
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        watch.get(e.target).forEach(function (el) {
-          el.classList.add("in");
-          el.querySelectorAll("[data-count]").forEach(function (c) { if (!c.dataset.done) { c.dataset.done = "1"; countUp(c); } });
-          setTimeout(function () { el.classList.add("done"); }, 2000 + (parseFloat(el.style.getPropertyValue("--d")) || 0) * 1000);
-        });
-        io.unobserve(e.target);
-      });
-    }, { threshold: .14, rootMargin: "0px 0px -6% 0px" });
-    document.querySelectorAll("[data-reveal]").forEach(function (el) {
-      // a card that starts fully clipped never registers as visible, so its row is watched instead
-      var target = el.matches(".inv") ? el.parentElement : el;
-      if (!watch.has(target)) { watch.set(target, []); io.observe(target); }
-      watch.get(target).push(el);
-    });
-    // the first story makes its entrance the first time the section comes into view
-    var storiesEl = document.getElementById("stories");
-    var storyIO = new IntersectionObserver(function (en) {
-      if (!en[0].isIntersecting) return;
-      storiesEl.classList.add("seen");
-      var first = storiesEl.querySelector(".story:not([hidden])");
-      if (first) first.classList.add("enter");
-      storyIO.disconnect();
-    }, { threshold: .2 });
-    storyIO.observe(storiesEl);
-  } else {
-    document.querySelectorAll("[data-reveal]").forEach(function (el) { el.classList.add("in", "done"); });
-    document.getElementById("stories").classList.add("seen");
-  }
 
   // the challenge photo drifts a little against the scroll
   var chSec = document.getElementById("challenge"), chImg = chSec.querySelector(".ch-media img");
@@ -2281,11 +2305,15 @@ fieldset.pf-q[aria-invalid="true"] .pf-opt { border-color: var(--razz-40); }
   addEventListener("scroll", onScroll, { passive: true });
   addEventListener("resize", function () { decideMode(); onScroll(); });
   onScroll();
-  // ?lang=en opens the English version directly; otherwise use the last choice
-  var saved = new URLSearchParams(location.search).get("lang");
-  if (!saved) { try { saved = localStorage.getItem("sanad-lang"); } catch (e) {} }
-  heroReady = true;
-  applyLang(saved === "en" ? "en" : "ar");
+
+  // on every language change (and once now): relabel the form, re-split the hero headline, re-lay the hero
+  var heroTitle = document.getElementById("hero-title");
+  S.onLang(function () {
+    render();
+    if (!still) S.splitWords(heroTitle, "hw", false);
+    decideMode();
+    onScroll();
+  });
 })();
 </script>
 </body>
