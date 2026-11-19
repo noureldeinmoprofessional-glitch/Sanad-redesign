@@ -81,6 +81,24 @@ def mark_current(header, href):
     return header.replace(f'href="{href}"', f'href="{href}" aria-current="page"', 1)
 
 
+# each menu section has its own look; the page's address says which section it belongs to
+SECTIONS = [
+    ("sec-who", ("about", "board-members", "sanad-team", "awards", "partners-network")),
+    ("sec-prog", ("prevention", "protection", "advocacy", "economic-and-social-empowerment-program",
+                  "kafala-family-capacity-building-program", "caregivers-capacity-building-program",
+                  "empowering-care-homes-semi-family-care", "raising-awareness-advocacy-and-support-program")),
+    ("sec-svc", ("services",)),
+    ("sec-impact", ("achievements", "success-stories")),
+    ("sec-read", ("annual-reports", "knowledge-capsule", "news", "press-releases")),
+    ("sec-join", ("careers", "apply-now", "partnership")),
+]
+
+
+def section_of(slug):
+    top = slug.split("/")[0]
+    return next((name for name, slugs in SECTIONS if top in slugs), None)
+
+
 def build(path):
     meta, content = parse(path)
     # the page's address: its file name, or a "slug" in the front matter for nested ones (services/donor-advisory-csr)
@@ -95,7 +113,7 @@ def build(path):
     # what follows </main> (dialogs, a sticky bar) sits after the footer, as in a hand-written page
     cut = content.index("</main>") + len("</main>")
     content, after = content[:cut], content[cut:].strip("\n")
-    body_class = meta.get("body_class")
+    body_class = " ".join(c for c in (meta.get("body_class"), None if home else section_of(slug)) if c) or None
     html = PAGE.format(
         title=meta["title"], title_en=meta.get("title_en", meta["title"]), description=meta.get("description", ""),
         fonts=FONTS, root=root, header=header.rstrip("\n"), content=content.strip("\n") + "\n",
