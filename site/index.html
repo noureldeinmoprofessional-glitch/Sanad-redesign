@@ -77,7 +77,6 @@
             <ul class="sub-links">
               <li><a href="annual-reports/" data-en="Annual Reports">التقارير السنوية</a></li>
               <li><a href="knowledge-capsule/" data-en="Knowledge Capsule">كبسولة المعرفة</a></li>
-              <li><a href="https://sanadorphans.org/ar/newsletters/" data-en-href="https://sanadorphans.org/newsletters/" data-en="Newsletters">النشرة الدورية</a></li>
             </ul>
           </div>
         </li>
@@ -96,7 +95,7 @@
             <ul class="sub-links">
               <li><a href="careers/" data-en="Careers">الوظائف</a></li>
               <li><a href="https://forms.office.com/r/ky00KxTAu0" target="_blank" rel="noopener" data-en="Skills-Based Volunteering">تطوع بخبرتك</a></li>
-              <li><a href="https://sanadorphans.org/ar/partner-ar/" data-en-href="https://forms.cloud.microsoft/r/jHynWah2Lx?origin=lprLink" data-en="Corporate &amp; Donor Partnerships">شراكات الشركات والمانحين</a></li>
+              <li><a href="#partner" data-open-partner aria-haspopup="dialog" data-en="Corporate &amp; Donor Partnerships">شراكات الشركات والمانحين</a></li>
             </ul>
           </div>
         </li>
@@ -665,6 +664,19 @@
     </div>
   </div>
 </footer>
+<dialog class="film-modal" id="film-modal" aria-labelledby="fm-title">
+  <div class="fm-box">
+    <div class="fm-top"><h2 id="fm-title" data-en="What does Sanad mean?">يعني إيه سند؟</h2><button class="fm-close" type="button" data-film-close aria-label="إغلاق الفيلم" data-en-aria="Close the film"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="film-player"></div>
+    <div class="fm-foot"><a class="link arw" href="https://www.youtube.com/watch?v=lNpo7sIex6s" target="_blank" rel="noopener" data-en="Watch on YouTube">شاهد على YouTube</a><a class="btn btn-give" href="#give" data-film-close data-give-fund="general" data-en="Be a Sanad today">كن سندًا الآن</a></div>
+  </div>
+</dialog>
+
+<div class="sticky-give" id="sticky" aria-hidden="true">
+  <a class="btn btn-give" href="#give" tabindex="-1" data-en="Donate now">تبرّع الآن</a>
+</div>
+
+<!-- the partnership form: opens from "Corporate & Donor Partnerships" in the menu and from the homepage card, on every page -->
 <dialog class="pf" id="partner-form" aria-labelledby="pf-title">
   <div class="pf-head">
     <span class="pf-ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M10 21v-4h4v4"/></svg></span>
@@ -748,19 +760,8 @@
     <button class="btn pf-submit" type="button" data-pf-close data-en="Close">إغلاق</button>
   </div>
 </dialog>
-
-<dialog class="film-modal" id="film-modal" aria-labelledby="fm-title">
-  <div class="fm-box">
-    <div class="fm-top"><h2 id="fm-title" data-en="What does Sanad mean?">يعني إيه سند؟</h2><button class="fm-close" type="button" data-film-close aria-label="إغلاق الفيلم" data-en-aria="Close the film"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-    <div class="film-player"></div>
-    <div class="fm-foot"><a class="link arw" href="https://www.youtube.com/watch?v=lNpo7sIex6s" target="_blank" rel="noopener" data-en="Watch on YouTube">شاهد على YouTube</a><a class="btn btn-give" href="#give" data-film-close data-give-fund="general" data-en="Be a Sanad today">كن سندًا الآن</a></div>
-  </div>
-</dialog>
-
-<div class="sticky-give" id="sticky" aria-hidden="true">
-  <a class="btn btn-give" href="#give" tabindex="-1" data-en="Donate now">تبرّع الآن</a>
-</div>
 <script src="assets/js/site.js"></script>
+<script src="assets/js/partner.js"></script>
 <script src="assets/js/home.js"></script>
 </body>
 </html>

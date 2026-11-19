@@ -90,11 +90,13 @@ def build(path):
     root = "" if home else "/"
     header = mark_current(fill((SRC / "partials/header.html").read_text(encoding="utf-8"), home), meta.get("nav"))
     footer = fill((SRC / "partials/footer.html").read_text(encoding="utf-8"), home)
-    scripts = [f'<script src="{root}assets/js/site.js"></script>']
+    scripts = [f'<script src="{root}assets/js/site.js"></script>', f'<script src="{root}assets/js/partner.js"></script>']
     scripts += [f'<script src="{root}assets/js/{name}"></script>' for name in meta.get("scripts", "").split()]
     # what follows </main> (dialogs, a sticky bar) sits after the footer, as in a hand-written page
     cut = content.index("</main>") + len("</main>")
     content, after = content[:cut], content[cut:].strip("\n")
+    # the partnership form lives on every page, so the menu can open it anywhere
+    after = (after + "\n\n" if after else "") + fill((SRC / "partials/partner-form.html").read_text(encoding="utf-8"), home).rstrip("\n")
     body_class = meta.get("body_class")
     html = PAGE.format(
         title=meta["title"], title_en=meta.get("title_en", meta["title"]), description=meta.get("description", ""),

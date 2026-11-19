@@ -1386,7 +1386,6 @@ html[lang="ar"] [data-en-only], html[lang="en"] [data-ar-only] { display: none !
             <ul class="sub-links">
               <li><a href="annual-reports/" data-en="Annual Reports">التقارير السنوية</a></li>
               <li><a href="knowledge-capsule/" data-en="Knowledge Capsule">كبسولة المعرفة</a></li>
-              <li><a href="https://sanadorphans.org/ar/newsletters/" data-en-href="https://sanadorphans.org/newsletters/" data-en="Newsletters">النشرة الدورية</a></li>
             </ul>
           </div>
         </li>
@@ -1405,7 +1404,7 @@ html[lang="ar"] [data-en-only], html[lang="en"] [data-ar-only] { display: none !
             <ul class="sub-links">
               <li><a href="careers/" data-en="Careers">الوظائف</a></li>
               <li><a href="https://forms.office.com/r/ky00KxTAu0" target="_blank" rel="noopener" data-en="Skills-Based Volunteering">تطوع بخبرتك</a></li>
-              <li><a href="https://sanadorphans.org/ar/partner-ar/" data-en-href="https://forms.cloud.microsoft/r/jHynWah2Lx?origin=lprLink" data-en="Corporate &amp; Donor Partnerships">شراكات الشركات والمانحين</a></li>
+              <li><a href="#partner" data-open-partner aria-haspopup="dialog" data-en="Corporate &amp; Donor Partnerships">شراكات الشركات والمانحين</a></li>
             </ul>
           </div>
         </li>
@@ -1974,6 +1973,19 @@ html[lang="ar"] [data-en-only], html[lang="en"] [data-ar-only] { display: none !
     </div>
   </div>
 </footer>
+<dialog class="film-modal" id="film-modal" aria-labelledby="fm-title">
+  <div class="fm-box">
+    <div class="fm-top"><h2 id="fm-title" data-en="What does Sanad mean?">يعني إيه سند؟</h2><button class="fm-close" type="button" data-film-close aria-label="إغلاق الفيلم" data-en-aria="Close the film"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="film-player"></div>
+    <div class="fm-foot"><a class="link arw" href="https://www.youtube.com/watch?v=lNpo7sIex6s" target="_blank" rel="noopener" data-en="Watch on YouTube">شاهد على YouTube</a><a class="btn btn-give" href="#give" data-film-close data-give-fund="general" data-en="Be a Sanad today">كن سندًا الآن</a></div>
+  </div>
+</dialog>
+
+<div class="sticky-give" id="sticky" aria-hidden="true">
+  <a class="btn btn-give" href="#give" tabindex="-1" data-en="Donate now">تبرّع الآن</a>
+</div>
+
+<!-- the partnership form: opens from "Corporate & Donor Partnerships" in the menu and from the homepage card, on every page -->
 <dialog class="pf" id="partner-form" aria-labelledby="pf-title">
   <div class="pf-head">
     <span class="pf-ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M10 21v-4h4v4"/></svg></span>
@@ -2057,18 +2069,6 @@ html[lang="ar"] [data-en-only], html[lang="en"] [data-ar-only] { display: none !
     <button class="btn pf-submit" type="button" data-pf-close data-en="Close">إغلاق</button>
   </div>
 </dialog>
-
-<dialog class="film-modal" id="film-modal" aria-labelledby="fm-title">
-  <div class="fm-box">
-    <div class="fm-top"><h2 id="fm-title" data-en="What does Sanad mean?">يعني إيه سند؟</h2><button class="fm-close" type="button" data-film-close aria-label="إغلاق الفيلم" data-en-aria="Close the film"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-    <div class="film-player"></div>
-    <div class="fm-foot"><a class="link arw" href="https://www.youtube.com/watch?v=lNpo7sIex6s" target="_blank" rel="noopener" data-en="Watch on YouTube">شاهد على YouTube</a><a class="btn btn-give" href="#give" data-film-close data-give-fund="general" data-en="Be a Sanad today">كن سندًا الآن</a></div>
-  </div>
-</dialog>
-
-<div class="sticky-give" id="sticky" aria-hidden="true">
-  <a class="btn btn-give" href="#give" tabindex="-1" data-en="Donate now">تبرّع الآن</a>
-</div>
 <script>
 /* Sanad site: what every page shares. The language switch, the main menu, toasts, the footer newsletter,
    copy buttons, section headlines and scroll reveals. A page adds its own strings with Sanad.strings()
@@ -2175,6 +2175,7 @@ html[lang="ar"] [data-en-only], html[lang="en"] [data-ar-only] { display: none !
     siteHead.classList.toggle("nav-open", open);
     if (!open) closeSubs();
   }
+  S.closeMenu = function () { setMenu(false); };
   // fold the tabs into the menu button whenever they can't share the row with the actions
   function fitNav() {
     siteHead.classList.remove("nav-compact");
@@ -2338,25 +2339,16 @@ html[lang="ar"] [data-en-only], html[lang="en"] [data-ar-only] { display: none !
 })();
 </script>
 <script>
-/* Sanad homepage: the donation form, the partnership form, the stories, the film and the pinned hero.
-   Shared behaviour (language, menu, reveals, counters, toasts) lives in assets/js/site.js. */
+/* The partnership form, on every page: "Corporate & Donor Partnerships" in the menu and the homepage card open it,
+   and so does a link to /#partner. It checks each answer and shows a thank-you; nothing is sent yet. */
 (function () {
   "use strict";
   var root = document.documentElement;
-  var S = window.Sanad, T = S.T, still = S.still, clamp = S.clamp, head = S.head;
+  var S = window.Sanad, T = S.T, still = S.still;
+  if (!document.getElementById("partner-form")) return;
 
   S.strings({
     ar: {
-      cur: "ج.م",
-      monthly: function (a) { return "أكون سندًا بـ " + a + " ج.م شهريًا"; },
-      once: function (a) { return "تبرّع بـ " + a + " ج.م"; },
-      perMonth: "شهريًا", oneTime: "مرة واحدة",
-      funds: { children: "تنمية الأطفال", youth: "تمكين الشباب", caregivers: "تدريب مقدّمي الرعاية", kafala: "تدريب الأسر الكافلة", general: "تبرع عام" },
-      thanks: function (n) { return "شكرًا لك يا " + n; },
-      errAmt: "أقل مبلغ للتبرع 10 ج.م.",
-      errName: "اكتب اسمك من فضلك.",
-      errPhone: "اكتب رقم موبايل صحيح، مثل 01012345678.",
-      filmTitle: "يعني إيه سند؟",
       pfRequired: "هذا الحقل مطلوب.",
       pfPhone: "اكتب رقم هاتف صحيح.",
       pfPick: "اختر خيارًا واحدًا على الأقل.",
@@ -2365,16 +2357,6 @@ html[lang="ar"] [data-en-only], html[lang="en"] [data-ar-only] { display: none !
       pfDone: function (email) { return "يسعدنا اهتمامكم بالشراكة مع سند. وصلتنا استمارتكم، وسيتواصل معكم فريق الشراكات قريبًا على " + email + " لنستكشف معًا فرص التعاون."; }
     },
     en: {
-      cur: "EGP",
-      monthly: function (a) { return "Give EGP " + a + " monthly"; },
-      once: function (a) { return "Give EGP " + a; },
-      perMonth: "monthly", oneTime: "one-time",
-      funds: { children: "Children's development", youth: "Youth empowerment", caregivers: "Caregiver training", kafala: "Kafala family training", general: "General donation" },
-      thanks: function (n) { return "Thank you, " + n; },
-      errAmt: "The minimum gift is EGP 10.",
-      errName: "Please enter your name.",
-      errPhone: "Please enter a valid mobile number, like 01012345678.",
-      filmTitle: "What does Sanad mean?",
       pfRequired: "This field is required.",
       pfPhone: "Please enter a valid phone number.",
       pfPick: "Choose at least one option.",
@@ -2398,19 +2380,33 @@ html[lang="ar"] [data-en-only], html[lang="en"] [data-ar-only] { display: none !
     pfForm.querySelectorAll(".err").forEach(function (e) { e.hidden = true; e.textContent = ""; });
     pfForm.querySelectorAll("[aria-invalid]").forEach(function (e) { e.removeAttribute("aria-invalid"); });
   }
-  document.querySelectorAll("[data-open-partner]").forEach(function (b) {
-    b.addEventListener("click", function () {
-      pfOpener = b;
+  function pfOpen(opener) {
+      pfOpener = opener;
+      if (S.closeMenu) S.closeMenu();
       pfReset();
       pf.showModal();
       root.classList.add("pf-lock");
       pfForm.querySelector(".pf-body").scrollTop = 0;
       document.getElementById("pf-org").focus();
-    });
+  }
+  document.querySelectorAll("[data-open-partner]").forEach(function (b) {
+    b.addEventListener("click", function (e) { e.preventDefault(); pfOpen(b); });
   });
+  // a link to /#partner (the menu without JavaScript, or a shared link) opens the form on arrival
+  function fromHash() { if (location.hash === "#partner" && !pf.open) pfOpen(null); }
+  fromHash();
+  addEventListener("hashchange", fromHash);
   pf.addEventListener("close", function () {
     root.classList.remove("pf-lock");
-    if (pfOpener) pfOpener.focus();
+    if (!pfOpener) return;
+    // opened from the menu: the link is folded away again, so focus returns to its tab (or the menu button on phones)
+    var back = pfOpener;
+    if (!back.offsetParent) {
+      var tab = back.closest(".nav-item") && back.closest(".nav-item").querySelector(".nav-top");
+      var menuBtn = document.querySelector(".menu-btn");
+      back = tab && tab.offsetParent ? tab : (menuBtn && menuBtn.offsetParent ? menuBtn : null);
+    }
+    if (back) back.focus();
   });
   pf.querySelectorAll("[data-pf-close]").forEach(function (b) { b.addEventListener("click", function () { pf.close(); }); });
   // a click on the dimmed backdrop closes the form too
@@ -2467,6 +2463,43 @@ html[lang="ar"] [data-en-only], html[lang="en"] [data-ar-only] { display: none !
     pf.classList.add("is-done");
     pf.setAttribute("aria-labelledby", "pf-done-title");
     document.getElementById("pf-done-title").focus();
+  });
+
+})();
+</script>
+<script>
+/* Sanad homepage: the donation form, the stories, the film and the pinned hero.
+   Shared behaviour (language, menu, reveals, counters, toasts) lives in assets/js/site.js. */
+(function () {
+  "use strict";
+  var root = document.documentElement;
+  var S = window.Sanad, T = S.T, still = S.still, clamp = S.clamp, head = S.head;
+
+  S.strings({
+    ar: {
+      cur: "ج.م",
+      monthly: function (a) { return "أكون سندًا بـ " + a + " ج.م شهريًا"; },
+      once: function (a) { return "تبرّع بـ " + a + " ج.م"; },
+      perMonth: "شهريًا", oneTime: "مرة واحدة",
+      funds: { children: "تنمية الأطفال", youth: "تمكين الشباب", caregivers: "تدريب مقدّمي الرعاية", kafala: "تدريب الأسر الكافلة", general: "تبرع عام" },
+      thanks: function (n) { return "شكرًا لك يا " + n; },
+      errAmt: "أقل مبلغ للتبرع 10 ج.م.",
+      errName: "اكتب اسمك من فضلك.",
+      errPhone: "اكتب رقم موبايل صحيح، مثل 01012345678.",
+      filmTitle: "يعني إيه سند؟",
+    },
+    en: {
+      cur: "EGP",
+      monthly: function (a) { return "Give EGP " + a + " monthly"; },
+      once: function (a) { return "Give EGP " + a; },
+      perMonth: "monthly", oneTime: "one-time",
+      funds: { children: "Children's development", youth: "Youth empowerment", caregivers: "Caregiver training", kafala: "Kafala family training", general: "General donation" },
+      thanks: function (n) { return "Thank you, " + n; },
+      errAmt: "The minimum gift is EGP 10.",
+      errName: "Please enter your name.",
+      errPhone: "Please enter a valid mobile number, like 01012345678.",
+      filmTitle: "What does Sanad mean?",
+    }
   });
 
   // ---------- donation form ----------
