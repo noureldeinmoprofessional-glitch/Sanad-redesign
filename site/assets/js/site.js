@@ -103,7 +103,6 @@
     siteHead.classList.toggle("nav-open", open);
     if (!open) closeSubs();
   }
-  S.closeMenu = function () { setMenu(false); };
   // fold the tabs into the menu button whenever they can't share the row with the actions
   function fitNav() {
     siteHead.classList.remove("nav-compact");

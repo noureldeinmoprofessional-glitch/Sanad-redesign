@@ -1,8 +1,7 @@
-/* The partnership form, on every page: "Corporate & Donor Partnerships" in the menu and the homepage card open it,
-   and so does a link to /#partner. It checks each answer and shows a thank-you; nothing is sent yet. */
+/* The partnership form on its own page (/partnership/): "Corporate & Donor Partnerships" in the menu and the homepage
+   card link to it. It checks each answer and shows a thank-you; nothing is sent yet. */
 (function () {
   "use strict";
-  var root = document.documentElement;
   var S = window.Sanad, T = S.T, still = S.still;
   if (!document.getElementById("partner-form")) return;
 
@@ -29,47 +28,6 @@
   var pf = document.getElementById("partner-form");
   var pfForm = document.getElementById("pf-form");
   var pfDone = document.getElementById("pf-done");
-  var pfOpener = null;
-  function pfReset() {
-    pfForm.reset();
-    pfForm.hidden = false;
-    pfDone.hidden = true;
-    pf.setAttribute("aria-labelledby", "pf-title");
-    pf.classList.remove("is-done");
-    pfForm.querySelectorAll(".err").forEach(function (e) { e.hidden = true; e.textContent = ""; });
-    pfForm.querySelectorAll("[aria-invalid]").forEach(function (e) { e.removeAttribute("aria-invalid"); });
-  }
-  function pfOpen(opener) {
-      pfOpener = opener;
-      if (S.closeMenu) S.closeMenu();
-      pfReset();
-      pf.showModal();
-      root.classList.add("pf-lock");
-      pfForm.querySelector(".pf-body").scrollTop = 0;
-      document.getElementById("pf-org").focus();
-  }
-  document.querySelectorAll("[data-open-partner]").forEach(function (b) {
-    b.addEventListener("click", function (e) { e.preventDefault(); pfOpen(b); });
-  });
-  // a link to /#partner (the menu without JavaScript, or a shared link) opens the form on arrival
-  function fromHash() { if (location.hash === "#partner" && !pf.open) pfOpen(null); }
-  fromHash();
-  addEventListener("hashchange", fromHash);
-  pf.addEventListener("close", function () {
-    root.classList.remove("pf-lock");
-    if (!pfOpener) return;
-    // opened from the menu: the link is folded away again, so focus returns to its tab (or the menu button on phones)
-    var back = pfOpener;
-    if (!back.offsetParent) {
-      var tab = back.closest(".nav-item") && back.closest(".nav-item").querySelector(".nav-top");
-      var menuBtn = document.querySelector(".menu-btn");
-      back = tab && tab.offsetParent ? tab : (menuBtn && menuBtn.offsetParent ? menuBtn : null);
-    }
-    if (back) back.focus();
-  });
-  pf.querySelectorAll("[data-pf-close]").forEach(function (b) { b.addEventListener("click", function () { pf.close(); }); });
-  // a click on the dimmed backdrop closes the form too
-  pf.addEventListener("click", function (e) { if (e.target === pf) pf.close(); });
   // typing an "other" answer ticks its box; "No" in the conference question clears the yeses, and the reverse
   pfForm.addEventListener("input", function (e) {
     if (e.target.type === "text" && e.target.name.slice(-6) === "-other") {
@@ -122,6 +80,7 @@
     pf.classList.add("is-done");
     pf.setAttribute("aria-labelledby", "pf-done-title");
     document.getElementById("pf-done-title").focus();
+    pf.scrollIntoView({ block: "start", behavior: still ? "auto" : "smooth" });
   });
 
 })();

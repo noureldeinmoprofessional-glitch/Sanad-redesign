@@ -1,12 +1,37 @@
-<!-- the partnership form: opens from "Corporate & Donor Partnerships" in the menu and from the homepage card, on every page -->
-<dialog class="pf" id="partner-form" aria-labelledby="pf-title">
+---
+title: شراكات الشركات والمانحين – سند
+title_en: Corporate & Donor Partnerships – Sanad
+description: ابنِ أثرًا اجتماعيًا يمكن قياسه عبر تدريب معتمد على حماية الطفل. نعمل مع الشركات والمؤسسات والجهات الحكومية.
+slug: partnership
+nav: /partnership/
+scripts: partner.js
+---
+<main id="top" class="page">
+
+<!-- The partnership form Sanad sent (the same questions the homepage used to open in a popup), on its own page. Nothing is sent yet. -->
+<section class="page-hero" aria-labelledby="page-title">
+  <div class="wrap ph-grid no-media">
+    <div class="ph-copy">
+      <nav class="crumbs" aria-label="مسار الصفحة" data-en-aria="Breadcrumb">
+        <a href="/" data-en="Home">الرئيسية</a>
+        <span data-en="Get Involved">شارك معنا</span>
+        <span aria-current="page" data-en="Corporate &amp; Donor Partnerships">شراكات الشركات والمانحين</span>
+      </nav>
+      <h1 id="page-title" data-en-html="&lt;em&gt;Corporate &amp;amp; Donor&lt;/em&gt; Partnerships">شراكات <em>الشركات والمانحين</em></h1>
+      <p class="ph-lead" data-en="Build measurable CSR impact through certified child protection training. We work with corporations, foundations and government.">ابنِ أثرًا اجتماعيًا يمكن قياسه عبر تدريب معتمد على حماية الطفل. نعمل مع الشركات والمؤسسات والجهات الحكومية.</p>
+    </div>
+  </div>
+</section>
+
+<section class="page-sec" aria-label="استمارة الشراكة" data-en-aria="Partnership form">
+  <div class="wrap">
+<div class="pf is-page" id="partner-form" data-rv>
   <div class="pf-head">
     <span class="pf-ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M10 21v-4h4v4"/></svg></span>
     <div>
       <h2 id="pf-title" data-en="Expression of interest in partnering with Sanad">استمارة إبداء رغبة في الشراكة مع جمعية سند</h2>
       <p class="pf-req"><span class="req" aria-hidden="true">*</span> <span data-en="Required">مطلوب</span></p>
     </div>
-    <button class="pf-close" type="button" data-pf-close aria-label="إغلاق" data-en-aria="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   </div>
   <form id="pf-form" novalidate>
     <div class="pf-body">
@@ -79,6 +104,10 @@
     <h2 id="pf-done-title" tabindex="-1"></h2>
     <p id="pf-done-text"></p>
     <p class="pf-sign" data-en="Together, we strengthen every hand that cares for a child.">معًا نقوّي كل يد ترعى طفلًا.</p>
-    <button class="btn pf-submit" type="button" data-pf-close data-en="Close">إغلاق</button>
+    <a class="btn pf-submit" href="/" data-en="Back to the homepage">العودة إلى الرئيسية</a>
   </div>
-</dialog>
+</div>
+  </div>
+</section>
+
+</main>

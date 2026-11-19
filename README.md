@@ -31,7 +31,7 @@ Every page shares one stylesheet, one script and one header and footer, so a cha
 
 #### Internal pages
 
-Every page in the menu and footer now has its own page here (54 with the homepage), with Sanad's text word for word from the current site in both languages, and the menu, footer and homepage link to them. At the client's request the newsletters link is hidden until there is material for it, and "Corporate & Donor Partnerships" in the menu opens the partnership form, which is now on every page (`site/src/partials/partner-form.html`, `site/assets/js/partner.js`; a link to `/#partner` opens it too). Only skills-based volunteering still points to Sanad's external form. The board, team, awards and partners pages carry no header photo, since Sanad's photos don't show those groups.
+Every page in the menu and footer now has its own page here (54 with the homepage), with Sanad's text word for word from the current site in both languages, and the menu, footer and homepage link to them. At the client's request the newsletters link is hidden until there is material for it, and "Corporate & Donor Partnerships" in the menu, like the homepage's "Explore partnership" card, opens `/partnership/`, a page with the partnership form Sanad sent (`site/src/pages/partnership.html`, checked by `site/assets/js/partner.js`; nothing is sent yet).js`; a link to `/#partner` opens it too). Only skills-based volunteering still points to Sanad's external form. The board, team, awards and partners pages carry no header photo, since Sanad's photos don't show those groups.
 
 | Section | Pages |
 |---|---|

@@ -1306,3 +1306,12 @@ html[lang="ar"] [data-en-only], html[lang="en"] [data-ar-only] { display: none !
 .crumbs a { display: inline-flex; align-items: center; min-height: 44px; margin-block: -10px; padding-inline: 6px; margin-inline: -6px; }
 .ph-back, .link.arw, .pl-toggle { display: inline-flex; align-items: center; min-height: 44px; margin-block: -8px; }
 .foot a.ltr { display: inline-flex; align-items: center; min-height: 44px; margin-block: -8px; }
+
+/* the partnership form on its own page: the popup's card, at full height, in the page */
+.pf.is-page { display: flex; flex-direction: column; width: auto; max-width: 780px; max-height: none; margin-inline: auto; overflow: visible; border: 1px solid var(--line); box-shadow: 0 40px 80px -60px rgba(6, 33, 62, .55); scroll-margin-top: 96px; }
+.pf.is-page .pf-head { padding-inline-end: 24px; border-radius: 22px 22px 0 0; }
+.pf.is-page .pf-body { overflow: visible; padding: 28px 32px 30px; }
+.pf.is-page .pf-foot { padding: 18px 32px 26px; border-radius: 0 0 22px 22px; }
+.pf.is-page .pf-done { border-radius: 22px; }
+a.pf-submit, a.inv-btn { text-decoration: none; }
+@media (max-width: 600px) { .pf.is-page .pf-body { padding: 22px 18px 24px; } .pf.is-page .pf-foot { padding: 14px 18px 20px; } }

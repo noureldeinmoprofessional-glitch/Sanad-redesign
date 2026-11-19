@@ -95,7 +95,7 @@
             <ul class="sub-links">
               <li><a href="/careers/" data-en="Careers">الوظائف</a></li>
               <li><a href="https://forms.office.com/r/ky00KxTAu0" target="_blank" rel="noopener" data-en="Skills-Based Volunteering">تطوع بخبرتك</a></li>
-              <li><a href="/#partner" data-open-partner aria-haspopup="dialog" data-en="Corporate &amp; Donor Partnerships">شراكات الشركات والمانحين</a></li>
+              <li><a href="/partnership/" data-en="Corporate &amp; Donor Partnerships">شراكات الشركات والمانحين</a></li>
             </ul>
           </div>
         </li>
@@ -234,91 +234,6 @@
     </div>
   </div>
 </footer>
-<!-- the partnership form: opens from "Corporate & Donor Partnerships" in the menu and from the homepage card, on every page -->
-<dialog class="pf" id="partner-form" aria-labelledby="pf-title">
-  <div class="pf-head">
-    <span class="pf-ic" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M10 21v-4h4v4"/></svg></span>
-    <div>
-      <h2 id="pf-title" data-en="Expression of interest in partnering with Sanad">استمارة إبداء رغبة في الشراكة مع جمعية سند</h2>
-      <p class="pf-req"><span class="req" aria-hidden="true">*</span> <span data-en="Required">مطلوب</span></p>
-    </div>
-    <button class="pf-close" type="button" data-pf-close aria-label="إغلاق" data-en-aria="Close"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
-  </div>
-  <form id="pf-form" novalidate>
-    <div class="pf-body">
-        <div class="pf-q field">
-          <label for="pf-org"><span><span data-en="Organisation/company name">اسم المؤسسة/الشركة</span> <span class="req" aria-hidden="true">*</span></span></label>
-          <input id="pf-org" name="pf-org" type="text" required aria-describedby="pf-org-err" autocomplete="organization">
-          <p class="err" id="pf-org-err" hidden></p>
-        </div>
-        <div class="pf-q field">
-          <label for="pf-contact"><span><span data-en="Name of the contact person">اسم الشخص المسؤول عن التواصل</span> <span class="req" aria-hidden="true">*</span></span></label>
-          <small class="pf-hint" id="pf-contact-hint" data-en="(The person we can contact directly about the partnership)">(يرجى تحديد الشخص الذي يمكن التواصل معه بشكل مباشر حول الشراكة)</small>
-          <input id="pf-contact" name="pf-contact" type="text" required aria-describedby="pf-contact-hint pf-contact-err" autocomplete="name">
-          <p class="err" id="pf-contact-err" hidden></p>
-        </div>
-        <div class="pf-q field">
-          <label for="pf-job"><span><span data-en="Job title">المسمى الوظيفي</span> <span class="req" aria-hidden="true">*</span></span></label>
-          <input id="pf-job" name="pf-job" type="text" required aria-describedby="pf-job-err" autocomplete="organization-title">
-          <p class="err" id="pf-job-err" hidden></p>
-        </div>
-        <div class="pf-q field">
-          <label for="pf-email"><span><span data-en="Email">البريد الالكتروني</span> <span class="req" aria-hidden="true">*</span></span></label>
-          <input id="pf-email" name="pf-email" type="email" required aria-describedby="pf-email-err" autocomplete="email" dir="ltr">
-          <p class="err" id="pf-email-err" hidden></p>
-        </div>
-        <div class="pf-q field">
-          <label for="pf-phone"><span><span data-en="Phone number">رقم الهاتف</span> <span class="req" aria-hidden="true">*</span></span></label>
-          <input id="pf-phone" name="pf-phone" type="tel" required aria-describedby="pf-phone-err" autocomplete="tel" inputmode="tel" dir="ltr">
-          <p class="err" id="pf-phone-err" hidden></p>
-        </div>
-        <fieldset class="pf-q" id="pf-prog" aria-describedby="pf-prog-err">
-          <legend><span><span data-en="In light of the strategic goals presented at the event, which programmes do you see an opportunity to collaborate with Sanad on?">في ضوء الأهداف الاستراتيجية التي تم عرضها خلال الفعالية، ما البرامج التي ترون فيها فرصة للتعاون مع جمعية سند؟</span> <span class="req" aria-hidden="true">*</span></span></legend>
-          <small class="pf-hint" data-en="(You can choose more than one)">(يمكن اختيار أكثر من خيار)</small>
-          <div class="pf-opts">
-            <label class="pf-opt"><input type="checkbox" name="pf-prog" value="1"><span data-en="Transforming orphanages into semi-family care">برنامج تحول دور الأيتام للرعاية شبه الاسرية</span></label>
-            <label class="pf-opt"><input type="checkbox" name="pf-prog" value="2"><span data-en="Economic and community empowerment for young care leavers">برنامج التمكين الاقتصادي و المجتمعي للشباب خريجي دور الأيتام</span></label>
-            <label class="pf-opt"><input type="checkbox" name="pf-prog" value="3"><span data-en="Strengthening the kafala system and preparing kafala families">برنامج تعزيز منظومة الكفالة و تأهيل الأسر الكافلة</span></label>
-            <label class="pf-opt"><input type="checkbox" name="pf-prog" value="4"><span data-en="Qualifying new professionals in alternative care">برنامج تأهيل كوادر جديدة في مجال الرعاية البديلة</span></label>
-            <label class="pf-opt"><input type="checkbox" name="pf-prog" value="5"><span data-en="Advocacy and awareness raising">برنامج كسب التأييد ورفع الوعي</span></label>
-            <label class="pf-opt other"><input type="checkbox" name="pf-prog" value="other" data-other><span data-en="Other">أخرى</span><input type="text" name="pf-prog-other" aria-label="أخرى: اكتب إجابتك" data-en-aria="Other: type your answer" placeholder="اكتب إجابتك" data-en-ph="Type your answer"></label>
-          </div>
-          <p class="err" id="pf-prog-err" hidden></p>
-        </fieldset>
-        <fieldset class="pf-q" id="pf-type" aria-describedby="pf-type-err">
-          <legend><span><span data-en="What type of partnership could you enter into with Sanad?">ما نوع الشراكة الممكن ابرامها مع جمعية سند؟</span> <span class="req" aria-hidden="true">*</span></span></legend>
-          <small class="pf-hint" data-en="(You can choose more than one)">(يمكن اختيار أكثر من خيار)</small>
-          <div class="pf-opts">
-            <label class="pf-opt"><input type="checkbox" name="pf-type" value="1"><span data-en="Financial funding">تمويل مالي</span></label>
-            <label class="pf-opt"><input type="checkbox" name="pf-type" value="2"><span data-en="Technical support (such as training, consulting or technical expertise)">دعم فني (مثل التدريب، الاستشارات، أو الخبرة التقنية)</span></label>
-            <label class="pf-opt"><input type="checkbox" name="pf-type" value="3"><span data-en="Media partnership">شراكة إعلامية</span></label>
-            <label class="pf-opt other"><input type="checkbox" name="pf-type" value="other" data-other><span data-en="Other">أخرى</span><input type="text" name="pf-type-other" aria-label="أخرى: اكتب إجابتك" data-en-aria="Other: type your answer" placeholder="اكتب إجابتك" data-en-ph="Type your answer"></label>
-          </div>
-          <p class="err" id="pf-type-err" hidden></p>
-        </fieldset>
-        <fieldset class="pf-q" id="pf-conf" aria-describedby="pf-conf-err">
-          <legend><span><span data-en="As part of Sanad's second regional conference on alternative care for children and youth without parental care, planned for January 2025, do you see an opportunity to support or sponsor this event?">في إطار مؤتمر سند الإقليمي الثاني حول الرعاية البديلة للأطفال والشباب المحرومين من الرعاية الوالدية، المخطط عقده في يناير 2025، هل ترون فرصة لدعم أو رعاية هذا الحدث؟</span> <span class="req" aria-hidden="true">*</span></span></legend>
-          <small class="pf-hint" data-en="(You can choose more than one)">(يمكن اختيار أكثر من خيار)</small>
-          <div class="pf-opts">
-            <label class="pf-opt"><input type="checkbox" name="pf-conf" value="1"><span data-en="Yes, interested in financial sponsorship">نعم، مهتم بالرعاية المالية</span></label>
-            <label class="pf-opt"><input type="checkbox" name="pf-conf" value="2"><span data-en="Yes, interested in providing technical or logistical support">نعم، مهتم بتقديم دعم فني أو لوجستي</span></label>
-            <label class="pf-opt"><input type="checkbox" name="pf-conf" value="3"><span data-en="Yes, interested in taking part as a media partner">نعم، مهتم بالمشاركة كشريك إعلامي</span></label>
-            <label class="pf-opt"><input type="checkbox" name="pf-conf" value="4" data-exclusive><span data-en="No, not interested at the moment">لا، لست مهتم في الوقت الحالي</span></label>
-          </div>
-          <p class="err" id="pf-conf-err" hidden></p>
-        </fieldset>
-    </div>
-    <div class="pf-foot"><button class="btn pf-submit" type="submit" data-en="Submit">إرسال</button></div>
-  </form>
-  <div class="pf-done" id="pf-done" hidden>
-    <svg class="pf-check" viewBox="0 0 84 84" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="42" cy="42" r="34"/><path d="M28 43l9 9 19-20"/></svg>
-    <h2 id="pf-done-title" tabindex="-1"></h2>
-    <p id="pf-done-text"></p>
-    <p class="pf-sign" data-en="Together, we strengthen every hand that cares for a child.">معًا نقوّي كل يد ترعى طفلًا.</p>
-    <button class="btn pf-submit" type="button" data-pf-close data-en="Close">إغلاق</button>
-  </div>
-</dialog>
 <script src="/assets/js/site.js"></script>
-<script src="/assets/js/partner.js"></script>
 </body>
 </html>
